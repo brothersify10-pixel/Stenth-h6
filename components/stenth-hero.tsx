@@ -21,7 +21,8 @@ export default function STENTHHero() {
             </h1>
 
             <p className="text-xl text-slate-300 max-w-2xl leading-relaxed">
-              From business analysis to brand recognition, STENTH drives every stage of your growth, strategy, marketing, ROI tracking, and beyond.
+              From business analysis to brand recognition, STENTH drives every stage of your growth—strategy, marketing,
+              ROI tracking, and beyond.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
