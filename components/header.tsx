@@ -1,0 +1,65 @@
+"use client"
+
+import { useState, useEffect } from "react"
+import Link from "next/link"
+import Image from "next/image"
+
+export default function Header() {
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  return (
+    <header
+      className={`fixed top-0 w-full z-40 transition-all duration-500 ${
+        scrolled ? "bg-slate-950/95 backdrop-blur-xl shadow-lg shadow-cyan-500/10" : "bg-slate-950/90 backdrop-blur-md"
+      }`}
+    >
+      <nav className="container mx-auto px-6 py-4">
+        <div className="flex items-center justify-between">
+          <Link href="/" className="flex items-center space-x-3 group">
+            <div className="w-12 h-12 transform group-hover:scale-110 transition-all duration-300">
+              <Image
+                src="/logo.jpeg"
+                alt="Stenth Logo"
+                width={48}
+                height={48}
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
+              Stenth
+            </span>
+          </Link>
+
+          <ul className="hidden md:flex space-x-8">
+            {[
+              { name: "Home", href: "/" },
+              { name: "Services", href: "/services" },
+              { name: "About", href: "/about" },
+              { name: "Portfolio", href: "/portfolio" },
+              { name: "Contact", href: "/contact" },
+            ].map((item) => (
+              <li key={item.name}>
+                <Link
+                  href={item.href}
+                  className="text-white hover:text-cyan-400 transition-colors duration-300 relative group"
+                >
+                  {item.name}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 group-hover:w-full transition-all duration-300"></span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </nav>
+    </header>
+  )
+}
