@@ -4,7 +4,6 @@ import type React from "react"
 
 import Header from "@/components/header"
 import FloatingElements from "@/components/floating-elements"
-import BookingCalendar from "@/components/booking-calendar"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -13,7 +12,9 @@ export default function BookPage() {
   const [form, setForm] = useState({
     name: "",
     email: "",
+    phone: "",
     company: "",
+    currentRevenue: "",
     notes: "",
   })
   const [submitting, setSubmitting] = useState(false)
@@ -33,6 +34,23 @@ export default function BookPage() {
       setSubmitting(false)
     }
   }
+
+  const calUrl = `https://cal.com/stenth/30min?embed=true&theme=dark${
+    form.name ? `&name=${encodeURIComponent(form.name)}` : ""
+  }${form.email ? `&email=${encodeURIComponent(form.email)}` : ""}${
+    form.company || form.phone || form.currentRevenue || form.notes
+      ? `&notes=${encodeURIComponent(
+          [
+            form.company && `Company: ${form.company}`,
+            form.phone && `Phone: ${form.phone}`,
+            form.currentRevenue && `Revenue: ${form.currentRevenue}`,
+            form.notes,
+          ]
+            .filter(Boolean)
+            .join(" | "),
+        )}`
+      : ""
+  }`
 
   return (
     <main className="relative min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
@@ -84,12 +102,32 @@ export default function BookPage() {
             </div>
 
             <div>
+              <label className="block text-white font-medium mb-2">Phone (optional)</label>
+              <Input
+                className="bg-slate-700/50 border-slate-600 text-white"
+                placeholder="Enter your phone number"
+                value={form.phone}
+                onChange={(e) => setForm({ ...form, phone: e.target.value })}
+              />
+            </div>
+
+            <div>
               <label className="block text-white font-medium mb-2">Company</label>
               <Input
                 className="bg-slate-700/50 border-slate-600 text-white"
                 placeholder="Enter your company name"
                 value={form.company}
                 onChange={(e) => setForm({ ...form, company: e.target.value })}
+              />
+            </div>
+
+            <div>
+              <label className="block text-white font-medium mb-2">Current Revenue (optional)</label>
+              <Input
+                className="bg-slate-700/50 border-slate-600 text-white"
+                placeholder="e.g., $10k/month, $1M/year"
+                value={form.currentRevenue}
+                onChange={(e) => setForm({ ...form, currentRevenue: e.target.value })}
               />
             </div>
 
@@ -114,7 +152,17 @@ export default function BookPage() {
             {saved && <p className="text-green-400 text-sm text-center">Saved! Now pick a time below.</p>}
           </form>
 
-          <BookingCalendar />
+          <div className="rounded-2xl border border-slate-700 p-2 bg-white">
+            <iframe
+              key={calUrl} // Force re-render when URL changes
+              src={calUrl}
+              width="100%"
+              height="640"
+              frameBorder="0"
+              title="Schedule with STENTH"
+              style={{ borderRadius: 12 }}
+            />
+          </div>
 
           <p className="text-sm text-slate-400 text-center">
             You'll get a calendar invite and confirmation email after booking.
