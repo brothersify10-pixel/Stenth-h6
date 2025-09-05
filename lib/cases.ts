@@ -89,7 +89,7 @@ export const portfolioCases = {
     stack: ["Google Ads", "Facebook Ads", "Unbounce", "Salesforce", "Hotjar"],
     images: [
       { src: "/portfolio/leadgen-saas/cover.jpg", alt: "SaaS platform overview" },
-      { src: "/portfolio/leadgen-saas/creative-tests.jpg", alt: "Creative testing framework" },
+      { src: "/portfolio/leadgen-saas/testing.jpg", alt: "Creative testing framework" },
       { src: "/portfolio/leadgen-saas/pipeline.jpg", alt: "Pipeline performance metrics" },
     ],
     faq: [
