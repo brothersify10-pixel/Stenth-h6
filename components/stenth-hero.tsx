@@ -49,10 +49,19 @@ export default function STENTHHero() {
             <div className="relative pointer-events-none z-0">
               <motion.div
                 animate={{ rotateY: [0, 180, 0] }}
-                transition={{ duration: 6, ease: "easeInOut", repeat: Number.POSITIVE_INFINITY }}
+                transition={{
+                  duration: 12,
+                  ease: "easeInOut",
+                  repeat: Number.POSITIVE_INFINITY,
+                }}
+                style={{
+                  backfaceVisibility: "hidden",
+                  transformStyle: "preserve-3d",
+                  willChange: "transform",
+                }}
               >
                 <Image
-                  src="/Stenth_Logo-removebg.png"
+                  src="/stenth-s.jpg"
                   alt="STENTH logo"
                   width={360}
                   height={360}
