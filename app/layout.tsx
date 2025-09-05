@@ -15,11 +15,13 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: "/favicon.ico" },
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16x16.jpg", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.jpg", sizes: "32x32", type: "image/png" },
     ],
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    apple: [{ url: "/apple-touch-icon.jpg", sizes: "180x180", type: "image/png" }],
+    other: [{ rel: "mask-icon", url: "/safari-pinned-tab.jpg", color: "#2563EB" }],
   },
+  manifest: "/site.webmanifest",
   openGraph: {
     title: "STENTH | We Build Businesses, Not Just Brands",
     description:
@@ -29,7 +31,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og.png",
+        url: "/og.jpg",
         width: 1200,
         height: 630,
         alt: "STENTH | We Build Businesses, Not Just Brands",
@@ -41,7 +43,7 @@ export const metadata: Metadata = {
     title: "STENTH | We Build Businesses, Not Just Brands",
     description:
       "From business analysis to brand recognition, STENTH manages every detail of your growth journey—strategy, marketing, ROI tracking, and beyond.",
-    images: ["/og.png"],
+    images: ["/og.jpg"],
   },
 }
 

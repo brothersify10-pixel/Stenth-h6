@@ -34,9 +34,7 @@ export default function Header() {
                 className="w-full h-full object-contain"
               />
             </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-blue-500 via-emerald-400 to-purple-600 bg-clip-text text-transparent">
-              STENTH
-            </span>
+            <span className="text-2xl font-bold text-cyan-400">STENTH</span>
           </Link>
 
           <ul className="hidden md:flex space-x-8">
