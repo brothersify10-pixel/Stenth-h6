@@ -19,10 +19,12 @@ export default function BookPage() {
               </span>
             </h1>
 
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-              Schedule a complimentary 30-minute strategy session where we'll analyze your business and provide
-              actionable insights for immediate growth.
-            </p>
+            <div className="bg-slate-900/80 rounded-lg p-6 backdrop-blur-sm">
+              <p className="text-xl text-white max-w-3xl mx-auto leading-relaxed">
+                Schedule a complimentary 30-minute strategy session where we'll analyze your business and provide
+                actionable insights for immediate growth.
+              </p>
+            </div>
           </div>
 
           <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700">

@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import Link from "next/link"
+import { motion } from "framer-motion"
 
 export default function STENTHHero() {
   return (
@@ -28,7 +29,7 @@ export default function STENTHHero() {
               <Button
                 asChild
                 size="lg"
-                className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-950"
               >
                 <Link href="/start">Start Growing Today</Link>
               </Button>
@@ -36,7 +37,7 @@ export default function STENTHHero() {
                 asChild
                 variant="outline"
                 size="lg"
-                className="border-2 border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 bg-transparent"
+                className="border-2 border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 bg-transparent focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-slate-950"
               >
                 <Link href="/book">Book Your Free Growth Session</Link>
               </Button>
@@ -46,16 +47,19 @@ export default function STENTHHero() {
           {/* Right Column - Animated Logo */}
           <div className="flex justify-center lg:justify-end order-first lg:order-last">
             <div className="relative pointer-events-none z-0">
-              <div className="animate-logo-spin">
+              <motion.div
+                animate={{ rotateY: [0, 180, 0] }}
+                transition={{ duration: 6, ease: "easeInOut", repeat: Number.POSITIVE_INFINITY }}
+              >
                 <Image
-                  src="/Stenth_Logo-removebg.jpg"
-                  alt="STENTH logo (animated)"
-                  width={352}
-                  height={352}
+                  src="/Stenth_Logo-removebg.png"
+                  alt="STENTH logo"
+                  width={360}
+                  height={360}
                   className="w-80 h-80 lg:w-96 lg:h-96 object-contain"
                   priority
                 />
-              </div>
+              </motion.div>
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/20 via-blue-500/20 to-purple-600/20 rounded-full blur-xl animate-pulse -z-10"></div>
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-300/10 via-blue-400/10 to-purple-500/10 rounded-full blur-2xl animate-pulse -z-20"></div>
             </div>

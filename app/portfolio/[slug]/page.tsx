@@ -1,8 +1,8 @@
-import Header from "@/components/header"
 import FloatingElements from "@/components/floating-elements"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { TrendingUp, Users, DollarSign } from "lucide-react"
+import Image from "next/image"
 
 const caseStudyData = {
   "stenth-x": {
@@ -21,6 +21,11 @@ const caseStudyData = {
       "Established scalable growth systems",
     ],
     icon: TrendingUp,
+    images: [
+      "/portfolio/stenth-x/dashboard.jpg",
+      "/portfolio/stenth-x/campaigns.jpg",
+      "/portfolio/stenth-x/results.jpg",
+    ],
   },
   "retail-boost": {
     title: "Retail Boost Project",
@@ -38,6 +43,11 @@ const caseStudyData = {
       "Sustainable 6-month growth trajectory",
     ],
     icon: Users,
+    images: [
+      "/portfolio/retail-boost/store.jpg",
+      "/portfolio/retail-boost/qr-campaign.jpg",
+      "/portfolio/retail-boost/analytics.jpg",
+    ],
   },
   "leadgen-saas": {
     title: "LeadGen SaaS Success",
@@ -55,6 +65,11 @@ const caseStudyData = {
       "Scalable automation systems deployed",
     ],
     icon: DollarSign,
+    images: [
+      "/portfolio/leadgen-saas/creative-tests.jpg",
+      "/portfolio/leadgen-saas/pipeline.jpg",
+      "/portfolio/leadgen-saas/dashboard.jpg",
+    ],
   },
 }
 
@@ -65,11 +80,13 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
     return (
       <main className="relative min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
         <FloatingElements />
-        <Header />
         <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl font-bold text-white mb-8">Case Study Not Found</h1>
-            <Button asChild>
+            <Button
+              asChild
+              className="focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-950"
+            >
               <Link href="/portfolio">Back to Portfolio</Link>
             </Button>
           </div>
@@ -81,7 +98,6 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
   return (
     <main className="relative min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
       <FloatingElements />
-      <Header />
 
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
@@ -99,6 +115,23 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
             </div>
 
             <p className="text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed">{study.description}</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 mb-16">
+            {study.images.map((image, index) => (
+              <div key={index} className="relative">
+                <Image
+                  src={image || "/placeholder.svg"}
+                  alt={`${study.title} - Image ${index + 1}`}
+                  width={400}
+                  height={267}
+                  className="w-full aspect-[3/2] object-cover rounded-xl"
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                />
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-tr from-blue-500/20 via-emerald-400/10 to-purple-600/20 mix-blend-overlay pointer-events-none"></div>
+              </div>
+            ))}
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 mb-16">
@@ -132,7 +165,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
               <Button
                 asChild
                 size="lg"
-                className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700"
+                className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-950"
               >
                 <Link href="/book">Book Your Strategy Session</Link>
               </Button>
@@ -140,7 +173,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
                 asChild
                 variant="outline"
                 size="lg"
-                className="border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white bg-transparent"
+                className="border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white bg-transparent focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-slate-950"
               >
                 <Link href="/portfolio">View More Case Studies</Link>
               </Button>

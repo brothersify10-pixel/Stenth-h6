@@ -27,15 +27,15 @@ export default function Header() {
           <Link href="/" className="flex items-center space-x-3 group">
             <div className="w-12 h-12 transform group-hover:scale-110 transition-all duration-300">
               <Image
-                src="/Stenth_Logo-removebg.jpg"
+                src="/Stenth_Logo-removebg.png"
                 alt="Stenth Logo"
                 width={48}
                 height={48}
                 className="w-full h-full object-contain"
               />
             </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
-              Stenth
+            <span className="text-2xl font-bold text-white bg-gradient-to-r from-blue-500 via-emerald-400 to-purple-600 bg-clip-text text-transparent [&]:text-white">
+              STENTH
             </span>
           </Link>
 
@@ -52,7 +52,7 @@ export default function Header() {
               <li key={item.name}>
                 <Link
                   href={item.href}
-                  className="text-white hover:text-cyan-400 transition-colors duration-300 relative group"
+                  className="text-white hover:text-cyan-400 transition-colors duration-300 relative group focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-950 rounded-md px-2 py-1"
                 >
                   {item.name}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 group-hover:w-full transition-all duration-300"></span>
