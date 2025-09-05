@@ -48,18 +48,8 @@ export default function STENTHHero() {
           <div className="flex justify-center lg:justify-end order-first lg:order-last">
             <div className="relative pointer-events-none z-0">
               <motion.div
-                animate={{
-                  y: [-6, 6, -6],
-                  opacity: [0.95, 1, 0.95],
-                }}
-                transition={{
-                  duration: 6,
-                  ease: "easeInOut",
-                  repeat: Number.POSITIVE_INFINITY,
-                }}
-                style={{
-                  filter: "drop-shadow(0 10px 30px rgba(0,0,0,0.25))",
-                }}
+                animate={{ rotateY: [0, 180, 0] }}
+                transition={{ duration: 6, ease: "easeInOut", repeat: Number.POSITIVE_INFINITY }}
               >
                 <Image
                   src="/Stenth_Logo-removebg.png"
