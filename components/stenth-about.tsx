@@ -1,10 +1,13 @@
 import Image from "next/image"
 
+const BUSINESS_BLUR =
+  "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+
 export default function STENTHAbout() {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/50">
       <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-center border-0">
           <div>
             <h2 className="text-4xl lg:text-5xl font-bold text-white mb-8">
               We Don't Just Market Brands.{" "}
@@ -43,13 +46,17 @@ export default function STENTHAbout() {
 
           <div className="relative">
             <Image
-              src="/modern-analytics-dashboard-with-growth-charts-and-.jpg"
-              alt="Growth dashboards and analytics"
-              width={600}
-              height={500}
-              className="rounded-2xl shadow-2xl"
+              src="/home/business.jpg"
+              alt="Performance analytics dashboard symbolizing growth and strategy"
+              width={1600}
+              height={1000}
+              className="rounded-2xl object-cover aspect-[16/9] shadow-2xl opacity-100 shadow-xl"
+              placeholder="blur"
+              blurDataURL={BUSINESS_BLUR}
+              loading="lazy"
+              sizes="(max-width: 400px) 100vw, (max-width: 800px) 75vw, 1200px"
             />
-            <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 to-purple-600/10 rounded-2xl"></div>
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-blue-500/20 via-emerald-400/10 to-purple-600/20 mix-blend-overlay pointer-events-none"></div>
           </div>
         </div>
       </div>
