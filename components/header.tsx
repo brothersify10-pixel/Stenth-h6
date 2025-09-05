@@ -34,7 +34,7 @@ export default function Header() {
                 className="w-full h-full object-contain"
               />
             </div>
-            <span className="text-2xl font-bold text-cyan-400">STENTH</span>
+            <span className="text-2xl font-bold text-slate-100">STENTH</span>
           </Link>
 
           <ul className="hidden md:flex space-x-8">
