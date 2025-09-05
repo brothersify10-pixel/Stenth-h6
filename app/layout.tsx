@@ -11,17 +11,16 @@ export const metadata: Metadata = {
   title: "STENTH | We Build Businesses, Not Just Brands",
   description:
     "From business analysis to brand recognition, STENTH manages every detail of your growth journey—strategy, marketing, ROI tracking, and beyond.",
-  generator: "v0.app",
   icons: {
     icon: [
-      { url: "/favicon.ico" },
-      { url: "/favicon-16x16.jpg", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.jpg", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.ico?v=3" },
+      { url: "/favicon-16x16.jpg?v=3", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32x32.jpg?v=3", sizes: "32x32", type: "image/png" },
     ],
-    apple: [{ url: "/apple-touch-icon.jpg", sizes: "180x180", type: "image/png" }],
-    other: [{ rel: "mask-icon", url: "/safari-pinned-tab.jpg", color: "#2563EB" }],
+    apple: [{ url: "/apple-touch-icon.jpg?v=3", sizes: "180x180", type: "image/png" }],
+    other: [{ rel: "mask-icon", url: "/safari-pinned-tab.jpg?v=3", color: "#2563EB" }],
   },
-  manifest: "/site.webmanifest",
+  manifest: "/site.webmanifest?v=3",
   openGraph: {
     title: "STENTH | We Build Businesses, Not Just Brands",
     description:
@@ -31,7 +30,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og.jpg",
+        url: "/og.png?v=3",
         width: 1200,
         height: 630,
         alt: "STENTH | We Build Businesses, Not Just Brands",
@@ -43,8 +42,9 @@ export const metadata: Metadata = {
     title: "STENTH | We Build Businesses, Not Just Brands",
     description:
       "From business analysis to brand recognition, STENTH manages every detail of your growth journey—strategy, marketing, ROI tracking, and beyond.",
-    images: ["/og.jpg"],
+    images: ["/og.png?v=3"],
   },
+    generator: 'v0.app'
 }
 
 export default function RootLayout({
