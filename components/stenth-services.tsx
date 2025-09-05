@@ -1,36 +1,39 @@
 import { Button } from "@/components/ui/button"
 import { BarChart3, Megaphone, Target, Calendar, Settings } from "lucide-react"
+import Link from "next/link"
 
 export default function STENTHServices() {
   const services = [
     {
       icon: BarChart3,
-      title: "Business Analysis & Strategic Planning",
+      title: "Brand Strategy & Identity",
       description:
-        "Deep-dive analysis of your business model, market position, and growth opportunities with data-driven strategic roadmaps.",
+        "Complete brand development from strategy to visual identity, creating memorable brands that convert.",
+      href: "/services/branding",
     },
     {
       icon: Megaphone,
-      title: "Brand Recognition & Campaigns",
-      description:
-        "Comprehensive brand building through targeted campaigns, content strategy, and multi-channel marketing execution.",
+      title: "Paid Advertising",
+      description: "Data-driven Google Ads, Facebook, and social media campaigns that maximize ROI and drive growth.",
+      href: "/services/ads",
     },
     {
       icon: Target,
-      title: "Lead Generation & Conversion Tracking",
-      description:
-        "Systematic lead generation systems with detailed conversion tracking and optimization for maximum ROI.",
+      title: "Search Engine Optimization",
+      description: "Dominate search results with comprehensive SEO strategies that drive organic traffic and leads.",
+      href: "/services/seo",
     },
     {
       icon: Calendar,
-      title: "Monthly Growth Review Sessions",
-      description:
-        "Regular strategy sessions to review performance, analyze results, and adjust tactics for continuous growth.",
+      title: "Content Marketing",
+      description: "Engaging content that educates, entertains, and converts prospects into loyal customers.",
+      href: "/services/content",
     },
     {
       icon: Settings,
-      title: "End-to-End Marketing Management",
-      description: "Complete marketing operations management from strategy to execution, monitoring, and optimization.",
+      title: "Web Development",
+      description: "High-converting websites and applications that drive business growth and user engagement.",
+      href: "/services/web",
     },
   ]
 
@@ -48,25 +51,25 @@ export default function STENTHServices() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {services.map((service, index) => (
-            <div
-              key={index}
-              className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 hover:bg-slate-700/50 transition-all duration-300 hover:scale-105 group"
-            >
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl mb-6 group-hover:scale-110 transition-transform duration-300">
-                <service.icon className="w-8 h-8 text-white" />
+            <Link key={index} href={service.href} className="block">
+              <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 hover:bg-slate-700/50 transition-all duration-300 hover:scale-105 group cursor-pointer">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                  <service.icon className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-semibold text-white mb-4">{service.title}</h3>
+                <p className="text-slate-300 leading-relaxed">{service.description}</p>
               </div>
-              <h3 className="text-xl font-semibold text-white mb-4">{service.title}</h3>
-              <p className="text-slate-300 leading-relaxed">{service.description}</p>
-            </div>
+            </Link>
           ))}
         </div>
 
         <div className="text-center">
           <Button
+            asChild
             size="lg"
             className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-8 py-4 text-lg font-semibold rounded-xl"
           >
-            View All Services →
+            <Link href="/services">View All Services →</Link>
           </Button>
         </div>
       </div>

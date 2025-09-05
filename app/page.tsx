@@ -35,12 +35,20 @@ export default function Home() {
       <Header />
       <STENTHHero />
       <WhySTENTH />
-      <STENTHAbout />
-      <STENTHServices />
-      <CaseStudies />
+      <section id="about">
+        <STENTHAbout />
+      </section>
+      <section id="services">
+        <STENTHServices />
+      </section>
+      <section id="portfolio">
+        <CaseStudies />
+      </section>
       <MonthlyGrowthSection />
       <Testimonials />
-      <STENTHContact />
+      <section id="contact">
+        <STENTHContact />
+      </section>
       <STENTHFooter />
     </main>
   )

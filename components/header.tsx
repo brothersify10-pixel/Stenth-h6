@@ -27,7 +27,7 @@ export default function Header() {
           <Link href="/" className="flex items-center space-x-3 group">
             <div className="w-12 h-12 transform group-hover:scale-110 transition-all duration-300">
               <Image
-                src="/logo.jpeg"
+                src="/Stenth_Logo-removebg.jpg"
                 alt="Stenth Logo"
                 width={48}
                 height={48}
@@ -46,6 +46,8 @@ export default function Header() {
               { name: "About", href: "/about" },
               { name: "Portfolio", href: "/portfolio" },
               { name: "Contact", href: "/contact" },
+              { name: "Start Growing", href: "/start" },
+              { name: "Book Session", href: "/book" },
             ].map((item) => (
               <li key={item.name}>
                 <Link

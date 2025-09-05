@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
+import Link from "next/link"
 
 export default function STENTHHero() {
   return (
@@ -9,7 +10,7 @@ export default function STENTHHero() {
       <div className="max-w-7xl mx-auto w-full">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - Content */}
-          <div className="text-center lg:text-left space-y-8">
+          <div className="text-center lg:text-left space-y-8 relative z-10">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
               <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
                 Not Just Marketing.
@@ -25,27 +26,29 @@ export default function STENTHHero() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Button
+                asChild
                 size="lg"
                 className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
               >
-                Start Growing Today
+                <Link href="/start">Start Growing Today</Link>
               </Button>
               <Button
+                asChild
                 variant="outline"
                 size="lg"
                 className="border-2 border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 bg-transparent"
               >
-                Book Your Free Growth Session
+                <Link href="/book">Book Your Free Growth Session</Link>
               </Button>
             </div>
           </div>
 
           {/* Right Column - Animated Logo */}
           <div className="flex justify-center lg:justify-end order-first lg:order-last">
-            <div className="relative">
+            <div className="relative pointer-events-none z-0">
               <div className="animate-logo-spin">
                 <Image
-                  src="/logo.jpeg"
+                  src="/Stenth_Logo-removebg.jpg"
                   alt="STENTH logo (animated)"
                   width={352}
                   height={352}
