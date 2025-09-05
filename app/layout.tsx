@@ -8,56 +8,21 @@ import "./globals.css"
 import Header from "@/components/header"
 
 export const metadata: Metadata = {
-  title: "STENTH | We Build Businesses, Not Just Brands",
-  description:
-    "From business analysis to brand recognition, STENTH manages every detail of your growth journey—strategy, marketing, ROI tracking, and beyond.",
+  title: "Stenth - Digital Marketing Excellence",
+  description: "Professional digital marketing services to elevate your brand",
   generator: "v0.app",
-  icons: {
-    icon: [
-      { url: "/favicon.ico" },
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-    ],
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
-  },
-  openGraph: {
-    title: "STENTH | We Build Businesses, Not Just Brands",
-    description:
-      "From business analysis to brand recognition, STENTH manages every detail of your growth journey—strategy, marketing, ROI tracking, and beyond.",
-    url: "https://stenth.com",
-    siteName: "STENTH",
-    type: "website",
-    images: [
-      {
-        url: "/og.png",
-        width: 1200,
-        height: 630,
-        alt: "STENTH | We Build Businesses, Not Just Brands",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "STENTH | We Build Businesses, Not Just Brands",
-    description:
-      "From business analysis to brand recognition, STENTH manages every detail of your growth journey—strategy, marketing, ROI tracking, and beyond.",
-    images: ["/og.png"],
-  },
 }
 
 export default function RootLayout({
   children,
-  modal,
 }: Readonly<{
   children: React.ReactNode
-  modal?: React.ReactNode
 }>) {
   return (
     <html lang="en">
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
         <Header />
         <Suspense fallback={null}>{children}</Suspense>
-        {modal}
         <Analytics />
       </body>
     </html>
