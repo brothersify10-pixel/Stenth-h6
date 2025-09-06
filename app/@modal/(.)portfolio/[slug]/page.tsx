@@ -20,7 +20,7 @@ const portfolioData = {
     creative: "Developed platform-specific creative assets with consistent messaging and A/B tested variations.",
     results: ["+58% MQL increase", "-21% CAC reduction", "3.2x ROAS improvement", "40% faster conversion cycle"],
     images: [
-      "/portfolio/stenth-x/dashboard.jpg",
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=533", // Your analytics dashboard image
       "/portfolio/stenth-x/campaigns.jpg",
       "/portfolio/stenth-x/results.jpg",
     ],
@@ -138,17 +138,26 @@ export default function PortfolioModal({ params }: { params: { slug: string } })
 
               <div className="grid md:grid-cols-3 gap-4">
                 {project.images.map((image, index) => (
-                  <div key={index} className="relative">
-                    <Image
-                      src={image || "/placeholder.svg"}
-                      alt={`${project.title} - Image ${index + 1}`}
-                      width={300}
-                      height={200}
-                      className="w-full aspect-[3/2] object-cover rounded-xl"
-                      placeholder="blur"
-                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-                    />
-                    <div className="absolute inset-0 rounded-xl bg-gradient-to-tr from-blue-500/20 via-emerald-400/10 to-purple-600/20 mix-blend-overlay pointer-events-none"></div>
+                  <div key={index} className="relative group overflow-hidden rounded-xl bg-gradient-to-br from-slate-800/50 to-slate-900/50 backdrop-blur-sm border border-slate-700/30">
+                    <div className="aspect-[3/2] relative">
+                      <Image
+                        src={image}
+                        alt={`${project.title} - Image ${index + 1}`}
+                        fill
+                        className="object-cover object-center transition-all duration-500 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 300px"
+                        priority={index === 0}
+                        onError={(e) => {
+                          // Fallback to placeholder if image fails to load
+                          const target = e.target as HTMLImageElement;
+                          target.src = "/placeholder.svg";
+                        }}
+                      />
+                    </div>
+                    <div className="absolute inset-0 rounded-xl bg-gradient-to-tr from-blue-500/15 via-emerald-400/8 to-purple-600/15 mix-blend-overlay pointer-events-none opacity-100 group-hover:opacity-60 transition-opacity duration-300"></div>
+                    
+                    {/* Subtle inner shadow for depth */}
+                    <div className="absolute inset-0 rounded-xl shadow-inner pointer-events-none"></div>
                   </div>
                 ))}
               </div>

@@ -22,7 +22,7 @@ const caseStudyData = {
     ],
     icon: TrendingUp,
     images: [
-      "/portfolio/stenth-x/dashboard.png",
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=533", // Your analytics dashboard image
       "/portfolio/stenth-x/campaigns.png",
       "/portfolio/stenth-x/results.png",
     ],
@@ -117,19 +117,27 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
             <p className="text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed">{study.description}</p>
           </div>
 
+         
           <div className="grid md:grid-cols-3 gap-6 mb-16">
             {study.images.map((image, index) => (
-              <div key={index} className="relative">
-                <Image
-                  src={image || "/placeholder.svg"}
-                  alt={`${study.title} - Image ${index + 1}`}
-                  width={400}
-                  height={267}
-                  className="w-full aspect-[3/2] object-cover rounded-xl"
-                  placeholder="blur"
-                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-                />
-                <div className="absolute inset-0 rounded-xl bg-gradient-to-tr from-blue-500/20 via-emerald-400/10 to-purple-600/20 mix-blend-overlay pointer-events-none"></div>
+              <div key={index} className="relative group">
+                <div className="aspect-[16/9] overflow-hidden rounded-xl bg-slate-800/30 border border-slate-700/50">
+                  <Image
+                    src={image}
+                    alt={`${study.title} - Image ${index + 1}`}
+                    width={1280}
+                    height={720}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    priority={index === 0}
+                    quality={85}
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = "/placeholder.svg";
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 via-emerald-400/10 to-purple-600/20 mix-blend-overlay opacity-100 group-hover:opacity-75 transition-opacity duration-300"></div>
+                </div>
               </div>
             ))}
           </div>
