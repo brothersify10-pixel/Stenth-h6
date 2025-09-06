@@ -25,7 +25,7 @@ export default function CaseStudies() {
       icon: Users,
       stats: ["2x monthly leads", "45% conversion boost", "6 months growth"],
       slug: "retail-boost",
-      image: "/portfolio/retail-boost/cover.jpg",
+      image: "/portfolio/retail-boost/cover.png",
       alt: "Retail store analytics with QR codes",
     },
     {
