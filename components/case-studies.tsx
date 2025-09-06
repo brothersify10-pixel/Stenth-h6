@@ -61,18 +61,25 @@ export default function CaseStudies() {
               className="block group focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-950 rounded-2xl"
             >
               <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl overflow-hidden hover:bg-slate-700/50 transition-all duration-300 hover:scale-105 cursor-pointer">
-                <div className="relative">
-                  <Image
-                    src={study.image || "/placeholder.svg"}
-                    alt={study.alt}
-                    width={400}
-                    height={267}
-                    className="aspect-[3/2] w-full object-cover"
-                    placeholder="blur"
-                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 via-emerald-400/10 to-purple-600/20 mix-blend-overlay pointer-events-none"></div>
-                </div>
+                <div className="relative group">
+  <div className="aspect-[16/9] overflow-hidden rounded-xl bg-slate-800/30 border border-slate-700/50">
+    <Image
+      src={study.image}
+      alt={study.alt}
+      width={1280}
+      height={720}
+      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+      quality={85}
+      priority={index === 0}
+      onError={(e) => {
+        const target = e.target as HTMLImageElement;
+        target.src = "/placeholder.svg";
+      }}
+    />
+    <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 via-emerald-400/10 to-purple-600/20 mix-blend-overlay opacity-100 group-hover:opacity-75 transition-opacity duration-300"></div>
+  </div>
+</div>
 
                 <div className="p-8">
                   <div className="flex items-start gap-4 mb-6">

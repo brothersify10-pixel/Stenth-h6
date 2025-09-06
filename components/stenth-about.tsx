@@ -43,7 +43,7 @@ export default function STENTHAbout() {
 
           <div className="relative">
             <Image
-              src="/modern-analytics-dashboard-with-growth-charts-and-.jpg"
+              src="/luke-chesser-JKUTrJ4vK00-unsplash.jpg"
               alt="Growth dashboards and analytics"
               width={600}
               height={500}
