@@ -45,8 +45,8 @@ const caseStudyData = {
     icon: Users,
     images: [
       "/portfolio/retail-boost/store.png",
-      "/portfolio/retail-boost/qr-campaign.jpg",
-      "/portfolio/retail-boost/analytics.jpg",
+      "/portfolio/retail-boost/qr-campaign.png",
+      "/portfolio/retail-boost/analytics.png",
     ],
   },
   "leadgen-saas": {
@@ -66,9 +66,9 @@ const caseStudyData = {
     ],
     icon: DollarSign,
     images: [
-      "/portfolio/leadgen-saas/creative-tests.jpg",
-      "/portfolio/leadgen-saas/pipeline.jpg",
-      "/portfolio/leadgen-saas/dashboard.jpg",
+      "/portfolio/leadgen-saas/creative-tests.png",
+      "/portfolio/leadgen-saas/pipeline.png",
+      "/portfolio/leadgen-saas/dashboard.png",
     ],
   },
 }

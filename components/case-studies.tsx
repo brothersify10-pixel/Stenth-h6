@@ -36,7 +36,7 @@ export default function CaseStudies() {
       icon: DollarSign,
       stats: ["$2M revenue growth", "150% lead quality", "8 months ROI"],
       slug: "leadgen-saas",
-      image: "/portfolio/leadgen-saas/cover.jpg",
+      image: "/portfolio/leadgen-saas/cover.png",
       alt: "SaaS analytics dashboard",
     },
   ]

@@ -42,7 +42,7 @@ const portfolioData = {
     images: [
       "/portfolio/retail-boost/store.jpg",
       "/portfolio/retail-boost/qr-campaign.jpg",
-      "/portfolio/retail-boost/analytics.jpg",
+      "/portfolio/retail-boost/analytics.png",
     ],
   },
   "leadgen-saas": {
