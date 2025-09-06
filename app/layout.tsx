@@ -15,17 +15,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  modal, // Added modal slot for intercepting routes
 }: Readonly<{
   children: React.ReactNode
-  modal?: React.ReactNode // Added optional modal prop
 }>) {
   return (
     <html lang="en">
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
         <Header />
         <Suspense fallback={null}>{children}</Suspense>
-        {modal && <Suspense fallback={null}>{modal}</Suspense>}
         <Analytics />
       </body>
     </html>

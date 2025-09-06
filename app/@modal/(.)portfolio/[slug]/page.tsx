@@ -20,9 +20,9 @@ const portfolioData = {
     creative: "Developed platform-specific creative assets with consistent messaging and A/B tested variations.",
     results: ["+58% MQL increase", "-21% CAC reduction", "3.2x ROAS improvement", "40% faster conversion cycle"],
     images: [
-      "/portfolio/stenth-x/dashboard.png",
-      "/portfolio/stenth-x/campaigns.png",
-      "/portfolio/stenth-x/results.png",
+      "/portfolio/stenth-x/dashboard.jpg",
+      "/portfolio/stenth-x/campaigns.jpg",
+      "/portfolio/stenth-x/results.jpg",
     ],
   },
   "retail-boost": {
@@ -40,8 +40,8 @@ const portfolioData = {
       "8-week ROI: 340%",
     ],
     images: [
-      "/portfolio/retail-boost/store.png",
-      "/portfolio/retail-boost/qr-campaign.png",
+      "/portfolio/retail-boost/store.jpg",
+      "/portfolio/retail-boost/qr-campaign.jpg",
       "/portfolio/retail-boost/analytics.jpg",
     ],
   },

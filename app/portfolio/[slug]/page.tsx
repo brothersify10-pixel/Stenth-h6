@@ -44,7 +44,7 @@ const caseStudyData = {
     ],
     icon: Users,
     images: [
-      "/portfolio/retail-boost/store.jpg",
+      "/portfolio/retail-boost/store.png",
       "/portfolio/retail-boost/qr-campaign.jpg",
       "/portfolio/retail-boost/analytics.jpg",
     ],
