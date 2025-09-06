@@ -13,7 +13,7 @@ export default function CaseStudies() {
       icon: TrendingUp,
       stats: ["300% ROI increase", "5x qualified leads", "4 months timeline"],
       slug: "stenth-x",
-      image: "/portfolio/stenth-x/cover.jpg",
+      image: "/portfolio/stenth-x/cover.png",
       alt: "Growth dashboard neon charts",
     },
     {

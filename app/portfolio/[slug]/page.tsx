@@ -22,9 +22,9 @@ const caseStudyData = {
     ],
     icon: TrendingUp,
     images: [
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=533", // Your analytics dashboard image
-      "/portfolio/stenth-x/campaigns.jpg",
-      "/portfolio/stenth-x/results.jpg",
+      "/portfolio/stenth-x/dashboard.png",
+      "/portfolio/stenth-x/campaigns.png",
+      "/portfolio/stenth-x/results.png",
     ],
   },
   "retail-boost": {
@@ -119,21 +119,17 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
 
           <div className="grid md:grid-cols-3 gap-6 mb-16">
             {study.images.map((image, index) => (
-              <div key={index} className="relative group">
+              <div key={index} className="relative">
                 <Image
-                  src={image}
+                  src={image || "/placeholder.svg"}
                   alt={`${study.title} - Image ${index + 1}`}
                   width={400}
                   height={267}
                   className="w-full aspect-[3/2] object-cover rounded-xl"
-                  priority={index === 0} // Load first image with priority
-                  onError={(e) => {
-                    // Fallback to placeholder if image fails to load
-                    const target = e.target as HTMLImageElement;
-                    target.src = "/placeholder.svg";
-                  }}
+                  placeholder="blur"
+                  blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                 />
-                <div className="absolute inset-0 rounded-xl bg-gradient-to-tr from-blue-500/20 via-emerald-400/10 to-purple-600/20 mix-blend-overlay pointer-events-none group-hover:opacity-75 transition-opacity"></div>
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-tr from-blue-500/20 via-emerald-400/10 to-purple-600/20 mix-blend-overlay pointer-events-none"></div>
               </div>
             ))}
           </div>
