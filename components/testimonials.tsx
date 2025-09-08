@@ -5,9 +5,9 @@ export default function Testimonials() {
     {
       quote:
         "STENTH transformed our business with clear strategies, monthly insights, and ROI-focused marketing. We achieved real growth within 6 months.",
-      author: "Sarah Johnson",
-      company: "TechStart Solutions",
-      role: "CEO",
+      author: "Balvinder Singh",
+      company: "Mr. Sub 6 FMCG chain store owner",
+      role: "Owner/CEO",
     },
     {
       quote:
