@@ -1,11 +1,11 @@
-import type React from "react";
-import type { Metadata } from "next";
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
-import { Analytics } from "@vercel/analytics/next";
-import { Suspense } from "react";
-import "./globals.css";
-import Header from "@/components/header";
+import type React from "react"
+import type { Metadata } from "next"
+import { GeistSans } from "geist/font/sans"
+import { GeistMono } from "geist/font/mono"
+import { Analytics } from "@vercel/analytics/next"
+import { Suspense } from "react" // Added Suspense import for wrapping Header component
+import "./globals.css"
+import Header from "@/components/header"
 
 export const metadata: Metadata = {
   title: "Stenth - Digital Marketing Excellence",
@@ -18,26 +18,24 @@ export const metadata: Metadata = {
       { url: "/web-app-manifest-192x192.png", sizes: "192x192", type: "image/png" },
       { url: "/web-app-manifest-512x512.png", sizes: "512x512", type: "image/png" },
     ],
-    apple: [
-      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
-    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
   },
   manifest: "/manifest.json",
-};
+}
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
         <meta name="apple-mobile-web-app-title" content="Stenth" />
       </head>
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
-        <Header />
-        <Suspense fallback={null}>{children}</Suspense>
+        <Suspense fallback={<div className="h-20 bg-slate-950/95" />}>
+          <Header />
+        </Suspense>
+        {children}
         <Analytics />
       </body>
     </html>
-  );
+  )
 }

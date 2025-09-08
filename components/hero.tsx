@@ -1,39 +1,88 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useMemo, useRef } from "react"
 import Link from "next/link"
+import Image from "next/image"
+
+// Lightweight lerp for smooth motion
+const lerp = (a: number, b: number, t: number) => a + (b - a) * t
 
 export default function Hero() {
+  const containerRef = useRef<HTMLDivElement>(null)
   const circleRef = useRef<HTMLDivElement>(null)
 
+  // rAF-driven parallax (smoother + less jank than per-event DOM writes)
   useEffect(() => {
+    const container = containerRef.current
     const circle = circleRef.current
-    if (!circle) return
+    if (!container || !circle) return
 
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = circle.getBoundingClientRect()
-      const centerX = rect.left + rect.width / 2
-      const centerY = rect.top + rect.height / 2
-      const deltaX = (e.clientX - centerX) * 0.1
-      const deltaY = (e.clientY - centerY) * 0.1
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    if (reduceMotion) return // respect user settings
 
-      circle.style.transform = `translate(-50%, -50%) translate(${deltaX}px, ${deltaY}px)`
+    let rafId = 0
+    let running = true
+
+    const state = { targetX: 0, targetY: 0, x: 0, y: 0 }
+
+    function onMove(e: MouseEvent) {
+      const rect = container.getBoundingClientRect()
+      const cx = rect.left + rect.width / 2
+      const cy = rect.top + rect.height / 2
+      // scale down the effect for subtlety
+      state.targetX = (e.clientX - cx) * 0.08
+      state.targetY = (e.clientY - cy) * 0.08
     }
 
-    window.addEventListener("mousemove", handleMouseMove)
-    return () => window.removeEventListener("mousemove", handleMouseMove)
+    function tick() {
+      if (!running) return
+      // smooth to target
+      state.x = lerp(state.x, state.targetX, 0.08)
+      state.y = lerp(state.y, state.targetY, 0.08)
+      // single DOM write per frame
+      circle.style.transform = `translate(-50%, -50%) translate3d(${state.x}px, ${state.y}px, 0)`
+      rafId = requestAnimationFrame(tick)
+    }
+
+    container.addEventListener("mousemove", onMove)
+    rafId = requestAnimationFrame(tick)
+
+    const onLeave = () => {
+      state.targetX = 0
+      state.targetY = 0
+    }
+    container.addEventListener("mouseleave", onLeave)
+
+    return () => {
+      running = false
+      cancelAnimationFrame(rafId)
+      container.removeEventListener("mousemove", onMove)
+      container.removeEventListener("mouseleave", onLeave)
+    }
   }, [])
 
-  return (
-    <section id="home" className="min-h-screen flex items-center relative overflow-hidden pt-20">
-      <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-pink-500/10"></div>
+  // Generate orbit dots with staggered delays
+  const orbits = useMemo(() => Array.from({ length: 4 }, (_, i) => i), [])
 
-      <div className="container mx-auto px-6 z-10">
+  return (
+    <section
+      id="home"
+      className="relative overflow-hidden pt-24 min-h-[100svh] flex items-center"
+      aria-labelledby="hero-heading"
+    >
+      {/* soft gradient wash + noise for texture */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute -inset-40 bg-gradient-to-br from-cyan-500/10 via-transparent to-pink-500/10 blur-3xl" />
+        <div className="absolute inset-0 [background-image:radial-gradient(transparent,rgba(0,0,0,0.6))]" />
+      </div>
+
+      <div ref={containerRef} className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8 animate-fade-in-up">
-            <h1 className="text-5xl lg:text-7xl font-bold text-white leading-tight">
+          {/* Copy */}
+          <div className="space-y-8 motion-safe:animate-in motion-safe:fade-in-50 motion-safe:slide-in-from-bottom-3">
+            <h1 id="hero-heading" className="text-5xl lg:text-7xl font-bold leading-tight text-white">
               Transform Your{" "}
-              <span className="bg-gradient-to-r from-cyan-400 via-pink-500 to-emerald-400 bg-clip-text text-transparent animate-gradient-x">
+              <span className="bg-gradient-to-r from-cyan-400 via-pink-500 to-emerald-400 bg-clip-text text-transparent animate-gradient">
                 Digital Future
               </span>
             </h1>
@@ -46,46 +95,71 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="#contact"
-                className="bg-gradient-to-r from-cyan-500 to-pink-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 text-center"
+                className="inline-flex items-center justify-center rounded-full px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-cyan-500 to-pink-500 shadow-lg shadow-cyan-500/20 transition-transform active:scale-[.98] hover:scale-105"
               >
                 Launch Your Success
               </Link>
               <Link
                 href="#portfolio"
-                className="border-2 border-cyan-500 text-cyan-400 px-8 py-4 rounded-full font-semibold text-lg hover:bg-cyan-500 hover:text-white transition-all duration-300 text-center"
+                className="inline-flex items-center justify-center rounded-full px-8 py-4 text-lg font-semibold border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white transition-colors"
               >
                 View Our Work
               </Link>
             </div>
           </div>
 
+          {/* Visual */}
           <div className="flex justify-center lg:justify-end">
-            <div className="relative w-96 h-96">
+            <div className="relative w-[26rem] h-[26rem] sm:w-[28rem] sm:h-[28rem]">
+              {/* Parallax circle */}
               <div
                 ref={circleRef}
-                className="absolute top-1/2 left-1/2 w-80 h-80 bg-gradient-to-br from-cyan-400 via-pink-500 to-emerald-400 rounded-full animate-spin-slow transition-transform duration-100"
+                className="absolute top-1/2 left-1/2 h-80 w-80 rounded-full bg-gradient-to-br from-cyan-400 via-pink-500 to-emerald-400 [transition:transform_100ms_linear] will-change-transform"
                 style={{ transform: "translate(-50%, -50%)" }}
+                aria-hidden
               >
-                <div className="absolute inset-4 bg-slate-950/90 rounded-full backdrop-blur-sm">
-                  <div className="absolute top-1/2 left-1/2 w-20 h-20 bg-gradient-to-br from-cyan-400 to-pink-500 rounded-full transform -translate-x-1/2 -translate-y-1/2 animate-pulse"></div>
+                <div className="absolute inset-4 rounded-full bg-slate-950/90 backdrop-blur-sm">
+                  {/* Swap center pulse for your brand mark (keeps pulse as fallback) */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <Image
+                      src="/Stenth_Logo-removebg.png"
+                      alt="STENTH logo"
+                      width={112}
+                      height={112}
+                      className="motion-safe:animate-pulse [animation-duration:2.2s]"
+                      priority
+                    />
+                  </div>
                 </div>
               </div>
 
-              {/* Orbiting elements */}
-              {[0, 1, 2, 3].map((i) => (
+              {/* Orbiting elements — relies on your existing .animate-orbit keyframes */}
+              {orbits.map((i) => (
                 <div
                   key={i}
-                  className="absolute top-1/2 left-1/2 w-4 h-4 bg-gradient-to-r from-cyan-400 to-pink-500 rounded-full animate-orbit"
-                  style={{
-                    animationDelay: `${i * 2}s`,
-                    transformOrigin: "0 0",
-                  }}
-                ></div>
+                  className="absolute top-1/2 left-1/2 h-4 w-4 rounded-full bg-gradient-to-r from-cyan-400 to-pink-500 animate-orbit"
+                  style={{ animationDelay: `${i * 1.6}s`, transformOrigin: "0 0" }}
+                  aria-hidden
+                />
               ))}
             </div>
           </div>
         </div>
       </div>
+
+      {/* Local keyframes used by the gradient text only; orbit/spin assumed to exist globally */}
+      <style jsx global>{`
+        /* Smooth text gradient animation */
+        @keyframes gradient { to { background-position: 200% center; } }
+        .animate-gradient { background-size: 200% 100%; animation: gradient 6s linear infinite; }
+
+        /* Self-contained orbit animation (remove this if you already have one) */
+        @keyframes orbit { 
+          0%   { transform: rotate(0deg) translateX(8rem) rotate(0deg); }
+          100% { transform: rotate(360deg) translateX(8rem) rotate(-360deg); }
+        }
+        .animate-orbit { animation: orbit 8s linear infinite; }
+      `}</style>
     </section>
   )
 }
