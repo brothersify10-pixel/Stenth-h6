@@ -1,91 +1,323 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
+import { usePathname } from "next/navigation"
+import {
+  Menu, X, Home, Briefcase, User, Phone, Rocket, Calendar, Zap,
+  ArrowRight, ChevronDown, Sparkles, TrendingUp
+} from "lucide-react"
 
-export default function Hero() {
-  const circleRef = useRef<HTMLDivElement>(null)
+type SubItem = { title: string; desc: string; icon: React.ComponentType<any> }
+type NavItem = {
+  href: string
+  label: string
+  icon: React.ComponentType<any>
+  color: string     // subtle gradient token for desktop hover only
+  emoji: string
+  megaMenu?: SubItem[]
+}
 
+const NAV: NavItem[] = [
+  { href: "/",          label: "Home",      icon: Home,      color: "from-slate-700 to-slate-600", emoji: "🏠" },
+  { href: "/services",  label: "Services",  icon: Briefcase, color: "from-slate-700 to-slate-600", emoji: "⚡",
+    megaMenu: [
+      { title: "Digital Marketing", desc: "SEO, PPC, Social Media", icon: TrendingUp },
+      { title: "Web Development",   desc: "Custom websites & apps", icon: Briefcase  },
+      { title: "Brand Strategy",    desc: "Complete brand overhaul", icon: Sparkles  },
+      { title: "Analytics",         desc: "Data-driven insights",    icon: Zap       },
+    ],
+  },
+  { href: "/about",     label: "About",     icon: User,      color: "from-slate-700 to-slate-600", emoji: "👋" },
+  { href: "/portfolio", label: "Portfolio", icon: Briefcase, color: "from-slate-700 to-slate-600", emoji: "🎨" },
+  { href: "/contact",   label: "Contact",   icon: Phone,     color: "from-slate-700 to-slate-600", emoji: "📞" },
+  { href: "/start",     label: "Start Growing", icon: Rocket,color: "from-slate-700 to-slate-600", emoji: "🚀" },
+]
+
+export default function Header() {
+  const pathname = usePathname()
+  const [scrolled, setScrolled] = useState(false)
+  const [open, setOpen] = useState(false)
+
+  // desktop flourish
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
+  const [particles, setParticles] = useState<{ id: number; x: number; y: number; color: string }[]>([])
+
+  // Scroll styling
   useEffect(() => {
-    const circle = circleRef.current
-    if (!circle) return
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = circle.getBoundingClientRect()
-      const centerX = rect.left + rect.width / 2
-      const centerY = rect.top + rect.height / 2
-      const deltaX = (e.clientX - centerX) * 0.1
-      const deltaY = (e.clientY - centerY) * 0.1
-
-      circle.style.transform = `translate(-50%, -50%) translate(${deltaX}px, ${deltaY}px)`
-    }
-
-    window.addEventListener("mousemove", handleMouseMove)
-    return () => window.removeEventListener("mousemove", handleMouseMove)
+    const onScroll = () => setScrolled(window.scrollY > 50)
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
+  // Close mobile on route change
+  useEffect(() => setOpen(false), [pathname])
+
+  // Lock background scroll when drawer is open
+  useEffect(() => {
+    const el = document.documentElement
+    if (open) el.classList.add("overflow-hidden")
+    else el.classList.remove("overflow-hidden")
+    return () => el.classList.remove("overflow-hidden")
+  }, [open])
+
+  // Only track mouse while hovering (and not when mobile drawer is open)
+  useEffect(() => {
+    if (hoveredIndex === null || open) return
+    const onMove = (e: MouseEvent) => setMousePos({ x: e.clientX, y: e.clientY })
+    window.addEventListener("mousemove", onMove, { passive: true })
+    return () => window.removeEventListener("mousemove", onMove)
+  }, [hoveredIndex, open])
+
+  // Spawn a few particles while hovering (pause when drawer open)
+  useEffect(() => {
+    if (hoveredIndex === null || open) return
+    const id = window.setInterval(() => {
+      const color = NAV[hoveredIndex!]?.color ?? "from-cyan-500 to-indigo-500"
+      const p = { id: Date.now() + Math.random(), x: mousePos.x, y: mousePos.y, color }
+      setParticles(prev => [...prev.slice(-6), p])
+      window.setTimeout(() => {
+        setParticles(prev => prev.filter(x => x.id !== p.id))
+      }, 1200)
+    }, 160)
+    return () => window.clearInterval(id)
+  }, [hoveredIndex, mousePos, open])
+
+  const isActive = (href: string) => pathname === href
+
   return (
-    <section id="home" className="min-h-screen flex items-center relative overflow-hidden pt-20">
-      <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-pink-500/10"></div>
+    <>
+      {/* Desktop particles (disabled while mobile drawer open) */}
+      <div className={`fixed inset-0 pointer-events-none z-30 hidden md:block ${open ? "hidden" : ""}`}>
+        {particles.map(p => (
+          <div
+            key={p.id}
+            className={`absolute w-1.5 h-1.5 rounded-full bg-gradient-to-r ${p.color} opacity-80`}
+            style={{
+              left: p.x,
+              top: p.y,
+              transform: "translate(-50%,-50%)",
+              animation: "particleFloat 1.2s ease-out forwards",
+            }}
+          />
+        ))}
+      </div>
 
-      <div className="container mx-auto px-6 z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8 animate-fade-in-up">
-            <h1 className="text-5xl lg:text-7xl font-bold text-white leading-tight">
-              Transform Your{" "}
-              <span className="bg-gradient-to-r from-cyan-400 via-pink-500 to-emerald-400 bg-clip-text text-transparent animate-gradient-x">
-                Digital Future
-              </span>
-            </h1>
-
-            <p className="text-xl text-slate-300 leading-relaxed max-w-2xl">
-              We create revolutionary marketing experiences that captivate audiences, drive engagement, and accelerate
-              growth through cutting-edge strategies and innovative design solutions.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                href="#contact"
-                className="bg-gradient-to-r from-cyan-500 to-pink-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/25 transition-all duration-300 text-center"
-              >
-                Launch Your Success
-              </Link>
-              <Link
-                href="#portfolio"
-                className="border-2 border-cyan-500 text-cyan-400 px-8 py-4 rounded-full font-semibold text-lg hover:bg-cyan-500 hover:text-white transition-all duration-300 text-center"
-              >
-                View Our Work
-              </Link>
-            </div>
-          </div>
-
-          <div className="flex justify-center lg:justify-end">
-            <div className="relative w-96 h-96">
-              <div
-                ref={circleRef}
-                className="absolute top-1/2 left-1/2 w-80 h-80 bg-gradient-to-br from-cyan-400 via-pink-500 to-emerald-400 rounded-full animate-spin-slow transition-transform duration-100"
-                style={{ transform: "translate(-50%, -50%)" }}
-              >
-                <div className="absolute inset-4 bg-slate-950/90 rounded-full backdrop-blur-sm">
-                  <div className="absolute top-1/2 left-1/2 w-20 h-20 bg-gradient-to-br from-cyan-400 to-pink-500 rounded-full transform -translate-x-1/2 -translate-y-1/2 animate-pulse"></div>
+      <header
+        className={`fixed top-0 w-full z-40 transition-all duration-300 ${
+          open
+            ? "bg-slate-950"
+            : scrolled
+            ? "bg-slate-950/95 backdrop-blur-xl shadow-2xl shadow-black/40 border-b border-slate-800/60"
+            : "bg-slate-950/90 backdrop-blur"
+        }`}
+      >
+        <nav className="container mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            {/* Brand */}
+            <Link href="/" className="flex items-center gap-3 group relative">
+              <div className="relative">
+                <div className="absolute inset-0 w-12 h-12 bg-gradient-to-r from-cyan-400 to-indigo-400 rounded-full blur-2xl opacity-0 group-hover:opacity-40 transition-all duration-700" />
+                <div className="relative w-12 h-12 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 will-change-transform">
+                  <Image
+                    src="/Stenth_Logo-removebg.png"
+                    alt="Stenth Logo"
+                    width={48}
+                    height={48}
+                    className="w-full h-full object-contain drop-shadow-lg"
+                    priority
+                  />
                 </div>
               </div>
+              <span className="text-2xl font-semibold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-300 bg-clip-text text-transparent">
+                STENTH
+              </span>
+            </Link>
 
-              {/* Orbiting elements */}
-              {[0, 1, 2, 3].map((i) => (
-                <div
-                  key={i}
-                  className="absolute top-1/2 left-1/2 w-4 h-4 bg-gradient-to-r from-cyan-400 to-pink-500 rounded-full animate-orbit"
-                  style={{
-                    animationDelay: `${i * 2}s`,
-                    transformOrigin: "0 0",
-                  }}
-                ></div>
-              ))}
+            {/* Desktop nav */}
+            <div className="hidden md:flex items-center gap-1">
+              <ul className="flex gap-1">
+                {NAV.slice(0, 5).map((item, idx) => (
+                  <li
+                    key={item.href}
+                    className="relative group"
+                    onMouseEnter={() => setHoveredIndex(idx)}
+                    onMouseLeave={() => setHoveredIndex(null)}
+                  >
+                    <Link
+                      href={item.href}
+                      className={`relative px-5 py-2.5 text-sm font-semibold rounded-xl overflow-hidden flex items-center gap-2
+                        ${isActive(item.href) ? "text-white" : "text-slate-200 hover:text-white"}`}
+                    >
+                      {/* desktop hover wash */}
+                      <div className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-0 group-hover:opacity-10 transition-opacity duration-200`} />
+                      <div className="absolute inset-0 rounded-xl border border-transparent group-hover:border-white/20 transition-colors duration-200" />
+                      <item.icon className="w-4 h-4 relative z-10 group-hover:rotate-12 transition-transform duration-200" />
+                      <span className="relative z-10">{item.label}</span>
+                      {item.megaMenu && <ChevronDown className="w-3 h-3 opacity-70" />}
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-500 will-change-transform" />
+                    </Link>
+
+                    {item.megaMenu && hoveredIndex === idx && (
+                      <div className="absolute top-full left-0 mt-2 w-96 bg-slate-950/95 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl shadow-black/40 p-6 animate-in">
+                        <div className="grid grid-cols-2 gap-4">
+                          {item.megaMenu.map((sub, i) => (
+                            <Link
+                              key={i}
+                              href={`${item.href}/${sub.title.toLowerCase().replace(/\s+/g, "-")}`}
+                              className="group p-4 rounded-xl hover:bg-white/5 transition-colors"
+                            >
+                              <div className="flex items-start gap-3">
+                                <div className="p-2 rounded-lg bg-slate-800 group-hover:scale-110 transition-transform">
+                                  <sub.icon className="w-5 h-5 text-slate-200" />
+                                </div>
+                                <div>
+                                  <h4 className="font-semibold text-white group-hover:text-cyan-300 transition-colors">
+                                    {sub.title}
+                                  </h4>
+                                  <p className="text-sm text-slate-400 mt-1">{sub.desc}</p>
+                                </div>
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </li>
+                ))}
+              </ul>
+
+              {/* Desktop CTAs */}
+              <div className="flex gap-3 ml-6">
+                <Link
+                  href="/start"
+                  className="relative px-6 py-2.5 rounded-full text-sm font-semibold text-slate-950 bg-cyan-500 hover:bg-cyan-400 transition-colors"
+                >
+                  <span className="relative z-10 inline-flex items-center gap-2">
+                    <Rocket className="w-4 h-4" />
+                    Start Growing
+                  </span>
+                </Link>
+                <Link
+                  href="/book"
+                  className="relative px-6 py-2.5 rounded-full text-sm font-semibold text-white bg-indigo-500 hover:bg-indigo-400 transition-colors"
+                >
+                  <span className="relative z-10 inline-flex items-center gap-2">
+                    <Calendar className="w-4 h-4" />
+                    Book Session
+                  </span>
+                </Link>
+              </div>
             </div>
+
+            {/* Mobile hamburger */}
+            <button
+              onClick={() => setOpen(v => !v)}
+              className="md:hidden inline-flex items-center justify-center w-12 h-12 rounded-xl bg-slate-800 text-white ring-1 ring-white/10 hover:bg-slate-700 transition"
+              aria-label={open ? "Close menu" : "Open menu"}
+              aria-expanded={open}
+              aria-controls="mobile-menu"
+            >
+              {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
+        </nav>
+
+        {/* Mobile drawer: pre-rendered, fully opaque, transform-only slide */}
+        <div
+          id="mobile-menu"
+          className="md:hidden fixed inset-0 z-50 bg-slate-950"
+          role="dialog"
+          aria-modal="true"
+          aria-hidden={!open}
+          style={{ willChange: "transform" }}
+        >
+          <div
+            className={`flex h-full flex-col transition-transform duration-200 ease-out
+              ${open ? "translate-y-0" : "translate-y-full"}`}
+          >
+            {/* Drawer header */}
+            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800">
+              <div className="flex items-center gap-3">
+                <Image src="/Stenth_Logo-removebg.png" alt="Stenth" width={36} height={36} priority />
+                <span className="text-lg font-semibold text-white">STENTH</span>
+              </div>
+              <button
+                onClick={() => setOpen(false)}
+                className="inline-flex items-center justify-center w-11 h-11 rounded-lg bg-slate-800 text-white ring-1 ring-white/10 hover:bg-slate-700 transition"
+                aria-label="Close menu"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            {/* Drawer body */}
+            <div className="flex-1 overflow-y-auto px-6 py-4">
+              <nav className="grid gap-2">
+                {NAV.map(item => {
+                  const Icon = item.icon
+                  const active = isActive(item.href)
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={`flex items-center justify-between rounded-xl px-4 py-3 border transition-colors
+                        ${active ? "bg-slate-900 text-cyan-300 border-slate-800" : "bg-slate-900/90 text-slate-200 hover:bg-slate-900 border-slate-800"}`}
+                    >
+                      <span className="flex items-center gap-3">
+                        <span className="inline-flex w-9 h-9 items-center justify-center rounded-lg bg-slate-800">
+                          <Icon className="w-5 h-5 text-slate-200" />
+                        </span>
+                        <span className="font-medium">{item.label}</span>
+                      </span>
+                      <ArrowRight className="w-4 h-4 text-slate-300" />
+                    </Link>
+                  )
+                })}
+              </nav>
+
+              {/* CTAs */}
+              <div className="mt-6 grid gap-3">
+                <Link
+                  href="/start"
+                  className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-cyan-500 text-slate-950 font-semibold hover:bg-cyan-400 transition-colors"
+                >
+                  <Rocket className="w-5 h-5" />
+                  Start Growing
+                </Link>
+                <Link
+                  href="/book"
+                  className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-indigo-500 text-white font-semibold hover:bg-indigo-400 transition-colors"
+                >
+                  <Calendar className="w-5 h-5" />
+                  Book Session
+                </Link>
+              </div>
+            </div>
+
+            {/* safe-area spacer */}
+            <div className="h-6" />
           </div>
         </div>
-      </div>
-    </section>
+      </header>
+
+      {/* Spacer so content doesn't slip under header */}
+      <div className="h-20 md:h-24" />
+
+      <style jsx>{`
+        @keyframes particleFloat {
+          0%   { transform: translate(-50%,-50%) translateY(0) scale(1);   opacity: .85; }
+          50%  { transform: translate(-50%,-50%) translateY(-18px) scale(.92); opacity: .55; }
+          100% { transform: translate(-50%,-50%) translateY(-36px) scale(.8); opacity: 0; }
+        }
+        .animate-in { animation: slideIn .22s ease-out both }
+        @keyframes slideIn {
+          from { opacity: 0; transform: translateY(-6px) }
+          to   { opacity: 1; transform: translateY(0) }
+        }
+      `}</style>
+    </>
   )
 }
