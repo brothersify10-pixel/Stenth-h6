@@ -1,4 +1,28 @@
-"use client"
+useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      setScrolled(currentScrollY > 50)
+      
+      // Simple hide/show logic
+      if (currentScrollY > 100) {
+        if (currentScrollY > lastScrollY) {
+          // Scrolling down
+          setIsHeaderVisible(false)
+        } else {
+          // Scrolling up
+          setIsHeaderVisible(true)
+        }
+      } else {
+        // Near top, always show
+        setIsHeaderVisible(true)
+      }
+      
+      setLastScrollY(currentScrollY)
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [lastScrollY])"use client"
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
@@ -167,25 +191,21 @@ export default function Header() {
               </div>
             </div>
 
-            {/* Animated Hamburger Button */}
+            {/* Simple Hamburger Button - Just 3 Lines */}
             <button
               onClick={() => setOpen((v) => !v)}
-              className="relative md:hidden w-12 h-12 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 hover:from-cyan-300 hover:to-blue-400 transition-all duration-300 flex items-center justify-center group overflow-hidden"
+              className="md:hidden p-2 focus:outline-none"
               aria-label="Toggle menu"
             >
-              {/* Ripple effect */}
-              <div className={`absolute inset-0 rounded-full bg-white/20 scale-0 ${open ? 'animate-ping' : ''}`}></div>
-
-              {/* Morphing burger to X */}
-              <div className="relative w-6 h-6">
-                <span className={`absolute block h-0.5 w-6 bg-white transform transition-all duration-300 ${
-                  open ? 'rotate-45 translate-y-0' : 'rotate-0 -translate-y-2'
+              <div className="w-6 h-4 flex flex-col justify-between">
+                <span className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
+                  open ? 'rotate-45 translate-y-1.5' : ''
                 }`}></span>
-                <span className={`absolute block h-0.5 w-6 bg-white transition-all duration-300 ${
-                  open ? 'opacity-0' : 'opacity-100'
+                <span className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
+                  open ? 'opacity-0' : ''
                 }`}></span>
-                <span className={`absolute block h-0.5 w-6 bg-white transform transition-all duration-300 ${
-                  open ? '-rotate-45 translate-y-0' : 'rotate-0 translate-y-2'
+                <span className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
+                  open ? '-rotate-45 -translate-y-1.5' : ''
                 }`}></span>
               </div>
             </button>
