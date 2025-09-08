@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import LoadingScreen from "@/components/LoadingScreen"; // CASE SENSITIVE
+import LoadingScreen from "@/components/loading-screen";
+ // CASE SENSITIVE
 import FloatingElements from "@/components/floating-elements";
 import STENTHHero from "@/components/stenth-hero";
 import WhySTENTH from "@/components/why-stenth";
