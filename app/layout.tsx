@@ -6,7 +6,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { Suspense } from "react";
 import "./globals.css";
 import Header from "@/components/header";
-import ClientLayout from "./client-layout";
+
 export const metadata: Metadata = {
   title: "Stenth - Digital Marketing Excellence",
   description: "Professional digital marketing services to elevate your brand",
@@ -18,9 +18,7 @@ export const metadata: Metadata = {
       { url: "/web-app-manifest-192x192.png", sizes: "192x192", type: "image/png" },
       { url: "/web-app-manifest-512x512.png", sizes: "512x512", type: "image/png" },
     ],
-    apple: [
-      { url: "/apple-icon.png", sizes: "180x180", type: "image/png" },
-    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
   },
   manifest: "/manifest.json",
 };
