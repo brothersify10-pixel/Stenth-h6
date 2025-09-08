@@ -29,7 +29,7 @@ const NAV = [
   },
   { 
     href: "/about", 
-    label: "About", 
+    label: "About us", 
     icon: User, 
     color: "from-green-500 to-emerald-400", 
     emoji: "👋"
