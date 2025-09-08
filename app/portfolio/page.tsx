@@ -2,7 +2,6 @@
 
 import Portfolio from "@/components/portfolio";
 import FloatingElements from "@/components/floating-elements";
-import Link from "next/link";
 import { TrendingUp, Users, DollarSign } from "lucide-react";
 import { useEffect } from "react";
 
@@ -36,6 +35,10 @@ export default function PortfolioPage() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
+  const navigateToCase = (slug: string) => {
+    window.location.href = `/portfolio/${slug}`;
+  };
+
   return (
     <main className="relative min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 overflow-x-hidden">
       <FloatingElements />
@@ -45,10 +48,19 @@ export default function PortfolioPage() {
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {portfolioItems.map((item) => (
-              <Link
+              <div
                 key={item.slug}
-                href={`/portfolio/${item.slug}`} // Correct path structure
-                className="block group"
+                className="block group cursor-pointer"
+                onClick={() => navigateToCase(item.slug)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    navigateToCase(item.slug);
+                  }
+                }}
+                tabIndex={0}
+                role="button"
+                aria-label={`View ${item.title} case study`}
               >
                 <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 hover:bg-slate-700/50 transition-all duration-300 hover:scale-105 hover:border-cyan-500/50 relative overflow-hidden">
                   {/* Gradient overlay on hover */}
@@ -86,7 +98,7 @@ export default function PortfolioPage() {
                     </div>
                   </div>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         </div>
