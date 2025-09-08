@@ -238,12 +238,12 @@ export default function Header() {
         />
 
         {/* Menu Panel */}
-        <div className={`absolute right-0 top-0 h-full w-80 bg-white shadow-2xl transform transition-transform duration-500 ${
+        <div className={`absolute right-0 top-0 h-full w-80 bg-slate-900 shadow-2xl transform transition-transform duration-500 ${
           open ? 'translate-x-0' : 'translate-x-full'
         }`}>
           
           {/* Mobile Header */}
-          <div className="flex items-center justify-between p-6 border-b border-slate-200">
+          <div className="flex items-center justify-between p-6 border-b border-slate-700">
             <div className="flex items-center space-x-3">
               <Image
                 src="/Stenth_Logo-removebg.png"
@@ -252,11 +252,11 @@ export default function Header() {
                 height={32}
                 className="w-8 h-8"
               />
-              <span className="text-lg font-bold text-slate-900">STENTH</span>
+              <span className="text-lg font-bold text-white">STENTH</span>
             </div>
             <button
               onClick={() => setOpen(false)}
-              className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-500 hover:text-slate-700 hover:bg-slate-100 transition-all duration-200"
+              className="w-8 h-8 flex items-center justify-center rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-all duration-200"
             >
               <X className="w-5 h-5" />
             </button>
@@ -272,20 +272,20 @@ export default function Header() {
                   href={item.href}
                   className={`flex items-center space-x-4 p-4 rounded-xl transition-all duration-200 group ${
                     pathname === item.href 
-                      ? 'bg-gradient-to-r from-slate-900 to-slate-800 text-white shadow-lg' 
-                      : 'text-slate-700 hover:bg-slate-100'
+                      ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-lg' 
+                      : 'text-slate-300 hover:bg-slate-800 hover:text-white'
                   }`}
                   onClick={() => setOpen(false)}
                 >
                   <div className={`p-2 rounded-lg transition-all duration-200 ${
                     pathname === item.href 
                       ? 'bg-white/20' 
-                      : 'bg-slate-200 group-hover:bg-cyan-100'
+                      : 'bg-slate-800 group-hover:bg-cyan-600/20'
                   }`}>
                     <Icon className={`w-5 h-5 ${
                       pathname === item.href 
                         ? 'text-white' 
-                        : 'text-slate-600 group-hover:text-cyan-600'
+                        : 'text-slate-400 group-hover:text-cyan-400'
                     }`} />
                   </div>
                   <span className="font-medium">{item.label}</span>
@@ -295,7 +295,7 @@ export default function Header() {
           </div>
 
           {/* Mobile CTA Section */}
-          <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-slate-200 bg-slate-50">
+          <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-slate-700 bg-slate-800/50">
             <div className="space-y-3">
               <Link
                 href="/start"
@@ -307,7 +307,7 @@ export default function Header() {
               </Link>
               <Link
                 href="/contact"
-                className="w-full flex items-center justify-center space-x-2 py-3 text-slate-700 font-medium rounded-xl border border-slate-300 hover:bg-white transition-all duration-200"
+                className="w-full flex items-center justify-center space-x-2 py-3 text-white font-medium rounded-xl border border-slate-600 hover:bg-slate-700 transition-all duration-200"
                 onClick={() => setOpen(false)}
               >
                 <Calendar className="w-4 h-4" />
