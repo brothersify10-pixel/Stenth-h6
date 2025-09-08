@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { Analytics } from "@vercel/analytics/next";
-import { Suspense } from "react";
 import "./globals.css";
 import Header from "@/components/header";
 
@@ -23,17 +22,13 @@ export const metadata: Metadata = {
   manifest: "/manifest.json",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <head>
-        <meta name="apple-mobile-web-app-title" content="Stenth" />
-      </head>
+      <head><meta name="apple-mobile-web-app-title" content="Stenth" /></head>
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable}`}>
-        <Header />
-        <Suspense fallback={null}>{children}</Suspense>
+        <Header /> {/* Header renders ONCE here */}
+        {children}
         <Analytics />
       </body>
     </html>
