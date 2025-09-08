@@ -49,7 +49,7 @@ export default function Header() {
   // Close mobile on route change
   useEffect(() => setOpen(false), [pathname])
 
-  // Lock scroll when mobile menu open
+  // Lock scroll when mobile drawer open
   useEffect(() => {
     const el = document.documentElement
     if (open) el.classList.add("overflow-hidden")
@@ -61,8 +61,9 @@ export default function Header() {
 
   return (
     <>
+      {/* STICKY header (not fixed) so no spacer needed and no white gap */}
       <header
-        className={`fixed top-0 w-full z-40 transition-all duration-300 ${
+        className={`sticky top-0 w-full z-40 transition-all duration-300 ${
           open
             ? "bg-slate-950"
             : scrolled
@@ -215,8 +216,8 @@ export default function Header() {
             <div className="flex-1 overflow-y-auto px-6 py-4">
               <nav className="grid gap-2">
                 {NAV.concat([
-                  { href: "/start", label: "Start Growing", icon: Rocket, color: "from-slate-700 to-slate-600" },
-                  { href: "/book",  label: "Book Session",  icon: Calendar, color: "from-slate-700 to-slate-600" },
+                  { href: "/start", label: "Start Growing", icon: Rocket, color: "" },
+                  { href: "/book",  label: "Book Session",  icon: Calendar, color: "" },
                 ] as NavItem[]).map(item => {
                   const Icon = item.icon
                   const active = isActive(item.href)
@@ -233,7 +234,6 @@ export default function Header() {
                         </span>
                         <span className="font-medium">{item.label}</span>
                       </span>
-                      {/* thin accent line on active */}
                       <span className={`h-1.5 w-6 rounded-full ${active ? "bg-cyan-400" : "bg-slate-700"}`} />
                     </Link>
                   )
@@ -246,9 +246,6 @@ export default function Header() {
           </div>
         </div>
       </header>
-
-      {/* prevent content underlap */}
-      <div className="h-20 md:h-24" />
 
       <style jsx>{`
         .animate-in { animation: slideIn .22s ease-out both }
