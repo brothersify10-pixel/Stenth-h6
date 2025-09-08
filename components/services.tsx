@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 const services = [
   {
@@ -47,6 +47,11 @@ const services = [
 
 export default function Services() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   return (
     <section id="services" className="py-24 relative">

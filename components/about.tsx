@@ -76,7 +76,7 @@ export default function About() {
 
           <div className="relative">
             <div className="relative z-10">
-              <img src="/modern-digital-marketing-team-collaboration.jpg" alt="Digital Marketing Team" className="rounded-2xl shadow-2xl" />
+              <img src="modern-digital-marketing-team-collaboration.jpg" alt="Digital Marketing Team" className="rounded-2xl shadow-2xl" />
             </div>
 
             <div className="absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-br from-cyan-400 to-pink-500 rounded-full opacity-20 animate-pulse"></div>
