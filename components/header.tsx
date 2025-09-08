@@ -29,7 +29,7 @@ const NAV = [
   },
   { 
     href: "/about", 
-    label: "About us", 
+    label: "About", 
     icon: User, 
     color: "from-green-500 to-emerald-400", 
     emoji: "👋"
@@ -541,16 +541,13 @@ export default function Header() {
               </div>
             </div>
 
-            <div className="p-6 border-t border-white/10">
+            <div className="p-6 border-t border-slate-800">
               <Link
                 href="/book"
-                className="w-full flex items-center justify-center space-x-4 py-5 bg-gradient-to-r from-pink-500 via-red-500 to-orange-500 text-white font-bold rounded-2xl hover:scale-105 transition-all duration-300 shadow-2xl relative overflow-hidden group animate-pulse hover:animate-none text-lg"
-                onClick={createRipple}
+                className="w-full flex items-center justify-center space-x-3 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold rounded-xl hover:from-cyan-400 hover:to-blue-400 transition-all duration-200"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-pink-400 via-red-400 to-orange-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <Calendar className="w-7 h-7 relative z-10" />
-                <span className="relative z-10">Book Your Session Now</span>
-                <Star className="w-7 h-7 animate-spin relative z-10" />
+                <Calendar className="w-5 h-5" />
+                <span>Book Consultation</span>
               </Link>
             </div>
           </div>
