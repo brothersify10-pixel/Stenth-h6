@@ -6,7 +6,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { Suspense } from "react";
 import "./globals.css";
 import Header from "@/components/header";
-
+import ClientLayout from "./client-layout";
 export const metadata: Metadata = {
   title: "Stenth - Digital Marketing Excellence",
   description: "Professional digital marketing services to elevate your brand",
