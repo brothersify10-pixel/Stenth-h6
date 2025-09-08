@@ -1,8 +1,11 @@
-import FloatingElements from "@/components/floating-elements"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { TrendingUp, Users, DollarSign } from "lucide-react"
-import Image from "next/image"
+"use client";
+
+import { useEffect } from "react";
+import FloatingElements from "@/components/floating-elements";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { TrendingUp, Users, DollarSign } from "lucide-react";
+import Image from "next/image";
 
 const caseStudyData = {
   "stenth-x": {
@@ -71,10 +74,22 @@ const caseStudyData = {
       "/portfolio/leadgen-saas/dashboard.png",
     ],
   },
-}
+};
 
 export default function CaseStudyPage({ params }: { params: { slug: string } }) {
-  const study = caseStudyData[params.slug as keyof typeof caseStudyData]
+  const study = caseStudyData[params.slug as keyof typeof caseStudyData];
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
+  // Debug: Log the slug to console to check if it's correct
+  useEffect(() => {
+    console.log('Portfolio slug:', params.slug);
+    console.log('Available studies:', Object.keys(caseStudyData));
+    console.log('Study found:', !!study);
+  }, [params.slug, study]);
 
   if (!study) {
     return (
@@ -83,6 +98,12 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
         <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl font-bold text-white mb-8">Case Study Not Found</h1>
+            <p className="text-slate-300 mb-8">
+              Looking for: "{params.slug}"
+            </p>
+            <p className="text-slate-400 mb-8">
+              Available case studies: {Object.keys(caseStudyData).join(', ')}
+            </p>
             <Button
               asChild
               className="focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-950"
@@ -92,7 +113,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
           </div>
         </section>
       </main>
-    )
+    );
   }
 
   return (
@@ -190,5 +211,5 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
         </div>
       </section>
     </main>
-  )
+  );
 }
