@@ -4,43 +4,51 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { Menu, X } from "lucide-react"
+import { Menu, X, Home, Briefcase, User, Phone, Rocket, Calendar } from "lucide-react"
 
-// Single source of truth for navigation
 const NAV = [
-  { href: "/", label: "Home", mobileLabel: "Home" },
-  { href: "/services", label: "Services", mobileLabel: "Services" },
-  { href: "/about", label: "About", mobileLabel: "About" },
-  { href: "/portfolio", label: "Portfolio", mobileLabel: "Portfolio" },
-  { href: "/contact", label: "Contact", mobileLabel: "Contact" },
-  { href: "/start", label: "Start Growing", mobileLabel: "Start" },
-  { href: "/book", label: "Book Session", mobileLabel: "Book" },
+  { href: "/", label: "Home", mobileLabel: "Home", icon: Home, color: "from-blue-400 to-cyan-400" },
+  { href: "/services", label: "Services", mobileLabel: "Services", icon: Briefcase, color: "from-purple-400 to-pink-400" },
+  { href: "/about", label: "About", mobileLabel: "About", icon: User, color: "from-green-400 to-emerald-400" },
+  { href: "/portfolio", label: "Portfolio", mobileLabel: "Portfolio", icon: Briefcase, color: "from-orange-400 to-red-400" },
+  { href: "/contact", label: "Contact", mobileLabel: "Contact", icon: Phone, color: "from-yellow-400 to-orange-400" },
+  { href: "/start", label: "Start Growing", mobileLabel: "Start", icon: Rocket, color: "from-indigo-400 to-purple-400" },
+  { href: "/book", label: "Book Session", mobileLabel: "Book", icon: Calendar, color: "from-pink-400 to-rose-400" },
 ]
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50)
     }
-
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  // Close menu on route change
   useEffect(() => setOpen(false), [pathname])
 
-  // Prevent background scroll when menu is open
   useEffect(() => {
     const cls = "overflow-hidden"
     const el = document.documentElement
     if (open) el.classList.add(cls)
     else el.classList.remove(cls)
     return () => el.classList.remove(cls)
+  }, [open])
+
+  // Mouse tracking for interactive effects
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePos({ x: e.clientX, y: e.clientY })
+    }
+    if (open) {
+      window.addEventListener('mousemove', handleMouseMove)
+      return () => window.removeEventListener('mousemove', handleMouseMove)
+    }
   }, [open])
 
   return (
@@ -81,97 +89,122 @@ export default function Header() {
             ))}
           </ul>
 
-          {/* Mobile hamburger */}
+          {/* Animated Hamburger Button */}
           <button
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex items-center justify-center rounded-lg p-2 text-white hover:bg-white/10 md:hidden transition-colors duration-200"
+            className="relative md:hidden w-12 h-12 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 hover:from-cyan-300 hover:to-blue-400 transition-all duration-300 flex items-center justify-center group overflow-hidden"
             aria-label="Toggle menu"
-            aria-expanded={open}
-            aria-controls="mobile-menu"
           >
+            {/* Ripple effect */}
+            <div className={`absolute inset-0 rounded-full bg-white/20 scale-0 ${open ? 'animate-ping' : ''}`}></div>
+            
+            {/* Morphing burger to X */}
             <div className="relative w-6 h-6">
-              <Menu 
-                className={`absolute inset-0 h-6 w-6 transition-all duration-300 ${
-                  open ? 'rotate-180 opacity-0' : 'rotate-0 opacity-100'
-                }`} 
-              />
-              <X 
-                className={`absolute inset-0 h-6 w-6 transition-all duration-300 ${
-                  open ? 'rotate-0 opacity-100' : '-rotate-180 opacity-0'
-                }`} 
-              />
+              <span className={`absolute block h-0.5 w-6 bg-white transform transition-all duration-300 ${
+                open ? 'rotate-45 translate-y-0' : 'rotate-0 -translate-y-2'
+              }`}></span>
+              <span className={`absolute block h-0.5 w-6 bg-white transition-all duration-300 ${
+                open ? 'opacity-0' : 'opacity-100'
+              }`}></span>
+              <span className={`absolute block h-0.5 w-6 bg-white transform transition-all duration-300 ${
+                open ? '-rotate-45 translate-y-0' : 'rotate-0 translate-y-2'
+              }`}></span>
             </div>
           </button>
         </div>
 
-        {/* Mobile Navigation Panel - Fullscreen Overlay */}
+        {/* 🚀 CREATIVE MOBILE NAVIGATION OPTIONS */}
+        
+        {/* OPTION 1: Particle System Navigation */}
         <div
-          id="mobile-menu"
-          className={`md:hidden fixed inset-0 top-0 left-0 w-full h-full bg-slate-950/98 backdrop-blur-xl transition-all duration-500 ease-in-out ${
+          className={`md:hidden fixed inset-0 top-0 left-0 w-full h-full transition-all duration-700 ease-in-out ${
             open 
-              ? "opacity-100 visible translate-x-0" 
-              : "opacity-0 invisible translate-x-full"
+              ? "opacity-100 visible" 
+              : "opacity-0 invisible"
           }`}
           style={{ zIndex: 50 }}
         >
-          {/* Mobile Menu Content */}
-          <div className="flex flex-col h-full">
-            {/* Header in mobile menu */}
-            <div className="flex items-center justify-between p-6 border-b border-slate-700/50">
-              <Link href="/" className="flex items-center space-x-3">
-                <div className="w-10 h-10">
-                  <Image
-                    src="/Stenth_Logo-removebg.png"
-                    alt="Stenth Logo"
-                    width={40}
-                    height={40}
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-                <span className="text-xl font-bold text-cyan-400">STENTH</span>
-              </Link>
-              
-              <button
-                onClick={() => setOpen(false)}
-                className="p-2 text-white hover:bg-white/10 rounded-lg transition-colors duration-200"
-                aria-label="Close menu"
-              >
-                <X className="h-6 w-6" />
-              </button>
+          {/* Animated Background with Particles */}
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 overflow-hidden">
+            {/* Floating Particles */}
+            {[...Array(20)].map((_, i) => (
+              <div
+                key={i}
+                className={`absolute w-2 h-2 rounded-full bg-gradient-to-r ${NAV[i % NAV.length].color} animate-pulse`}
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  animationDelay: `${i * 0.1}s`,
+                  animationDuration: `${2 + Math.random() * 3}s`
+                }}
+              />
+            ))}
+            
+            {/* Interactive Mouse Glow */}
+            <div
+              className="absolute w-96 h-96 rounded-full bg-gradient-to-r from-cyan-400/10 via-blue-500/5 to-purple-600/10 blur-3xl pointer-events-none transition-all duration-300"
+              style={{
+                left: mousePos.x - 192,
+                top: mousePos.y - 192,
+              }}
+            />
+          </div>
+
+          {/* Navigation Content */}
+          <div className="relative z-10 flex flex-col h-full justify-center items-center px-8">
+            <div className="grid grid-cols-2 gap-6 w-full max-w-sm">
+              {NAV.map((item, index) => {
+                const Icon = item.icon
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`group relative overflow-hidden rounded-2xl p-6 backdrop-blur-xl border border-white/10 transition-all duration-500 hover:scale-105 ${
+                      pathname === item.href ? 'bg-white/20 border-white/30' : 'bg-white/5 hover:bg-white/10'
+                    }`}
+                    style={{
+                      animationDelay: `${index * 100}ms`,
+                      animation: open ? 'slideInUp 0.6s ease-out forwards' : 'none'
+                    }}
+                  >
+                    {/* Gradient Background */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}/>
+                    
+                    {/* Icon */}
+                    <div className="relative z-10 flex flex-col items-center text-center space-y-3">
+                      <div className={`p-3 rounded-xl bg-gradient-to-r ${item.color} group-hover:scale-110 transition-transform duration-300`}>
+                        <Icon className="w-6 h-6 text-white" />
+                      </div>
+                      <span className="text-white font-medium text-sm">{item.mobileLabel}</span>
+                    </div>
+                  </Link>
+                )
+              })}
             </div>
 
-            {/* Navigation Links */}
-            <nav className="flex-1 flex flex-col justify-center px-6">
-              <ul className="space-y-6">
-                {NAV.map((item, index) => (
-                  <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      className={`block text-2xl font-medium transition-all duration-300 hover:text-cyan-400 hover:translate-x-2 ${
-                        pathname === item.href 
-                          ? 'text-cyan-400 translate-x-2' 
-                          : 'text-white'
-                      }`}
-                      style={{
-                        animationDelay: `${index * 50}ms`,
-                      }}
-                    >
-                      {item.mobileLabel}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-
-            {/* Footer in mobile menu */}
-            <div className="p-6 border-t border-slate-700/50">
-              <p className="text-sm text-slate-400 text-center">
-                Ready to grow your business?
-              </p>
-            </div>
+            {/* Close Button */}
+            <button
+              onClick={() => setOpen(false)}
+              className="mt-12 w-14 h-14 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-white hover:bg-white/20 transition-all duration-300 flex items-center justify-center group"
+            >
+              <X className="w-6 h-6 group-hover:rotate-180 transition-transform duration-300" />
+            </button>
           </div>
         </div>
       </nav>
+
+      <style jsx>{`
+        @keyframes slideInUp {
+          from {
+            opacity: 0;
+            transform: translateY(60px) scale(0.9);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+      `}</style>
     </header>
   )
 }
