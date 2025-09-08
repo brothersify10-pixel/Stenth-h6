@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import LoadingScreen from "@/components/loading-screen"; // <-- match filename case
+import LoadingScreen from "@/components/LoadingScreen"; // CASE SENSITIVE
 import FloatingElements from "@/components/floating-elements";
 import STENTHHero from "@/components/stenth-hero";
 import WhySTENTH from "@/components/why-stenth";
@@ -17,8 +17,8 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1200); // shorter splash feels snappier
-    return () => clearTimeout(timer);
+    const t = setTimeout(() => setLoading(false), 1200);
+    return () => clearTimeout(t);
   }, []);
 
   if (loading) return <LoadingScreen />;
@@ -26,23 +26,15 @@ export default function Home() {
   return (
     <main className="relative min-h-screen overflow-x-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
       <FloatingElements />
-      {/* Header is already in layout.tsx — do NOT render it here */}
+      {/* DO NOT render <Header /> here; it's in layout.tsx */}
       <STENTHHero />
       <WhySTENTH />
-      <section id="about">
-        <STENTHAbout />
-      </section>
-      <section id="services">
-        <STENTHServices />
-      </section>
-      <section id="portfolio">
-        <CaseStudies />
-      </section>
+      <section id="about"><STENTHAbout /></section>
+      <section id="services"><STENTHServices /></section>
+      <section id="portfolio"><CaseStudies /></section>
       <MonthlyGrowthSection />
       <Testimonials />
-      <section id="contact">
-        <STENTHContact />
-      </section>
+      <section id="contact"><STENTHContact /></section>
       <STENTHFooter />
     </main>
   );
