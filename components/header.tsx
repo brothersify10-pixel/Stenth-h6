@@ -303,6 +303,41 @@ export default function Header() {
             transform: translateY(0) scale(1);
           }
         }
+        
+        @keyframes particleFloat {
+          0% { 
+            transform: translateY(0) scale(1) rotate(0deg); 
+            opacity: 1; 
+          }
+          50% { 
+            transform: translateY(-20px) scale(0.8) rotate(180deg); 
+            opacity: 0.7; 
+          }
+          100% { 
+            transform: translateY(-40px) scale(0) rotate(360deg); 
+            opacity: 0; 
+          }
+        }
+        
+        @keyframes fade-in-0 {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        
+        @keyframes slide-in-from-top-2 {
+          from { 
+            opacity: 0;
+            transform: translateY(-8px) translateX(-50%);
+          }
+          to { 
+            opacity: 1;
+            transform: translateY(0) translateX(-50%);
+          }
+        }
+        
+        .animate-in {
+          animation-fill-mode: both;
+        }
       `}</style>
     </>
   )
