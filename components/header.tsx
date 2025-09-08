@@ -152,6 +152,14 @@ export default function Header() {
 
           {/* Navigation Content */}
           <div className="relative z-10 flex flex-col h-full justify-center items-center px-8">
+            {/* Book Session CTA at top */}
+            <Link
+              href="/book"
+              className="mb-8 px-8 py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-semibold rounded-full hover:scale-105 transition-all duration-300 shadow-lg shadow-pink-500/25"
+            >
+              📅 Book Session
+            </Link>
+            
             <div className="grid grid-cols-2 gap-6 w-full max-w-sm">
               {NAV.map((item, index) => {
                 const Icon = item.icon
