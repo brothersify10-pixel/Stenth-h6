@@ -12,9 +12,9 @@ export default function Testimonials() {
     {
       quote:
         "The monthly growth sessions are game-changing. Finally, we know exactly where our marketing budget goes and what results we're getting.",
-      author: "Michael Chen",
-      company: "EcoLife Products",
-      role: "Marketing Director",
+      author: "John Castillo",
+      company: "Sertuca Tours & Travels",
+      role: "Managing Director",
     },
     {
       quote:
