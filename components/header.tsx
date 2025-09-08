@@ -5,8 +5,8 @@ import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
 import {
-  Menu, X, Home, Briefcase, User, Phone, Rocket, Calendar, Zap,
-  ArrowRight, ChevronDown, Sparkles, TrendingUp
+  Menu, X, Home, Briefcase, User, Phone, Rocket, Calendar,
+  ChevronDown, Sparkles, TrendingUp
 } from "lucide-react"
 
 type SubItem = { title: string; desc: string; icon: React.ComponentType<any> }
@@ -14,40 +14,34 @@ type NavItem = {
   href: string
   label: string
   icon: React.ComponentType<any>
-  color: string     // subtle gradient token used for hover effects
-  emoji: string
+  color: string       // desktop hover wash only
   megaMenu?: SubItem[]
 }
 
 const NAV: NavItem[] = [
-  { href: "/",          label: "Home",      icon: Home,      color: "from-slate-700 to-slate-600", emoji: "🏠" },
-  { href: "/services",  label: "Services",  icon: Briefcase, color: "from-slate-700 to-slate-600", emoji: "⚡",
+  { href: "/",          label: "Home",      icon: Home,      color: "from-slate-700 to-slate-600" },
+  { href: "/services",  label: "Services",  icon: Briefcase, color: "from-slate-700 to-slate-600",
     megaMenu: [
       { title: "Digital Marketing", desc: "SEO, PPC, Social Media", icon: TrendingUp },
       { title: "Web Development",   desc: "Custom websites & apps", icon: Briefcase  },
-      { title: "Brand Strategy",    desc: "Complete brand overhaul", icon: Sparkles  },
-      { title: "Analytics",         desc: "Data-driven insights",    icon: Zap       },
+      { title: "Brand Strategy",    desc: "Positioning & identity", icon: Sparkles   },
+      { title: "Analytics",         desc: "Data-driven insights",   icon: TrendingUp },
     ],
   },
-  { href: "/about",     label: "About",     icon: User,      color: "from-slate-700 to-slate-600", emoji: "👋" },
-  { href: "/portfolio", label: "Portfolio", icon: Briefcase, color: "from-slate-700 to-slate-600", emoji: "🎨" },
-  { href: "/contact",   label: "Contact",   icon: Phone,     color: "from-slate-700 to-slate-600", emoji: "📞" },
-  { href: "/start",     label: "Start Growing", icon: Rocket,color: "from-slate-700 to-slate-600", emoji: "🚀" },
+  { href: "/about",     label: "About",     icon: User,      color: "from-slate-700 to-slate-600" },
+  { href: "/portfolio", label: "Portfolio", icon: Briefcase, color: "from-slate-700 to-slate-600" },
+  { href: "/contact",   label: "Contact",   icon: Phone,     color: "from-slate-700 to-slate-600" },
 ]
 
 export default function Header() {
   const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const [hovered, setHovered] = useState<number | null>(null)
 
-  // desktop flourish
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
-  const [particles, setParticles] = useState<{ id: number; x: number; y: number; color: string }[]>([])
-
-  // Scroll styling
+  // Header style after scroll
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50)
+    const onScroll = () => setScrolled(window.scrollY > 48)
     window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
@@ -55,7 +49,7 @@ export default function Header() {
   // Close mobile on route change
   useEffect(() => setOpen(false), [pathname])
 
-  // Lock background scroll when mobile drawer is open
+  // Lock scroll when mobile menu open
   useEffect(() => {
     const el = document.documentElement
     if (open) el.classList.add("overflow-hidden")
@@ -63,74 +57,34 @@ export default function Header() {
     return () => el.classList.remove("overflow-hidden")
   }, [open])
 
-  // Only track mouse while hovering (perf)
-  useEffect(() => {
-    if (hoveredIndex === null) return
-    const onMove = (e: MouseEvent) => setMousePos({ x: e.clientX, y: e.clientY })
-    window.addEventListener("mousemove", onMove, { passive: true })
-    return () => window.removeEventListener("mousemove", onMove)
-  }, [hoveredIndex])
-
-  // Spawn particles while hovering (perf-capped)
-  useEffect(() => {
-    if (hoveredIndex === null) return
-    const id = window.setInterval(() => {
-      const color = NAV[hoveredIndex!]?.color ?? "from-cyan-500 to-indigo-500"
-      const p = { id: Date.now() + Math.random(), x: mousePos.x, y: mousePos.y, color }
-      setParticles(prev => [...prev.slice(-6), p])
-      window.setTimeout(() => {
-        setParticles(prev => prev.filter(x => x.id !== p.id))
-      }, 1600)
-    }, 180)
-    return () => window.clearInterval(id)
-  }, [hoveredIndex, mousePos])
-
   const isActive = (href: string) => pathname === href
 
   return (
     <>
-      {/* Desktop particle sparkles */}
-      <div className="fixed inset-0 pointer-events-none z-30 hidden md:block">
-        {particles.map(p => (
-          <div
-            key={p.id}
-            className={`absolute w-1.5 h-1.5 rounded-full bg-gradient-to-r ${p.color} opacity-80`}
-            style={{
-              left: p.x,
-              top: p.y,
-              transform: "translate(-50%,-50%)",
-              animation: "particleFloat 1.6s ease-out forwards",
-            }}
-          />
-        ))}
-      </div>
-
       <header
-        className={`fixed top-0 w-full z-40 transition-all duration-500 ${
+        className={`fixed top-0 w-full z-40 transition-all duration-300 ${
           open
             ? "bg-slate-950"
             : scrolled
-            ? "bg-slate-950/95 backdrop-blur-xl shadow-2xl shadow-black/40 border-b border-slate-800/60"
+            ? "bg-slate-950/95 backdrop-blur-xl shadow-2xl shadow-black/30 border-b border-slate-800/60"
             : "bg-slate-950/90 backdrop-blur"
         }`}
       >
         <nav className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             {/* Brand */}
-            <Link href="/" className="flex items-center gap-3 group relative">
-              <div className="relative">
-                <div className="absolute inset-0 w-12 h-12 bg-gradient-to-r from-cyan-400 to-indigo-400 rounded-full blur-2xl opacity-0 group-hover:opacity-40 transition-all duration-700" />
-                <div className="relative w-12 h-12 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
-                  <Image
-                    src="/Stenth_Logo-removebg.png"
-                    alt="Stenth Logo"
-                    width={48}
-                    height={48}
-                    className="w-full h-full object-contain drop-shadow-lg"
-                    priority
-                  />
-                </div>
-              </div>
+            <Link href="/" className="flex items-center gap-3 group">
+              <span className="relative inline-block">
+                <span className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400 to-indigo-400 blur-2xl opacity-0 group-hover:opacity-40 transition-opacity duration-700" />
+                <Image
+                  src="/Stenth_Logo-removebg.png"
+                  alt="Stenth"
+                  width={48}
+                  height={48}
+                  priority
+                  className="relative z-10 w-12 h-12 object-contain group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300"
+                />
+              </span>
               <span className="text-2xl font-semibold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-300 bg-clip-text text-transparent">
                 STENTH
               </span>
@@ -139,32 +93,31 @@ export default function Header() {
             {/* Desktop nav */}
             <div className="hidden md:flex items-center gap-1">
               <ul className="flex gap-1">
-                {NAV.slice(0, 5).map((item, idx) => (
+                {NAV.map((item, idx) => (
                   <li
                     key={item.href}
                     className="relative group"
-                    onMouseEnter={() => setHoveredIndex(idx)}
-                    onMouseLeave={() => setHoveredIndex(null)}
+                    onMouseEnter={() => setHovered(idx)}
+                    onMouseLeave={() => setHovered(null)}
                   >
                     <Link
                       href={item.href}
                       className={`relative px-5 py-2.5 text-sm font-semibold rounded-xl overflow-hidden flex items-center gap-2
                         ${isActive(item.href) ? "text-white" : "text-slate-200 hover:text-white"}`}
                     >
-                      {/* subtle gradient wash on hover */}
-                      <div className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
-                      {/* border on hover */}
-                      <div className="absolute inset-0 rounded-xl border border-transparent group-hover:border-white/20 transition-colors duration-300" />
-                      {/* icon + label */}
-                      <item.icon className="w-4 h-4 relative z-10 group-hover:rotate-12 transition-transform duration-300" />
+                      {/* Subtle gradient wash on hover */}
+                      <span className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-0 group-hover:opacity-10 transition-opacity duration-200`} />
+                      {/* Soft border on hover */}
+                      <span className="absolute inset-0 rounded-xl border border-transparent group-hover:border-white/15 transition-colors duration-200" />
+                      <item.icon className="w-4 h-4 relative z-10 group-hover:-translate-y-[1px] group-hover:rotate-12 transition-transform duration-200" />
                       <span className="relative z-10">{item.label}</span>
                       {item.megaMenu && <ChevronDown className="w-3 h-3 opacity-70" />}
-                      {/* streak */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                      {/* Shimmer streak */}
+                      <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-500" />
                     </Link>
 
                     {/* Mega menu */}
-                    {item.megaMenu && hoveredIndex === idx && (
+                    {item.megaMenu && hovered === idx && (
                       <div className="absolute top-full left-0 mt-2 w-96 bg-slate-950/95 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl shadow-black/40 p-6 animate-in">
                         <div className="grid grid-cols-2 gap-4">
                           {item.megaMenu.map((sub, i) => (
@@ -197,23 +150,21 @@ export default function Header() {
               <div className="flex gap-3 ml-6">
                 <Link
                   href="/start"
-                  className="relative px-6 py-2.5 rounded-full text-sm font-semibold text-slate-950 bg-cyan-500 hover:bg-cyan-400 transition-colors overflow-hidden"
+                  className="relative px-6 py-2.5 rounded-full text-sm font-semibold text-slate-950 bg-cyan-500 hover:bg-cyan-400 transition-colors"
                 >
-                  <span className="relative z-10 inline-flex items-center gap-2">
+                  <span className="inline-flex items-center gap-2">
                     <Rocket className="w-4 h-4" />
                     Start Growing
                   </span>
-                  <div className="absolute inset-0 rounded-full border border-white/20 pointer-events-none" />
                 </Link>
                 <Link
                   href="/book"
-                  className="relative px-6 py-2.5 rounded-full text-sm font-semibold text-white bg-indigo-500 hover:bg-indigo-400 transition-colors overflow-hidden"
+                  className="relative px-6 py-2.5 rounded-full text-sm font-semibold text-white bg-indigo-500 hover:bg-indigo-400 transition-colors"
                 >
-                  <span className="relative z-10 inline-flex items-center gap-2">
+                  <span className="inline-flex items-center gap-2">
                     <Calendar className="w-4 h-4" />
                     Book Session
                   </span>
-                  <div className="absolute inset-0 rounded-full border border-white/20 pointer-events-none" />
                 </Link>
               </div>
             </div>
@@ -231,18 +182,24 @@ export default function Header() {
           </div>
         </nav>
 
-        {/* Mobile drawer (fully opaque) */}
+        {/* Mobile drawer (opaque, transform-only, no lag) */}
         <div
           id="mobile-menu"
-          className={`md:hidden fixed inset-0 z-50 transition-opacity duration-200 ${open ? "opacity-100" : "opacity-0 pointer-events-none"} bg-slate-950`}
+          className="md:hidden fixed inset-0 z-50 bg-slate-950"
           role="dialog"
           aria-modal="true"
+          aria-hidden={!open}
+          style={{ willChange: "transform" }}
         >
-          <div className="relative flex flex-col h-full">
+          <div
+            className={`flex h-full flex-col transition-transform duration-200 ease-out ${
+              open ? "translate-y-0" : "translate-y-full"
+            }`}
+          >
             {/* Drawer header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800">
               <div className="flex items-center gap-3">
-                <Image src="/Stenth_Logo-removebg.png" alt="Stenth" width={36} height={36} />
+                <Image src="/Stenth_Logo-removebg.png" alt="Stenth" width={36} height={36} priority />
                 <span className="text-lg font-semibold text-white">STENTH</span>
               </div>
               <button
@@ -254,10 +211,13 @@ export default function Header() {
               </button>
             </div>
 
-            {/* Drawer links */}
+            {/* Drawer body */}
             <div className="flex-1 overflow-y-auto px-6 py-4">
               <nav className="grid gap-2">
-                {NAV.map(item => {
+                {NAV.concat([
+                  { href: "/start", label: "Start Growing", icon: Rocket, color: "from-slate-700 to-slate-600" },
+                  { href: "/book",  label: "Book Session",  icon: Calendar, color: "from-slate-700 to-slate-600" },
+                ] as NavItem[]).map(item => {
                   const Icon = item.icon
                   const active = isActive(item.href)
                   return (
@@ -265,7 +225,7 @@ export default function Header() {
                       key={item.href}
                       href={item.href}
                       className={`flex items-center justify-between rounded-xl px-4 py-3 border transition-colors
-                        ${active ? "bg-slate-900 text-cyan-300 border-slate-800" : "bg-slate-900/60 text-slate-200 hover:bg-slate-900 border-slate-800"}`}
+                        ${active ? "bg-slate-900 text-cyan-300 border-slate-800" : "bg-slate-900/90 text-slate-200 hover:bg-slate-900 border-slate-800"}`}
                     >
                       <span className="flex items-center gap-3">
                         <span className="inline-flex w-9 h-9 items-center justify-center rounded-lg bg-slate-800">
@@ -273,49 +233,31 @@ export default function Header() {
                         </span>
                         <span className="font-medium">{item.label}</span>
                       </span>
-                      <ArrowRight className="w-4 h-4 text-slate-300" />
+                      {/* thin accent line on active */}
+                      <span className={`h-1.5 w-6 rounded-full ${active ? "bg-cyan-400" : "bg-slate-700"}`} />
                     </Link>
                   )
                 })}
               </nav>
-
-              {/* CTAs */}
-              <div className="mt-6 grid gap-3">
-                <Link
-                  href="/start"
-                  className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-cyan-500 text-slate-950 font-semibold hover:bg-cyan-400 transition-colors"
-                >
-                  <Rocket className="w-5 h-5" />
-                  Start Growing
-                </Link>
-                <Link
-                  href="/book"
-                  className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-indigo-500 text-white font-semibold hover:bg-indigo-400 transition-colors"
-                >
-                  <Calendar className="w-5 h-5" />
-                  Book Session
-                </Link>
-              </div>
             </div>
 
-            <div className="h-4" />
+            {/* safe-area spacer */}
+            <div className="h-6" />
           </div>
         </div>
       </header>
 
-      {/* Spacer so content doesn't sit under fixed header */}
+      {/* prevent content underlap */}
       <div className="h-20 md:h-24" />
 
       <style jsx>{`
-        @keyframes particleFloat {
-          0%   { transform: translate(-50%,-50%) translateY(0) scale(1);   opacity: .9; }
-          50%  { transform: translate(-50%,-50%) translateY(-24px) scale(.9); opacity: .6; }
-          100% { transform: translate(-50%,-50%) translateY(-48px) scale(.75); opacity: 0; }
-        }
-        .animate-in { animation: slideIn .24s ease-out both }
+        .animate-in { animation: slideIn .22s ease-out both }
         @keyframes slideIn {
-          from { opacity: 0; transform: translateY(-8px) }
+          from { opacity: 0; transform: translateY(-6px) }
           to   { opacity: 1; transform: translateY(0) }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          * { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
         }
       `}</style>
     </>
