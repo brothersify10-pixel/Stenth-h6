@@ -8,7 +8,7 @@ import "./globals.css"
 import Header from "@/components/header"
 
 export const metadata: Metadata = {
-  title: "Stenth - Digital Marketing Excellence",
+  title: "Stenth - Lets Grow Together",
   description: "Professional digital marketing services to elevate your brand",
   generator: "v0.app",
   icons: {
