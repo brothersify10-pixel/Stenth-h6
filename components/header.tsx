@@ -1,171 +1,106 @@
-but i kind a like these effects and style for desktop  not colors "use client"
+"use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { Menu, X, Home, Briefcase, User, Phone, Rocket, Calendar, Zap, Star, ArrowRight, ChevronDown, Sparkles, TrendingUp } from "lucide-react"
+import {
+  Menu, X, Home, Briefcase, User, Phone, Rocket, Calendar, Zap, Star,
+  ArrowRight, ChevronDown, Sparkles, TrendingUp
+} from "lucide-react"
 
-const NAV = [
-  { 
-    href: "/", 
-    label: "Home", 
-    icon: Home, 
-    color: "from-blue-500 to-cyan-400", 
-    emoji: "🏠"
-  },
-  { 
-    href: "/services", 
-    label: "Services", 
-    icon: Briefcase, 
-    color: "from-purple-500 to-pink-400", 
-    emoji: "⚡",
+type SubItem = { title: string; desc: string; icon: React.ComponentType<any> }
+type NavItem = {
+  href: string
+  label: string
+  icon: React.ComponentType<any>
+  color: string // gradient token used for effects (kept subtle)
+  emoji: string
+  megaMenu?: SubItem[]
+}
+
+const NAV: NavItem[] = [
+  { href: "/",          label: "Home",      icon: Home,      color: "from-slate-700 to-slate-600", emoji: "🏠" },
+  { href: "/services",  label: "Services",  icon: Briefcase, color: "from-slate-700 to-slate-600", emoji: "⚡",
     megaMenu: [
       { title: "Digital Marketing", desc: "SEO, PPC, Social Media", icon: TrendingUp },
-      { title: "Web Development", desc: "Custom websites & apps", icon: Briefcase },
-      { title: "Brand Strategy", desc: "Complete brand overhaul", icon: Sparkles },
-      { title: "Analytics", desc: "Data-driven insights", icon: Zap }
-    ]
+      { title: "Web Development",   desc: "Custom websites & apps", icon: Briefcase  },
+      { title: "Brand Strategy",    desc: "Complete brand overhaul", icon: Sparkles  },
+      { title: "Analytics",         desc: "Data-driven insights",    icon: Zap       },
+    ],
   },
-  { 
-    href: "/about", 
-    label: "About", 
-    icon: User, 
-    color: "from-green-500 to-emerald-400", 
-    emoji: "👋"
-  },
-  { 
-    href: "/portfolio", 
-    label: "Portfolio", 
-    icon: Briefcase, 
-    color: "from-orange-500 to-red-400", 
-    emoji: "🎨"
-  },
-  { 
-    href: "/contact", 
-    label: "Contact", 
-    icon: Phone, 
-    color: "from-yellow-500 to-orange-400", 
-    emoji: "📞"
-  },
-  { 
-    href: "/start", 
-    label: "Start Growing", 
-    icon: Rocket, 
-    color: "from-indigo-500 to-purple-400", 
-    emoji: "🚀"
-  },
+  { href: "/about",     label: "About",     icon: User,      color: "from-slate-700 to-slate-600", emoji: "👋" },
+  { href: "/portfolio", label: "Portfolio", icon: Briefcase, color: "from-slate-700 to-slate-600", emoji: "🎨" },
+  { href: "/contact",   label: "Contact",   icon: Phone,     color: "from-slate-700 to-slate-600", emoji: "📞" },
+  { href: "/start",     label: "Start Growing", icon: Rocket,color: "from-slate-700 to-slate-600", emoji: "🚀" },
 ]
 
 export default function Header() {
+  const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
-  const [activeIndex, setActiveIndex] = useState(0)
-  const [touchStart, setTouchStart] = useState({ x: 0, y: 0 })
-  const [ripples, setRipples] = useState([])
-  const [hoveredItem, setHoveredItem] = useState(null)
-  const [megaMenuOpen, setMegaMenuOpen] = useState(false)
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const [particles, setParticles] = useState([])
-  const pathname = usePathname()
 
+  // Desktop-only flourish state
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
+  const [particles, setParticles] = useState<{ id: number; x: number; y: number; color: string }[]>([])
+
+  // Scroll styling
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
+    const onScroll = () => setScrolled(window.scrollY > 50)
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
-    }
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [])
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (hoveredItem !== null) {
-        const newParticle = {
-          id: Date.now() + Math.random(),
-          x: mousePosition.x,
-          y: mousePosition.y,
-          color: NAV[hoveredItem]?.color || 'from-cyan-400 to-blue-500'
-        }
-        setParticles(prev => [...prev.slice(-5), newParticle])
-        
-        setTimeout(() => {
-          setParticles(prev => prev.filter(p => p.id !== newParticle.id))
-        }, 2000)
-      }
-    }, 200)
-
-    return () => clearInterval(interval)
-  }, [hoveredItem, mousePosition])
-
+  // Close mobile on route change
   useEffect(() => setOpen(false), [pathname])
 
+  // Lock background scroll when mobile open
   useEffect(() => {
-    const cls = "overflow-hidden"
     const el = document.documentElement
-    if (open) el.classList.add(cls)
-    else el.classList.remove(cls)
-    return () => el.classList.remove(cls)
+    if (open) el.classList.add("overflow-hidden")
+    else el.classList.remove("overflow-hidden")
+    return () => el.classList.remove("overflow-hidden")
   }, [open])
 
-  const handleTouchStart = (e) => {
-    const touch = e.touches[0]
-    setTouchStart({ x: touch.clientX, y: touch.clientY })
-  }
+  // Only track mouse while a desktop item is hovered (perf)
+  useEffect(() => {
+    if (hoveredIndex === null) return
+    const onMove = (e: MouseEvent) => setMousePos({ x: e.clientX, y: e.clientY })
+    window.addEventListener("mousemove", onMove, { passive: true })
+    return () => window.removeEventListener("mousemove", onMove)
+  }, [hoveredIndex])
 
-  const handleTouchMove = (e) => {
-    if (!touchStart.x) return
-    
-    const touch = e.touches[0]
-    const deltaX = touch.clientX - touchStart.x
-    
-    if (Math.abs(deltaX) > 50) {
-      if (deltaX > 0 && activeIndex > 0) {
-        setActiveIndex(prev => prev - 1)
-      } else if (deltaX < 0 && activeIndex < NAV.length - 1) {
-        setActiveIndex(prev => prev + 1)
-      }
-      setTouchStart({ x: 0, y: 0 })
-    }
-  }
+  // Spawn a few particles only while hovering (perf)
+  useEffect(() => {
+    if (hoveredIndex === null) return
+    const id = window.setInterval(() => {
+      const color = NAV[hoveredIndex!]?.color ?? "from-cyan-500 to-indigo-500"
+      const p = { id: Date.now() + Math.random(), x: mousePos.x, y: mousePos.y, color }
+      setParticles(prev => [...prev.slice(-6), p]) // cap
+      // auto-remove after 1.6s
+      window.setTimeout(() => {
+        setParticles(prev => prev.filter(x => x.id !== p.id))
+      }, 1600)
+    }, 180)
+    return () => window.clearInterval(id)
+  }, [hoveredIndex, mousePos])
 
-  const createRipple = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-    
-    const newRipple = {
-      id: Date.now(),
-      x,
-      y,
-    }
-    
-    setRipples(prev => [...prev, newRipple])
-    
-    setTimeout(() => {
-      setRipples(prev => prev.filter(ripple => ripple.id !== newRipple.id))
-    }, 1000)
-  }
+  const isActive = (href: string) => pathname === href
 
   return (
     <>
-      {/* Floating Particles */}
-      <div className="fixed inset-0 pointer-events-none z-30">
-        {particles.map(particle => (
+      {/* Desktop particles (hidden on md-) */}
+      <div className="fixed inset-0 pointer-events-none z-30 hidden md:block">
+        {particles.map(p => (
           <div
-            key={particle.id}
-            className={`absolute w-2 h-2 rounded-full bg-gradient-to-r ${particle.color} opacity-70`}
+            key={p.id}
+            className={`absolute w-1.5 h-1.5 rounded-full bg-gradient-to-r ${p.color} opacity-80`}
             style={{
-              left: particle.x,
-              top: particle.y,
-              animation: 'particleFloat 2s ease-out forwards'
+              left: p.x,
+              top: p.y,
+              transform: "translate(-50%,-50%)",
+              animation: "particleFloat 1.6s ease-out forwards",
             }}
           />
         ))}
@@ -173,129 +108,81 @@ export default function Header() {
 
       <header
         className={`fixed top-0 w-full z-40 transition-all duration-500 ${
-          scrolled 
-            ? "bg-slate-950/95 backdrop-blur-xl shadow-2xl shadow-cyan-500/20 border-b border-cyan-500/30" 
-            : "bg-slate-950/90 backdrop-blur-md"
+          open
+            ? "bg-slate-950"
+            : scrolled
+            ? "bg-slate-950/95 backdrop-blur-xl shadow-2xl shadow-black/40 border-b border-slate-800/60"
+            : "bg-slate-950/90 backdrop-blur"
         }`}
       >
         <nav className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            {/* Enhanced Logo */}
-            <Link href="/" className="flex items-center space-x-3 group relative">
+            {/* Brand */}
+            <Link href="/" className="flex items-center gap-3 group relative">
               <div className="relative">
-                <div className="absolute inset-0 w-12 h-12 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full blur-2xl opacity-0 group-hover:opacity-50 transition-all duration-700"></div>
-                <div className="absolute inset-0 w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur-lg opacity-0 group-hover:opacity-30 transition-all duration-500"></div>
-                
-                <div className="relative w-12 h-12 transform group-hover:scale-125 group-hover:rotate-12 transition-all duration-700">
+                <div className="absolute inset-0 w-12 h-12 bg-gradient-to-r from-cyan-400 to-indigo-400 rounded-full blur-2xl opacity-0 group-hover:opacity-40 transition-all duration-700" />
+                <div className="relative w-12 h-12 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
                   <Image
                     src="/Stenth_Logo-removebg.png"
                     alt="Stenth Logo"
                     width={48}
                     height={48}
-                    className="w-full h-full object-contain drop-shadow-2xl"
+                    className="w-full h-full object-contain drop-shadow-lg"
+                    priority
                   />
-                  
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                    {[...Array(6)].map((_, i) => (
-                      <div
-                        key={i}
-                        className="absolute w-1 h-1 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full"
-                        style={{
-                          left: `${50 + Math.cos(i * 60 * Math.PI / 180) * 30}%`,
-                          top: `${50 + Math.sin(i * 60 * Math.PI / 180) * 30}%`,
-                          animation: `ping 1s ease-out infinite ${i * 0.1}s`
-                        }}
-                      />
-                    ))}
-                  </div>
                 </div>
               </div>
-              
-              <div className="relative">
-                <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500 bg-clip-text text-transparent group-hover:from-cyan-300 group-hover:via-blue-300 group-hover:to-purple-400 transition-all duration-500">
-                  STENTH
-                </span>
-                
-                <div className="absolute -top-2 -right-3 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                  <Sparkles className="w-5 h-5 text-cyan-400 animate-pulse" />
-                </div>
-                <div className="absolute -bottom-1 -left-2 opacity-0 group-hover:opacity-100 transition-all duration-700">
-                  <Star className="w-3 h-3 text-purple-400 animate-spin" />
-                </div>
-              </div>
+              <span className="text-2xl font-semibold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-300 bg-clip-text text-transparent">
+                STENTH
+              </span>
             </Link>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-1">
-              <ul className="flex space-x-1">
-                {NAV.slice(0, 5).map((item, index) => (
-                  <li 
-                    key={item.href} 
+            {/* Desktop nav */}
+            <div className="hidden md:flex items-center gap-1">
+              <ul className="flex gap-1">
+                {NAV.slice(0, 5).map((item, idx) => (
+                  <li
+                    key={item.href}
                     className="relative"
-                    onMouseEnter={() => {
-                      setHoveredItem(index)
-                      if (item.megaMenu) setMegaMenuOpen(true)
-                    }}
-                    onMouseLeave={() => {
-                      setHoveredItem(null)
-                      if (item.megaMenu) setMegaMenuOpen(false)
-                    }}
+                    onMouseEnter={() => setHoveredIndex(idx)}
+                    onMouseLeave={() => setHoveredIndex(null)}
                   >
                     <Link
                       href={item.href}
-                      className={`relative px-5 py-3 text-sm font-semibold transition-all duration-500 rounded-xl group overflow-hidden flex items-center space-x-2 ${
-                        pathname === item.href 
-                          ? `text-white bg-gradient-to-r ${item.color} shadow-lg` 
-                          : 'text-white hover:text-white'
-                      }`}
+                      className={`relative px-5 py-2.5 text-sm font-semibold rounded-xl overflow-hidden flex items-center gap-2
+                        ${isActive(item.href) ? "text-white" : "text-slate-200 hover:text-white"}`}
                     >
-                      <div className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-xl transform scale-0 group-hover:scale-100`}></div>
-                      
-                      <div className="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-white/30 transition-all duration-500"></div>
-                      
-                      <item.icon className="w-4 h-4 relative z-10 group-hover:rotate-12 transition-transform duration-500" />
-                      
+                      {/* hover wash */}
+                      <div className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
+                      {/* subtle border on hover */}
+                      <div className="absolute inset-0 rounded-xl border border-transparent hover:border-white/20 transition-colors duration-300" />
+                      {/* icon + label */}
+                      <item.icon className="w-4 h-4 relative z-10 group-hover:rotate-12 transition-transform duration-300" />
                       <span className="relative z-10">{item.label}</span>
-                      
-                      {item.megaMenu && (
-                        <ChevronDown className="w-3 h-3 relative z-10 transition-transform duration-300 group-hover:rotate-180" />
-                      )}
-                      
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                      
-                      <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none`}>
-                        {[...Array(4)].map((_, i) => (
-                          <div
-                            key={i}
-                            className={`absolute w-1 h-1 bg-gradient-to-r ${item.color} rounded-full`}
-                            style={{
-                              left: `${20 + i * 20}%`,
-                              top: `${20 + (i % 2) * 60}%`,
-                              animation: `bounce 1s ease-out infinite ${i * 0.2}s`
-                            }}
-                          />
-                        ))}
-                      </div>
+                      {item.megaMenu && <ChevronDown className="w-3 h-3 opacity-70" />}
+                      {/* streak */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
                     </Link>
 
-                    {item.megaMenu && megaMenuOpen && hoveredItem === index && (
-                      <div className="absolute top-full left-0 mt-2 w-96 bg-slate-900/95 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl shadow-purple-500/20 p-6 opacity-0 animate-in slide-in-from-top-2 duration-300 opacity-100">
+                    {/* Mega menu */}
+                    {item.megaMenu && hoveredIndex === idx && (
+                      <div className="absolute top-full left-0 mt-2 w-96 bg-slate-950/95 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl shadow-black/40 p-6 animate-in">
                         <div className="grid grid-cols-2 gap-4">
-                          {item.megaMenu.map((subItem, subIndex) => (
+                          {item.megaMenu.map((sub, i) => (
                             <Link
-                              key={subIndex}
-                              href={`${item.href}/${subItem.title.toLowerCase().replace(' ', '-')}`}
-                              className="group p-4 rounded-xl hover:bg-white/5 transition-all duration-300"
+                              key={i}
+                              href={`${item.href}/${sub.title.toLowerCase().replace(/\s+/g, "-")}`}
+                              className="group p-4 rounded-xl hover:bg-white/5 transition-colors"
                             >
-                              <div className="flex items-start space-x-3">
-                                <div className={`p-2 rounded-lg bg-gradient-to-r ${item.color} group-hover:scale-110 transition-transform duration-300`}>
-                                  <subItem.icon className="w-5 h-5 text-white" />
+                              <div className="flex items-start gap-3">
+                                <div className="p-2 rounded-lg bg-slate-800 group-hover:scale-110 transition-transform">
+                                  <sub.icon className="w-5 h-5 text-slate-200" />
                                 </div>
                                 <div>
-                                  <h4 className="font-semibold text-white group-hover:text-cyan-400 transition-colors duration-300">
-                                    {subItem.title}
+                                  <h4 className="font-semibold text-white group-hover:text-cyan-300 transition-colors">
+                                    {sub.title}
                                   </h4>
-                                  <p className="text-sm text-slate-400 mt-1">{subItem.desc}</p>
+                                  <p className="text-sm text-slate-400 mt-1">{sub.desc}</p>
                                 </div>
                               </div>
                             </Link>
@@ -307,297 +194,129 @@ export default function Header() {
                 ))}
               </ul>
 
-              <div className="flex space-x-4 ml-8">
+              {/* Desktop CTAs (keep glow but in premium colors) */}
+              <div className="flex gap-3 ml-6">
                 <Link
                   href="/start"
-                  className="relative px-8 py-3 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-bold rounded-full hover:scale-105 transition-all duration-500 group overflow-hidden shadow-2xl shadow-purple-500/50"
+                  className="relative px-6 py-2.5 rounded-full text-sm font-semibold text-slate-950 bg-cyan-500 hover:bg-cyan-400 transition-colors overflow-hidden"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  
-                  <div className="absolute inset-0 rounded-full border-2 border-purple-400/50 group-hover:border-purple-300 animate-pulse"></div>
-                  
-                  <span className="relative flex items-center space-x-2 z-10">
-                    <Rocket className="w-5 h-5 group-hover:rotate-12 transition-transform duration-500" />
-                    <span>Start Growing</span>
-                    <TrendingUp className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-all duration-300" />
+                  <span className="relative z-10 inline-flex items-center gap-2">
+                    <Rocket className="w-4 h-4" />
+                    Start Growing
                   </span>
+                  <div className="absolute inset-0 rounded-full border border-white/20 pointer-events-none" />
                 </Link>
-
                 <Link
                   href="/book"
-                  className="relative px-8 py-3 bg-gradient-to-r from-cyan-500 via-blue-500 to-teal-500 text-white font-bold rounded-full hover:scale-105 transition-all duration-500 group overflow-hidden shadow-2xl shadow-cyan-500/50"
+                  className="relative px-6 py-2.5 rounded-full text-sm font-semibold text-white bg-indigo-500 hover:bg-indigo-400 transition-colors overflow-hidden"
                 >
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400 via-blue-400 to-teal-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse"></div>
-                  
-                  <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-teal-400 opacity-0 group-hover:opacity-30 animate-spin transition-opacity duration-300"></div>
-                  
-                  <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <Zap className="absolute top-1 right-2 w-3 h-3 text-yellow-300 animate-ping" />
-                  </div>
-                  
-                  <span className="relative flex items-center space-x-2 z-10">
-                    <Calendar className="w-5 h-5 group-hover:rotate-12 transition-transform duration-500" />
-                    <span>Book Session</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                  <span className="relative z-10 inline-flex items-center gap-2">
+                    <Calendar className="w-4 h-4" />
+                    Book Session
                   </span>
+                  <div className="absolute inset-0 rounded-full border border-white/20 pointer-events-none" />
                 </Link>
               </div>
             </div>
 
-            {/* Enhanced Mobile Hamburger Menu */}
+            {/* Mobile hamburger */}
             <button
-              onClick={() => setOpen((v) => !v)}
-              className="relative md:hidden w-16 h-16 rounded-2xl bg-gradient-to-br from-slate-800 via-slate-700 to-slate-800 border border-slate-600 hover:scale-105 transition-all duration-300 flex items-center justify-center group overflow-hidden shadow-2xl hover:shadow-cyan-500/30 hover:border-cyan-500/50"
-              aria-label="Toggle menu"
+              onClick={() => setOpen(v => !v)}
+              className="md:hidden inline-flex items-center justify-center w-12 h-12 rounded-xl bg-slate-800 text-white ring-1 ring-white/10 hover:bg-slate-700 transition"
+              aria-label={open ? "Close menu" : "Open menu"}
+              aria-expanded={open}
+              aria-controls="mobile-menu"
             >
-              {/* Animated background glow */}
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 via-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
-              
-              {/* Pulsing border effect */}
-              <div className={`absolute inset-0 rounded-2xl border-2 ${open ? 'border-cyan-400 animate-pulse' : 'border-transparent group-hover:border-cyan-400/50'} transition-all duration-300`}></div>
-              
-              {/* Menu icon with enhanced animation */}
-              <div className="relative w-8 h-8 transform transition-all duration-500">
-                {/* Top line */}
-                <span className={`absolute block h-1 w-8 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full transform transition-all duration-500 shadow-lg ${
-                  open ? 'rotate-45 translate-y-3 bg-gradient-to-r from-red-400 to-pink-500' : 'rotate-0 -translate-y-2'
-                }`}></span>
-                
-                {/* Middle line */}
-                <span className={`absolute block h-1 w-8 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full transition-all duration-300 shadow-lg ${
-                  open ? 'opacity-0 scale-0' : 'opacity-100 scale-100'
-                }`}></span>
-                
-                {/* Bottom line */}
-                <span className={`absolute block h-1 w-8 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full transform transition-all duration-500 shadow-lg ${
-                  open ? '-rotate-45 -translate-y-3 bg-gradient-to-r from-red-400 to-pink-500' : 'rotate-0 translate-y-2'
-                }`}></span>
-              </div>
-              
-              {/* Sparkle effects */}
-              <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${open ? 'opacity-100' : ''}`}>
-                <Sparkles className="absolute top-2 right-2 w-3 h-3 text-cyan-400 animate-ping" />
-                <Star className="absolute bottom-2 left-2 w-2 h-2 text-purple-400 animate-pulse" />
-              </div>
+              {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
           </div>
         </nav>
 
-        {/* Mobile Navigation with Opaque Background */}
+        {/* Mobile: fully opaque overlay */}
         <div
-          className={`md:hidden fixed inset-0 top-0 left-0 w-full h-full transition-all duration-1000 ease-out ${
-            open ? "opacity-100 visible" : "opacity-0 invisible"
-          }`}
-          style={{ zIndex: 60 }}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
+          id="mobile-menu"
+          className={`md:hidden fixed inset-0 z-50 transition-opacity duration-200 ${open ? "opacity-100" : "opacity-0 pointer-events-none"} bg-slate-950`}
+          role="dialog"
+          aria-modal="true"
         >
-          {/* Opaque Background */}
-          <div className="absolute inset-0 overflow-hidden">
-            {/* Solid opaque background */}
-            <div className="absolute inset-0 bg-slate-950"></div>
-            
-            {/* Gradient overlay for visual appeal */}
-            <div className={`absolute inset-0 bg-gradient-to-br ${NAV[activeIndex]?.color} opacity-10 transition-all duration-1000`}></div>
-            
-            {/* Animated pattern overlay */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(14,165,233,0.1),transparent_50%),radial-gradient(circle_at_75%_75%,rgba(168,85,247,0.1),transparent_50%)]"></div>
-            
-            {/* Floating decorative elements */}
-            {[...Array(20)].map((_, i) => (
-              <div
-                key={i}
-                className={`absolute rounded-full bg-gradient-to-r ${NAV[i % NAV.length].color}`}
-                style={{
-                  width: `${Math.random() * 30 + 15}px`,
-                  height: `${Math.random() * 30 + 15}px`,
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  opacity: 0.15,
-                  animation: `float ${4 + Math.random() * 6}s ease-in-out infinite ${i * 0.3}s`
-                }}
-              />
-            ))}
-            
-            {ripples.map(ripple => (
-              <div
-                key={ripple.id}
-                className="absolute pointer-events-none animate-ping"
-                style={{
-                  left: ripple.x - 50,
-                  top: ripple.y - 50,
-                  width: 100,
-                  height: 100,
-                }}
-              >
-                <div className={`w-full h-full rounded-full bg-gradient-to-r ${NAV[activeIndex]?.color} opacity-30`}></div>
+          <div className="relative flex flex-col h-full">
+            {/* Top bar */}
+            <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800">
+              <div className="flex items-center gap-3">
+                <Image src="/Stenth_Logo-removebg.png" alt="Stenth" width={36} height={36} />
+                <span className="text-lg font-semibold text-white">STENTH</span>
               </div>
-            ))}
-          </div>
-
-          <div className="relative z-10 flex flex-col h-full">
-            {/* Enhanced Header */}
-            <div className="flex justify-between items-center p-6 border-b border-white/10">
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full blur-lg opacity-50 animate-pulse"></div>
-                  <Image
-                    src="/Stenth_Logo-removebg.png"
-                    alt="Stenth Logo"
-                    width={48}
-                    height={48}
-                    className="w-full h-full object-contain relative z-10"
-                  />
-                </div>
-                <div>
-                  <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500 bg-clip-text text-transparent">STENTH</span>
-                  <p className="text-xs text-slate-400">Digital Excellence</p>
-                </div>
-              </div>
-              
               <button
                 onClick={() => setOpen(false)}
-                className="w-14 h-14 rounded-2xl bg-slate-800 border border-slate-600 text-white hover:bg-slate-700 hover:border-red-500/50 transition-all duration-300 flex items-center justify-center group relative overflow-hidden shadow-xl"
+                className="inline-flex items-center justify-center w-11 h-11 rounded-lg bg-slate-800 text-white ring-1 ring-white/10 hover:bg-slate-700 transition"
+                aria-label="Close menu"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
-                <X className="w-7 h-7 group-hover:rotate-180 transition-transform duration-500 relative z-10 text-red-400" />
+                <X className="w-6 h-6" />
               </button>
             </div>
 
-            <div className="flex-1 flex flex-col justify-center px-6">
-              <div className="text-center mb-8">
-                <div className={`inline-flex items-center justify-center w-28 h-28 rounded-3xl bg-gradient-to-br ${NAV[activeIndex]?.color} shadow-2xl mb-6 transform transition-all duration-500 hover:scale-110 relative overflow-hidden`}>
-                  <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent rounded-3xl"></div>
-                  <span className="text-5xl relative z-10">{NAV[activeIndex]?.emoji}</span>
-                  <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
-                    <Star className="w-3 h-3 text-white animate-spin" />
-                  </div>
-                </div>
-                <h2 className="text-4xl font-bold text-white mb-3 bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">{NAV[activeIndex]?.label}</h2>
-                <p className="text-slate-300 text-lg">Swipe left or right to explore</p>
-              </div>
+            {/* Links */}
+            <div className="flex-1 overflow-y-auto px-6 py-4">
+              <nav className="grid gap-2">
+                {NAV.map(item => {
+                  const Icon = item.icon
+                  const active = isActive(item.href)
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={`flex items-center justify-between rounded-xl px-4 py-3 border transition-colors
+                        ${active ? "bg-slate-900 text-cyan-300 border-slate-800" : "bg-slate-900/60 text-slate-200 hover:bg-slate-900 border-slate-800"}`}
+                    >
+                      <span className="flex items-center gap-3">
+                        <span className="inline-flex w-9 h-9 items-center justify-center rounded-lg bg-slate-800">
+                          <Icon className="w-5 h-5 text-slate-200" />
+                        </span>
+                        <span className="font-medium">{item.label}</span>
+                      </span>
+                      <ArrowRight className="w-4 h-4 text-slate-300" />
+                    </Link>
+                  )
+                })}
+              </nav>
 
-              <div className="relative">
-                <div className="flex justify-center items-center space-x-4 mb-10">
-                  {NAV.map((item, index) => {
-                    const Icon = item.icon
-                    const distance = Math.abs(index - activeIndex)
-                    const isActive = index === activeIndex
-                    
-                    return (
-                      <button
-                        key={item.href}
-                        onClick={() => setActiveIndex(index)}
-                        className={`relative transition-all duration-500 rounded-2xl overflow-hidden shadow-2xl ${
-                          isActive 
-                            ? 'w-24 h-24 scale-110' 
-                            : distance === 1 
-                              ? 'w-18 h-18 opacity-70 scale-95' 
-                              : 'w-14 h-14 opacity-40 scale-75'
-                        }`}
-                        style={{
-                          transform: `translateX(${(index - activeIndex) * (isActive ? 0 : distance * 10)}px) rotateY(${(index - activeIndex) * 15}deg)`,
-                          zIndex: NAV.length - distance,
-                        }}
-                      >
-                        <div className={`w-full h-full bg-gradient-to-br ${item.color} flex items-center justify-center relative overflow-hidden`}>
-                          {isActive && (
-                            <>
-                              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 animate-pulse"></div>
-                              <div className="absolute inset-0 border-2 border-white/40 rounded-2xl animate-pulse"></div>
-                            </>
-                          )}
-                          <Icon className={`text-white ${isActive ? 'w-10 h-10' : 'w-6 h-6'} transition-all duration-300 drop-shadow-lg`} />
-                        </div>
-                      </button>
-                    )
-                  })}
-                </div>
-
-                <div className="flex justify-center space-x-3 mb-10">
-                  {NAV.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setActiveIndex(index)}
-                      className={`h-3 rounded-full transition-all duration-300 ${
-                        index === activeIndex 
-                          ? `bg-gradient-to-r ${NAV[activeIndex].color} w-12 shadow-lg` 
-                          : 'bg-white/30 w-3 hover:bg-white/50'
-                      }`}
-                    />
-                  ))}
-                </div>
-
-                <div className="text-center">
-                  <Link
-                    href={NAV[activeIndex]?.href}
-                    className={`inline-flex items-center space-x-4 px-10 py-5 bg-gradient-to-r ${NAV[activeIndex]?.color} text-white font-bold rounded-2xl hover:scale-105 transition-all duration-300 shadow-2xl relative overflow-hidden group text-lg`}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-                    <span className="relative z-10">Go to {NAV[activeIndex]?.label}</span>
-                    <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300 relative z-10" />
-                  </Link>
-                </div>
+              {/* CTAs */}
+              <div className="mt-6 grid gap-3">
+                <Link
+                  href="/start"
+                  className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-cyan-500 text-slate-950 font-semibold hover:bg-cyan-400 transition-colors"
+                >
+                  <Rocket className="w-5 h-5" />
+                  Start Growing
+                </Link>
+                <Link
+                  href="/book"
+                  className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-indigo-500 text-white font-semibold hover:bg-indigo-400 transition-colors"
+                >
+                  <Calendar className="w-5 h-5" />
+                  Book Session
+                </Link>
               </div>
             </div>
 
-            <div className="p-6 border-t border-slate-800">
-              <Link
-                href="/book"
-                className="w-full flex items-center justify-center space-x-3 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold rounded-xl hover:from-cyan-400 hover:to-blue-400 transition-all duration-200"
-              >
-                <Calendar className="w-5 h-5" />
-                <span>Book Consultation</span>
-              </Link>
-            </div>
+            <div className="h-4" />
           </div>
         </div>
       </header>
 
+      {/* keep content from slipping under fixed header */}
+      <div className="h-20 md:h-24" />
+
       <style jsx>{`
-        @keyframes float {
-          0%, 100% { 
-            transform: translateY(0px) rotate(0deg); 
-          }
-          25% { 
-            transform: translateY(-15px) rotate(3deg); 
-          }
-          50% { 
-            transform: translateY(-8px) rotate(-2deg); 
-          }
-          75% { 
-            transform: translateY(-20px) rotate(2deg); 
-          }
-        }
-        
         @keyframes particleFloat {
-          0% { 
-            transform: translateY(0) scale(1) rotate(0deg); 
-            opacity: 1; 
-          }
-          50% { 
-            transform: translateY(-30px) scale(0.8) rotate(180deg); 
-            opacity: 0.7; 
-          }
-          100% { 
-            transform: translateY(-60px) scale(0) rotate(360deg); 
-            opacity: 0; 
-          }
+          0%   { transform: translate(-50%,-50%) translateY(0) scale(1);   opacity: .9; }
+          50%  { transform: translate(-50%,-50%) translateY(-24px) scale(.9); opacity: .6; }
+          100% { transform: translate(-50%,-50%) translateY(-48px) scale(.7); opacity: 0; }
         }
-        
+        .animate-in { animation: slideIn .25s ease-out both }
         @keyframes slideIn {
-          0% {
-            opacity: 0;
-            transform: translateY(-20px) scale(0.9);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-          }
-        }
-        
-        .animate-in {
-          animation: slideIn 0.3s ease-out forwards;
+          from { opacity: 0; transform: translateY(-8px) }
+          to   { opacity: 1; transform: translateY(0) }
         }
       `}</style>
     </>
