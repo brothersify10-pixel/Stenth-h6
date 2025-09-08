@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import LoadingScreen from "@/components/LoadingScreen"; // <-- match filename case
+import LoadingScreen from "@/components/loading-screen"; // <-- match filename case
 import FloatingElements from "@/components/floating-elements";
 import STENTHHero from "@/components/stenth-hero";
 import WhySTENTH from "@/components/why-stenth";
