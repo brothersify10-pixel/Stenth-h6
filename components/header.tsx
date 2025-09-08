@@ -11,13 +11,13 @@ const NAV = [
     href: "/", 
     label: "Home", 
     icon: Home, 
-    color: "from-slate-600 to-slate-700"
+    color: "from-blue-500 to-cyan-400"
   },
   { 
     href: "/services", 
     label: "Services", 
     icon: Briefcase, 
-    color: "from-slate-600 to-slate-700",
+    color: "from-purple-500 to-pink-400",
     megaMenu: [
       { title: "Digital Marketing", desc: "SEO, PPC, Social Media Strategy", icon: TrendingUp, color: "from-blue-500 to-cyan-500" },
       { title: "Web Development", desc: "Custom websites & applications", icon: Briefcase, color: "from-purple-500 to-blue-500" },
@@ -29,19 +29,19 @@ const NAV = [
     href: "/about", 
     label: "About Us", 
     icon: User, 
-    color: "from-slate-600 to-slate-700"
+    color: "from-green-500 to-emerald-400"
   },
   { 
     href: "/portfolio", 
     label: "Portfolio", 
     icon: Palette, 
-    color: "from-slate-600 to-slate-700"
+    color: "from-orange-500 to-red-400"
   },
   { 
     href: "/contact", 
     label: "Contact", 
     icon: MessageSquare, 
-    color: "from-slate-600 to-slate-700"
+    color: "from-yellow-500 to-orange-400"
   }
 ]
 
