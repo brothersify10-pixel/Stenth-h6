@@ -82,7 +82,7 @@ export default function Hero() {
           <div className="space-y-8 motion-safe:animate-in motion-safe:fade-in-50 motion-safe:slide-in-from-bottom-3">
             <h1 id="hero-heading" className="text-5xl lg:text-7xl font-bold leading-tight text-white">
               Transform Your{" "}
-              <span className="bg-gradient-to-r from-cyan-400 via-pink-500 to-emerald-400 bg-clip-text text-transparent [animation:gradient_6s_linear_infinite]">
+              <span className="bg-gradient-to-r from-cyan-400 via-pink-500 to-emerald-400 bg-clip-text text-transparent animate-gradient">
                 Digital Future
               </span>
             </h1>
@@ -148,12 +148,17 @@ export default function Hero() {
       </div>
 
       {/* Local keyframes used by the gradient text only; orbit/spin assumed to exist globally */}
-      <style jsx>{`
+      <style jsx global>{`
+        /* Smooth text gradient animation */
         @keyframes gradient { to { background-position: 200% center; } }
-        .[animation\\:gradient_6s_linear_infinite] {
-          background-size: 200% 100%;
-          animation: gradient 6s linear infinite;
+        .animate-gradient { background-size: 200% 100%; animation: gradient 6s linear infinite; }
+
+        /* Self-contained orbit animation (remove this if you already have one) */
+        @keyframes orbit { 
+          0%   { transform: rotate(0deg) translateX(8rem) rotate(0deg); }
+          100% { transform: rotate(360deg) translateX(8rem) rotate(-360deg); }
         }
+        .animate-orbit { animation: orbit 8s linear infinite; }
       `}</style>
     </section>
   )
