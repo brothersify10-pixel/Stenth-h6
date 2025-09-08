@@ -1,28 +1,4 @@
-useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY
-      setScrolled(currentScrollY > 50)
-      
-      // Simple hide/show logic
-      if (currentScrollY > 100) {
-        if (currentScrollY > lastScrollY) {
-          // Scrolling down
-          setIsHeaderVisible(false)
-        } else {
-          // Scrolling up
-          setIsHeaderVisible(true)
-        }
-      } else {
-        // Near top, always show
-        setIsHeaderVisible(true)
-      }
-      
-      setLastScrollY(currentScrollY)
-    }
-
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [lastScrollY])"use client"
+"use client"
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
@@ -32,7 +8,19 @@ import { X, Home, Briefcase, User, Phone, Rocket, Calendar, ArrowRight, Sparkles
 
 const NAV = [
   { href: "/", label: "Home", mobileLabel: "Home", icon: Home, color: "from-blue-400 to-cyan-400" },
-  { href: "/services", label: "Services", mobileLabel: "Services", icon: Briefcase, color: "from-purple-400 to-pink-400" },
+  { 
+    href: "/services", 
+    label: "Services", 
+    mobileLabel: "Services", 
+    icon: Briefcase, 
+    color: "from-purple-400 to-pink-400",
+    megaMenu: [
+      { title: "Digital Marketing", desc: "SEO, PPC, Social Media", href: "/services/digital-marketing", color: "from-blue-500 to-cyan-500" },
+      { title: "Web Development", desc: "Custom websites & apps", href: "/services/web-development", color: "from-purple-500 to-pink-500" },
+      { title: "Brand Strategy", desc: "Complete brand overhaul", href: "/services/brand-strategy", color: "from-green-500 to-emerald-500" },
+      { title: "UI/UX Design", desc: "User experience design", href: "/services/design", color: "from-orange-500 to-red-500" }
+    ]
+  },
   { href: "/about", label: "About Us", mobileLabel: "About", icon: User, color: "from-green-400 to-emerald-400" },
   { href: "/portfolio", label: "Portfolio", mobileLabel: "Work", icon: Briefcase, color: "from-orange-400 to-red-400" },
   { href: "/contact", label: "Contact", mobileLabel: "Contact", icon: Phone, color: "from-yellow-400 to-orange-400" },
@@ -44,15 +32,54 @@ export default function Header() {
   const [open, setOpen] = useState(false)
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   const [hoveredItem, setHoveredItem] = useState(null)
+  const [megaMenuOpen, setMegaMenuOpen] = useState(false)
+  const [particles, setParticles] = useState([])
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true)
   const pathname = usePathname()
 
   useEffect(() => {
+    let lastScrollY = 0
+    
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
+      const currentScrollY = window.scrollY
+      setScrolled(currentScrollY > 50)
+      
+      if (currentScrollY > 100) {
+        if (currentScrollY > lastScrollY) {
+          setIsHeaderVisible(false)
+        } else {
+          setIsHeaderVisible(true)
+        }
+      } else {
+        setIsHeaderVisible(true)
+      }
+      
+      lastScrollY = currentScrollY
     }
+
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (hoveredItem !== null) {
+        const newParticle = {
+          id: Date.now() + Math.random(),
+          x: mousePos.x + (Math.random() - 0.5) * 100,
+          y: mousePos.y + (Math.random() - 0.5) * 100,
+          color: NAV[hoveredItem]?.color || 'from-cyan-400 to-blue-500'
+        }
+        setParticles(prev => [...prev.slice(-8), newParticle])
+        
+        setTimeout(() => {
+          setParticles(prev => prev.filter(p => p.id !== newParticle.id))
+        }, 1500)
+      }
+    }, 150)
+
+    return () => clearInterval(interval)
+  }, [hoveredItem, mousePos])
 
   useEffect(() => setOpen(false), [pathname])
 
@@ -74,20 +101,34 @@ export default function Header() {
 
   return (
     <>
+      <div className="fixed inset-0 pointer-events-none z-30">
+        {particles.map(particle => (
+          <div
+            key={particle.id}
+            className={`absolute w-1 h-1 rounded-full bg-gradient-to-r ${particle.color} opacity-60`}
+            style={{
+              left: particle.x,
+              top: particle.y,
+              animation: 'particleFloat 1.5s ease-out forwards'
+            }}
+          />
+        ))}
+      </div>
+
       <header
-        className={`fixed top-0 w-full z-40 transition-all duration-500 ${
+        className={`fixed top-0 w-full z-40 transition-transform duration-500 ease-out ${
+          isHeaderVisible ? 'translate-y-0' : '-translate-y-full'
+        } ${
           scrolled 
-            ? "bg-slate-950/95 backdrop-blur-xl shadow-lg shadow-cyan-500/10 border-b border-cyan-500/20" 
-            : "bg-slate-950/90 backdrop-blur-md"
+            ? "bg-slate-950/98 backdrop-blur-2xl shadow-xl shadow-cyan-500/25 border-b border-cyan-500/40" 
+            : "bg-slate-950/95 backdrop-blur-xl"
         }`}
       >
         <nav className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             
-            {/* Enhanced Logo */}
             <Link href="/" className="flex items-center space-x-3 group relative">
               <div className="relative">
-                {/* Logo glow effect */}
                 <div className="absolute inset-0 w-12 h-12 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full blur-lg opacity-0 group-hover:opacity-30 transition-all duration-500"></div>
                 
                 <div className="relative w-12 h-12 transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
@@ -105,19 +146,27 @@ export default function Header() {
                 <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500 bg-clip-text text-transparent group-hover:from-cyan-300 group-hover:via-blue-300 group-hover:to-purple-400 transition-all duration-500">
                   STENTH
                 </span>
-                {/* Sparkle effect */}
                 <div className="absolute -top-1 -right-2 opacity-0 group-hover:opacity-100 transition-all duration-500">
                   <Sparkles className="w-4 h-4 text-cyan-400 animate-pulse" />
                 </div>
               </div>
             </Link>
 
-            {/* Enhanced Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-2">
-              {/* Main Navigation Links */}
               <ul className="flex space-x-1">
                 {NAV.slice(0, 5).map((item, index) => (
-                  <li key={item.href} className="relative">
+                  <li 
+                    key={item.href} 
+                    className="relative"
+                    onMouseEnter={() => {
+                      setHoveredItem(index)
+                      if (item.megaMenu) setMegaMenuOpen(true)
+                    }}
+                    onMouseLeave={() => {
+                      setHoveredItem(null)
+                      if (item.megaMenu) setMegaMenuOpen(false)
+                    }}
+                  >
                     <Link
                       href={item.href}
                       className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg group overflow-hidden ${
@@ -125,19 +174,13 @@ export default function Header() {
                           ? 'text-cyan-400 bg-cyan-400/10' 
                           : 'text-white hover:text-cyan-400'
                       }`}
-                      onMouseEnter={() => setHoveredItem(index)}
-                      onMouseLeave={() => setHoveredItem(null)}
                     >
-                      {/* Background glow on hover */}
                       <div className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-lg`}></div>
                       
-                      {/* Text */}
                       <span className="relative z-10">{item.label}</span>
                       
-                      {/* Animated underline */}
                       <div className={`absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r ${item.color} group-hover:w-full group-hover:left-0 transition-all duration-300`}></div>
                       
-                      {/* Particle effect */}
                       <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`}>
                         {[...Array(3)].map((_, i) => (
                           <div
@@ -152,18 +195,50 @@ export default function Header() {
                         ))}
                       </div>
                     </Link>
+
+                    {item.megaMenu && megaMenuOpen && hoveredItem === index && (
+                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[500px] bg-slate-900/98 backdrop-blur-2xl rounded-2xl border border-cyan-500/20 shadow-2xl shadow-cyan-500/20 p-6 opacity-0 animate-in fade-in-0 slide-in-from-top-2 duration-500 opacity-100">
+                        <div className="grid grid-cols-2 gap-4">
+                          {item.megaMenu.map((subItem, subIndex) => (
+                            <Link
+                              key={subIndex}
+                              href={subItem.href}
+                              className="group p-4 rounded-xl hover:bg-slate-800/50 transition-all duration-300 border border-transparent hover:border-cyan-500/20"
+                            >
+                              <div className="flex items-start space-x-3">
+                                <div className={`p-2 rounded-lg bg-gradient-to-r ${subItem.color} group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                                  <Briefcase className="w-4 h-4 text-white" />
+                                </div>
+                                <div className="flex-1">
+                                  <h4 className="font-semibold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">
+                                    {subItem.title}
+                                  </h4>
+                                  <p className="text-xs text-slate-400 leading-relaxed">{subItem.desc}</p>
+                                </div>
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                        <div className="mt-4 pt-4 border-t border-slate-700/50">
+                          <Link
+                            href="/services"
+                            className="inline-flex items-center text-sm font-medium text-cyan-400 hover:text-cyan-300 transition-colors duration-200"
+                          >
+                            View All Services
+                            <ArrowRight className="w-3 h-3 ml-1" />
+                          </Link>
+                        </div>
+                      </div>
+                    )}
                   </li>
                 ))}
               </ul>
 
-              {/* CTA Buttons */}
               <div className="flex space-x-3 ml-6">
-                {/* Start Growing Button */}
                 <Link
                   href="/start"
                   className="relative px-6 py-2.5 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-full hover:from-indigo-400 hover:to-purple-500 transition-all duration-300 group overflow-hidden shadow-lg shadow-purple-500/25"
                 >
-                  {/* Shimmer effect */}
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
                   
                   <span className="relative flex items-center space-x-2">
@@ -172,12 +247,10 @@ export default function Header() {
                   </span>
                 </Link>
 
-                {/* Book Session Button */}
                 <Link
                   href="/book"
                   className="relative px-6 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-full hover:from-cyan-400 hover:to-blue-500 transition-all duration-300 group overflow-hidden shadow-lg shadow-cyan-500/25 animate-pulse hover:animate-none"
                 >
-                  {/* Rotating border */}
                   <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 p-0.5 group-hover:animate-spin">
                     <div className="w-full h-full bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full"></div>
                   </div>
@@ -191,7 +264,6 @@ export default function Header() {
               </div>
             </div>
 
-            {/* Simple Hamburger Button - Just 3 Lines */}
             <button
               onClick={() => setOpen((v) => !v)}
               className="md:hidden p-2 focus:outline-none"
@@ -213,7 +285,6 @@ export default function Header() {
         </nav>
       </header>
 
-      {/* Mobile Navigation */}
       <div
         className={`md:hidden fixed inset-0 top-0 left-0 w-full h-full transition-all duration-700 ease-in-out ${
           open 
@@ -222,9 +293,7 @@ export default function Header() {
         }`}
         style={{ zIndex: 50 }}
       >
-        {/* Animated Background with Particles */}
         <div className="absolute inset-0 bg-slate-950 overflow-hidden">
-          {/* Floating Particles */}
           {[...Array(20)].map((_, i) => (
             <div
               key={i}
@@ -239,7 +308,6 @@ export default function Header() {
             />
           ))}
 
-          {/* Interactive Mouse Glow */}
           <div
             className="absolute w-96 h-96 rounded-full bg-gradient-to-r from-cyan-400/20 via-blue-500/10 to-purple-600/20 blur-3xl pointer-events-none transition-all duration-300"
             style={{
@@ -249,21 +317,20 @@ export default function Header() {
           />
         </div>
 
-        {/* Navigation Content */}
         <div className="relative z-10 flex flex-col h-full justify-center items-center px-8">
-          {/* Book Session CTA at top */}
           <Link
             href="/book"
-            className="mb-8 px-8 py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-semibold rounded-full hover:scale-105 transition-all duration-300 shadow-lg shadow-pink-500/25"
+            className="mb-8 px-8 py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-semibold rounded-full hover:scale-105 transition-all duration-300 shadow-lg shadow-pink-500/25 relative overflow-hidden group"
             onClick={() => setOpen(false)}
           >
-            <span className="flex items-center space-x-2">
+            <div className="absolute inset-0 bg-gradient-to-r from-pink-400 to-rose-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <span className="relative flex items-center space-x-2 z-10">
               <Calendar className="w-5 h-5" />
               <span>Book Free Session</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
             </span>
           </Link>
 
-          {/* Navigation Grid */}
           <div className="grid grid-cols-2 gap-6 w-full max-w-md">
             {NAV.map((item, index) => {
               const Icon = item.icon
@@ -271,29 +338,38 @@ export default function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="relative p-6 rounded-2xl backdrop-blur-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-300 group text-center"
+                  className={`relative p-6 rounded-2xl backdrop-blur-xl border transition-all duration-500 group text-center transform ${
+                    pathname === item.href 
+                      ? `bg-gradient-to-br ${item.color} bg-opacity-20 border-white/30 shadow-lg` 
+                      : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20'
+                  }`}
                   onClick={() => setOpen(false)}
                   style={{
                     animationDelay: `${index * 0.1}s`,
                     animation: open ? 'slideInUp 0.6s ease-out forwards' : 'none'
                   }}
                 >
-                  {/* Gradient Background */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-2xl`}/>
+                  <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-20 transition-all duration-500 rounded-2xl ${pathname === item.href ? 'animate-pulse' : ''}`}/>
 
-                  {/* Icon and Text */}
                   <div className="relative z-10 flex flex-col items-center text-center space-y-3">
-                    <div className={`p-3 rounded-xl bg-gradient-to-r ${item.color} group-hover:scale-110 transition-transform duration-300`}>
+                    <div className={`p-3 rounded-xl bg-gradient-to-r ${item.color} group-hover:scale-110 transition-all duration-300 shadow-lg group-hover:shadow-xl`}>
                       <Icon className="w-6 h-6 text-white" />
                     </div>
-                    <span className="text-white font-medium">{item.mobileLabel}</span>
+                    <span className={`font-medium transition-colors duration-300 ${
+                      pathname === item.href ? 'text-cyan-300' : 'text-white group-hover:text-cyan-400'
+                    }`}>
+                      {item.mobileLabel}
+                    </span>
                   </div>
+
+                  {pathname === item.href && (
+                    <div className="absolute top-2 right-2 w-2 h-2 bg-cyan-400 rounded-full animate-ping"></div>
+                  )}
                 </Link>
               )
             })}
           </div>
 
-          {/* Close Button */}
           <button
             onClick={() => setOpen(false)}
             className="mt-12 w-14 h-14 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-white hover:bg-white/20 transition-all duration-300 flex items-center justify-center group"
