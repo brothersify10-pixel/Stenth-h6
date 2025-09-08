@@ -344,32 +344,46 @@ export default function Header() {
               </div>
             </div>
 
-            {/* Mobile hamburger */}
+            {/* Enhanced Mobile Hamburger Menu */}
             <button
               onClick={() => setOpen((v) => !v)}
-              className="relative md:hidden w-14 h-14 rounded-2xl bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 hover:scale-105 transition-all duration-300 flex items-center justify-center group overflow-hidden shadow-2xl shadow-cyan-500/50"
+              className="relative md:hidden w-16 h-16 rounded-2xl bg-gradient-to-br from-slate-800 via-slate-700 to-slate-800 border border-slate-600 hover:scale-105 transition-all duration-300 flex items-center justify-center group overflow-hidden shadow-2xl hover:shadow-cyan-500/30 hover:border-cyan-500/50"
               aria-label="Toggle menu"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-300 via-blue-400 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div className={`absolute inset-0 rounded-2xl border-2 border-white/30 ${open ? 'animate-ping' : ''}`}></div>
-              <div className={`absolute inset-2 rounded-xl border border-white/20 ${open ? 'animate-pulse' : ''}`}></div>
+              {/* Animated background glow */}
+              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 via-blue-500/20 to-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
               
-              <div className="relative w-6 h-6 transform transition-all duration-500">
-                <span className={`absolute block h-0.5 w-6 bg-white rounded-full transform transition-all duration-500 shadow-lg ${
-                  open ? 'rotate-45 translate-y-0' : 'rotate-0 -translate-y-2'
+              {/* Pulsing border effect */}
+              <div className={`absolute inset-0 rounded-2xl border-2 ${open ? 'border-cyan-400 animate-pulse' : 'border-transparent group-hover:border-cyan-400/50'} transition-all duration-300`}></div>
+              
+              {/* Menu icon with enhanced animation */}
+              <div className="relative w-8 h-8 transform transition-all duration-500">
+                {/* Top line */}
+                <span className={`absolute block h-1 w-8 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full transform transition-all duration-500 shadow-lg ${
+                  open ? 'rotate-45 translate-y-3 bg-gradient-to-r from-red-400 to-pink-500' : 'rotate-0 -translate-y-2'
                 }`}></span>
-                <span className={`absolute block h-0.5 w-6 bg-white rounded-full transition-all duration-300 shadow-lg ${
+                
+                {/* Middle line */}
+                <span className={`absolute block h-1 w-8 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full transition-all duration-300 shadow-lg ${
                   open ? 'opacity-0 scale-0' : 'opacity-100 scale-100'
                 }`}></span>
-                <span className={`absolute block h-0.5 w-6 bg-white rounded-full transform transition-all duration-500 shadow-lg ${
-                  open ? '-rotate-45 translate-y-0' : 'rotate-0 translate-y-2'
+                
+                {/* Bottom line */}
+                <span className={`absolute block h-1 w-8 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full transform transition-all duration-500 shadow-lg ${
+                  open ? '-rotate-45 -translate-y-3 bg-gradient-to-r from-red-400 to-pink-500' : 'rotate-0 translate-y-2'
                 }`}></span>
+              </div>
+              
+              {/* Sparkle effects */}
+              <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${open ? 'opacity-100' : ''}`}>
+                <Sparkles className="absolute top-2 right-2 w-3 h-3 text-cyan-400 animate-ping" />
+                <Star className="absolute bottom-2 left-2 w-2 h-2 text-purple-400 animate-pulse" />
               </div>
             </button>
           </div>
         </nav>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation with Opaque Background */}
         <div
           className={`md:hidden fixed inset-0 top-0 left-0 w-full h-full transition-all duration-1000 ease-out ${
             open ? "opacity-100 visible" : "opacity-0 invisible"
@@ -378,21 +392,29 @@ export default function Header() {
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
         >
+          {/* Opaque Background */}
           <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"></div>
-            <div className={`absolute inset-0 bg-gradient-to-br ${NAV[activeIndex]?.color} opacity-5 transition-all duration-1000`}></div>
+            {/* Solid opaque background */}
+            <div className="absolute inset-0 bg-slate-950"></div>
             
-            {[...Array(15)].map((_, i) => (
+            {/* Gradient overlay for visual appeal */}
+            <div className={`absolute inset-0 bg-gradient-to-br ${NAV[activeIndex]?.color} opacity-10 transition-all duration-1000`}></div>
+            
+            {/* Animated pattern overlay */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(14,165,233,0.1),transparent_50%),radial-gradient(circle_at_75%_75%,rgba(168,85,247,0.1),transparent_50%)]"></div>
+            
+            {/* Floating decorative elements */}
+            {[...Array(20)].map((_, i) => (
               <div
                 key={i}
                 className={`absolute rounded-full bg-gradient-to-r ${NAV[i % NAV.length].color}`}
                 style={{
-                  width: `${Math.random() * 20 + 10}px`,
-                  height: `${Math.random() * 20 + 10}px`,
+                  width: `${Math.random() * 30 + 15}px`,
+                  height: `${Math.random() * 30 + 15}px`,
                   left: `${Math.random() * 100}%`,
                   top: `${Math.random() * 100}%`,
-                  opacity: 0.1,
-                  animation: `float ${3 + Math.random() * 4}s ease-in-out infinite ${i * 0.2}s`
+                  opacity: 0.15,
+                  animation: `float ${4 + Math.random() * 6}s ease-in-out infinite ${i * 0.3}s`
                 }}
               />
             ))}
@@ -414,39 +436,49 @@ export default function Header() {
           </div>
 
           <div className="relative z-10 flex flex-col h-full">
-            <div className="flex justify-between items-center p-6">
-              <div className="flex items-center space-x-3">
-                <div className="w-10 h-10">
+            {/* Enhanced Header */}
+            <div className="flex justify-between items-center p-6 border-b border-white/10">
+              <div className="flex items-center space-x-4">
+                <div className="w-12 h-12 relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full blur-lg opacity-50 animate-pulse"></div>
                   <Image
                     src="/Stenth_Logo-removebg.png"
                     alt="Stenth Logo"
-                    width={40}
-                    height={40}
-                    className="w-full h-full object-contain"
+                    width={48}
+                    height={48}
+                    className="w-full h-full object-contain relative z-10"
                   />
                 </div>
-                <span className="text-xl font-bold text-cyan-400">STENTH</span>
+                <div>
+                  <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500 bg-clip-text text-transparent">STENTH</span>
+                  <p className="text-xs text-slate-400">Digital Excellence</p>
+                </div>
               </div>
               
               <button
                 onClick={() => setOpen(false)}
-                className="w-12 h-12 rounded-xl bg-white/10 backdrop-blur-xl border border-white/20 text-white hover:bg-white/20 transition-all duration-300 flex items-center justify-center group relative overflow-hidden"
+                className="w-14 h-14 rounded-2xl bg-slate-800 border border-slate-600 text-white hover:bg-slate-700 hover:border-red-500/50 transition-all duration-300 flex items-center justify-center group relative overflow-hidden shadow-xl"
               >
-                <X className="w-6 h-6 group-hover:rotate-180 transition-transform duration-500 relative z-10" />
+                <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+                <X className="w-7 h-7 group-hover:rotate-180 transition-transform duration-500 relative z-10 text-red-400" />
               </button>
             </div>
 
             <div className="flex-1 flex flex-col justify-center px-6">
               <div className="text-center mb-8">
-                <div className={`inline-flex items-center justify-center w-24 h-24 rounded-3xl bg-gradient-to-br ${NAV[activeIndex]?.color} shadow-2xl mb-4 transform transition-all duration-500 hover:scale-110`}>
-                  <span className="text-4xl">{NAV[activeIndex]?.emoji}</span>
+                <div className={`inline-flex items-center justify-center w-28 h-28 rounded-3xl bg-gradient-to-br ${NAV[activeIndex]?.color} shadow-2xl mb-6 transform transition-all duration-500 hover:scale-110 relative overflow-hidden`}>
+                  <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent rounded-3xl"></div>
+                  <span className="text-5xl relative z-10">{NAV[activeIndex]?.emoji}</span>
+                  <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
+                    <Star className="w-3 h-3 text-white animate-spin" />
+                  </div>
                 </div>
-                <h2 className="text-3xl font-bold text-white mb-2">{NAV[activeIndex]?.label}</h2>
-                <p className="text-slate-400">Swipe left or right to explore</p>
+                <h2 className="text-4xl font-bold text-white mb-3 bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">{NAV[activeIndex]?.label}</h2>
+                <p className="text-slate-300 text-lg">Swipe left or right to explore</p>
               </div>
 
               <div className="relative">
-                <div className="flex justify-center items-center space-x-4 mb-8">
+                <div className="flex justify-center items-center space-x-4 mb-10">
                   {NAV.map((item, index) => {
                     const Icon = item.icon
                     const distance = Math.abs(index - activeIndex)
@@ -456,12 +488,12 @@ export default function Header() {
                       <button
                         key={item.href}
                         onClick={() => setActiveIndex(index)}
-                        className={`relative transition-all duration-500 rounded-2xl overflow-hidden ${
+                        className={`relative transition-all duration-500 rounded-2xl overflow-hidden shadow-2xl ${
                           isActive 
-                            ? 'w-20 h-20 shadow-2xl scale-110' 
+                            ? 'w-24 h-24 scale-110' 
                             : distance === 1 
-                              ? 'w-16 h-16 opacity-70 scale-95' 
-                              : 'w-12 h-12 opacity-40 scale-75'
+                              ? 'w-18 h-18 opacity-70 scale-95' 
+                              : 'w-14 h-14 opacity-40 scale-75'
                         }`}
                         style={{
                           transform: `translateX(${(index - activeIndex) * (isActive ? 0 : distance * 10)}px) rotateY(${(index - activeIndex) * 15}deg)`,
@@ -470,24 +502,27 @@ export default function Header() {
                       >
                         <div className={`w-full h-full bg-gradient-to-br ${item.color} flex items-center justify-center relative overflow-hidden`}>
                           {isActive && (
-                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 animate-pulse"></div>
+                            <>
+                              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 animate-pulse"></div>
+                              <div className="absolute inset-0 border-2 border-white/40 rounded-2xl animate-pulse"></div>
+                            </>
                           )}
-                          <Icon className={`text-white ${isActive ? 'w-8 h-8' : 'w-6 h-6'} transition-all duration-300`} />
+                          <Icon className={`text-white ${isActive ? 'w-10 h-10' : 'w-6 h-6'} transition-all duration-300 drop-shadow-lg`} />
                         </div>
                       </button>
                     )
                   })}
                 </div>
 
-                <div className="flex justify-center space-x-2 mb-8">
+                <div className="flex justify-center space-x-3 mb-10">
                   {NAV.map((_, index) => (
                     <button
                       key={index}
                       onClick={() => setActiveIndex(index)}
-                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                      className={`h-3 rounded-full transition-all duration-300 ${
                         index === activeIndex 
-                          ? `bg-gradient-to-r ${NAV[activeIndex].color} w-8` 
-                          : 'bg-white/30'
+                          ? `bg-gradient-to-r ${NAV[activeIndex].color} w-12 shadow-lg` 
+                          : 'bg-white/30 w-3 hover:bg-white/50'
                       }`}
                     />
                   ))}
@@ -496,11 +531,11 @@ export default function Header() {
                 <div className="text-center">
                   <Link
                     href={NAV[activeIndex]?.href}
-                    className={`inline-flex items-center space-x-3 px-8 py-4 bg-gradient-to-r ${NAV[activeIndex]?.color} text-white font-bold rounded-2xl hover:scale-105 transition-all duration-300 shadow-2xl relative overflow-hidden group`}
+                    className={`inline-flex items-center space-x-4 px-10 py-5 bg-gradient-to-r ${NAV[activeIndex]?.color} text-white font-bold rounded-2xl hover:scale-105 transition-all duration-300 shadow-2xl relative overflow-hidden group text-lg`}
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
                     <span className="relative z-10">Go to {NAV[activeIndex]?.label}</span>
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300 relative z-10" />
+                    <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300 relative z-10" />
                   </Link>
                 </div>
               </div>
@@ -509,13 +544,13 @@ export default function Header() {
             <div className="p-6 border-t border-white/10">
               <Link
                 href="/book"
-                className="w-full flex items-center justify-center space-x-3 py-4 bg-gradient-to-r from-pink-500 via-red-500 to-orange-500 text-white font-bold rounded-2xl hover:scale-105 transition-all duration-300 shadow-2xl relative overflow-hidden group animate-pulse hover:animate-none"
+                className="w-full flex items-center justify-center space-x-4 py-5 bg-gradient-to-r from-pink-500 via-red-500 to-orange-500 text-white font-bold rounded-2xl hover:scale-105 transition-all duration-300 shadow-2xl relative overflow-hidden group animate-pulse hover:animate-none text-lg"
                 onClick={createRipple}
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-pink-400 via-red-400 to-orange-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <Calendar className="w-6 h-6 relative z-10" />
-                <span className="relative z-10 text-lg">Book Your Session Now</span>
-                <Star className="w-6 h-6 animate-spin relative z-10" />
+                <Calendar className="w-7 h-7 relative z-10" />
+                <span className="relative z-10">Book Your Session Now</span>
+                <Star className="w-7 h-7 animate-spin relative z-10" />
               </Link>
             </div>
           </div>
@@ -528,13 +563,13 @@ export default function Header() {
             transform: translateY(0px) rotate(0deg); 
           }
           25% { 
-            transform: translateY(-10px) rotate(2deg); 
+            transform: translateY(-15px) rotate(3deg); 
           }
           50% { 
-            transform: translateY(-5px) rotate(-1deg); 
+            transform: translateY(-8px) rotate(-2deg); 
           }
           75% { 
-            transform: translateY(-15px) rotate(1deg); 
+            transform: translateY(-20px) rotate(2deg); 
           }
         }
         
@@ -551,6 +586,21 @@ export default function Header() {
             transform: translateY(-60px) scale(0) rotate(360deg); 
             opacity: 0; 
           }
+        }
+        
+        @keyframes slideIn {
+          0% {
+            opacity: 0;
+            transform: translateY(-20px) scale(0.9);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+        
+        .animate-in {
+          animation: slideIn 0.3s ease-out forwards;
         }
       `}</style>
     </>
