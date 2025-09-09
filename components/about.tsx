@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react"
 
 const stats = [
-  { number: "500+", label: "Projects Completed" },
+  { number: "108+", label: "Projects Completed" },
   { number: "98%", label: "Client Satisfaction" },
-  { number: "150+", label: "Team Members" },
-  { number: "50M+", label: "Revenue Generated" },
+  { number: "27+", label: "Team Members" },
+  { number: "245k+", label: "Revenue Generated" },
 ]
 
 export default function About() {
@@ -37,27 +37,23 @@ export default function About() {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
             <h2 className="text-5xl font-bold text-white leading-tight">
-              Pioneering the Future of{" "}
+              The Story Behind{" "}
               <span className="bg-gradient-to-r from-cyan-400 to-pink-500 bg-clip-text text-transparent">
-                Digital Marketing
+                STENTH
               </span>
             </h2>
 
             <div className="space-y-6 text-lg text-slate-300 leading-relaxed">
               <p>
-                At Synapse Marketing, we don't just follow trends—we create them. Our team of visionary strategists,
-                creative designers, and data scientists work together to craft marketing experiences that transcend
-                traditional boundaries.
+                {"We Don’t Just Market Brands. We Build Businesses.\n\nThe story of STENTH begins with two childhood best friends, Aakash Lakhataria and Ansh Rai. Growing up together, we always shared the same ambition—to create something meaningful, something that could grow into a legacy."}
               </p>
 
               <p>
-                With over a decade of experience in digital transformation, we've helped businesses of all sizes achieve
-                unprecedented growth through innovative marketing strategies and cutting-edge technology solutions.
+                {"Life took us to Canada for our studies, but the dream of building a business never left our conversations. We’d talk for hours about ideas, growth strategies, and possibilities. Then one night in 2022, Aakash had a vivid dream—a name, a vision, and a company: STENTH.\n\nThe next morning, he drove straight to Ansh’s house and said, “I saw our future. It’s called STENTH.”\n\nThat was the moment everything changed."}
               </p>
 
               <p>
-                Our approach combines human creativity with artificial intelligence, delivering personalized experiences
-                that resonate with your audience and drive measurable results.
+                {"With Ansh bringing in expertise in Artificial Intelligence, Computer Science, and Marketing Technology through projects across Canada, the Dominican Republic, Australia, and the US—and Aakash contributing Artificial Intelligence applications for marketing, direct collaboration with Google Ads experts, Business Analytics, Marketing, Sales, and Project Management experience from ventures like Bellacana and The Moon Stadium—STENTH quickly evolved from a dream into a reality.\n\nToday, STENTH has grown into a 27+ member team with operations in Canada and Australia and clients across the United States, India, Dominican Republic, and beyond."}
               </p>
             </div>
 
