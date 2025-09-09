@@ -2,44 +2,45 @@
 
 import { useState, useEffect } from "react"
 import { FaSearch, FaChessKnight, FaRocket, FaChartBar, FaArrowUp } from "react-icons/fa"
+import { FaBullseye, FaShareAlt, FaPalette, FaChartLine, FaSeedling } from "react-icons/fa"
 import { FaArrowRight } from "react-icons/fa6" // for arrows between steps
 
 const services = [
   {
-    icon: "🚀",
+    icon: <FaRocket />,
     title: "Digital Strategy",
     description:
       "Comprehensive digital transformation strategies that align with your business goals and drive measurable results.",
     image: "/digital-strategy-planning-meeting.jpg",
   },
   {
-    icon: "📱",
+    icon: <FaShareAlt />,
     title: "Social Media Marketing",
     description:
       "Engaging social media campaigns that build communities, increase brand awareness, and drive conversions.",
     image: "/social-media-dashboard.png",
   },
   {
-    icon: "🎯",
+    icon: <FaBullseye />,
     title: "Performance Marketing",
     description: "Data-driven advertising campaigns optimized for maximum ROI across all digital channels.",
     image: "/performance-marketing-analytics.jpg",
   },
   {
-    icon: "🎨",
+    icon: <FaPalette />,
     title: "Creative Design",
     description: "Stunning visual content and brand experiences that captivate audiences and communicate your message.",
     image: "/creative-design-studio-workspace.jpg",
   },
   {
-    icon: "📊",
+    icon: <FaChartLine />,
     title: "Analytics & Insights",
     description:
       "Advanced analytics and reporting that provide actionable insights to optimize your marketing performance.",
     image: "/data-analytics-dashboard.png",
   },
   {
-    icon: "🔍",
+    icon: <FaSeedling />,
     title: "SEO Optimization",
     description:
       "Strategic search engine optimization that improves visibility and drives organic traffic to your website.",
@@ -115,7 +116,7 @@ export default function Services() {
               <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-pink-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
               <div className="relative z-10">
-                <div className="w-16 h-16 bg-gradient-to-br from-cyan-400 to-pink-500 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-16 h-16 bg-gradient-to-br from-cyan-400 to-pink-500 rounded-2xl flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform duration-300 text-white">
                   {service.icon}
                 </div>
 
