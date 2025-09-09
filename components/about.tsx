@@ -45,7 +45,11 @@ export default function About() {
 
             <div className="space-y-6 text-lg text-slate-300 leading-relaxed">
               <p>
-                {"We Don’t Just Market Brands. We Build Businesses.\n\nThe story of STENTH begins with two childhood best friends, Aakash Lakhataria and Ansh Rai. Growing up together, we always shared the same ambition—to create something meaningful, something that could grow into a legacy."}
+                {"We Don’t Just Market Brands. We Build Businesses."}
+                </p>
+                
+              <p>
+               {"The story of STENTH begins with two childhood best friends, Aakash Lakhataria and Ansh Rai. Growing up together, we always shared the same ambition—to create something meaningful, something that could grow into a legacy."}
               </p>
 
               <p>
@@ -53,7 +57,8 @@ export default function About() {
               </p>
 
               <p>
-                {"With Ansh bringing in expertise in Artificial Intelligence, Computer Science, and Marketing Technology through projects across Canada, the Dominican Republic, Australia, and the US—and Aakash contributing Artificial Intelligence applications for marketing, direct collaboration with Google Ads experts, Business Analytics, Marketing, Sales, and Project Management experience from ventures like Bellacana and The Moon Stadium—STENTH quickly evolved from a dream into a reality.\n\nToday, STENTH has grown into a 27+ member team with operations in Canada and Australia and clients across the United States, India, Dominican Republic, and beyond."}
+                Our approach combines human creativity with artificial intelligence, delivering personalized experiences
+                that resonate with your audience and drive measurable results.
               </p>
             </div>
 

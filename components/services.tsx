@@ -1,6 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { FaSearch, FaChessKnight, FaRocket, FaChartBar, FaArrowUp } from "react-icons/fa"
+import { FaArrowRight } from "react-icons/fa6" // for arrows between steps
 
 const services = [
   {
@@ -45,17 +47,54 @@ const services = [
   },
 ]
 
+const workflow = [
+  { icon: <FaSearch />, title: "Analyze", desc: "We audit your business & data first." },
+  { icon: <FaChessKnight />, title: "Strategize", desc: "We craft ROI-focused strategies." },
+  { icon: <FaRocket />, title: "Execute", desc: "We launch and optimize campaigns." },
+  { icon: <FaChartBar />, title: "Review", desc: "We track and refine performance." },
+  { icon: <FaArrowUp />, title: "Scale", desc: "We scale growth & revenue consistently." },
+]
+
 export default function Services() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
-  // Scroll to top when component mounts
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [])
 
   return (
     <section id="services" className="py-24 relative">
       <div className="container mx-auto px-6">
+
+        {/* HOW WE WORK - NOW ON TOP WITH ARROWS */}
+        <div className="text-center mb-16">
+          <h3 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-pink-500 bg-clip-text text-transparent mb-6">
+            How We Work
+          </h3>
+          <p className="text-xl text-slate-300 max-w-3xl mx-auto mb-12">
+            A clear, data-first process designed to deliver growth at every stage.
+          </p>
+          <div className="flex flex-wrap justify-center items-center gap-4">
+            {workflow.map((step, index) => (
+              <div key={index} className="flex items-center">
+                {/* Step Box */}
+                <div className="flex flex-col items-center bg-slate-900/50 border border-slate-800 rounded-2xl p-6 w-48 hover:border-cyan-500/50 transition-all duration-500">
+                  <div className="text-3xl text-cyan-400 mb-4">{step.icon}</div>
+                  <h4 className="text-xl font-semibold text-white mb-2">{step.title}</h4>
+                  <p className="text-slate-300 text-sm text-center">{step.desc}</p>
+                </div>
+                {/* Arrow between boxes (only if not the last box) */}
+                {index < workflow.length - 1 && (
+                  <div className="text-cyan-400 text-2xl mx-2 hidden md:block">
+                    <FaArrowRight />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* SERVICES SECTION */}
         <div className="text-center mb-16">
           <h2 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-pink-500 bg-clip-text text-transparent mb-6">
             Our Expertise
