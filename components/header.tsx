@@ -13,13 +13,8 @@ const NAV = [
     label: "Services", 
     mobileLabel: "Services", 
     icon: Briefcase, 
-    color: "from-purple-400 to-pink-400",
-    megaMenu: [
-      { title: "Digital Marketing", desc: "SEO, PPC, Social Media", href: "/services/digital-marketing", color: "from-blue-500 to-cyan-500" },
-      { title: "Web Development", desc: "Custom websites & apps", href: "/services/web-development", color: "from-purple-500 to-pink-500" },
-      { title: "Brand Strategy", desc: "Complete brand overhaul", href: "/services/brand-strategy", color: "from-green-500 to-emerald-500" },
-      { title: "UI/UX Design", desc: "User experience design", href: "/services/design", color: "from-orange-500 to-red-500" }
-    ]
+    color: "from-purple-400 to-pink-400"
+    // Removed megaMenu property
   },
   { href: "/about", label: "About Us", mobileLabel: "About", icon: User, color: "from-green-400 to-emerald-400" },
   { href: "/portfolio", label: "Portfolio", mobileLabel: "Work", icon: Briefcase, color: "from-orange-400 to-red-400" },
@@ -32,7 +27,7 @@ export default function Header() {
   const [open, setOpen] = useState(false)
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   const [hoveredItem, setHoveredItem] = useState(null)
-  const [megaMenuOpen, setMegaMenuOpen] = useState(false)
+  // Removed megaMenuOpen state as it's no longer needed
   const [particles, setParticles] = useState([])
   const [isHeaderVisible, setIsHeaderVisible] = useState(true)
   const pathname = usePathname()
@@ -158,14 +153,8 @@ export default function Header() {
                   <li 
                     key={item.href} 
                     className="relative"
-                    onMouseEnter={() => {
-                      setHoveredItem(index)
-                      if (item.megaMenu) setMegaMenuOpen(true)
-                    }}
-                    onMouseLeave={() => {
-                      setHoveredItem(null)
-                      if (item.megaMenu) setMegaMenuOpen(false)
-                    }}
+                    onMouseEnter={() => setHoveredItem(index)}
+                    onMouseLeave={() => setHoveredItem(null)}
                   >
                     <Link
                       href={item.href}
@@ -196,40 +185,7 @@ export default function Header() {
                       </div>
                     </Link>
 
-                    {item.megaMenu && megaMenuOpen && hoveredItem === index && (
-                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[500px] bg-slate-900/98 backdrop-blur-2xl rounded-2xl border border-cyan-500/20 shadow-2xl shadow-cyan-500/20 p-6 opacity-0 animate-in fade-in-0 slide-in-from-top-2 duration-500 opacity-100">
-                        <div className="grid grid-cols-2 gap-4">
-                          {item.megaMenu.map((subItem, subIndex) => (
-                            <Link
-                              key={subIndex}
-                              href={subItem.href}
-                              className="group p-4 rounded-xl hover:bg-slate-800/50 transition-all duration-300 border border-transparent hover:border-cyan-500/20"
-                            >
-                              <div className="flex items-start space-x-3">
-                                <div className={`p-2 rounded-lg bg-gradient-to-r ${subItem.color} group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                                  <Briefcase className="w-4 h-4 text-white" />
-                                </div>
-                                <div className="flex-1">
-                                  <h4 className="font-semibold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">
-                                    {subItem.title}
-                                  </h4>
-                                  <p className="text-xs text-slate-400 leading-relaxed">{subItem.desc}</p>
-                                </div>
-                              </div>
-                            </Link>
-                          ))}
-                        </div>
-                        <div className="mt-4 pt-4 border-t border-slate-700/50">
-                          <Link
-                            href="/services"
-                            className="inline-flex items-center text-sm font-medium text-cyan-400 hover:text-cyan-300 transition-colors duration-200"
-                          >
-                            View All Services
-                            <ArrowRight className="w-3 h-3 ml-1" />
-                          </Link>
-                        </div>
-                      </div>
-                    )}
+                    {/* Removed mega menu rendering logic */}
                   </li>
                 ))}
               </ul>
