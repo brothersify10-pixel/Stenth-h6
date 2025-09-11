@@ -35,14 +35,14 @@ export async function POST(request: NextRequest) {
     // Send email notification using Google Workspace
     if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
       try {
-        // Create Google Workspace transporter
-        const transporter = nodemailer.createTransporter({
+        // FIXED: createTransport (not createTransporter)
+        const transporter = nodemailer.createTransport({
           host: process.env.EMAIL_HOST || 'smtp.gmail.com',
           port: parseInt(process.env.EMAIL_PORT || '587'),
           secure: false,
           auth: {
-            user: process.env.EMAIL_USER, // ansh.rai@stenth.com
-            pass: process.env.EMAIL_PASS, // your app password
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS,
           },
         })
 
@@ -51,7 +51,7 @@ export async function POST(request: NextRequest) {
 
         const mailOptions = {
           from: `"Stenth - Contact Form" <${process.env.EMAIL_FROM}>`,
-          to: recipients, // Both ansh.rai@stenth.com and akash.lakhataria@stenth.com
+          to: recipients,
           replyTo: email,
           subject: `🚀 New Contact Form Submission from ${name}`,
           html: `
@@ -70,7 +70,7 @@ export async function POST(request: NextRequest) {
               <div style="background: #f8fafc; padding: 40px 30px; border-radius: 0 0 10px 10px;">
                 <!-- Contact Details -->
                 <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 20px; border-left: 5px solid #0891b2; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-                  <h3 style="color: #1e293b; margin: 0 0 20px 0; font-size: 20px; display: flex; align-items: center;">
+                  <h3 style="color: #1e293b; margin: 0 0 20px 0; font-size: 20px;">
                     👤 Contact Information
                   </h3>
                   <table style="width: 100%; border-collapse: collapse;">
@@ -99,7 +99,7 @@ export async function POST(request: NextRequest) {
                 
                 <!-- Message -->
                 <div style="background: white; padding: 25px; border-radius: 12px; border-left: 5px solid #ec4899; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-                  <h3 style="color: #1e293b; margin: 0 0 15px 0; font-size: 20px; display: flex; align-items: center;">
+                  <h3 style="color: #1e293b; margin: 0 0 15px 0; font-size: 20px;">
                     💬 Project Details
                   </h3>
                   <div style="background: #f1f5f9; padding: 20px; border-radius: 8px; line-height: 1.6; color: #334155; white-space: pre-wrap; font-size: 15px; border: 1px solid #e2e8f0;">

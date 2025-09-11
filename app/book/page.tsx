@@ -421,7 +421,7 @@ export default function BookPage() {
 
                 <button
                   onClick={handleSubmit}
-                  disabled={isSubmitting || !formData.email}
+                  disabled={isSubmitting || !formData.email || !formData.name}
                   className="w-full relative bg-gradient-to-r from-cyan-500 via-purple-600 to-pink-500 text-white py-5 px-8 rounded-2xl font-bold text-lg hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-2xl shadow-cyan-500/30 overflow-hidden group"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
@@ -435,7 +435,12 @@ export default function BookPage() {
                     ) : (
                       <>
                         <Rocket className="h-6 w-6" />
-                        <span>Book My Free Strategy Session</span>
+                        <span>
+                          {!formData.email || !formData.name 
+                            ? 'Please Fill Required Fields' 
+                            : 'Book My Free Strategy Session'
+                          }
+                        </span>
                         <ArrowRight className="h-6 w-6 group-hover:translate-x-2 transition-transform duration-300" />
                       </>
                     )}
