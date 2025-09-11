@@ -1,7 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server"
 import crypto from "crypto"
 import { z } from "zod"
-import { supabaseAdmin } from "@/lib/supabase/admin"
+import { supabaseAdmin } from "@/lib/supabase/index"
 
 const SECRET = process.env.CALCOM_WEBHOOK_SECRET || "missing"
 

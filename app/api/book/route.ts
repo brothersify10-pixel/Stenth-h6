@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { z } from "zod"
-import { supabaseAdmin } from "@/lib/supabase/admin"
+import { supabaseAdmin } from "@/lib/supabase/index"
 
 const FormSchema = z.object({
   name: z.string().trim().optional(),
