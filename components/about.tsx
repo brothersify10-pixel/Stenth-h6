@@ -38,27 +38,28 @@ export default function About() {
           <div className="space-y-8">
             <h2 className="text-5xl font-bold text-white leading-tight">
               The Story Behind{" "}
-              <span className="bg-gradient-to-r from-cyan-400 to-pink-500 bg-clip-text text-transparent">
-                STENTH
-              </span>
+              <span className="bg-gradient-to-r from-cyan-400 to-pink-500 bg-clip-text text-transparent">STENTH</span>
             </h2>
 
-            <div className="space-y-6 text-lg text-slate-300 leading-relaxed">
+            <div className="space-y-6 text-lg text-gray-200 leading-relaxed">
+              <p>{"We Don't Just Market Brands. We Build Businesses."}</p>
+
               <p>
-                {"We Don’t Just Market Brands. We Build Businesses."}
-                </p>
-                
-              <p>
-               {"The story of STENTH begins with two childhood best friends, Aakash Lakhataria and Ansh Rai. Growing up together, we always shared the same ambition—to create something meaningful, something that could grow into a legacy."}
+                {
+                  "The story of STENTH begins with two childhood best friends, Aakash Lakhataria and Ansh Rai. Growing up together, we always shared the same ambition—to create something meaningful, something that could grow into a legacy."
+                }
               </p>
 
               <p>
-                {"Life took us to Canada for our studies, but the dream of building a business never left our conversations. We’d talk for hours about ideas, growth strategies, and possibilities. Then one night in 2022, Aakash had a vivid dream—a name, a vision, and a company: STENTH.\n\nThe next morning, he drove straight to Ansh’s house and said, “I saw our future. It’s called STENTH.”\n\nThat was the moment everything changed."}
+                {
+                  "Then one night in 2022, Aakash had a vivid dream—a name, a vision, and a company: STENTH.\n\nThe next morning, he drove straight to Ansh's house and said, \"I saw our future. It's called STENTH.\"\n\nThat was the moment everything changed."
+                }
               </p>
 
               <p>
-                Our approach combines human creativity with artificial intelligence, delivering personalized experiences
-                that resonate with your audience and drive measurable results.
+                {
+                  "Our approach combines human creativity with artificial intelligence, delivering personalized experiences\nthat resonate with your audience and drive measurable results."
+                }
               </p>
             </div>
 
@@ -69,7 +70,7 @@ export default function About() {
                     {Math.floor(counters[index])}
                     {stat.number.replace(/[0-9]/g, "")}
                   </div>
-                  <div className="text-slate-400 font-medium">{stat.label}</div>
+                  <div className="text-gray-300 font-medium">{stat.label}</div>
                 </div>
               ))}
             </div>
@@ -77,7 +78,11 @@ export default function About() {
 
           <div className="relative">
             <div className="relative z-10">
-              <img src="modern-digital-marketing-team-collaboration.jpg" alt="Digital Marketing Team" className="rounded-2xl shadow-2xl" />
+              <img
+                src="modern-digital-marketing-team-collaboration.jpg"
+                alt="Digital Marketing Team"
+                className="rounded-2xl shadow-2xl"
+              />
             </div>
 
             <div className="absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-br from-cyan-400 to-pink-500 rounded-full opacity-20 animate-pulse"></div>

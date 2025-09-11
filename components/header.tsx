@@ -8,12 +8,12 @@ import { X, Home, Briefcase, User, Phone, Rocket, Calendar, ArrowRight, Sparkles
 
 const NAV = [
   { href: "/", label: "Home", mobileLabel: "Home", icon: Home, color: "from-blue-400 to-cyan-400" },
-  { 
-    href: "/services", 
-    label: "Services", 
-    mobileLabel: "Services", 
-    icon: Briefcase, 
-    color: "from-purple-400 to-pink-400"
+  {
+    href: "/services",
+    label: "Services",
+    mobileLabel: "Services",
+    icon: Briefcase,
+    color: "from-purple-400 to-pink-400",
     // Removed megaMenu property
   },
   { href: "/about", label: "About Us", mobileLabel: "About", icon: User, color: "from-green-400 to-emerald-400" },
@@ -34,11 +34,11 @@ export default function Header() {
 
   useEffect(() => {
     let lastScrollY = 0
-    
+
     const handleScroll = () => {
       const currentScrollY = window.scrollY
       setScrolled(currentScrollY > 50)
-      
+
       if (currentScrollY > 100) {
         if (currentScrollY > lastScrollY) {
           setIsHeaderVisible(false)
@@ -48,7 +48,7 @@ export default function Header() {
       } else {
         setIsHeaderVisible(true)
       }
-      
+
       lastScrollY = currentScrollY
     }
 
@@ -63,12 +63,12 @@ export default function Header() {
           id: Date.now() + Math.random(),
           x: mousePos.x + (Math.random() - 0.5) * 100,
           y: mousePos.y + (Math.random() - 0.5) * 100,
-          color: NAV[hoveredItem]?.color || 'from-cyan-400 to-blue-500'
+          color: NAV[hoveredItem]?.color || "from-cyan-400 to-blue-500",
         }
-        setParticles(prev => [...prev.slice(-8), newParticle])
-        
+        setParticles((prev) => [...prev.slice(-8), newParticle])
+
         setTimeout(() => {
-          setParticles(prev => prev.filter(p => p.id !== newParticle.id))
+          setParticles((prev) => prev.filter((p) => p.id !== newParticle.id))
         }, 1500)
       }
     }, 150)
@@ -90,21 +90,21 @@ export default function Header() {
     const handleMouseMove = (e) => {
       setMousePos({ x: e.clientX, y: e.clientY })
     }
-    window.addEventListener('mousemove', handleMouseMove, { passive: true })
-    return () => window.removeEventListener('mousemove', handleMouseMove)
+    window.addEventListener("mousemove", handleMouseMove, { passive: true })
+    return () => window.removeEventListener("mousemove", handleMouseMove)
   }, [])
 
   return (
     <>
       <div className="fixed inset-0 pointer-events-none z-30">
-        {particles.map(particle => (
+        {particles.map((particle) => (
           <div
             key={particle.id}
             className={`absolute w-1 h-1 rounded-full bg-gradient-to-r ${particle.color} opacity-60`}
             style={{
               left: particle.x,
               top: particle.y,
-              animation: 'particleFloat 1.5s ease-out forwards'
+              animation: "particleFloat 1.5s ease-out forwards",
             }}
           />
         ))}
@@ -112,20 +112,19 @@ export default function Header() {
 
       <header
         className={`fixed top-0 w-full z-40 transition-transform duration-500 ease-out ${
-          isHeaderVisible ? 'translate-y-0' : '-translate-y-full'
+          isHeaderVisible ? "translate-y-0" : "-translate-y-full"
         } ${
-          scrolled 
-            ? "bg-slate-950/98 backdrop-blur-2xl shadow-xl shadow-cyan-500/25 border-b border-cyan-500/40" 
+          scrolled
+            ? "bg-slate-950/98 backdrop-blur-2xl shadow-xl shadow-cyan-500/25 border-b border-cyan-500/40"
             : "bg-slate-950/95 backdrop-blur-xl"
         }`}
       >
         <nav className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            
             <Link href="/" className="flex items-center space-x-3 group relative">
               <div className="relative">
                 <div className="absolute inset-0 w-12 h-12 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full blur-lg opacity-0 group-hover:opacity-30 transition-all duration-500"></div>
-                
+
                 <div className="relative w-12 h-12 transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
                   <Image
                     src="/Stenth_Logo-removebg.png"
@@ -136,9 +135,9 @@ export default function Header() {
                   />
                 </div>
               </div>
-              
+
               <div className="relative">
-                <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500 bg-clip-text text-transparent group-hover:from-cyan-300 group-hover:via-blue-300 group-hover:to-purple-400 transition-all duration-500">
+                <span className="text-2xl font-bold text-white bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text [-webkit-background-clip:text] [-webkit-text-fill-color:transparent] group-hover:from-cyan-300 group-hover:via-purple-300 group-hover:to-pink-300 transition-all duration-500">
                   STENTH
                 </span>
                 <div className="absolute -top-1 -right-2 opacity-0 group-hover:opacity-100 transition-all duration-500">
@@ -150,8 +149,8 @@ export default function Header() {
             <div className="hidden md:flex items-center space-x-2">
               <ul className="flex space-x-1">
                 {NAV.slice(0, 5).map((item, index) => (
-                  <li 
-                    key={item.href} 
+                  <li
+                    key={item.href}
                     className="relative"
                     onMouseEnter={() => setHoveredItem(index)}
                     onMouseLeave={() => setHoveredItem(null)}
@@ -159,18 +158,24 @@ export default function Header() {
                     <Link
                       href={item.href}
                       className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg group overflow-hidden ${
-                        pathname === item.href 
-                          ? 'text-cyan-400 bg-cyan-400/10' 
-                          : 'text-white hover:text-cyan-400'
+                        pathname === item.href
+                          ? "text-cyan-200 bg-cyan-400/25 font-semibold border border-cyan-400/30"
+                          : /* Reverted navigation text colors back to original */ "text-slate-300 hover:text-white hover:bg-white/15"
                       }`}
                     >
-                      <div className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-lg`}></div>
-                      
+                      <div
+                        className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-lg`}
+                      ></div>
+
                       <span className="relative z-10">{item.label}</span>
-                      
-                      <div className={`absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r ${item.color} group-hover:w-full group-hover:left-0 transition-all duration-300`}></div>
-                      
-                      <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`}>
+
+                      <div
+                        className={`absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r ${item.color} group-hover:w-full group-hover:left-0 transition-all duration-300`}
+                      ></div>
+
+                      <div
+                        className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`}
+                      >
                         {[...Array(3)].map((_, i) => (
                           <div
                             key={i}
@@ -196,7 +201,7 @@ export default function Header() {
                   className="relative px-6 py-2.5 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-full hover:from-indigo-400 hover:to-purple-500 transition-all duration-300 group overflow-hidden shadow-lg shadow-purple-500/25"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-                  
+
                   <span className="relative flex items-center space-x-2">
                     <Rocket className="w-4 h-4" />
                     <span>Start Growing</span>
@@ -210,7 +215,7 @@ export default function Header() {
                   <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 p-0.5 group-hover:animate-spin">
                     <div className="w-full h-full bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full"></div>
                   </div>
-                  
+
                   <span className="relative flex items-center space-x-2 z-10">
                     <Calendar className="w-4 h-4" />
                     <span>Book Session</span>
@@ -226,15 +231,19 @@ export default function Header() {
               aria-label="Toggle menu"
             >
               <div className="w-6 h-4 flex flex-col justify-between">
-                <span className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
-                  open ? 'rotate-45 translate-y-1.5' : ''
-                }`}></span>
-                <span className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
-                  open ? 'opacity-0' : ''
-                }`}></span>
-                <span className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
-                  open ? '-rotate-45 -translate-y-1.5' : ''
-                }`}></span>
+                <span
+                  className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
+                    open ? "rotate-45 translate-y-1.5" : ""
+                  }`}
+                ></span>
+                <span
+                  className={`block h-0.5 w-6 bg-white transition-all duration-300 ${open ? "opacity-0" : ""}`}
+                ></span>
+                <span
+                  className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
+                    open ? "-rotate-45 -translate-y-1.5" : ""
+                  }`}
+                ></span>
               </div>
             </button>
           </div>
@@ -243,9 +252,7 @@ export default function Header() {
 
       <div
         className={`md:hidden fixed inset-0 top-0 left-0 w-full h-full transition-all duration-700 ease-in-out ${
-          open 
-            ? "opacity-100 visible" 
-            : "opacity-0 invisible pointer-events-none"
+          open ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
         }`}
         style={{ zIndex: 50 }}
       >
@@ -259,7 +266,7 @@ export default function Header() {
                 height: `${Math.random() * 10 + 5}px`,
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
-                animation: `float ${3 + Math.random() * 2}s ease-in-out infinite ${i * 0.1}s`
+                animation: `float ${3 + Math.random() * 2}s ease-in-out infinite ${i * 0.1}s`,
               }}
             />
           ))}
@@ -295,25 +302,31 @@ export default function Header() {
                   key={item.href}
                   href={item.href}
                   className={`relative p-6 rounded-2xl backdrop-blur-xl border transition-all duration-500 group text-center transform ${
-                    pathname === item.href 
-                      ? `bg-gradient-to-br ${item.color} bg-opacity-20 border-white/30 shadow-lg` 
-                      : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20'
+                    pathname === item.href
+                      ? `bg-gradient-to-br ${item.color} bg-opacity-20 border-white/30 shadow-lg`
+                      : "bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20"
                   }`}
                   onClick={() => setOpen(false)}
                   style={{
                     animationDelay: `${index * 0.1}s`,
-                    animation: open ? 'slideInUp 0.6s ease-out forwards' : 'none'
+                    animation: open ? "slideInUp 0.6s ease-out forwards" : "none",
                   }}
                 >
-                  <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-20 transition-all duration-500 rounded-2xl ${pathname === item.href ? 'animate-pulse' : ''}`}/>
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-20 transition-all duration-500 rounded-2xl ${pathname === item.href ? "animate-pulse" : ""}`}
+                  />
 
                   <div className="relative z-10 flex flex-col items-center text-center space-y-3">
-                    <div className={`p-3 rounded-xl bg-gradient-to-r ${item.color} group-hover:scale-110 transition-all duration-300 shadow-lg group-hover:shadow-xl`}>
+                    <div
+                      className={`p-3 rounded-xl bg-gradient-to-r ${item.color} group-hover:scale-110 transition-all duration-300 shadow-lg group-hover:shadow-xl`}
+                    >
                       <Icon className="w-6 h-6 text-white" />
                     </div>
-                    <span className={`font-medium transition-colors duration-300 ${
-                      pathname === item.href ? 'text-cyan-300' : 'text-white group-hover:text-cyan-400'
-                    }`}>
+                    <span
+                      className={`font-medium transition-colors duration-300 ${
+                        pathname === item.href ? "text-cyan-300" : "text-white group-hover:text-cyan-400"
+                      }`}
+                    >
                       {item.mobileLabel}
                     </span>
                   </div>

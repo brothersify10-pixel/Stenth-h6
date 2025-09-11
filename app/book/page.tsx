@@ -1,215 +1,266 @@
-import { type NextRequest, NextResponse } from "next/server"
-import { z } from "zod"
-import { supabaseAdmin } from "@/lib/supabase/index"
-import nodemailer from 'nodemailer'
+"use client"
 
-const FormSchema = z.object({
-  name: z.string().trim().optional(),
-  email: z.string().email(),
-  company: z.string().trim().optional().default(""),
-  notes: z.string().trim().optional().default(""),
-})
+import type React from "react"
 
-export async function POST(req: NextRequest) {
-  const json = await req.json()
-  const parsed = FormSchema.safeParse(json)
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Label } from "@/components/ui/label"
+import { CheckCircle, Loader2, Calendar, Clock, Users, Target } from "lucide-react"
 
-  if (!parsed.success) {
-    return NextResponse.json({ ok: false, error: parsed.error.flatten() }, { status: 400 })
-  }
-
-  const { name, email, company, notes } = parsed.data
-
-  // Check if this is a new booking or update
-  const { data: existingBooking } = await supabaseAdmin
-    .from("bookings")
-    .select("id")
-    .eq("email", email)
-    .single()
-
-  const isNewBooking = !existingBooking
-
-  const { error } = await supabaseAdmin.from("bookings").upsert(
-    {
-      email,
-      name,
-      company,
-      notes,
-      status: "form_submitted",
-      updated_at: new Date().toISOString(),
-    },
-    { onConflict: "email" },
-  )
-
-  if (error) {
-    return NextResponse.json({ ok: false, error: error.message }, { status: 500 })
-  }
-
-  // Add event
-  await supabaseAdmin.from("booking_events").insert({
-    event_type: "FORM",
-    email,
-    payload: { name, company, notes, isNewBooking },
+export default function BookPage() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    company: "",
+    notes: "",
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [error, setError] = useState("")
 
-  // Send email notification using Google Workspace (updated for multiple recipients)
-  if (isNewBooking && process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setError("")
+
     try {
-      // Same Google Workspace transporter as contact form
-      const transporter = nodemailer.createTransporter({
-        host: process.env.EMAIL_HOST || 'smtp.gmail.com',
-        port: parseInt(process.env.EMAIL_PORT || '587'),
-        secure: false,
-        auth: {
-          user: process.env.EMAIL_USER,
-          pass: process.env.EMAIL_PASS,
+      const response = await fetch("/api/book", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
+        body: JSON.stringify(formData),
       })
 
-      // Split EMAIL_TO by comma and trim spaces (same as contact form)
-      const recipients = process.env.EMAIL_TO?.split(',').map(email => email.trim()) || ['ansh.rai@stenth.com']
+      const result = await response.json()
 
-      await transporter.sendMail({
-        from: `"Stenth - Bookings" <${process.env.EMAIL_FROM}>`,
-        to: recipients, // Both ansh.rai@stenth.com and akash.lakhataria@stenth.com
-        replyTo: email,
-        subject: `📅 New Session Booking from ${name || email}`,
-        html: `
-          <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff;">
-            <!-- Header -->
-            <div style="background: linear-gradient(135deg, #4f46e5, #7c3aed); padding: 40px 30px; border-radius: 10px 10px 0 0;">
-              <h1 style="color: white; margin: 0; font-size: 28px; text-align: center;">
-                📅 New Session Booking
-              </h1>
-              <p style="color: #e0e7ff; margin: 10px 0 0 0; text-align: center; font-size: 16px;">
-                Someone wants to book a session with Stenth!
-              </p>
-            </div>
-            
-            <!-- Content -->
-            <div style="background: #f8fafc; padding: 40px 30px; border-radius: 0 0 10px 10px;">
-              <!-- Booking Details -->
-              <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 20px; border-left: 5px solid #4f46e5; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-                <h3 style="color: #1e293b; margin: 0 0 20px 0; font-size: 20px; display: flex; align-items: center;">
-                  👤 Booking Information
-                </h3>
-                <table style="width: 100%; border-collapse: collapse;">
-                  <tr>
-                    <td style="padding: 8px 0; color: #64748b; font-weight: 600; width: 100px;">Name:</td>
-                    <td style="padding: 8px 0; color: #1e293b; font-size: 16px;">${name || 'Not provided'}</td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 8px 0; color: #64748b; font-weight: 600;">Email:</td>
-                    <td style="padding: 8px 0;">
-                      <a href="mailto:${email}" style="color: #4f46e5; text-decoration: none; font-size: 16px; font-weight: 500;">${email}</a>
-                    </td>
-                  </tr>
-                  ${company ? `
-                  <tr>
-                    <td style="padding: 8px 0; color: #64748b; font-weight: 600;">Company:</td>
-                    <td style="padding: 8px 0; color: #1e293b; font-size: 16px;">${company}</td>
-                  </tr>
-                  ` : ''}
-                  <tr>
-                    <td style="padding: 8px 0; color: #64748b; font-weight: 600;">Status:</td>
-                    <td style="padding: 8px 0;">
-                      <span style="background: #fef3c7; color: #92400e; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">
-                        📋 FORM SUBMITTED
-                      </span>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-              
-              <!-- Notes -->
-              ${notes ? `
-              <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 20px; border-left: 5px solid #7c3aed; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-                <h3 style="color: #1e293b; margin: 0 0 15px 0; font-size: 20px; display: flex; align-items: center;">
-                  📝 Notes & Requirements
-                </h3>
-                <div style="background: #f1f5f9; padding: 20px; border-radius: 8px; line-height: 1.6; color: #334155; white-space: pre-wrap; font-size: 15px; border: 1px solid #e2e8f0;">
-${notes}
-                </div>
-              </div>
-              ` : ''}
-              
-              <!-- Recipients Info -->
-              <div style="background: white; padding: 20px; border-radius: 12px; border-left: 5px solid #10b981; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 20px;">
-                <h4 style="color: #1e293b; margin: 0 0 10px 0; font-size: 16px;">📧 Notification sent to:</h4>
-                <div style="display: flex; flex-wrap: wrap; gap: 10px;">
-                  ${recipients.map(recipient => `
-                    <span style="background: #f0fdf4; color: #166534; padding: 6px 12px; border-radius: 20px; font-size: 14px; font-weight: 500; border: 1px solid #bbf7d0;">
-                      ${recipient}
-                    </span>
-                  `).join('')}
-                </div>
-              </div>
-              
-              <!-- Action Buttons -->
-              <div style="text-align: center; margin: 30px 0 20px 0;">
-                <a href="mailto:${email}?subject=Re:%20Your%20session%20booking%20with%20Stenth&body=Hi%20${name || ''},%0D%0A%0D%0AThank%20you%20for%20your%20interest%20in%20booking%20a%20session%20with%20Stenth.%0D%0A%0D%0A" 
-                   style="display: inline-block; background: linear-gradient(135deg, #4f46e5, #7c3aed); color: white; padding: 12px 30px; text-decoration: none; border-radius: 25px; font-weight: 600; margin: 0 10px; box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);">
-                  📧 Reply to ${name || 'Customer'}
-                </a>
-                <a href="https://calendar.google.com/calendar/u/0/appointments/schedules" 
-                   style="display: inline-block; background: linear-gradient(135deg, #059669, #047857); color: white; padding: 12px 30px; text-decoration: none; border-radius: 25px; font-weight: 600; margin: 0 10px; box-shadow: 0 4px 15px rgba(5, 150, 105, 0.3);">
-                  📅 Schedule Meeting
-                </a>
-              </div>
-              
-              <!-- Footer -->
-              <div style="margin-top: 40px; padding-top: 25px; border-top: 2px solid #e2e8f0; text-align: center;">
-                <p style="color: #64748b; font-size: 14px; margin: 5px 0; line-height: 1.5;">
-                  📅 Booking submitted on ${new Date().toLocaleDateString('en-US', { 
-                    weekday: 'long', 
-                    year: 'numeric', 
-                    month: 'long', 
-                    day: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit'
-                  })}
-                </p>
-                <p style="color: #64748b; font-size: 14px; margin: 5px 0;">
-                  🚀 This email was sent from the Stenth booking system
-                </p>
-                <p style="color: #64748b; font-size: 12px; margin: 15px 0 0 0;">
-                  💡 <strong>Next step:</strong> Reply to schedule the session with ${name || 'the customer'}!
-                </p>
-                <p style="color: #64748b; font-size: 12px; margin: 5px 0 0 0;">
-                  Team notified: ${recipients.join(', ')}
-                </p>
-              </div>
-            </div>
-          </div>
-        `,
-        text: `
-New Session Booking
+      if (!response.ok) {
+        throw new Error(result.error || "Something went wrong")
+      }
 
-Name: ${name || 'Not provided'}
-Email: ${email}
-Company: ${company || 'Not provided'}
-${notes ? `Notes: ${notes}` : ''}
-
-Status: Form Submitted
-Submitted: ${new Date().toLocaleString()}
-
-Team notified: ${recipients.join(', ')}
-
-Reply to this email to contact ${name || 'the customer'}.
-        `
-      })
-
-      // Log email sent event
-      await supabaseAdmin.from("booking_events").insert({
-        event_type: "EMAIL_SENT",
-        email,
-        payload: { emailType: "booking_notification", sentTo: recipients },
-      })
-
-    } catch (emailError) {
-      console.error('Booking email sending failed:', emailError)
+      setIsSubmitted(true)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong")
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
-  return NextResponse.json({ ok: true })
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }))
+  }
+
+  if (isSubmitted) {
+    return (
+      <div className="min-h-screen bg-black text-white flex items-center justify-center p-4">
+        <Card className="w-full max-w-md bg-gray-900 border-gray-800">
+          <CardContent className="pt-6">
+            <div className="text-center space-y-4">
+              <CheckCircle className="h-16 w-16 text-green-500 mx-auto" />
+              <h2 className="text-2xl font-bold">Thank You!</h2>
+              <p className="text-gray-400">
+                We've received your booking request. Our team will contact you shortly to schedule your session.
+              </p>
+              <Button onClick={() => (window.location.href = "/")} className="bg-purple-600 hover:bg-purple-700">
+                Back to Home
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    )
+  }
+
+  return (
+    <div className="min-h-screen bg-black text-white">
+      {/* Header */}
+      <div className="bg-gradient-to-r from-purple-900/20 to-blue-900/20 py-20">
+        <div className="container mx-auto px-4 text-center">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6">
+            Book Your <span className="text-purple-400">Strategy Session</span>
+          </h1>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            Ready to transform your digital presence? Schedule a personalized consultation with our experts and discover
+            how we can accelerate your growth.
+          </p>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 py-16">
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          {/* Benefits Section */}
+          <div className="space-y-8">
+            <div>
+              <h2 className="text-3xl font-bold mb-6">What You'll Get</h2>
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4">
+                  <Target className="h-6 w-6 text-purple-400 mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold mb-2">Personalized Strategy</h3>
+                    <p className="text-gray-400">
+                      Tailored digital marketing roadmap based on your specific business goals and challenges.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <Users className="h-6 w-6 text-purple-400 mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold mb-2">Expert Consultation</h3>
+                    <p className="text-gray-400">
+                      Direct access to our senior strategists with proven track records in scaling businesses.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <Clock className="h-6 w-6 text-purple-400 mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold mb-2">Actionable Insights</h3>
+                    <p className="text-gray-400">
+                      Walk away with concrete next steps and recommendations you can implement immediately.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gray-900 p-6 rounded-lg border border-gray-800">
+              <div className="flex items-center space-x-3 mb-4">
+                <Calendar className="h-5 w-5 text-purple-400" />
+                <h3 className="font-semibold">Session Details</h3>
+              </div>
+              <ul className="space-y-2 text-gray-400">
+                <li>• 30-minute focused consultation</li>
+                <li>• Video call via Google Meet</li>
+                <li>• Free strategy assessment</li>
+                <li>• No commitment required</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Booking Form */}
+          <Card className="bg-gray-900 border-gray-800">
+            <CardHeader>
+              <CardTitle className="text-white">Schedule Your Session</CardTitle>
+              <CardDescription className="text-gray-400">
+                Fill out the form below and we'll contact you to schedule your consultation.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="space-y-2">
+                  <Label htmlFor="name" className="text-white">
+                    Name
+                  </Label>
+                  <Input
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="bg-gray-800 border-gray-700 text-white"
+                    placeholder="Your full name"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="email" className="text-white">
+                    Email *
+                  </Label>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="bg-gray-800 border-gray-700 text-white"
+                    placeholder="your@email.com"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="company" className="text-white">
+                    Company
+                  </Label>
+                  <Input
+                    id="company"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleChange}
+                    className="bg-gray-800 border-gray-700 text-white"
+                    placeholder="Your company name"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="notes" className="text-white">
+                    Project Details
+                  </Label>
+                  <Textarea
+                    id="notes"
+                    name="notes"
+                    value={formData.notes}
+                    onChange={handleChange}
+                    className="bg-gray-800 border-gray-700 text-white min-h-[100px]"
+                    placeholder="Tell us about your business goals, current challenges, or specific areas you'd like to discuss..."
+                  />
+                </div>
+
+                {error && (
+                  <div className="text-red-400 text-sm bg-red-900/20 p-3 rounded border border-red-800">{error}</div>
+                )}
+
+                <Button
+                  type="submit"
+                  disabled={isSubmitting || !formData.email}
+                  className="w-full bg-purple-600 hover:bg-purple-700 disabled:opacity-50"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin mr-2" />
+                      Submitting...
+                    </>
+                  ) : (
+                    "Request Consultation"
+                  )}
+                </Button>
+
+                <p className="text-xs text-gray-500 text-center">
+                  By submitting this form, you agree to our privacy policy and terms of service.
+                </p>
+              </form>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Cal.com Embed */}
+        <div className="mt-16">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold mb-4">Or Schedule Directly</h2>
+            <p className="text-gray-400">
+              Prefer to book immediately? Use our calendar below to select your preferred time.
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-gray-900 rounded-lg p-1 border border-gray-800">
+              <iframe
+                src="https://cal.com/stenth/30min?embed=true&theme=dark"
+                width="100%"
+                height="600"
+                frameBorder="0"
+                className="rounded-lg"
+                title="Schedule a consultation with Stenth"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
 }
