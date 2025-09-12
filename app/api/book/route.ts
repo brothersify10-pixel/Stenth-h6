@@ -1,24 +1,19 @@
-import { type NextRequest, NextResponse } from "next/server"
-import { z } from "zod"
-import { supabaseAdmin } from "@/lib/supabase/index"
-import nodemailer from 'nodemailer'
+import 'server-only'
+export const runtime = 'nodejs'
+import { type NextRequest, NextResponse } from 'next/server'
+import { z } from 'zod'
+import { supabaseAdmin } from '@/lib/supabase'
 
 const FormSchema = z.object({
   name: z.string().trim().optional(),
   email: z.string().email(),
-  company: z.string().trim().optional().default(""),
-  notes: z.string().trim().optional().default(""),
-})
-
-// Add this to your booking API route temporarily for debugging
-console.log('Environment check:', {
-  hasEmailUser: !!process.env.EMAIL_USER,
-  hasEmailPass: !!process.env.EMAIL_PASS,
-  emailUser: process.env.EMAIL_USER,
-  emailTo: process.env.EMAIL_TO
+  company: z.string().trim().optional().default(''),
+  notes: z.string().trim().optional().default(''),
 })
 
 export async function POST(req: NextRequest) {
+  const nodemailer = (await import('nodemailer')).default
+  
   const json = await req.json()
   const parsed = FormSchema.safeParse(json)
 
@@ -28,16 +23,30 @@ export async function POST(req: NextRequest) {
 
   const { name, email, company, notes } = parsed.data
 
-  // Check if this is a new booking or update
-  const { data: existingBooking } = await supabaseAdmin
+  // Log environment check
+  console.log("Environment check:", {
+    hasEmailUser: !!process.env.EMAIL_USER,
+    hasEmailPass: !!process.env.EMAIL_PASS,
+    emailUser: process.env.EMAIL_USER,
+    emailTo: process.env.EMAIL_TO,
+    host: process.env.EMAIL_HOST,
+    port: process.env.EMAIL_PORT,
+  })
+
+  // Safer lookup (doesn't error if not found)
+  const { data: existingBooking, error: existingErr } = await supabaseAdmin
     .from("bookings")
     .select("id")
     .eq("email", email)
-    .single()
+    .maybeSingle()
+
+  if (existingErr) {
+    console.error("Supabase lookup error:", existingErr)
+  }
 
   const isNewBooking = !existingBooking
 
-  const { error } = await supabaseAdmin.from("bookings").upsert(
+  const { error: upsertErr } = await supabaseAdmin.from("bookings").upsert(
     {
       email,
       name,
@@ -46,45 +55,65 @@ export async function POST(req: NextRequest) {
       status: "form_submitted",
       updated_at: new Date().toISOString(),
     },
-    { onConflict: "email" },
+    { onConflict: "email" }
   )
 
-  if (error) {
-    return NextResponse.json({ ok: false, error: error.message }, { status: 500 })
+  if (upsertErr) {
+    return NextResponse.json({ ok: false, error: upsertErr.message }, { status: 500 })
   }
 
-  // Add event
   await supabaseAdmin.from("booking_events").insert({
     event_type: "FORM",
     email,
     payload: { name, company, notes, isNewBooking },
   })
 
-  // Send email notification using Google Workspace
+  // Send email for new bookings only
   if (isNewBooking && process.env.EMAIL_USER && process.env.EMAIL_PASS) {
     try {
-      // FIXED: createTransport (not createTransporter)
       const transporter = nodemailer.createTransport({
         host: process.env.EMAIL_HOST || 'smtp.gmail.com',
-        port: parseInt(process.env.EMAIL_PORT || '587'),
+        port: parseInt(process.env.EMAIL_PORT || '587', 10),
         secure: false,
-        auth: {
-          user: process.env.EMAIL_USER,
-          pass: process.env.EMAIL_PASS,
+        requireTLS: true,
+        auth: { 
+          user: process.env.EMAIL_USER, 
+          pass: process.env.EMAIL_PASS 
         },
+        logger: true,
+        debug: true,
       })
 
-      // Split EMAIL_TO by comma and trim spaces
-      const recipients = process.env.EMAIL_TO?.split(',').map(email => email.trim()) || ['ansh.rai@stenth.com']
+      await transporter.verify()
+
+      const recipients =
+        process.env.EMAIL_TO?.split(',').map(s => s.trim()).filter(Boolean)
+        || ['ansh.rai@stenth.com']
+      
+      const fromAddress = process.env.EMAIL_FROM || process.env.EMAIL_USER
 
       await transporter.sendMail({
-        from: `"Stenth - Bookings" <${process.env.EMAIL_FROM}>`,
+        from: `"Stenth - Bookings" <${fromAddress}>`,
         to: recipients,
         replyTo: email,
         subject: `📅 New Session Booking from ${name || email}`,
+        text: `
+New Session Booking
+
+Name: ${name || "Not provided"}
+Email: ${email}
+Company: ${company || "Not provided"}
+${notes ? `Notes: ${notes}` : ""}
+
+Status: Form Submitted
+Submitted: ${new Date().toLocaleString()}
+
+Team notified: ${recipients.join(", ")}
+
+Reply to this email to contact ${name || "the customer"}.
+        `,
         html: `
           <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff;">
-            <!-- Header -->
             <div style="background: linear-gradient(135deg, #4f46e5, #7c3aed); padding: 40px 30px; border-radius: 10px 10px 0 0;">
               <h1 style="color: white; margin: 0; font-size: 28px; text-align: center;">
                 📅 New Session Booking
@@ -94,9 +123,7 @@ export async function POST(req: NextRequest) {
               </p>
             </div>
             
-            <!-- Content -->
             <div style="background: #f8fafc; padding: 40px 30px; border-radius: 0 0 10px 10px;">
-              <!-- Booking Details -->
               <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 20px; border-left: 5px solid #4f46e5; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
                 <h3 style="color: #1e293b; margin: 0 0 20px 0; font-size: 20px;">
                   👤 Booking Information
@@ -129,7 +156,6 @@ export async function POST(req: NextRequest) {
                 </table>
               </div>
               
-              <!-- Notes -->
               ${notes ? `
               <div style="background: white; padding: 25px; border-radius: 12px; margin-bottom: 20px; border-left: 5px solid #7c3aed; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
                 <h3 style="color: #1e293b; margin: 0 0 15px 0; font-size: 20px;">
@@ -141,7 +167,6 @@ ${notes}
               </div>
               ` : ''}
               
-              <!-- Recipients Info -->
               <div style="background: white; padding: 20px; border-radius: 12px; border-left: 5px solid #10b981; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 20px;">
                 <h4 style="color: #1e293b; margin: 0 0 10px 0; font-size: 16px;">📧 Notification sent to:</h4>
                 <div style="display: flex; flex-wrap: wrap; gap: 10px;">
@@ -153,7 +178,6 @@ ${notes}
                 </div>
               </div>
               
-              <!-- Action Buttons -->
               <div style="text-align: center; margin: 30px 0 20px 0;">
                 <a href="mailto:${email}?subject=Re:%20Your%20session%20booking%20with%20Stenth&body=Hi%20${name || ''},%0D%0A%0D%0AThank%20you%20for%20your%20interest%20in%20booking%20a%20session%20with%20Stenth.%0D%0A%0D%0A" 
                    style="display: inline-block; background: linear-gradient(135deg, #4f46e5, #7c3aed); color: white; padding: 12px 30px; text-decoration: none; border-radius: 25px; font-weight: 600; margin: 0 10px; box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);">
@@ -165,7 +189,6 @@ ${notes}
                 </a>
               </div>
               
-              <!-- Footer -->
               <div style="margin-top: 40px; padding-top: 25px; border-top: 2px solid #e2e8f0; text-align: center;">
                 <p style="color: #64748b; font-size: 14px; margin: 5px 0; line-height: 1.5;">
                   📅 Booking submitted on ${new Date().toLocaleDateString('en-US', { 
@@ -190,32 +213,36 @@ ${notes}
             </div>
           </div>
         `,
-        text: `
-New Session Booking
-
-Name: ${name || 'Not provided'}
-Email: ${email}
-Company: ${company || 'Not provided'}
-${notes ? `Notes: ${notes}` : ''}
-
-Status: Form Submitted
-Submitted: ${new Date().toLocaleString()}
-
-Team notified: ${recipients.join(', ')}
-
-Reply to this email to contact ${name || 'the customer'}.
-        `
       })
 
-      // Log email sent event
       await supabaseAdmin.from("booking_events").insert({
         event_type: "EMAIL_SENT",
         email,
         payload: { emailType: "booking_notification", sentTo: recipients },
       })
 
-    } catch (emailError) {
-      console.error('Booking email sending failed:', emailError)
+      console.log('Booking email sent successfully to:', recipients)
+
+    } catch (err: any) {
+      console.error('Booking email sending failed (summary):', {
+        name: err?.name, 
+        code: err?.code, 
+        command: err?.command,
+        response: err?.response, 
+        message: err?.message,
+      })
+
+      await supabaseAdmin.from("booking_events").insert({
+        event_type: "EMAIL_FAILED",
+        email,
+        payload: {
+          name: err?.name,
+          code: err?.code,
+          command: err?.command,
+          response: err?.response,
+          message: err?.message,
+        },
+      })
     }
   }
 

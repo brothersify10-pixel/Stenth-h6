@@ -58,7 +58,7 @@ export default function About() {
 
               <p>
                 {
-                  "Our approach combines human creativity with artificial intelligence, delivering personalized experiences\nthat resonate with your audience and drive measurable results."
+                  "With Ansh bringing in expertise in Artificial Intelligence, Computer Science, and Marketing Technology through projects across Canada, the Dominican Republic, Australia, and the US—and Aakash\n contributing Artificial Intelligence applications for marketing, direct collaboration with Google Ads experts, Business Analytics, Marketing, Sales, and Project Management experience from ventures like Bellacana and The Moon Stadium—STENTH quickly evolved from a dream into a reality.\n\nToday, STENTH has grown into a 27+ member team with operations in Canada and Australia and clients across the United States, India, Dominican Republic, and beyond. "
                 }
               </p>
             </div>

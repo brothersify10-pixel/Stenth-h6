@@ -66,6 +66,7 @@
     "react-resizable-panels": "^2.1.7",
     "recharts": "2.15.4",
     "resend": "^4.0.1",
+    "server-only": "latest",
     "sonner": "^1.7.4",
     "svelte": "latest",
     "tailwind-merge": "^2.5.5",
