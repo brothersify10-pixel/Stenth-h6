@@ -42,25 +42,40 @@ export default function About() {
             </h2>
 
             <div className="space-y-6 text-lg text-gray-200 leading-relaxed">
-              <p>{"We Don't Just Market Brands. We Build Businesses."}</p>
+              <p>{"We don’t just market brands. We build businesses that last."}</p>
 
               <p>
                 {
-                  "The story of STENTH begins with two childhood best friends, Aakash Lakhataria and Ansh Rai. Growing up together, we always shared the same ambition—to create something meaningful, something that could grow into a legacy."
+                  "The story of STENTH is, at its core, the story of two best friends chasing a dream. We—Aakash Lakhataria and Ansh Rai—grew up side by side, always talking about the future, always dreaming of creating something bigger than ourselves."
                 }
               </p>
 
               <p>
                 {
-                  "Then one night in 2022, Aakash had a vivid dream—a name, a vision, and a company: STENTH.\n\nThe next morning, he drove straight to Ansh's house and said, \"I saw our future. It's called STENTH.\"\n\nThat was the moment everything changed."
+                  "Life took us abroad to Canada for our studies, but no matter how busy we got, the conversations never stopped. Nights turned into mornings as we sketched out ideas, imagined possibilities, and kept coming back to the same belief: one day, we’ll build something of our own."
                 }
               </p>
 
               <p>
                 {
-                  "With Ansh bringing in expertise in Artificial Intelligence, Computer Science, and Marketing Technology through projects across Canada, the Dominican Republic, Australia, and the US—and Aakash\n contributing Artificial Intelligence applications for marketing, direct collaboration with Google Ads experts, Business Analytics, Marketing, Sales, and Project Management experience from ventures like Bellacana and The Moon Stadium—STENTH quickly evolved from a dream into a reality.\n\nToday, STENTH has grown into a 27+ member team with operations in Canada and Australia and clients across the United States, India, Dominican Republic, and beyond. "
+                  "In 2022, that belief finally took shape. One night, Aakash had a dream—so vivid he woke up knowing exactly what to do. The dream gave us a name: STENTH. The very next morning, he drove to Ansh’s house, and with a fire in his eyes said, “I saw our future. It’s called STENTH.” From that moment on, it was real."
                 }
               </p>
+
+              <p>{"Since then, we’ve poured our hearts, skills, and experiences into bringing STENTH to life:"}</p>
+
+              {/* Bullet points */}
+              <ul className="list-disc list-inside space-y-2 text-gray-300">
+                <li>
+                  <strong>Ansh:</strong> Global expertise in Artificial Intelligence, Computer Science, and Marketing
+                  Technology through projects across Canada, Australia, the Dominican Republic, and the US.
+                </li>
+                <li>
+                  <strong>Aakash:</strong> Deep experience in AI-driven marketing, business analytics, and project
+                  management, shaped by ventures like Bellacana and The Moon Stadium, along with direct collaboration
+                  with Google Ads experts.
+                </li>
+              </ul>
             </div>
 
             <div className="grid grid-cols-2 gap-8 pt-8">
