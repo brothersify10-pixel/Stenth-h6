@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     "digital transformation",
     "growth hacking",
   ],
-  alternates: { canonical: "/" },
+  alternates: { canonical: "/" }, // resolves to https://www.stenth.com/
   openGraph: {
     type: "website",
     url: "https://www.stenth.com",
@@ -60,8 +60,8 @@ export const metadata: Metadata = {
     description:
       "Transform your business with Stenth. We don't just market brands—we build businesses through data-driven strategies, brand management, and measurable ROI.",
     images: ["/og-image.jpg"],
-    creator: "@stenth",
-    site: "@stenth",
+    creator: "@stenth", // remove if not real
+    site: "@stenth",     // remove if not real
   },
   robots: {
     index: true,
@@ -69,14 +69,12 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+      maxVideoPreview: -1,
+      maxImagePreview: "large",
+      maxSnippet: -1,
     },
   },
   category: "Digital Marketing",
-  classification: "Business Services",
-  generator: "Next.js",
   applicationName: "Stenth Digital Marketing",
   referrer: "origin-when-cross-origin",
   creator: "Stenth Team",
@@ -97,272 +95,92 @@ export const metadata: Metadata = {
     shortcut: "/favicon.ico",
   },
   manifest: "/manifest.json",
+
+  // ✅ Add verification so you can prove ownership to search engines
+  verification: {
+    google: process.env.GOOGLE_VERIFICATION_CODE || "",
+    bing: process.env.BING_VERIFICATION_CODE || "",
+    yandex: process.env.YANDEX_VERIFICATION_CODE || "",
+  },
+    generator: 'v0.app'
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  // Move FAQPage JSON-LD to the specific page that actually renders FAQs.
+  // Move ProfessionalService JSON-LD to the homepage ONLY (and keep it truthful).
+  // Keep Organization + WebSite here (sitewide) since they describe the site/org.
+
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Stenth Digital Marketing Agency",
+    alternateName: "Stenth",
+    url: "https://www.stenth.com",
+    logo: "https://www.stenth.com/Stenth_Logo-removebg.png",
+    description:
+      "We don't just market brands—we build businesses through data-driven strategies, brand management, and measurable ROI.",
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: "+1-705-790-1965", // put the real number you want indexed
+      contactType: "customer service",
+      availableLanguage: ["English"],
+      areaServed: ["CA", "AU", "US"],
+    },
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "368 Prince of Wales Dr",
+      addressLocality: "Mississauga",
+      addressRegion: "ON",
+      postalCode: "L5B 0A1",
+      addressCountry: "CA",
+    },
+    sameAs: [
+      "https://www.linkedin.com/company/stenth",
+      "https://twitter.com/stenth",
+      "https://www.instagram.com/stenth",
+      "https://www.facebook.com/stenth",
+    ],
+  }
+
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Stenth Digital Marketing Agency",
+    url: "https://www.stenth.com",
+    description:
+      "Transform your business with data-driven digital marketing strategies that build businesses, not just campaigns.",
+    publisher: {
+      "@type": "Organization",
+      name: "Stenth",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://www.stenth.com/Stenth_Logo-removebg.png",
+      },
+    },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://www.stenth.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string",
+    },
+  }
+
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        {/* Core Meta Tags */}
+        {/* Core Meta */}
         <meta name="apple-mobile-web-app-title" content="Stenth" />
         <meta name="application-name" content="Stenth" />
         <meta name="author" content="Stenth Digital Marketing Agency" />
-        <meta name="format-detection" content="telephone=no" />
         <meta name="theme-color" content="#06b6d4" />
         <meta name="color-scheme" content="dark light" />
 
-        {/* Business Information */}
-        <meta name="geo.region" content="CA-ON" />
-        <meta name="geo.placename" content="Mississauga" />
-        <meta name="geo.position" content="43.5890;-79.6441" />
-        <meta name="ICBM" content="43.5890, -79.6441" />
+        {/* ❌ Removed obsolete geo/ICBM meta and Google Fonts preconnect (you use self-hosted Geist). */}
 
-        {/* Structured Data for Digital Marketing Agency */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "ProfessionalService",
-              name: "Stenth Digital Marketing Agency",
-              alternateName: "Stenth",
-              description:
-                "We don't just market brands—we build businesses through data-driven strategies, brand management, and measurable ROI.",
-              url: "https://www.stenth.com",
-              logo: "https://www.stenth.com/Stenth_Logo-removebg.png",
-              image: "https://www.stenth.com/og-image.jpg",
-              telephone: "+1-705-790-1965", // Replace with actual phone
-              email: "info@stenth.com",
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: "368 Prince of Wales Dr",
-                addressLocality: "Mississauga",
-                addressRegion: "ON",
-                postalCode: "L5B 0A1",
-                addressCountry: "CA",
-              },
-              additionalLocation: {
-                "@type": "PostalAddress",
-                streetAddress: "Picnic Ave Clyde North",
-                addressRegion: "VIC",
-                postalCode: "3978",
-                addressCountry: "AU",
-              },
-              serviceArea: [
-                {
-                  "@type": "Country",
-                  name: "Canada",
-                },
-                {
-                  "@type": "Country",
-                  name: "Australia",
-                },
-                {
-                  "@type": "Country",
-                  name: "United States",
-                },
-              ],
-              hasOfferCatalog: {
-                "@type": "OfferCatalog",
-                name: "Digital Marketing Services",
-                itemListElement: [
-                  {
-                    "@type": "Offer",
-                    itemOffered: {
-                      "@type": "Service",
-                      name: "Digital Marketing Strategy",
-                      description: "Comprehensive digital transformation strategies that align with business goals",
-                    },
-                  },
-                  {
-                    "@type": "Offer",
-                    itemOffered: {
-                      "@type": "Service",
-                      name: "Social Media Marketing",
-                      description: "Engaging social media campaigns that build communities and drive conversions",
-                    },
-                  },
-                  {
-                    "@type": "Offer",
-                    itemOffered: {
-                      "@type": "Service",
-                      name: "Paid Advertising",
-                      description: "Data-driven advertising campaigns optimized for maximum ROI",
-                    },
-                  },
-                  {
-                    "@type": "Offer",
-                    itemOffered: {
-                      "@type": "Service",
-                      name: "SEO Optimization",
-                      description: "Strategic search engine optimization that improves visibility",
-                    },
-                  },
-                  {
-                    "@type": "Offer",
-                    itemOffered: {
-                      "@type": "Service",
-                      name: "Brand Strategy & Identity",
-                      description: "Complete brand development from strategy to visual identity",
-                    },
-                  },
-                  {
-                    "@type": "Offer",
-                    itemOffered: {
-                      "@type": "Service",
-                      name: "Web Development",
-                      description: "High-converting websites and applications that drive business growth",
-                    },
-                  },
-                ],
-              },
-              founder: [
-                {
-                  "@type": "Person",
-                  name: "Aakash Lakhataria",
-                  jobTitle: "Co-Founder",
-                },
-                {
-                  "@type": "Person",
-                  name: "Ansh Rai",
-                  jobTitle: "Co-Founder",
-                },
-              ],
-              numberOfEmployees: "27+",
-              foundingDate: "2022",
-              slogan: "Strategy. Marketing. Growth.",
-              aggregateRating: {
-                "@type": "AggregateRating",
-                ratingValue: "4.9",
-                reviewCount: "150+",
-                bestRating: "5",
-              },
-              sameAs: [
-                "https://www.linkedin.com/company/stenth",
-                "https://twitter.com/stenth",
-                "https://www.instagram.com/stenth",
-                "https://www.facebook.com/stenth",
-              ],
-              potentialAction: {
-                "@type": "SearchAction",
-                target: "https://www.stenth.com/search?q={search_term_string}",
-                "query-input": "required name=search_term_string",
-              },
-            }),
-          }}
-        />
-
-        {/* Website Schema */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              name: "Stenth Digital Marketing Agency",
-              url: "https://www.stenth.com",
-              description:
-                "Transform your business with data-driven digital marketing strategies that build businesses, not just campaigns.",
-              publisher: {
-                "@type": "Organization",
-                name: "Stenth",
-                logo: {
-                  "@type": "ImageObject",
-                  url: "https://www.stenth.com/Stenth_Logo-removebg.png",
-                },
-              },
-              potentialAction: {
-                "@type": "SearchAction",
-                target: "https://www.stenth.com/search?q={search_term_string}",
-                "query-input": "required name=search_term_string",
-              },
-            }),
-          }}
-        />
-
-        {/* Organization Schema */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              name: "Stenth Digital Marketing Agency",
-              alternateName: "Stenth",
-              url: "https://www.stenth.com",
-              logo: "https://www.stenth.com/Stenth_Logo-removebg.png",
-              description:
-                "We don't just market brands—we build businesses through data-driven strategies, brand management, and measurable ROI.",
-              contactPoint: {
-                "@type": "ContactPoint",
-                telephone: "+1-XXX-XXX-XXXX", // Replace with actual phone
-                contactType: "customer service",
-                availableLanguage: ["English"],
-                areaServed: ["CA", "AU", "US"],
-              },
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: "368 Prince of Wales Dr",
-                addressLocality: "Mississauga",
-                addressRegion: "ON",
-                postalCode: "L5B 0A1",
-                addressCountry: "CA",
-              },
-            }),
-          }}
-        />
-
-        {/* FAQ Schema for common questions */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "FAQPage",
-              mainEntity: [
-                {
-                  "@type": "Question",
-                  name: "What makes Stenth different from other marketing agencies?",
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text: "Stenth doesn't just create marketing campaigns—we build comprehensive business growth systems. We provide data-first strategies, monthly performance reviews, complete brand management, and transparent ROI tracking.",
-                  },
-                },
-                {
-                  "@type": "Question",
-                  name: "What services does Stenth offer?",
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text: "Stenth offers complete digital marketing services including brand strategy & identity, paid advertising, SEO optimization, social media marketing, content marketing, web development, and analytics & tracking.",
-                  },
-                },
-                {
-                  "@type": "Question",
-                  name: "How does Stenth track ROI and performance?",
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text: "We provide monthly growth sessions with detailed lead and conversion reports, cost-per-lead analysis, ROI optimization recommendations, and strategic adjustments based on real-time data analysis.",
-                  },
-                },
-                {
-                  "@type": "Question",
-                  name: "What industries does Stenth work with?",
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text: "Stenth works with businesses across multiple industries including e-commerce, FMCG, SaaS, fintech, retail, tours & travels, and more. We tailor strategies to each industry's unique challenges and opportunities.",
-                  },
-                },
-              ],
-            }),
-          }}
-        />
-
-        {/* Preconnect to external domains for performance */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://cal.com" />
-        <link rel="dns-prefetch" href="https://vercel.com" />
+        {/* JSON-LD that’s safe sitewide */}
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
       </head>
+
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} antialiased`}>
         <Suspense fallback={<div className="h-20 bg-slate-950/95" />}>
           <Header />
@@ -370,14 +188,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main>{children}</main>
         <Analytics />
 
-        {/* Additional Performance Optimizations */}
+        {/* Performance niceties */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              // Optimize Core Web Vitals
               if ('requestIdleCallback' in window) {
                 requestIdleCallback(() => {
-                  // Preload critical resources
                   const link = document.createElement('link');
                   link.rel = 'preload';
                   link.href = '/Stenth_Logo-removebg.png';
@@ -385,8 +201,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   document.head.appendChild(link);
                 });
               }
-              
-              // Set viewport height CSS custom property for mobile
               function setVH() {
                 let vh = window.innerHeight * 0.01;
                 document.documentElement.style.setProperty('--vh', vh + 'px');
