@@ -1,11 +1,15 @@
-// app/sitemap.ts
+// app/sitemap.ts - Enhanced version with debugging
 import type { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.stenth.com';
   const lastModified = new Date();
 
-  return [
+  // Log for debugging (will show in build logs)
+  console.log('Generating sitemap with baseUrl:', baseUrl);
+  console.log('Last modified:', lastModified.toISOString());
+
+  const sitemapEntries: MetadataRoute.Sitemap = [
     // Main Pages
     {
       url: baseUrl,
@@ -118,4 +122,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
   ];
+
+  console.log(`Sitemap generated with ${sitemapEntries.length} entries`);
+  return sitemapEntries;
 }
