@@ -52,6 +52,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
 
+    // About/FAQ Page (Good for SEO with structured data)
+    {
+      url: `${baseUrl}/stenth`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+
     // Service Pages (Important for SEO)
     {
       url: `${baseUrl}/services/branding`,
