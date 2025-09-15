@@ -89,9 +89,6 @@ export default function STENTHFooter() {
                 📧 <a href="mailto:info@stenth.com" className="hover:text-cyan-400 transition-colors">info@stenth.com</a>
               </p>
               <p className="text-slate-400 text-sm">
-                📞 <a href="tel:+17057901965" className="hover:text-cyan-400 transition-colors">+1 (705) 790-1965</a>
-              </p>
-              <p className="text-slate-400 text-sm">
                 🌐 <a href="https://www.stenth.com" className="hover:text-cyan-400 transition-colors">www.stenth.com</a>
               </p>
             </div>
