@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:www.stenth.com)",
+      "WebFetch(domain:stenth.com)",
+      "Bash(npm run build:*)",
+      "Bash(npx tsc:*)",
+      "Bash(node:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
