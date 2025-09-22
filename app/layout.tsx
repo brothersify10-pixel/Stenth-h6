@@ -174,42 +174,43 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="theme-color" content="#06b6d4" />
         <meta name="color-scheme" content="dark light" />
 
+        {/* Performance and SEO optimization */}
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+
+        {/* Preconnect to external domains for better performance */}
+        <link rel="preconnect" href="https://vercel.live" crossOrigin="anonymous" />
+
+        {/* DNS prefetch for performance */}
+        <link rel="dns-prefetch" href="//vercel.live" />
+
+        {/* Hreflang tags for international SEO */}
+        <link rel="alternate" hrefLang="x-default" href="https://www.stenth.com/" />
+        <link rel="alternate" hrefLang="en-ca" href="https://www.stenth.com/ca/" />
+        <link rel="alternate" hrefLang="en-au" href="https://www.stenth.com/au/" />
+
         {/* ❌ Removed obsolete geo/ICBM meta and Google Fonts preconnect (you use self-hosted Geist). */}
 
-        {/* JSON-LD that’s safe sitewide */}
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
+        {/* Consolidated JSON-LD structured data for better performance */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([organizationJsonLd, websiteJsonLd])
+          }}
+        />
       </head>
 
       <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} antialiased`}>
         <Suspense fallback={<div className="h-20 bg-slate-950/95" />}>
           <Header />
         </Suspense>
-        <main>{children}</main>
+        <main role="main" id="main-content">{children}</main>
         <Analytics />
 
-        {/* Performance niceties */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              if ('requestIdleCallback' in window) {
-                requestIdleCallback(() => {
-                  const link = document.createElement('link');
-                  link.rel = 'preload';
-                  link.href = '/Stenth_Logo-removebg.png';
-                  link.as = 'image';
-                  document.head.appendChild(link);
-                });
-              }
-              function setVH() {
-                let vh = window.innerHeight * 0.01;
-                document.documentElement.style.setProperty('--vh', vh + 'px');
-              }
-              setVH();
-              window.addEventListener('resize', setVH);
-            `,
-          }}
-        />
+        {/* Performance script - externalized for better caching */}
+        <script src="/scripts/performance.js" defer />
       </body>
     </html>
   )

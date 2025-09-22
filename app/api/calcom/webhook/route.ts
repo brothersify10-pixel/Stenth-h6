@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server"
-import crypto from "crypto"
+import crypto from "node:crypto";
 import { z } from "zod"
 import { supabaseAdmin } from "@/lib/supabase/index"
 

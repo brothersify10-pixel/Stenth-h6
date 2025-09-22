@@ -96,6 +96,14 @@ export default function Header() {
 
   return (
     <>
+      {/* Skip navigation link for accessibility */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-[9999] px-4 py-2 bg-white text-black font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500"
+      >
+        Skip to main content
+      </a>
+
       <div className="fixed inset-0 pointer-events-none z-30">
         {particles.map((particle) => (
           <div
@@ -111,6 +119,7 @@ export default function Header() {
       </div>
 
       <header
+        role="banner"
         className={`fixed top-0 w-full z-40 transition-transform duration-500 ease-out ${
           isHeaderVisible ? "translate-y-0" : "-translate-y-full"
         } ${
@@ -119,7 +128,7 @@ export default function Header() {
             : "bg-slate-950/95 backdrop-blur-xl"
         }`}
       >
-        <nav className="container mx-auto px-6 py-4">
+        <nav role="navigation" aria-label="Main navigation" className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center space-x-3 group relative">
               <div className="relative">
@@ -132,6 +141,8 @@ export default function Header() {
                     width={48}
                     height={48}
                     className="w-full h-full object-contain"
+                    priority
+                    sizes="48px"
                   />
                 </div>
               </div>
@@ -227,8 +238,9 @@ export default function Header() {
 
             <button
               onClick={() => setOpen((v) => !v)}
-              className="md:hidden p-2 focus:outline-none"
+              className="md:hidden p-3 focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded-md min-h-[44px] min-w-[44px] flex items-center justify-center"
               aria-label="Toggle menu"
+              aria-expanded={open}
             >
               <div className="w-6 h-4 flex flex-col justify-between">
                 <span
