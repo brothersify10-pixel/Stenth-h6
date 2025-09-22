@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { X, Home, Briefcase, User, Phone, Rocket, Calendar, ArrowRight, Sparkles } from "lucide-react"
+import { X, Home, Briefcase, User, Phone, Rocket, Calendar, ArrowRight, Sparkles, MapPin } from "lucide-react"
 
 const NAV = [
   { href: "/", label: "Home", mobileLabel: "Home", icon: Home, color: "from-blue-400 to-cyan-400" },
@@ -18,6 +18,8 @@ const NAV = [
   },
   { href: "/about", label: "About Us", mobileLabel: "About", icon: User, color: "from-green-400 to-emerald-400" },
   { href: "/portfolio", label: "Portfolio", mobileLabel: "Work", icon: Briefcase, color: "from-orange-400 to-red-400" },
+  { href: "/ca", label: "🇨🇦 Canada", mobileLabel: "Canada", icon: MapPin, color: "from-red-400 to-red-500" },
+  { href: "/au", label: "🇦🇺 Australia", mobileLabel: "Australia", icon: MapPin, color: "from-green-400 to-yellow-400" },
   { href: "/contact", label: "Contact", mobileLabel: "Contact", icon: Phone, color: "from-yellow-400 to-orange-400" },
   { href: "/start", label: "Start Growing", mobileLabel: "Grow", icon: Rocket, color: "from-indigo-400 to-purple-400" },
 ]

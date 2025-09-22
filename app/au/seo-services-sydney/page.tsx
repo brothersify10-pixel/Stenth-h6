@@ -1,6 +1,4 @@
 "use client";
-
-import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Phone, Mail, Star, TrendingUp, Users, Award, Building2, Globe, Search } from "lucide-react";
