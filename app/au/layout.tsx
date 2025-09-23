@@ -177,31 +177,15 @@ export default function AustraliaLayout({
   }
 
   return (
-    <html lang="en-AU" className="scroll-smooth">
-      <head>
-        {/* Australia-specific meta tags */}
-        <meta name="geo.region" content="AU" />
-        <meta name="geo.country" content="Australia" />
-        <meta name="geo.placename" content="Australia" />
-        <meta name="currency" content="AUD" />
-        <meta name="language" content="English" />
-
-        {/* Hreflang tags */}
-        <link rel="alternate" hrefLang="en-au" href="https://www.stenth.com/au/" />
-        <link rel="alternate" hrefLang="en-ca" href="https://www.stenth.com/ca/" />
-        <link rel="alternate" hrefLang="x-default" href="https://www.stenth.com/" />
-
-        {/* Australia-specific JSON-LD */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify([australiaOrganizationJsonLd, australiaLocalBusinessJsonLd])
-          }}
-        />
-      </head>
-      <body>
-        {children}
-      </body>
-    </html>
+    <>
+      {/* Australia-specific JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([australiaOrganizationJsonLd, australiaLocalBusinessJsonLd])
+        }}
+      />
+      {children}
+    </>
   )
 }

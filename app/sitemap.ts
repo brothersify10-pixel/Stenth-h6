@@ -254,6 +254,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
 
+    // AUSTRALIA - Contact & Case Studies
+    {
+      url: `${baseUrl}/au/contact/`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/au/case-studies/`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+
     // AUSTRALIA - Major City SEO Services (Tier 1)
     {
       url: `${baseUrl}/au/seo-services-sydney/`,
@@ -300,6 +314,48 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: 'monthly',
       priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/au/content-marketing-australia/`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/au/ecommerce-seo-australia/`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/au/technical-seo-audit-australia/`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/au/link-building-services-australia/`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/au/seo-for-tradies-australia/`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/au/google-ads-sydney/`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/au/google-ads-melbourne/`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.7,
     },
   ];
 

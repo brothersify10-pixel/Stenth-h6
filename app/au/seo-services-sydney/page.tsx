@@ -2,6 +2,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Phone, Mail, Star, TrendingUp, Users, Award, Building2, Globe, Search } from "lucide-react";
+import STENTHFooter from "@/components/stenth-footer";
+import FloatingElements from "@/components/floating-elements";
 
 export default function SydneySEOPage() {
   const sydneyAreas = [
@@ -76,6 +78,9 @@ export default function SydneySEOPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+      {/* Floating Background Elements */}
+      <FloatingElements />
+
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-transparent to-blue-500/10"></div>
@@ -303,6 +308,9 @@ export default function SydneySEOPage() {
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <STENTHFooter />
     </div>
   );
 }
