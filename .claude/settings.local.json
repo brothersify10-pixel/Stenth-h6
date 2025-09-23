@@ -6,7 +6,8 @@
       "WebFetch(domain:stenth.com)",
       "Bash(npm run build:*)",
       "Bash(npx tsc:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(npm run dev:*)"
     ],
     "deny": [],
     "ask": []
