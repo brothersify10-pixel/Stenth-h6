@@ -206,7 +206,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Suspense fallback={<div className="h-20 bg-slate-950/95" />}>
           <Header />
         </Suspense>
-        <main role="main" id="main-content">{children}</main>
+        <main role="main" id="main-content">
+          <Suspense fallback={<div className="min-h-screen bg-slate-950 flex items-center justify-center">
+            <div className="animate-spin w-8 h-8 border-2 border-cyan-400 border-t-transparent rounded-full"></div>
+          </div>}>
+            {children}
+          </Suspense>
+        </main>
         <Analytics />
 
         {/* Performance script - externalized for better caching */}
