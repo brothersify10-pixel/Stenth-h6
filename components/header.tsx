@@ -18,8 +18,8 @@ const NAV = [
   },
   { href: "/about", label: "About Us", mobileLabel: "About", icon: User, color: "from-green-400 to-emerald-400" },
   { href: "/portfolio", label: "Portfolio", mobileLabel: "Work", icon: Briefcase, color: "from-orange-400 to-red-400" },
-  { href: "/ca", label: "🇨🇦 Canada", mobileLabel: "Canada", icon: MapPin, color: "from-red-400 to-red-500" },
-  { href: "/au", label: "🇦🇺 Australia", mobileLabel: "Australia", icon: MapPin, color: "from-green-400 to-yellow-400" },
+  { href: "/ca", label: "CA Canada", mobileLabel: "Canada", icon: MapPin, color: "from-red-400 to-red-500", flag: "🇨🇦" },
+  { href: "/au", label: "AU Australia", mobileLabel: "Australia", icon: MapPin, color: "from-green-400 to-yellow-400", flag: "🇦🇺" },
   { href: "/contact", label: "Contact", mobileLabel: "Contact", icon: Phone, color: "from-yellow-400 to-orange-400" },
   { href: "/start", label: "Start Growing", mobileLabel: "Grow", icon: Rocket, color: "from-indigo-400 to-purple-400" },
 ]
@@ -159,8 +159,8 @@ export default function Header() {
               </div>
             </Link>
 
-            <div className="hidden md:flex items-center space-x-2">
-              <ul className="flex space-x-1">
+            <div className="hidden md:flex items-center space-x-3">
+              <ul className="flex space-x-2">
                 {NAV.slice(0, 6).map((item, index) => (
                   <li
                     key={item.href}
@@ -170,17 +170,32 @@ export default function Header() {
                   >
                     <Link
                       href={item.href}
-                      className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg group overflow-hidden ${
+                      className={`relative px-4 py-3 text-sm font-medium transition-all duration-300 rounded-xl group overflow-hidden backdrop-blur-sm ${
                         pathname === item.href
-                          ? "text-cyan-200 bg-cyan-400/25 font-semibold border border-cyan-400/30"
-                          : /* Reverted navigation text colors back to original */ "text-slate-300 hover:text-white hover:bg-white/15"
+                          ? "text-white bg-gradient-to-r from-cyan-500/30 to-blue-500/30 font-semibold border border-cyan-400/40 shadow-lg shadow-cyan-500/20"
+                          : "text-slate-300 hover:text-white hover:bg-white/10 hover:backdrop-blur-md hover:shadow-lg hover:border-white/20 border border-transparent"
                       }`}
                     >
                       <div
                         className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-lg`}
                       ></div>
 
-                      <span className="relative z-10">{item.label}</span>
+                      <span className="relative z-10 flex items-center gap-2">
+                        {item.flag && (
+                          <span
+                            className="text-lg filter drop-shadow-sm"
+                            style={{
+                              fontFamily: 'Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji',
+                              textShadow: item.flag ? '0 0 8px rgba(255,255,255,0.3)' : 'none'
+                            }}
+                          >
+                            {item.flag}
+                          </span>
+                        )}
+                        <span className={item.flag ? 'font-semibold' : ''}>
+                          {item.flag ? item.label.split(' ').slice(1).join(' ') : item.label}
+                        </span>
+                      </span>
 
                       <div
                         className={`absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r ${item.color} group-hover:w-full group-hover:left-0 transition-all duration-300`}
@@ -332,9 +347,15 @@ export default function Header() {
 
                   <div className="relative z-10 flex flex-col items-center text-center space-y-3">
                     <div
-                      className={`p-3 rounded-xl bg-gradient-to-r ${item.color} group-hover:scale-110 transition-all duration-300 shadow-lg group-hover:shadow-xl`}
+                      className={`p-3 rounded-xl bg-gradient-to-r ${item.color} group-hover:scale-110 transition-all duration-300 shadow-lg group-hover:shadow-xl flex items-center justify-center`}
                     >
-                      <Icon className="w-6 h-6 text-white" />
+                      {item.flag ? (
+                        <span className="text-2xl" style={{ fontFamily: 'Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji' }}>
+                          {item.flag}
+                        </span>
+                      ) : (
+                        <Icon className="w-6 h-6 text-white" />
+                      )}
                     </div>
                     <span
                       className={`font-medium transition-colors duration-300 ${
