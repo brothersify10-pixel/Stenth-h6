@@ -2,6 +2,8 @@
 import Image from "next/image";
 import { MapPin, Phone, Mail, Clock, MessageSquare, CheckCircle } from "lucide-react";
 import { useState } from "react";
+import STENTHFooter from "@/components/stenth-footer";
+import FloatingElements from "@/components/floating-elements";
 
 export default function CanadaContactPage() {
   const [formData, setFormData] = useState({
@@ -57,6 +59,9 @@ export default function CanadaContactPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+      {/* Floating Background Elements */}
+      <FloatingElements />
+
       {/* Hero Section */}
       <section className="relative pt-32 pb-16 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 via-transparent to-red-500/10"></div>
@@ -363,6 +368,9 @@ export default function CanadaContactPage() {
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <STENTHFooter />
     </div>
   );
 }

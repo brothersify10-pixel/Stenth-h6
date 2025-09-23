@@ -2,6 +2,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { TrendingUp, Users, DollarSign, Clock, MapPin, ArrowRight, Star } from "lucide-react";
+import STENTHFooter from "@/components/stenth-footer";
+import FloatingElements from "@/components/floating-elements";
 
 export default function CanadaCaseStudiesPage() {
   const caseStudies = [
@@ -84,6 +86,9 @@ export default function CanadaCaseStudiesPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+      {/* Floating Background Elements */}
+      <FloatingElements />
+
       {/* Hero Section */}
       <section className="relative pt-32 pb-16 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 via-transparent to-red-500/10"></div>
@@ -279,6 +284,9 @@ export default function CanadaCaseStudiesPage() {
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <STENTHFooter />
     </div>
   );
 }
