@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import { useEffect, useState, Suspense } from "react"
+import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { X } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -68,7 +68,7 @@ const portfolioData = {
   },
 }
 
-function PortfolioModalContent({ params }: { params: { slug: string } }) {
+export default function PortfolioModal({ params }: { params: { slug: string } }) {
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(true)
   const project = portfolioData[params.slug as keyof typeof portfolioData]
@@ -222,18 +222,5 @@ function PortfolioModalContent({ params }: { params: { slug: string } }) {
         </div>
       )}
     </AnimatePresence>
-  )
-}
-
-export default function PortfolioModal({ params }: { params: { slug: string } }) {
-  return (
-    <Suspense fallback={<div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-      <div className="bg-slate-800 rounded-lg p-8">
-        <div className="animate-spin w-8 h-8 border-2 border-cyan-400 border-t-transparent rounded-full mx-auto"></div>
-        <p className="text-white mt-4">Loading...</p>
-      </div>
-    </div>}>
-      <PortfolioModalContent params={params} />
-    </Suspense>
   )
 }
