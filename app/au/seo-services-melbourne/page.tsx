@@ -32,10 +32,9 @@ export default function MelbourneSEOPage() {
     }
   ];
 
-  const seoPackages = [
+  const seoServices = [
     {
       name: "Local Melbourne SEO",
-      price: "$3,800 AUD/month",
       description: "Perfect for Melbourne businesses targeting local customers",
       features: [
         "Google My Business optimisation",
@@ -49,7 +48,6 @@ export default function MelbourneSEOPage() {
     },
     {
       name: "Enterprise Melbourne SEO",
-      price: "$7,500 AUD/month",
       description: "Comprehensive SEO for large Melbourne corporations",
       features: [
         "Technical SEO audit & implementation",
@@ -63,7 +61,6 @@ export default function MelbourneSEOPage() {
     },
     {
       name: "E-commerce Melbourne SEO",
-      price: "$5,200 AUD/month",
       description: "Drive online sales for Melbourne-based e-commerce",
       features: [
         "Product page optimisation",
@@ -215,15 +212,15 @@ export default function MelbourneSEOPage() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-4">
-              Melbourne SEO Packages
+              Melbourne SEO Services
             </h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-              Customised SEO solutions designed for Melbourne businesses of all sizes.
+              Customised SEO services designed for Melbourne businesses of all sizes.
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {seoPackages.map((pkg, index) => (
+            {seoServices.map((pkg, index) => (
               <div
                 key={pkg.name}
                 className={`bg-slate-800/50 rounded-2xl p-8 border transition-all duration-300 ${
@@ -241,7 +238,6 @@ export default function MelbourneSEOPage() {
                 )}
 
                 <h3 className="text-2xl font-bold text-white mb-4">{pkg.name}</h3>
-                <div className="text-3xl font-bold text-orange-400 mb-4">{pkg.price}</div>
                 <p className="text-slate-300 mb-6">{pkg.description}</p>
 
                 <ul className="space-y-3 mb-8">
@@ -265,7 +261,7 @@ export default function MelbourneSEOPage() {
                       : 'border-2 border-orange-500 text-orange-400 hover:bg-orange-500 hover:text-white'
                   }`}
                 >
-                  Get Started
+                  Get Free Consultation
                 </Link>
               </div>
             ))}

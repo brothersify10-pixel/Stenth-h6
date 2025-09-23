@@ -130,6 +130,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
 
+    // CANADA - Contact & Case Studies
+    {
+      url: `${baseUrl}/ca/contact/`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/ca/case-studies/`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+
     // CANADA - Major City SEO Services (Tier 1)
     {
       url: `${baseUrl}/ca/seo-services-toronto/`,
@@ -172,6 +186,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/ca/google-ads-management-canada/`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/ca/social-media-marketing-canada/`,
       lastModified,
       changeFrequency: 'monthly',
@@ -182,6 +202,48 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified,
       changeFrequency: 'monthly',
       priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/ca/content-marketing-canada/`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/ca/ecommerce-seo-canada/`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/ca/technical-seo-audit-canada/`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/ca/link-building-services-canada/`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/ca/seo-for-law-firms-canada/`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/ca/google-ads-toronto/`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/ca/google-ads-vancouver/`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.7,
     },
 
     // AUSTRALIA - Country Homepage

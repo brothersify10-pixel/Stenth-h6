@@ -32,10 +32,9 @@ export default function MontrealSEOPage() {
     }
   ];
 
-  const seoPackages = [
+  const seoServices = [
     {
       name: "Bilingual Montreal SEO",
-      price: "$3,200 CAD/month",
       description: "Perfect for Montreal businesses targeting English & French customers",
       features: [
         "Bilingual keyword research (EN/FR)",
@@ -49,7 +48,6 @@ export default function MontrealSEOPage() {
     },
     {
       name: "Enterprise Montreal SEO",
-      price: "$6,000 CAD/month",
       description: "Comprehensive SEO for large Montreal corporations",
       features: [
         "Technical SEO audit & implementation",
@@ -63,7 +61,6 @@ export default function MontrealSEOPage() {
     },
     {
       name: "Quebec E-commerce SEO",
-      price: "$4,200 CAD/month",
       description: "Drive online sales for Quebec-based e-commerce",
       features: [
         "Bilingual product page optimization",
@@ -215,15 +212,15 @@ export default function MontrealSEOPage() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-4">
-              Montreal SEO Packages
+              Montreal SEO Services
             </h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-              Specialized bilingual SEO solutions designed for Montreal businesses.
+              Specialized bilingual SEO services designed for Montreal businesses.
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {seoPackages.map((pkg, index) => (
+            {seoServices.map((pkg, index) => (
               <div
                 key={pkg.name}
                 className={`bg-slate-800/50 rounded-2xl p-8 border transition-all duration-300 ${
@@ -241,7 +238,6 @@ export default function MontrealSEOPage() {
                 )}
 
                 <h3 className="text-2xl font-bold text-white mb-4">{pkg.name}</h3>
-                <div className="text-3xl font-bold text-blue-400 mb-4">{pkg.price}</div>
                 <p className="text-slate-300 mb-6">{pkg.description}</p>
 
                 <ul className="space-y-3 mb-8">
@@ -265,7 +261,7 @@ export default function MontrealSEOPage() {
                       : 'border-2 border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white'
                   }`}
                 >
-                  Commencer / Get Started
+                  Commencer / Get Free Consultation
                 </Link>
               </div>
             ))}

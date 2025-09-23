@@ -43,19 +43,16 @@ export default function AustraliaHomepage() {
     {
       title: "SEO Services Australia",
       description: "Dominate Australian search results with local SEO expertise across all states and territories.",
-      price: "Starting at $3,500 AUD/month",
       features: ["Local keyword optimisation", "Australian market research", "State-specific targeting", "ACMA compliance"]
     },
     {
       title: "Google Ads Management",
       description: "ROI-focused PPC campaigns targeting Australian consumers and businesses.",
-      price: "Starting at $2,000 AUD/month",
       features: ["Australian audience targeting", "AUD budget optimisation", "Local ad extensions", "Mobile-first campaigns"]
     },
     {
       title: "Social Media Marketing",
       description: "Engage Australian audiences across all major social platforms.",
-      price: "Starting at $2,800 AUD/month",
       features: ["Platform-specific strategies", "Australian cultural insights", "Timezone optimisation", "Influencer partnerships"]
     }
   ];
@@ -182,7 +179,6 @@ export default function AustraliaHomepage() {
                 <h3 className="text-2xl font-bold text-white mb-4">{service.title}</h3>
                 <p className="text-slate-300 mb-6">{service.description}</p>
 
-                <div className="text-2xl font-bold text-green-400 mb-6">{service.price}</div>
 
                 <ul className="space-y-3">
                   {service.features.map((feature, idx) => (
@@ -197,7 +193,7 @@ export default function AustraliaHomepage() {
                   href="/au/contact"
                   className="mt-6 block w-full text-center px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold rounded-full hover:from-green-400 hover:to-green-500 transition-all duration-300"
                 >
-                  Get Started
+                  Get Free Consultation
                 </Link>
               </div>
             ))}

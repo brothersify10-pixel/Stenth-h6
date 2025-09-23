@@ -32,10 +32,9 @@ export default function SydneySEOPage() {
     }
   ];
 
-  const seoPackages = [
+  const seoServices = [
     {
       name: "Local Sydney SEO",
-      price: "$3,500 AUD/month",
       description: "Perfect for Sydney businesses targeting local customers",
       features: [
         "Google My Business optimisation",
@@ -49,7 +48,6 @@ export default function SydneySEOPage() {
     },
     {
       name: "Enterprise Sydney SEO",
-      price: "$7,000 AUD/month",
       description: "Comprehensive SEO for large Sydney corporations",
       features: [
         "Technical SEO audit & implementation",
@@ -63,7 +61,6 @@ export default function SydneySEOPage() {
     },
     {
       name: "E-commerce Sydney SEO",
-      price: "$5,000 AUD/month",
       description: "Drive online sales for Sydney-based e-commerce",
       features: [
         "Product page optimisation",
@@ -187,12 +184,12 @@ export default function SydneySEOPage() {
         </div>
       </section>
 
-      {/* SEO Packages */}
+      {/* SEO Services */}
       <section className="py-20 bg-slate-900/50">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-4">
-              Sydney SEO Packages
+              Sydney SEO Services
             </h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
               Customised SEO solutions designed for Sydney businesses of all sizes.
@@ -200,9 +197,9 @@ export default function SydneySEOPage() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {seoPackages.map((pkg, index) => (
+            {seoServices.map((service, index) => (
               <div
-                key={pkg.name}
+                key={service.name}
                 className={`bg-slate-800/50 rounded-2xl p-8 border transition-all duration-300 ${
                   index === 1
                     ? 'border-blue-500 ring-2 ring-blue-500/20 scale-105'
@@ -217,12 +214,11 @@ export default function SydneySEOPage() {
                   </div>
                 )}
 
-                <h3 className="text-2xl font-bold text-white mb-4">{pkg.name}</h3>
-                <div className="text-3xl font-bold text-blue-400 mb-4">{pkg.price}</div>
-                <p className="text-slate-300 mb-6">{pkg.description}</p>
+                <h3 className="text-2xl font-bold text-white mb-4">{service.name}</h3>
+                <p className="text-slate-300 mb-6">{service.description}</p>
 
                 <ul className="space-y-3 mb-8">
-                  {pkg.features.map((feature, idx) => (
+                  {service.features.map((feature, idx) => (
                     <li key={idx} className="flex items-center text-slate-300">
                       <Star className="w-4 h-4 text-blue-400 mr-3 flex-shrink-0" />
                       {feature}
@@ -231,7 +227,7 @@ export default function SydneySEOPage() {
                 </ul>
 
                 <div className="text-sm text-slate-400 mb-6">
-                  <strong>Ideal for:</strong> {pkg.ideal}
+                  <strong>Ideal for:</strong> {service.ideal}
                 </div>
 
                 <Link
@@ -242,7 +238,7 @@ export default function SydneySEOPage() {
                       : 'border-2 border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white'
                   }`}
                 >
-                  Get Started
+                  Get Free Consultation
                 </Link>
               </div>
             ))}

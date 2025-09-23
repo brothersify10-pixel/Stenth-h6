@@ -127,7 +127,6 @@ export default function CanadaLayout({
       "https://www.instagram.com/stenth",
       "https://www.facebook.com/stenth",
     ],
-    "priceRange": "$-$$",
     "currenciesAccepted": "CAD",
     "paymentAccepted": ["Cash", "Credit Card", "Invoice"],
     "serviceArea": {
@@ -144,7 +143,6 @@ export default function CanadaLayout({
     "@id": "https://www.stenth.com/ca/",
     "url": "https://www.stenth.com/ca/",
     "telephone": "+1-705-790-1965",
-    "priceRange": "$-$$",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "368 Prince of Wales Dr",
@@ -177,31 +175,15 @@ export default function CanadaLayout({
   }
 
   return (
-    <html lang="en-CA" className="scroll-smooth">
-      <head>
-        {/* Canada-specific meta tags */}
-        <meta name="geo.region" content="CA" />
-        <meta name="geo.country" content="Canada" />
-        <meta name="geo.placename" content="Canada" />
-        <meta name="currency" content="CAD" />
-        <meta name="language" content="English, French" />
-
-        {/* Hreflang tags */}
-        <link rel="alternate" hrefLang="en-ca" href="https://www.stenth.com/ca/" />
-        <link rel="alternate" hrefLang="en-au" href="https://www.stenth.com/au/" />
-        <link rel="alternate" hrefLang="x-default" href="https://www.stenth.com/" />
-
-        {/* Canada-specific JSON-LD */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify([canadaOrganizationJsonLd, canadaLocalBusinessJsonLd])
-          }}
-        />
-      </head>
-      <body>
-        {children}
-      </body>
-    </html>
+    <>
+      {/* Canada-specific JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([canadaOrganizationJsonLd, canadaLocalBusinessJsonLd])
+        }}
+      />
+      {children}
+    </>
   )
 }
