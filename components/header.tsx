@@ -161,7 +161,7 @@ export default function Header() {
 
             <div className="hidden md:flex items-center space-x-2">
               <ul className="flex space-x-1">
-                {NAV.slice(0, 5).map((item, index) => (
+                {NAV.slice(0, 6).map((item, index) => (
                   <li
                     key={item.href}
                     className="relative"
