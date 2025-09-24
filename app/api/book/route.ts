@@ -9,6 +9,10 @@ const FormSchema = z.object({
   email: z.string().email(),
   company: z.string().trim().optional().default(''),
   notes: z.string().trim().optional().default(''),
+  phone: z.string().trim().optional(),
+  country: z.string().trim().optional(),
+  region: z.string().trim().optional(),
+  source: z.string().trim().optional().default('main_booking_page'),
 })
 
 export async function POST(req: NextRequest) {
@@ -21,7 +25,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: false, error: parsed.error.flatten() }, { status: 400 })
   }
 
-  const { name, email, company, notes } = parsed.data
+  const { name, email, company, notes, phone, country, region, source } = parsed.data
 
   // Log environment check
   console.log("Environment check:", {
@@ -52,6 +56,10 @@ export async function POST(req: NextRequest) {
       name,
       company,
       notes,
+      phone,
+      country,
+      region,
+      source,
       status: "form_submitted",
       updated_at: new Date().toISOString(),
     },
@@ -65,7 +73,7 @@ export async function POST(req: NextRequest) {
   await supabaseAdmin.from("booking_events").insert({
     event_type: "FORM",
     email,
-    payload: { name, company, notes, isNewBooking },
+    payload: { name, company, notes, phone, country, region, source, isNewBooking },
   })
 
   // Send email for new bookings only
@@ -96,13 +104,17 @@ export async function POST(req: NextRequest) {
         from: `"Stenth - Bookings" <${fromAddress}>`,
         to: recipients,
         replyTo: email,
-        subject: `📅 New Session Booking from ${name || email}`,
+        subject: `📅 New ${country || 'Global'} Session Booking from ${name || email}`,
         text: `
 New Session Booking
 
 Name: ${name || "Not provided"}
 Email: ${email}
 Company: ${company || "Not provided"}
+${phone ? `Phone: ${phone}` : ""}
+${country ? `Country: ${country}` : ""}
+${region ? `Region: ${region}` : ""}
+${source ? `Source: ${source}` : ""}
 ${notes ? `Notes: ${notes}` : ""}
 
 Status: Form Submitted
@@ -116,10 +128,10 @@ Reply to this email to contact ${name || "the customer"}.
           <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; background: #ffffff;">
             <div style="background: linear-gradient(135deg, #4f46e5, #7c3aed); padding: 40px 30px; border-radius: 10px 10px 0 0;">
               <h1 style="color: white; margin: 0; font-size: 28px; text-align: center;">
-                📅 New Session Booking
+                📅 New ${country || 'Global'} Session Booking
               </h1>
               <p style="color: #e0e7ff; margin: 10px 0 0 0; text-align: center; font-size: 16px;">
-                Someone wants to book a session with Stenth!
+                Someone wants to book a session with Stenth${country ? ` from ${country}` : ''}!
               </p>
             </div>
             
@@ -143,6 +155,30 @@ Reply to this email to contact ${name || "the customer"}.
                   <tr>
                     <td style="padding: 8px 0; color: #64748b; font-weight: 600;">Company:</td>
                     <td style="padding: 8px 0; color: #1e293b; font-size: 16px;">${company}</td>
+                  </tr>
+                  ` : ''}
+                  ${phone ? `
+                  <tr>
+                    <td style="padding: 8px 0; color: #64748b; font-weight: 600;">Phone:</td>
+                    <td style="padding: 8px 0; color: #1e293b; font-size: 16px;">${phone}</td>
+                  </tr>
+                  ` : ''}
+                  ${country ? `
+                  <tr>
+                    <td style="padding: 8px 0; color: #64748b; font-weight: 600;">Country:</td>
+                    <td style="padding: 8px 0; color: #1e293b; font-size: 16px;">${country}</td>
+                  </tr>
+                  ` : ''}
+                  ${region ? `
+                  <tr>
+                    <td style="padding: 8px 0; color: #64748b; font-weight: 600;">Region:</td>
+                    <td style="padding: 8px 0; color: #1e293b; font-size: 16px;">${region}</td>
+                  </tr>
+                  ` : ''}
+                  ${source ? `
+                  <tr>
+                    <td style="padding: 8px 0; color: #64748b; font-weight: 600;">Source:</td>
+                    <td style="padding: 8px 0; color: #1e293b; font-size: 16px;">${source}</td>
                   </tr>
                   ` : ''}
                   <tr>

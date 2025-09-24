@@ -8,6 +8,10 @@ create table if not exists public.bookings (
   email text not null,
   company text,
   notes text,
+  phone text,
+  country text,
+  region text, -- province/state for CA/AU
+  source text, -- booking page source (canada_booking_page, australia_booking_page, etc.)
   status text not null default 'form_submitted',
   cal_uid text,
   start_time timestamptz,
