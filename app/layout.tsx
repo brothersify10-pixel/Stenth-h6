@@ -213,7 +213,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             {children}
           </Suspense>
         </main>
-        <Analytics />
+        <Suspense fallback={null}>
+          <Analytics />
+        </Suspense>
 
         {/* Performance script - externalized for better caching */}
         <script src="/scripts/performance.js" defer />
