@@ -69,9 +69,9 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      maxVideoPreview: -1,
-      maxImagePreview: "large",
-      maxSnippet: -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
   category: "Digital Marketing",
@@ -99,13 +99,12 @@ export const metadata: Metadata = {
   // ✅ Add verification so you can prove ownership to search engines
   verification: {
     google: process.env.GOOGLE_VERIFICATION_CODE || "",
-    bing: process.env.BING_VERIFICATION_CODE || "",
     yandex: process.env.YANDEX_VERIFICATION_CODE || "",
   },
     generator: 'v0.app'
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children, modal }: { children: React.ReactNode; modal: React.ReactNode }) {
   // Move FAQPage JSON-LD to the specific page that actually renders FAQs.
   // Move ProfessionalService JSON-LD to the homepage ONLY (and keep it truthful).
   // Keep Organization + WebSite here (sitewide) since they describe the site/org.
@@ -207,6 +206,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Header />
         </Suspense>
         <main role="main" id="main-content">
+          {modal}
           <Suspense fallback={<div className="min-h-screen bg-slate-950 flex items-center justify-center">
             <div className="animate-spin w-8 h-8 border-2 border-cyan-400 border-t-transparent rounded-full"></div>
           </div>}>

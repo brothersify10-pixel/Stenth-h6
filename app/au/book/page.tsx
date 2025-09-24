@@ -1,6 +1,27 @@
 "use client"
 
 import React, { useState, useEffect } from "react"
+
+interface Particle {
+  id: number
+  x: number
+  y: number
+  size: number
+  opacity: number
+  duration: number
+}
+
+interface FormData {
+  name: string
+  email: string
+  company: string
+  notes: string
+  region: string
+  city: string
+  phone: string
+  country: string
+}
+
 import { CheckCircle, Loader2, Calendar, Clock, Users, Target, Sparkles, ArrowRight, Star, Zap, Shield, TrendingUp, Rocket, Award, Heart, MapPin, Sun } from "lucide-react"
 
 export default function BookAustraliaPage() {
@@ -18,7 +39,7 @@ export default function BookAustraliaPage() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [error, setError] = useState("")
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
-  const [particles, setParticles] = useState([])
+  const [particles, setParticles] = useState<any[]>([])
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
 
   const testimonials = [
@@ -65,7 +86,7 @@ export default function BookAustraliaPage() {
   }
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       setMousePos({ x: e.clientX, y: e.clientY })
     }
     window.addEventListener('mousemove', handleMouseMove)
@@ -99,7 +120,7 @@ export default function BookAustraliaPage() {
     return () => clearInterval(testimonialInterval)
   }, [testimonials.length])
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
     setError("")
@@ -130,7 +151,7 @@ export default function BookAustraliaPage() {
     }
   }
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -455,7 +476,7 @@ export default function BookAustraliaPage() {
                   </div>
                 </div>
 
-                {formData.region && australianCities[formData.region] && (
+                {formData.region && australianCities[formData.region as keyof typeof australianCities] && (
                   <div className="space-y-3">
                     <label className="text-white font-semibold text-sm uppercase tracking-wide">City</label>
                     <select
@@ -465,13 +486,12 @@ export default function BookAustraliaPage() {
                       className="w-full px-5 py-4 bg-slate-800/60 border border-slate-700/50 rounded-2xl text-white focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500/30 transition-all duration-300 text-lg backdrop-blur-sm"
                     >
                       <option value="">Select City</option>
-                      {australianCities[formData.region].map(city => (
+                      {australianCities[formData.region as keyof typeof australianCities].map(city => (
                         <option key={city} value={city} className="bg-slate-800">{city}</option>
                       ))}
                     </select>
                   </div>
                 )}
-                </div>
 
                 <div className="space-y-3">
                   <label className="text-white font-semibold text-sm uppercase tracking-wide">Phone (Optional)</label>

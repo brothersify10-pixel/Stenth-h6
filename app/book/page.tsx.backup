@@ -14,7 +14,7 @@ export default function BookPage() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [error, setError] = useState("")
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
-  const [particles, setParticles] = useState<any[]>([])
+  const [particles, setParticles] = useState([])
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
 
   const testimonials = [
@@ -42,7 +42,7 @@ export default function BookPage() {
   ]
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
+    const handleMouseMove = (e) => {
       setMousePos({ x: e.clientX, y: e.clientY })
     }
     window.addEventListener('mousemove', handleMouseMove)
@@ -76,7 +76,7 @@ export default function BookPage() {
     return () => clearInterval(testimonialInterval)
   }, [testimonials.length])
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setIsSubmitting(true)
     setError("")
@@ -104,7 +104,7 @@ export default function BookPage() {
     }
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,

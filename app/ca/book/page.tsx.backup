@@ -18,7 +18,7 @@ export default function BookCanadaPage() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [error, setError] = useState("")
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
-  const [particles, setParticles] = useState<any[]>([])
+  const [particles, setParticles] = useState([])
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
 
   const testimonials = [
@@ -71,7 +71,7 @@ export default function BookCanadaPage() {
   }
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
+    const handleMouseMove = (e) => {
       setMousePos({ x: e.clientX, y: e.clientY })
     }
     window.addEventListener('mousemove', handleMouseMove)
@@ -105,7 +105,7 @@ export default function BookCanadaPage() {
     return () => clearInterval(testimonialInterval)
   }, [testimonials.length])
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setIsSubmitting(true)
     setError("")
@@ -136,7 +136,7 @@ export default function BookCanadaPage() {
     }
   }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -461,7 +461,7 @@ export default function BookCanadaPage() {
                   </div>
                 </div>
 
-                {formData.region && canadianCities[formData.region as keyof typeof canadianCities] && (
+                {formData.region && canadianCities[formData.region] && (
                   <div className="space-y-3">
                     <label className="text-white font-semibold text-sm uppercase tracking-wide">City</label>
                     <select
@@ -471,7 +471,7 @@ export default function BookCanadaPage() {
                       className="w-full px-5 py-4 bg-slate-800/60 border border-slate-700/50 rounded-2xl text-white focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/30 transition-all duration-300 text-lg backdrop-blur-sm"
                     >
                       <option value="">Select City</option>
-                      {canadianCities[formData.region as keyof typeof canadianCities].map(city => (
+                      {canadianCities[formData.region].map(city => (
                         <option key={city} value={city} className="bg-slate-800">{city}</option>
                       ))}
                     </select>

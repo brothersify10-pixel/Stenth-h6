@@ -28,9 +28,9 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
-  const [hoveredItem, setHoveredItem] = useState<number | null>(null)
+  const [hoveredItem, setHoveredItem] = useState(null)
   // Removed megaMenuOpen state as it's no longer needed
-  const [particles, setParticles] = useState<any[]>([])
+  const [particles, setParticles] = useState([])
   const [isHeaderVisible, setIsHeaderVisible] = useState(true)
   const pathname = usePathname()
 
@@ -89,7 +89,7 @@ export default function Header() {
   }, [open])
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
+    const handleMouseMove = (e) => {
       setMousePos({ x: e.clientX, y: e.clientY })
     }
     window.addEventListener("mousemove", handleMouseMove, { passive: true })

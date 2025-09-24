@@ -17,7 +17,7 @@ export default function Hero() {
     const circle = circleRef.current
     if (!container || !circle) return
 
-    const reduceMotion = typeof window !== "undefined" ? window.matchMedia("(prefers-reduced-motion: reduce)").matches : false
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
     if (reduceMotion) return // respect user settings
 
     let rafId = 0
@@ -26,7 +26,6 @@ export default function Hero() {
     const state = { targetX: 0, targetY: 0, x: 0, y: 0 }
 
     function onMove(e: MouseEvent) {
-      if (!container) return
       const rect = container.getBoundingClientRect()
       const cx = rect.left + rect.width / 2
       const cy = rect.top + rect.height / 2
@@ -36,7 +35,6 @@ export default function Hero() {
     }
 
     function tick() {
-      if (!running || !circle) return
       if (!running) return
       // smooth to target
       state.x = lerp(state.x, state.targetX, 0.08)
