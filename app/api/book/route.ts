@@ -23,7 +23,10 @@ export async function POST(req: NextRequest) {
   const parsed = FormSchema.safeParse(json)
 
   if (!parsed.success) {
-    return NextResponse.json({ ok: false, error: parsed.error.flatten() }, { status: 400 })
+    return NextResponse.json({
+      ok: false,
+      error: "Validation failed: " + parsed.error.issues.map(issue => `${issue.path.join('.')}: ${issue.message}`).join(', ')
+    }, { status: 400 })
   }
 
   const { name, email, company, notes, phone, country, region, city, source } = parsed.data
@@ -79,7 +82,8 @@ export async function POST(req: NextRequest) {
   })
 
   // Send email for all bookings (including repeat submissions)
-  if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+  // Skip email sending in development to avoid DNS lookup issues
+  if (process.env.NODE_ENV === 'production' && process.env.EMAIL_USER && process.env.EMAIL_PASS) {
     try {
       const transporter = nodemailer.createTransport({
         host: process.env.EMAIL_HOST || 'smtp.gmail.com',
@@ -90,17 +94,11 @@ export async function POST(req: NextRequest) {
           user: process.env.EMAIL_USER,
           pass: process.env.EMAIL_PASS
         },
-        logger: process.env.NODE_ENV === 'development',
-        debug: process.env.NODE_ENV === 'development',
-        // Skip DNS lookup in development to avoid unenv issues
         dnsTimeout: 30000,
         connectionTimeout: 30000,
       })
 
-      // Skip verification in development environment
-      if (process.env.NODE_ENV === 'production') {
-        await transporter.verify()
-      }
+      await transporter.verify()
 
       const recipients =
         process.env.EMAIL_TO?.split(',').map(s => s.trim()).filter(Boolean)
@@ -295,6 +293,19 @@ ${notes}
         },
       })
     }
+  } else if (process.env.NODE_ENV === 'development') {
+    // Development mode: Log email instead of sending
+    const recipients = process.env.EMAIL_TO?.split(',').map(s => s.trim()).filter(Boolean)
+      || ['aakash.lakhataria@stenth.com', 'ansh.rai@stenth.com']
+
+    console.log('📧 [DEV MODE] Would send booking email to:', recipients)
+    console.log('📧 [DEV MODE] Booking details:', { name, email, company, phone, country, region, city, source })
+
+    await supabaseAdmin.from("booking_events").insert({
+      event_type: "EMAIL_SIMULATED",
+      email,
+      payload: { emailType: "booking_notification", sentTo: recipients, dev_mode: true },
+    })
   }
 
   return NextResponse.json({ ok: true })

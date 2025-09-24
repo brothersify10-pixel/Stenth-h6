@@ -33,7 +33,8 @@ export async function POST(request: NextRequest) {
     }
 
     // Send email notification using Google Workspace
-    if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+    // Skip email sending in development to avoid DNS lookup issues
+    if (process.env.NODE_ENV === 'production' && process.env.EMAIL_USER && process.env.EMAIL_PASS) {
       try {
         // FIXED: createTransport (not createTransporter)
         const transporter = nodemailer.createTransport({
@@ -194,6 +195,12 @@ Notification sent to: ${recipients.join(', ')}
         console.error('Email sending failed:', emailError)
         // Don't fail the entire request if email fails
       }
+    } else if (process.env.NODE_ENV === 'development') {
+      // Development mode: Log email instead of sending
+      const recipients = process.env.EMAIL_TO?.split(',').map(email => email.trim()) || ['aakash.lakhataria@stenth.com', 'ansh.rai@stenth.com']
+
+      console.log('📧 [DEV MODE] Would send contact email to:', recipients)
+      console.log('📧 [DEV MODE] Contact details:', { name, email, company, message })
     }
 
     return NextResponse.json(
