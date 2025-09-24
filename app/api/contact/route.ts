@@ -40,10 +40,16 @@ export async function POST(request: NextRequest) {
           host: process.env.EMAIL_HOST || 'smtp.gmail.com',
           port: parseInt(process.env.EMAIL_PORT || '587'),
           secure: false,
+          requireTLS: true,
           auth: {
             user: process.env.EMAIL_USER,
             pass: process.env.EMAIL_PASS,
           },
+          logger: process.env.NODE_ENV === 'development',
+          debug: process.env.NODE_ENV === 'development',
+          // Skip DNS lookup in development to avoid unenv issues
+          dnsTimeout: 30000,
+          connectionTimeout: 30000,
         })
 
         // Split EMAIL_TO by comma and trim spaces

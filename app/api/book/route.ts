@@ -86,15 +86,21 @@ export async function POST(req: NextRequest) {
         port: parseInt(process.env.EMAIL_PORT || '587', 10),
         secure: false,
         requireTLS: true,
-        auth: { 
-          user: process.env.EMAIL_USER, 
-          pass: process.env.EMAIL_PASS 
+        auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASS
         },
-        logger: true,
-        debug: true,
+        logger: process.env.NODE_ENV === 'development',
+        debug: process.env.NODE_ENV === 'development',
+        // Skip DNS lookup in development to avoid unenv issues
+        dnsTimeout: 30000,
+        connectionTimeout: 30000,
       })
 
-      await transporter.verify()
+      // Skip verification in development environment
+      if (process.env.NODE_ENV === 'production') {
+        await transporter.verify()
+      }
 
       const recipients =
         process.env.EMAIL_TO?.split(',').map(s => s.trim()).filter(Boolean)
