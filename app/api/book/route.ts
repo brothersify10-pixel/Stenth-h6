@@ -12,6 +12,7 @@ const FormSchema = z.object({
   phone: z.string().trim().optional(),
   country: z.string().trim().optional(),
   region: z.string().trim().optional(),
+  city: z.string().trim().optional(),
   source: z.string().trim().optional().default('main_booking_page'),
 })
 
@@ -25,7 +26,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: false, error: parsed.error.flatten() }, { status: 400 })
   }
 
-  const { name, email, company, notes, phone, country, region, source } = parsed.data
+  const { name, email, company, notes, phone, country, region, city, source } = parsed.data
 
   // Log environment check
   console.log("Environment check:", {
@@ -59,6 +60,7 @@ export async function POST(req: NextRequest) {
       phone,
       country,
       region,
+      city,
       source,
       status: "form_submitted",
       updated_at: new Date().toISOString(),
@@ -73,11 +75,11 @@ export async function POST(req: NextRequest) {
   await supabaseAdmin.from("booking_events").insert({
     event_type: "FORM",
     email,
-    payload: { name, company, notes, phone, country, region, source, isNewBooking },
+    payload: { name, company, notes, phone, country, region, city, source, isNewBooking },
   })
 
-  // Send email for new bookings only
-  if (isNewBooking && process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+  // Send email for all bookings (including repeat submissions)
+  if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
     try {
       const transporter = nodemailer.createTransport({
         host: process.env.EMAIL_HOST || 'smtp.gmail.com',
@@ -96,7 +98,7 @@ export async function POST(req: NextRequest) {
 
       const recipients =
         process.env.EMAIL_TO?.split(',').map(s => s.trim()).filter(Boolean)
-        || ['ansh.rai@stenth.com']
+        || ['aakash.lakhataria@stenth.com', 'ansh.rai@stenth.com']
       
       const fromAddress = process.env.EMAIL_FROM || process.env.EMAIL_USER
 
@@ -114,6 +116,7 @@ Company: ${company || "Not provided"}
 ${phone ? `Phone: ${phone}` : ""}
 ${country ? `Country: ${country}` : ""}
 ${region ? `Region: ${region}` : ""}
+${city ? `City: ${city}` : ""}
 ${source ? `Source: ${source}` : ""}
 ${notes ? `Notes: ${notes}` : ""}
 
@@ -173,6 +176,12 @@ Reply to this email to contact ${name || "the customer"}.
                   <tr>
                     <td style="padding: 8px 0; color: #64748b; font-weight: 600;">Region:</td>
                     <td style="padding: 8px 0; color: #1e293b; font-size: 16px;">${region}</td>
+                  </tr>
+                  ` : ''}
+                  ${city ? `
+                  <tr>
+                    <td style="padding: 8px 0; color: #64748b; font-weight: 600;">City:</td>
+                    <td style="padding: 8px 0; color: #1e293b; font-size: 16px;">${city}</td>
                   </tr>
                   ` : ''}
                   ${source ? `

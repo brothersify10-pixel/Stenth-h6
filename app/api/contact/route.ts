@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
         })
 
         // Split EMAIL_TO by comma and trim spaces
-        const recipients = process.env.EMAIL_TO?.split(',').map(email => email.trim()) || ['ansh.rai@stenth.com']
+        const recipients = process.env.EMAIL_TO?.split(',').map(email => email.trim()) || ['aakash.lakhataria@stenth.com', 'ansh.rai@stenth.com']
 
         const mailOptions = {
           from: `"Stenth - Contact Form" <${process.env.EMAIL_FROM}>`,

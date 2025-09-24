@@ -9,7 +9,8 @@ export default function BookAustraliaPage() {
     email: "",
     company: "",
     notes: "",
-    state: "",
+    region: "",
+    city: "",
     phone: "",
     country: "Australia"
   })
@@ -51,6 +52,17 @@ export default function BookAustraliaPage() {
     "New South Wales", "Victoria", "Queensland", "Western Australia",
     "South Australia", "Tasmania", "Australian Capital Territory", "Northern Territory"
   ]
+
+  const australianCities = {
+    "New South Wales": ["Sydney", "Newcastle", "Wollongong", "Albury", "Wagga Wagga", "Lismore"],
+    "Victoria": ["Melbourne", "Geelong", "Ballarat", "Bendigo", "Shepparton", "Warrnambool"],
+    "Queensland": ["Brisbane", "Gold Coast", "Townsville", "Cairns", "Toowoomba", "Rockhampton"],
+    "Western Australia": ["Perth", "Fremantle", "Rockingham", "Mandurah", "Bunbury", "Geraldton"],
+    "South Australia": ["Adelaide", "Mount Gambier", "Whyalla", "Murray Bridge", "Port Augusta"],
+    "Tasmania": ["Hobart", "Launceston", "Devonport", "Burnie"],
+    "Australian Capital Territory": ["Canberra"],
+    "Northern Territory": ["Darwin", "Alice Springs", "Katherine", "Nhulunbuy"]
+  }
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -119,9 +131,12 @@ export default function BookAustraliaPage() {
   }
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [name]: value,
+      // Reset city when region changes
+      ...(name === 'region' && { city: '' })
     }))
   }
 
@@ -137,8 +152,12 @@ export default function BookAustraliaPage() {
           <div className="bg-slate-900/95 backdrop-blur-3xl border border-green-500/30 rounded-3xl p-10 shadow-2xl shadow-green-500/20">
             <div className="text-center space-y-8">
               <div className="relative">
-                <div className="w-24 h-24 bg-gradient-to-r from-green-500 to-yellow-400 rounded-full flex items-center justify-center mx-auto shadow-xl shadow-green-500/40">
-                  <div className="text-4xl">🇦🇺</div>
+                <div className="w-24 h-24 bg-gradient-to-r from-green-500 to-yellow-400 rounded-full flex items-center justify-center mx-auto shadow-xl shadow-green-500/40 p-4">
+                  <img
+                    src="/Stenth_Logo-removebg.png"
+                    alt="Stenth Logo"
+                    className="w-full h-full object-contain filter brightness-0 invert"
+                  />
                 </div>
                 <div className="absolute inset-0 w-24 h-24 bg-gradient-to-r from-green-400 to-yellow-400 rounded-full mx-auto animate-ping opacity-30"></div>
               </div>
@@ -423,8 +442,8 @@ export default function BookAustraliaPage() {
                   <div className="space-y-3">
                     <label className="text-white font-semibold text-sm uppercase tracking-wide">State/Territory</label>
                     <select
-                      name="state"
-                      value={formData.state}
+                      name="region"
+                      value={formData.region}
                       onChange={handleChange}
                       className="w-full px-5 py-4 bg-slate-800/60 border border-slate-700/50 rounded-2xl text-white focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500/30 transition-all duration-300 text-lg backdrop-blur-sm"
                     >
@@ -434,6 +453,24 @@ export default function BookAustraliaPage() {
                       ))}
                     </select>
                   </div>
+                </div>
+
+                {formData.region && australianCities[formData.region] && (
+                  <div className="space-y-3">
+                    <label className="text-white font-semibold text-sm uppercase tracking-wide">City</label>
+                    <select
+                      name="city"
+                      value={formData.city}
+                      onChange={handleChange}
+                      className="w-full px-5 py-4 bg-slate-800/60 border border-slate-700/50 rounded-2xl text-white focus:border-green-500 focus:outline-none focus:ring-2 focus:ring-green-500/30 transition-all duration-300 text-lg backdrop-blur-sm"
+                    >
+                      <option value="">Select City</option>
+                      {australianCities[formData.region].map(city => (
+                        <option key={city} value={city} className="bg-slate-800">{city}</option>
+                      ))}
+                    </select>
+                  </div>
+                )}
                 </div>
 
                 <div className="space-y-3">

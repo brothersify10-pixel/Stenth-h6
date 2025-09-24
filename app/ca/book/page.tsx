@@ -10,6 +10,7 @@ export default function BookCanadaPage() {
     company: "",
     notes: "",
     region: "",
+    city: "",
     phone: "",
     country: "Canada"
   })
@@ -52,6 +53,22 @@ export default function BookCanadaPage() {
     "Saskatchewan", "Nova Scotia", "New Brunswick", "Newfoundland and Labrador",
     "Prince Edward Island", "Northwest Territories", "Yukon", "Nunavut"
   ]
+
+  const canadianCities = {
+    "Ontario": ["Toronto", "Ottawa", "Hamilton", "London", "Kitchener", "Windsor", "Mississauga"],
+    "Quebec": ["Montreal", "Quebec City", "Laval", "Gatineau", "Sherbrooke", "Longueuil"],
+    "British Columbia": ["Vancouver", "Surrey", "Burnaby", "Richmond", "Victoria", "Kelowna"],
+    "Alberta": ["Calgary", "Edmonton", "Red Deer", "Lethbridge", "Medicine Hat"],
+    "Manitoba": ["Winnipeg", "Brandon", "Steinbach"],
+    "Saskatchewan": ["Saskatoon", "Regina", "Prince Albert"],
+    "Nova Scotia": ["Halifax", "Sydney", "Dartmouth"],
+    "New Brunswick": ["Saint John", "Moncton", "Fredericton"],
+    "Newfoundland and Labrador": ["St. John's", "Corner Brook", "Mount Pearl"],
+    "Prince Edward Island": ["Charlottetown", "Summerside"],
+    "Northwest Territories": ["Yellowknife", "Hay River"],
+    "Yukon": ["Whitehorse", "Dawson City"],
+    "Nunavut": ["Iqaluit", "Rankin Inlet"]
+  }
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -120,9 +137,12 @@ export default function BookCanadaPage() {
   }
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [name]: value,
+      // Reset city when region changes
+      ...(name === 'region' && { city: '' })
     }))
   }
 
@@ -138,8 +158,12 @@ export default function BookCanadaPage() {
           <div className="bg-slate-900/95 backdrop-blur-3xl border border-red-500/30 rounded-3xl p-10 shadow-2xl shadow-red-500/20">
             <div className="text-center space-y-8">
               <div className="relative">
-                <div className="w-24 h-24 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto shadow-xl shadow-red-500/40">
-                  <div className="text-4xl">🇨🇦</div>
+                <div className="w-24 h-24 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto shadow-xl shadow-red-500/40 p-4">
+                  <img
+                    src="/Stenth_Logo-removebg.png"
+                    alt="Stenth Logo"
+                    className="w-full h-full object-contain filter brightness-0 invert"
+                  />
                 </div>
                 <div className="absolute inset-0 w-24 h-24 bg-gradient-to-r from-red-400 to-red-500 rounded-full mx-auto animate-ping opacity-30"></div>
               </div>
@@ -435,6 +459,24 @@ export default function BookCanadaPage() {
                       ))}
                     </select>
                   </div>
+                </div>
+
+                {formData.region && canadianCities[formData.region] && (
+                  <div className="space-y-3">
+                    <label className="text-white font-semibold text-sm uppercase tracking-wide">City</label>
+                    <select
+                      name="city"
+                      value={formData.city}
+                      onChange={handleChange}
+                      className="w-full px-5 py-4 bg-slate-800/60 border border-slate-700/50 rounded-2xl text-white focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/30 transition-all duration-300 text-lg backdrop-blur-sm"
+                    >
+                      <option value="">Select City</option>
+                      {canadianCities[formData.region].map(city => (
+                        <option key={city} value={city} className="bg-slate-800">{city}</option>
+                      ))}
+                    </select>
+                  </div>
+                )}
                 </div>
 
                 <div className="space-y-3">
