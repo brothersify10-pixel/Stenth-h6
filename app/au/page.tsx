@@ -90,10 +90,10 @@ export default function AustraliaHomepage() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Link
-                href="/au/contact"
+                href="/au/book"
                 className="px-8 py-4 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold rounded-full hover:from-green-400 hover:to-green-500 transition-all duration-300 shadow-lg shadow-green-500/25"
               >
-                Get Free Australian Market Analysis
+                🇦🇺 Book Free Aussie Strategy Session
               </Link>
               <Link
                 href="/au/case-studies"
@@ -195,10 +195,10 @@ export default function AustraliaHomepage() {
                 </ul>
 
                 <Link
-                  href="/au/contact"
+                  href="/au/book"
                   className="mt-6 block w-full text-center px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold rounded-full hover:from-green-400 hover:to-green-500 transition-all duration-300"
                 >
-                  Get Free Consultation
+                  Book Free Session
                 </Link>
               </div>
             ))}
@@ -254,7 +254,7 @@ export default function AustraliaHomepage() {
               </div>
 
               <Link
-                href="/au/contact"
+                href="/au/book"
                 className="inline-block px-8 py-4 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold rounded-full hover:from-green-400 hover:to-green-500 transition-all duration-300 shadow-lg shadow-green-500/25"
               >
                 Book Your Free Australian Market Strategy Call

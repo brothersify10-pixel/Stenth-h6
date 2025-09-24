@@ -90,10 +90,10 @@ export default function CanadaHomepage() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Link
-                href="/ca/contact"
+                href="/ca/book"
                 className="px-8 py-4 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold rounded-full hover:from-red-400 hover:to-red-500 transition-all duration-300 shadow-lg shadow-red-500/25"
               >
-                Get Free Canadian Market Analysis
+                🇨🇦 Book Free Canadian Strategy Session
               </Link>
               <Link
                 href="/ca/case-studies"
@@ -195,10 +195,10 @@ export default function CanadaHomepage() {
                 </ul>
 
                 <Link
-                  href="/ca/contact"
+                  href="/ca/book"
                   className="mt-6 block w-full text-center px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold rounded-full hover:from-red-400 hover:to-red-500 transition-all duration-300"
                 >
-                  Get Free Consultation
+                  Book Free Session
                 </Link>
               </div>
             ))}
@@ -254,7 +254,7 @@ export default function CanadaHomepage() {
               </div>
 
               <Link
-                href="/ca/contact"
+                href="/ca/book"
                 className="inline-block px-8 py-4 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold rounded-full hover:from-red-400 hover:to-red-500 transition-all duration-300 shadow-lg shadow-red-500/25"
               >
                 Book Your Free Canadian Market Strategy Call
