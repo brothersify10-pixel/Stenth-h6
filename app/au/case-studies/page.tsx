@@ -148,7 +148,7 @@ export default function AustraliaCaseStudiesPage() {
               </p>
             </div>
             <div className="space-y-16">
-              {caseStudies.map((study, index) => (
+              {internationalExamples.map((study, index) => (
                 <div key={study.id} className="bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8">
 
