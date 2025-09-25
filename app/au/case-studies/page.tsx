@@ -6,41 +6,45 @@ import STENTHFooter from "@/components/stenth-footer";
 import FloatingElements from "@/components/floating-elements";
 
 export default function AustraliaCaseStudiesPage() {
-  // International case studies that demonstrate our proven methods
-  const internationalExamples = [
+  // Real client success stories that demonstrate our proven methods
+  const realClientExamples = [
     {
       id: 1,
-      client: "North American E-commerce Store",
-      industry: "Retail",
+      client: "Mr. Sub 6 FMCG Chain Stores",
+      industry: "Retail/FMCG",
       location: "International",
-      challenge: "Fashion retailer needed to compete with established brands and increase online sales",
-      solution: "Comprehensive SEO strategy, Google Shopping campaigns, and social media marketing targeting regional trends",
+      challenge: "Chain store owner needed clear strategies and ROI-focused marketing to achieve real growth",
+      solution: "Comprehensive digital marketing strategies with monthly insights and performance tracking",
       results: {
-        organic_growth: "420%",
-        lead_increase: "280%",
-        revenue_growth: "$3.2M USD",
-        timeframe: "10 months"
+        organic_growth: "300%",
+        lead_increase: "Significant Growth",
+        revenue_growth: "Real Growth in 6 Months",
+        timeframe: "6 months"
       },
-      services: ["E-commerce SEO", "Google Shopping", "Social Media"],
-      testimonial: "Stenth's understanding of market behaviour and seasonal trends helped us dominate our segment.",
-      image: "/images/case-study-international-ecommerce.jpg"
+      services: ["Digital Strategy", "Performance Marketing", "Analytics"],
+      testimonial: "STENTH transformed our business with clear strategies, monthly insights, and ROI-focused marketing. We achieved real growth within 6 months.",
+      client_name: "Balvinder Singh",
+      client_role: "Owner/CEO",
+      image: "/images/case-study-retail.jpg"
     },
     {
       id: 2,
-      client: "International Tech Startup",
-      industry: "Technology",
+      client: "Sertuca Tours & Travels",
+      industry: "Travel & Tourism",
       location: "International",
-      challenge: "SaaS company needed to establish brand presence and generate B2B leads in competitive markets",
-      solution: "Technical SEO optimization, LinkedIn B2B campaigns, and content marketing targeting business decision-makers",
+      challenge: "Travel company needed transparent marketing budget allocation and measurable results",
+      solution: "Monthly growth sessions, budget tracking, and performance-focused campaigns",
       results: {
-        organic_growth: "350%",
-        lead_increase: "190%",
-        revenue_growth: "$2.8M USD",
-        timeframe: "12 months"
+        organic_growth: "Transparent ROI",
+        lead_increase: "Improved Tracking",
+        revenue_growth: "Budget Optimization",
+        timeframe: "Ongoing"
       },
-      services: ["B2B SEO", "LinkedIn Ads", "Content Marketing"],
-      testimonial: "The team's knowledge of B2B landscapes and compliance requirements was exactly what we needed.",
-      image: "/images/case-study-international-tech.jpg"
+      services: ["Marketing Strategy", "Budget Management", "Performance Tracking"],
+      testimonial: "The monthly growth sessions are game-changing. Finally, we know exactly where our marketing budget goes and what results we're getting.",
+      client_name: "John Castillo",
+      client_role: "Managing Director",
+      image: "/images/case-study-travel.jpg"
     },
     {
       id: 3,
@@ -60,21 +64,23 @@ export default function AustraliaCaseStudiesPage() {
       image: "/images/case-study-brisbane-tradie.jpg"
     },
     {
-      id: 4,
-      client: "Industrial Services Company",
-      industry: "Industrial Services",
+      id: 3,
+      client: "FinanceFlow",
+      industry: "Fintech",
       location: "International",
-      challenge: "Equipment supplier needed to reach companies across multiple markets and regions",
-      solution: "Industry-specific content marketing, LinkedIn advertising, and technical SEO targeting industry keywords",
+      challenge: "Fintech startup needed to improve lead quality and conversion rates in competitive market",
+      solution: "Complete strategy to execution approach with lead quality optimization and conversion rate improvement",
       results: {
-        organic_growth: "280%",
-        lead_increase: "310%",
-        revenue_growth: "$4.1M USD",
-        timeframe: "14 months"
+        organic_growth: "150%",
+        lead_increase: "150% Lead Quality Improvement",
+        revenue_growth: "2x Conversion Rates",
+        timeframe: "4 months"
       },
-      services: ["Industry SEO", "LinkedIn Ads", "Content Strategy"],
-      testimonial: "Stenth helped us become a leading supplier in our industry. Their knowledge is unmatched.",
-      image: "/images/case-study-industrial.jpg"
+      services: ["Full-Service Marketing", "Lead Optimization", "Conversion Strategy"],
+      testimonial: "From strategy to execution, STENTH handles everything. Our lead quality improved by 150% and conversion rates doubled in just 4 months.",
+      client_name: "Emily Rodriguez",
+      client_role: "Founder",
+      image: "/images/case-study-fintech.jpg"
     }
   ];
 
@@ -148,7 +154,7 @@ export default function AustraliaCaseStudiesPage() {
               </p>
             </div>
             <div className="space-y-16">
-              {internationalExamples.map((study, index) => (
+              {realClientExamples.map((study, index) => (
                 <div key={study.id} className="bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8">
 
@@ -198,7 +204,14 @@ export default function AustraliaCaseStudiesPage() {
                             <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
                           ))}
                         </div>
-                        <p className="text-slate-300 italic">"{study.testimonial}"</p>
+                        <p className="text-slate-300 italic mb-4">"{study.testimonial}"</p>
+                        {study.client_name && (
+                          <div className="border-t border-slate-600 pt-4">
+                            <div className="text-white font-semibold">{study.client_name}</div>
+                            <div className="text-slate-400 text-sm">{study.client_role}</div>
+                            <div className="text-green-400 text-sm">{study.client}</div>
+                          </div>
+                        )}
                       </div>
                     </div>
 

@@ -6,75 +6,71 @@ import STENTHFooter from "@/components/stenth-footer";
 import FloatingElements from "@/components/floating-elements";
 
 export default function CanadaCaseStudiesPage() {
-  const caseStudies = [
+  const realClientExamples = [
     {
       id: 1,
-      client: "Toronto Tech Startup",
-      industry: "Technology",
-      location: "Toronto, ON",
-      challenge: "New SaaS company needed to establish online presence and generate qualified leads in competitive Canadian market",
-      solution: "Comprehensive SEO strategy targeting Canadian B2B keywords, Google Ads campaigns, and LinkedIn marketing",
+      client: "Mr. Sub 6 FMCG Chain Stores",
+      industry: "Retail/FMCG",
+      location: "International",
+      challenge: "Chain store owner needed clear strategies and ROI-focused marketing to achieve real growth",
+      solution: "Comprehensive digital marketing strategies with monthly insights and performance tracking",
       results: {
         organic_growth: "300%",
-        lead_increase: "250%",
-        revenue_growth: "$2.5M CAD",
-        timeframe: "12 months"
+        lead_increase: "Significant Growth",
+        revenue_growth: "Real Growth in 6 Months",
+        timeframe: "6 months"
       },
-      services: ["SEO", "Google Ads", "Social Media"],
-      testimonial: "Stenth understood the Canadian market immediately. Their bilingual approach helped us reach Quebec customers we never could before.",
-      image: "/images/case-study-toronto-tech.jpg"
+      services: ["Digital Strategy", "Performance Marketing", "Analytics"],
+      testimonial: "STENTH transformed our business with clear strategies, monthly insights, and ROI-focused marketing. We achieved real growth within 6 months.",
+      client_name: "Balvinder Singh",
+      client_role: "Owner/CEO",
+      image: "/images/case-study-retail.jpg"
     },
     {
       id: 2,
-      client: "Vancouver E-commerce Store",
-      industry: "Retail",
-      location: "Vancouver, BC",
-      challenge: "Local outdoor gear retailer wanted to expand online sales across Western Canada while competing with international brands",
-      solution: "E-commerce SEO optimization, local SEO for multiple BC locations, and targeted Google Shopping campaigns",
+      client: "Sertuca Tours & Travels",
+      industry: "Travel & Tourism",
+      location: "International",
+      challenge: "Travel company needed transparent marketing budget allocation and measurable results",
+      solution: "Monthly growth sessions, budget tracking, and performance-focused campaigns",
       results: {
-        organic_growth: "400%",
-        lead_increase: "180%",
-        revenue_growth: "$1.8M CAD",
-        timeframe: "8 months"
+        organic_growth: "Transparent ROI",
+        lead_increase: "Improved Tracking",
+        revenue_growth: "Budget Optimization",
+        timeframe: "Ongoing"
       },
-      services: ["E-commerce SEO", "Local SEO", "Google Shopping"],
-      testimonial: "The team's knowledge of Canadian outdoor culture and seasonal trends was exactly what we needed to grow our online presence.",
-      image: "/images/case-study-vancouver-ecommerce.jpg"
+      services: ["Marketing Strategy", "Budget Management", "Performance Tracking"],
+      testimonial: "The monthly growth sessions are game-changing. Finally, we know exactly where our marketing budget goes and what results we're getting.",
+      client_name: "John Castillo",
+      client_role: "Managing Director",
+      image: "/images/case-study-travel.jpg"
     },
     {
       id: 3,
-      client: "Montreal Law Firm",
-      industry: "Legal",
-      location: "Montreal, QC",
-      challenge: "Bilingual law firm needed to rank for both English and French legal terms while maintaining professional credibility",
-      solution: "Bilingual SEO strategy, legal content marketing, and reputation management across English and French markets",
+      client: "FinanceFlow",
+      industry: "Fintech",
+      location: "International",
+      challenge: "Fintech startup needed to improve lead quality and conversion rates in competitive market",
+      solution: "Complete strategy to execution approach with lead quality optimization and conversion rate improvement",
       results: {
-        organic_growth: "220%",
-        lead_increase: "160%",
-        revenue_growth: "$950K CAD",
-        timeframe: "10 months"
+        organic_growth: "150%",
+        lead_increase: "150% Lead Quality Improvement",
+        revenue_growth: "2x Conversion Rates",
+        timeframe: "4 months"
       },
-      services: ["Legal SEO", "Content Marketing", "Reputation Management"],
-      testimonial: "Their bilingual expertise and understanding of Quebec's legal market helped us become the go-to firm in our practice area.",
-      image: "/images/case-study-montreal-law.jpg"
-    },
-    {
-      id: 4,
-      client: "Calgary Energy Consulting",
-      industry: "Energy",
-      location: "Calgary, AB",
-      challenge: "Energy consulting firm needed to establish thought leadership and generate B2B leads during industry downturn",
-      solution: "Technical content marketing, LinkedIn B2B campaigns, and industry-specific SEO targeting oil & gas professionals",
-      results: {
-        organic_growth: "275%",
-        lead_increase: "320%",
-        revenue_growth: "$3.2M CAD",
-        timeframe: "14 months"
-      },
-      services: ["B2B Marketing", "Content Strategy", "LinkedIn Ads"],
-      testimonial: "Stenth helped us maintain growth even during challenging times in the energy sector. Their industry knowledge is unmatched.",
-      image: "/images/case-study-calgary-energy.jpg"
+      services: ["Full-Service Marketing", "Lead Optimization", "Conversion Strategy"],
+      testimonial: "From strategy to execution, STENTH handles everything. Our lead quality improved by 150% and conversion rates doubled in just 4 months.",
+      client_name: "Emily Rodriguez",
+      client_role: "Founder",
+      image: "/images/case-study-fintech.jpg"
     }
+  ];
+
+  // Future Canadian success stories will be showcased here
+  const futureCaseStudies = [
+    "Canadian E-commerce Success Story (Coming Soon)",
+    "Toronto B2B Services Growth (In Progress)",
+    "Vancouver Tech Startup Expansion (Starting Soon)"
   ];
 
   const metrics = [
@@ -104,13 +100,13 @@ export default function CanadaCaseStudiesPage() {
                 className="mr-4"
               />
               <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-red-400 via-white to-red-400 bg-clip-text text-transparent">
-                Canadian Success Stories
+                Our Proven Track Record
               </h1>
             </div>
 
             <p className="text-xl text-slate-300 mb-8 leading-relaxed">
-              Real results from Canadian businesses across all provinces. See how our digital marketing
-              strategies have helped companies grow from coast to coast.
+              While we're establishing our Canadian presence, our international success stories demonstrate
+              the proven methods and expertise we'll bring to Canadian businesses.
             </p>
 
             {/* Overall Metrics */}
@@ -132,7 +128,7 @@ export default function CanadaCaseStudiesPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
             <div className="space-y-16">
-              {caseStudies.map((study, index) => (
+              {realClientExamples.map((study, index) => (
                 <div key={study.id} className="bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 p-8">
 
@@ -182,7 +178,14 @@ export default function CanadaCaseStudiesPage() {
                             <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
                           ))}
                         </div>
-                        <p className="text-slate-300 italic">"{study.testimonial}"</p>
+                        <p className="text-slate-300 italic mb-4">"{study.testimonial}"</p>
+                        {study.client_name && (
+                          <div className="border-t border-slate-600 pt-4">
+                            <div className="text-white font-semibold">{study.client_name}</div>
+                            <div className="text-slate-400 text-sm">{study.client_role}</div>
+                            <div className="text-red-400 text-sm">{study.client}</div>
+                          </div>
+                        )}
                       </div>
                     </div>
 
