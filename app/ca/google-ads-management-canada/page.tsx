@@ -195,19 +195,35 @@ export default function GoogleAdsManagementCanadaPage() {
               </div>
             </div>
 
-            {/* Canada Stats */}
-            <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-blue-400 mb-2">$50M+</div>
-                <div className="text-slate-400">Ad Spend Managed</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-blue-400 mb-2">350%</div>
-                <div className="text-slate-400">Average ROI</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-blue-400 mb-2">500+</div>
-                <div className="text-slate-400">Campaigns Managed</div>
+            {/* Canadian Market Entry */}
+            <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700/50 max-w-4xl mx-auto">
+              <h3 className="text-2xl font-bold text-white mb-4">🍁 Bringing World-Class Google Ads Expertise to Canada</h3>
+              <p className="text-slate-300 text-lg leading-relaxed mb-6">
+                We're excited to expand our proven international Google Ads strategies to the Canadian market.
+                As early Canadian partners, you'll benefit from personalized attention, direct access to our senior team,
+                and our complete suite of digital marketing services.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+                <div>
+                  <div className="text-2xl font-bold text-blue-400 mb-2">🎯</div>
+                  <div className="text-slate-300 font-medium">Google Ads Focus</div>
+                  <div className="text-slate-400 text-sm">Specialized PPC expertise</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-blue-400 mb-2">📊</div>
+                  <div className="text-slate-300 font-medium">Full-Service</div>
+                  <div className="text-slate-400 text-sm">Complete digital marketing</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-blue-400 mb-2">🌍</div>
+                  <div className="text-slate-300 font-medium">Global Experience</div>
+                  <div className="text-slate-400 text-sm">International track record</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-blue-400 mb-2">🏆</div>
+                  <div className="text-slate-300 font-medium">Pioneer Benefits</div>
+                  <div className="text-slate-400 text-sm">Early adopter advantages</div>
+                </div>
               </div>
             </div>
           </div>
@@ -374,12 +390,59 @@ export default function GoogleAdsManagementCanadaPage() {
         </div>
       </section>
 
+      {/* Beyond Google Ads - Full Service */}
+      <section className="py-20 bg-slate-900/30">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-4xl font-bold text-white mb-8">
+              Beyond Google Ads: Complete Digital Marketing Solutions
+            </h2>
+            <p className="text-xl text-slate-300 mb-12">
+              While Google Ads drives immediate results, our comprehensive approach ensures long-term success across all digital channels.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300">
+                <div className="text-3xl mb-4">🚀</div>
+                <h3 className="text-xl font-bold text-white mb-3">Digital Strategy</h3>
+                <p className="text-slate-300 text-sm">Comprehensive planning and roadmapping for your Canadian market expansion.</p>
+              </div>
+              <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300">
+                <div className="text-3xl mb-4">📊</div>
+                <h3 className="text-xl font-bold text-white mb-3">SEO & Content</h3>
+                <p className="text-slate-300 text-sm">Organic growth strategies and bilingual content for Canadian audiences.</p>
+              </div>
+              <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300">
+                <div className="text-3xl mb-4">🎨</div>
+                <h3 className="text-xl font-bold text-white mb-3">Creative Design</h3>
+                <p className="text-slate-300 text-sm">Stunning visuals and brand experiences that resonate with Canadian culture.</p>
+              </div>
+              <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300">
+                <div className="text-3xl mb-4">📱</div>
+                <h3 className="text-xl font-bold text-white mb-3">Social Media</h3>
+                <p className="text-slate-300 text-sm">Engaging social campaigns across platforms popular with Canadian audiences.</p>
+              </div>
+              <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300">
+                <div className="text-3xl mb-4">📈</div>
+                <h3 className="text-xl font-bold text-white mb-3">Analytics & Insights</h3>
+                <p className="text-slate-300 text-sm">Advanced tracking and reporting to optimize your entire marketing funnel.</p>
+              </div>
+              <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300">
+                <div className="text-3xl mb-4">🔄</div>
+                <h3 className="text-xl font-bold text-white mb-3">Integration</h3>
+                <p className="text-slate-300 text-sm">Seamless coordination between Google Ads and all other marketing efforts.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Why Choose Us */}
       <section className="py-20">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl font-bold text-white mb-8">
-              Why Canadian Businesses Choose Our Google Ads Management
+              Why Choose Stenth for Digital Marketing in Canada?
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">

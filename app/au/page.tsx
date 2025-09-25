@@ -43,19 +43,34 @@ export default function AustraliaHomepage() {
 
   const australianServices = [
     {
-      title: "SEO Services Australia",
-      description: "Dominate Australian search results with local SEO expertise across all states and territories.",
-      features: ["Local keyword optimisation", "Australian market research", "State-specific targeting", "ACMA compliance"]
+      title: "Digital Strategy & Planning",
+      description: "Comprehensive digital transformation strategies tailored for the Australian market.",
+      features: ["Australian market analysis", "Competitor research", "Growth roadmapping", "ROI forecasting"]
     },
     {
-      title: "Google Ads Management",
-      description: "ROI-focused PPC campaigns targeting Australian consumers and businesses.",
-      features: ["Australian audience targeting", "AUD budget optimisation", "Local ad extensions", "Mobile-first campaigns"]
+      title: "SEO & Content Marketing",
+      description: "Dominate Australian search results and engage local audiences with targeted content.",
+      features: ["Local SEO optimisation", "Australian keyword research", "Content strategy", "Link building"]
+    },
+    {
+      title: "Performance Marketing",
+      description: "ROI-focused advertising campaigns across Google Ads, Facebook, and other platforms.",
+      features: ["Google Ads management", "Social media advertising", "Conversion optimisation", "Budget management"]
+    },
+    {
+      title: "Creative & Brand Design",
+      description: "Stunning visual content that resonates with Australian culture and market preferences.",
+      features: ["Brand identity design", "Marketing collateral", "Website design", "Video production"]
+    },
+    {
+      title: "Analytics & Insights",
+      description: "Advanced tracking and reporting to optimise your Australian marketing performance.",
+      features: ["Performance dashboards", "Conversion tracking", "Market insights", "ROI reporting"]
     },
     {
       title: "Social Media Marketing",
       description: "Engage Australian audiences across all major social platforms.",
-      features: ["Platform-specific strategies", "Australian cultural insights", "Timezone optimisation", "Influencer partnerships"]
+      features: ["Platform-specific strategies", "Australian cultural insights", "Community management", "Influencer partnerships"]
     }
   ];
 
@@ -179,14 +194,14 @@ export default function AustraliaHomepage() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-4">
-              Digital Marketing Services for Australian Businesses
+              Complete Digital Marketing Suite for Australia
             </h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-              Tailored strategies that understand Australian consumer behaviour, regulations, and market dynamics.
+              Full-service digital marketing solutions that understand Australian consumer behaviour, regulations, and market dynamics.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {australianServices.map((service, index) => (
               <div
                 key={service.title}
