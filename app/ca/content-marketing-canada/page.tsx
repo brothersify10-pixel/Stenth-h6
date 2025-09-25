@@ -374,12 +374,59 @@ export default function ContentMarketingCanadaPage() {
         </div>
       </section>
 
+      {/* Beyond Content Marketing - Full Service */}
+      <section className="py-20 bg-slate-900/30">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-4xl font-bold text-white mb-8">
+              Beyond Content Marketing: Complete Digital Marketing Solutions
+            </h2>
+            <p className="text-xl text-slate-300 mb-12">
+              While content marketing drives engagement and builds trust, our comprehensive approach ensures success across all digital channels.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 hover:border-emerald-500/50 transition-all duration-300">
+                <div className="text-3xl mb-4">🚀</div>
+                <h3 className="text-xl font-bold text-white mb-3">Digital Strategy</h3>
+                <p className="text-slate-300 text-sm">Comprehensive planning and roadmapping for your Canadian market expansion.</p>
+              </div>
+              <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 hover:border-emerald-500/50 transition-all duration-300">
+                <div className="text-3xl mb-4">📊</div>
+                <h3 className="text-xl font-bold text-white mb-3">SEO & Search Marketing</h3>
+                <p className="text-slate-300 text-sm">Organic growth strategies and bilingual SEO for Canadian audiences.</p>
+              </div>
+              <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 hover:border-emerald-500/50 transition-all duration-300">
+                <div className="text-3xl mb-4">🎯</div>
+                <h3 className="text-xl font-bold text-white mb-3">Performance Marketing</h3>
+                <p className="text-slate-300 text-sm">Google Ads, social media advertising, and conversion optimization.</p>
+              </div>
+              <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 hover:border-emerald-500/50 transition-all duration-300">
+                <div className="text-3xl mb-4">🎨</div>
+                <h3 className="text-xl font-bold text-white mb-3">Creative Design</h3>
+                <p className="text-slate-300 text-sm">Stunning visuals and brand experiences that resonate with Canadian culture.</p>
+              </div>
+              <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 hover:border-emerald-500/50 transition-all duration-300">
+                <div className="text-3xl mb-4">📱</div>
+                <h3 className="text-xl font-bold text-white mb-3">Social Media Marketing</h3>
+                <p className="text-slate-300 text-sm">Engaging social campaigns across platforms popular with Canadian audiences.</p>
+              </div>
+              <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 hover:border-emerald-500/50 transition-all duration-300">
+                <div className="text-3xl mb-4">📈</div>
+                <h3 className="text-xl font-bold text-white mb-3">Analytics & Insights</h3>
+                <p className="text-slate-300 text-sm">Advanced tracking and reporting to optimize your entire marketing funnel.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Why Choose Us */}
       <section className="py-20">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl font-bold text-white mb-8">
-              Why Canadian Brands Choose Our Content Marketing
+              Why Choose Stenth for Digital Marketing in Canada?
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">

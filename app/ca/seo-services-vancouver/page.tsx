@@ -251,12 +251,59 @@ export default function VancouverSEOPage() {
         </div>
       </section>
 
+      {/* Beyond SEO - Full Service */}
+      <section className="py-20 bg-slate-900/30">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-4xl font-bold text-white mb-8">
+              Beyond SEO: Complete Digital Marketing Solutions for Vancouver
+            </h2>
+            <p className="text-xl text-slate-300 mb-12">
+              While SEO drives organic growth, our comprehensive approach ensures success across all digital channels for Vancouver businesses.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 hover:border-green-500/50 transition-all duration-300">
+                <div className="text-3xl mb-4">🚀</div>
+                <h3 className="text-xl font-bold text-white mb-3">Digital Strategy</h3>
+                <p className="text-slate-300 text-sm">Comprehensive planning for Vancouver's tech-savvy market.</p>
+              </div>
+              <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 hover:border-green-500/50 transition-all duration-300">
+                <div className="text-3xl mb-4">🎯</div>
+                <h3 className="text-xl font-bold text-white mb-3">Google Ads & PPC</h3>
+                <p className="text-slate-300 text-sm">Targeted advertising for Vancouver's competitive market.</p>
+              </div>
+              <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 hover:border-green-500/50 transition-all duration-300">
+                <div className="text-3xl mb-4">🎨</div>
+                <h3 className="text-xl font-bold text-white mb-3">Creative Design</h3>
+                <p className="text-slate-300 text-sm">West Coast-inspired brand experiences and creative solutions.</p>
+              </div>
+              <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 hover:border-green-500/50 transition-all duration-300">
+                <div className="text-3xl mb-4">📱</div>
+                <h3 className="text-xl font-bold text-white mb-3">Social Media Marketing</h3>
+                <p className="text-slate-300 text-sm">Engaging campaigns that connect with Vancouver's outdoor culture.</p>
+              </div>
+              <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 hover:border-green-500/50 transition-all duration-300">
+                <div className="text-3xl mb-4">📝</div>
+                <h3 className="text-xl font-bold text-white mb-3">Content Marketing</h3>
+                <p className="text-slate-300 text-sm">Content strategies that resonate with Vancouver's diverse community.</p>
+              </div>
+              <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 hover:border-green-500/50 transition-all duration-300">
+                <div className="text-3xl mb-4">📈</div>
+                <h3 className="text-xl font-bold text-white mb-3">Analytics & Insights</h3>
+                <p className="text-slate-300 text-sm">Data-driven insights for optimal performance across all channels.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Why Vancouver Businesses Choose Us */}
       <section className="py-20">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl font-bold text-white mb-8">
-              Why Vancouver Businesses Choose Stenth for SEO
+              Why Vancouver Businesses Choose Stenth for Digital Marketing
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">

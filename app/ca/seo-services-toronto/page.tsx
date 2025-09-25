@@ -246,12 +246,59 @@ export default function TorontoSEOPage() {
         </div>
       </section>
 
+      {/* Beyond SEO - Full Service */}
+      <section className="py-20 bg-slate-900/30">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-4xl font-bold text-white mb-8">
+              Beyond SEO: Complete Digital Marketing Solutions for Toronto
+            </h2>
+            <p className="text-xl text-slate-300 mb-12">
+              While SEO drives organic traffic, our comprehensive approach ensures success across all digital channels for Toronto businesses.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300">
+                <div className="text-3xl mb-4">🚀</div>
+                <h3 className="text-xl font-bold text-white mb-3">Digital Strategy</h3>
+                <p className="text-slate-300 text-sm">Comprehensive planning for Toronto market expansion and growth.</p>
+              </div>
+              <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300">
+                <div className="text-3xl mb-4">🎯</div>
+                <h3 className="text-xl font-bold text-white mb-3">Google Ads & PPC</h3>
+                <p className="text-slate-300 text-sm">Targeted advertising campaigns for immediate Toronto market results.</p>
+              </div>
+              <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300">
+                <div className="text-3xl mb-4">🎨</div>
+                <h3 className="text-xl font-bold text-white mb-3">Creative Design</h3>
+                <p className="text-slate-300 text-sm">Brand experiences that resonate with Toronto's diverse market.</p>
+              </div>
+              <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300">
+                <div className="text-3xl mb-4">📱</div>
+                <h3 className="text-xl font-bold text-white mb-3">Social Media Marketing</h3>
+                <p className="text-slate-300 text-sm">Engaging social campaigns for Toronto's active digital community.</p>
+              </div>
+              <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300">
+                <div className="text-3xl mb-4">📝</div>
+                <h3 className="text-xl font-bold text-white mb-3">Content Marketing</h3>
+                <p className="text-slate-300 text-sm">Strategic content creation and bilingual marketing for Canadian audiences.</p>
+              </div>
+              <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300">
+                <div className="text-3xl mb-4">📈</div>
+                <h3 className="text-xl font-bold text-white mb-3">Analytics & Insights</h3>
+                <p className="text-slate-300 text-sm">Advanced tracking and reporting for all marketing channels.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Why Toronto Businesses Choose Us */}
       <section className="py-20">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl font-bold text-white mb-8">
-              Why Toronto Businesses Choose Stenth for SEO
+              Why Toronto Businesses Choose Stenth for Digital Marketing
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
