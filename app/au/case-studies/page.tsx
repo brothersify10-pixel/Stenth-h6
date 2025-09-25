@@ -6,40 +6,41 @@ import STENTHFooter from "@/components/stenth-footer";
 import FloatingElements from "@/components/floating-elements";
 
 export default function AustraliaCaseStudiesPage() {
-  const caseStudies = [
+  // International case studies that demonstrate our proven methods
+  const internationalExamples = [
     {
       id: 1,
-      client: "Sydney E-commerce Store",
+      client: "North American E-commerce Store",
       industry: "Retail",
-      location: "Sydney, NSW",
-      challenge: "Fashion retailer needed to compete with international brands and increase online sales across Australia",
-      solution: "Comprehensive SEO strategy, Google Shopping campaigns, and social media marketing targeting Australian fashion trends",
+      location: "International",
+      challenge: "Fashion retailer needed to compete with established brands and increase online sales",
+      solution: "Comprehensive SEO strategy, Google Shopping campaigns, and social media marketing targeting regional trends",
       results: {
         organic_growth: "420%",
         lead_increase: "280%",
-        revenue_growth: "$3.2M AUD",
+        revenue_growth: "$3.2M USD",
         timeframe: "10 months"
       },
       services: ["E-commerce SEO", "Google Shopping", "Social Media"],
-      testimonial: "Stenth's understanding of Australian shopping behaviour and seasonal trends helped us dominate our market segment.",
-      image: "/images/case-study-sydney-ecommerce.jpg"
+      testimonial: "Stenth's understanding of market behaviour and seasonal trends helped us dominate our segment.",
+      image: "/images/case-study-international-ecommerce.jpg"
     },
     {
       id: 2,
-      client: "Melbourne Tech Startup",
+      client: "International Tech Startup",
       industry: "Technology",
-      location: "Melbourne, VIC",
-      challenge: "SaaS company needed to establish brand presence and generate B2B leads in the competitive Australian tech market",
-      solution: "Technical SEO optimization, LinkedIn B2B campaigns, and content marketing targeting Australian business decision-makers",
+      location: "International",
+      challenge: "SaaS company needed to establish brand presence and generate B2B leads in competitive markets",
+      solution: "Technical SEO optimization, LinkedIn B2B campaigns, and content marketing targeting business decision-makers",
       results: {
         organic_growth: "350%",
         lead_increase: "190%",
-        revenue_growth: "$2.8M AUD",
+        revenue_growth: "$2.8M USD",
         timeframe: "12 months"
       },
       services: ["B2B SEO", "LinkedIn Ads", "Content Marketing"],
-      testimonial: "The team's knowledge of the Australian B2B landscape and compliance requirements was exactly what we needed.",
-      image: "/images/case-study-melbourne-tech.jpg"
+      testimonial: "The team's knowledge of B2B landscapes and compliance requirements was exactly what we needed.",
+      image: "/images/case-study-international-tech.jpg"
     },
     {
       id: 3,
@@ -60,25 +61,32 @@ export default function AustraliaCaseStudiesPage() {
     },
     {
       id: 4,
-      client: "Perth Mining Services",
-      industry: "Mining",
-      location: "Perth, WA",
-      challenge: "Mining equipment supplier needed to reach mining companies across Western Australia and interstate",
-      solution: "Industry-specific content marketing, LinkedIn advertising, and technical SEO targeting mining industry keywords",
+      client: "Industrial Services Company",
+      industry: "Industrial Services",
+      location: "International",
+      challenge: "Equipment supplier needed to reach companies across multiple markets and regions",
+      solution: "Industry-specific content marketing, LinkedIn advertising, and technical SEO targeting industry keywords",
       results: {
         organic_growth: "280%",
         lead_increase: "310%",
-        revenue_growth: "$4.1M AUD",
+        revenue_growth: "$4.1M USD",
         timeframe: "14 months"
       },
       services: ["Industry SEO", "LinkedIn Ads", "Content Strategy"],
-      testimonial: "Stenth helped us become the go-to supplier for mining equipment across Australia. Their industry knowledge is unmatched.",
-      image: "/images/case-study-perth-mining.jpg"
+      testimonial: "Stenth helped us become a leading supplier in our industry. Their knowledge is unmatched.",
+      image: "/images/case-study-industrial.jpg"
     }
   ];
 
+  // Future Australian success stories will be showcased here
+  const futureCaseStudies = [
+    "Australian E-commerce Success Story (Coming Soon)",
+    "Melbourne Tech Startup Growth (In Progress)",
+    "Sydney Professional Services Expansion (Starting Soon)"
+  ];
+
   const metrics = [
-    { label: "Average Revenue Growth", value: "$2.9M AUD", icon: DollarSign },
+    { label: "International Track Record", value: "Proven", icon: DollarSign },
     { label: "Average Organic Growth", value: "338%", icon: TrendingUp },
     { label: "Average Lead Increase", value: "255%", icon: Users },
     { label: "Average Project Timeline", value: "11 months", icon: Clock }
@@ -104,13 +112,13 @@ export default function AustraliaCaseStudiesPage() {
                 className="mr-4"
               />
               <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-green-400 via-yellow-400 to-green-400 bg-clip-text text-transparent">
-                Australian Success Stories
+                Our Proven Track Record
               </h1>
             </div>
 
             <p className="text-xl text-slate-300 mb-8 leading-relaxed">
-              Real results from Australian businesses across all states. See how our digital marketing
-              strategies have helped companies grow from Sydney to Perth.
+              While we're establishing our Australian presence, our international success stories demonstrate
+              the proven methods and expertise we'll bring to Australian businesses.
             </p>
 
             {/* Overall Metrics */}
@@ -127,10 +135,18 @@ export default function AustraliaCaseStudiesPage() {
         </div>
       </section>
 
-      {/* Case Studies */}
+      {/* International Case Studies */}
       <section className="py-16">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-white mb-4">
+                International Success Stories
+              </h2>
+              <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+                These proven strategies and methodologies will be applied to Australian businesses as we establish our presence.
+              </p>
+            </div>
             <div className="space-y-16">
               {caseStudies.map((study, index) => (
                 <div key={study.id} className="bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-700/50">
@@ -239,6 +255,59 @@ export default function AustraliaCaseStudiesPage() {
         </div>
       </section>
 
+      {/* Coming Soon - Australian Success Stories */}
+      <section className="py-20 bg-slate-900/30">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-4xl font-bold text-white mb-8">
+              🇺🇺 Coming Soon: Australian Success Stories
+            </h2>
+            <p className="text-xl text-slate-300 mb-12">
+              We're building our foundation of Australian success stories. Be part of the first wave.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {futureCaseStudies.map((title, index) => (
+                <div key={index} className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700/50 relative overflow-hidden">
+                  <div className="absolute top-4 right-4">
+                    <span className="px-3 py-1 bg-green-500/20 text-green-400 rounded-full text-xs font-medium">
+                      Coming Soon
+                    </span>
+                  </div>
+                  <div className="text-6xl mb-4 opacity-20">📊</div>
+                  <h3 className="text-lg font-bold text-white mb-4">{title}</h3>
+                  <div className="space-y-2 text-sm text-slate-400">
+                    <div className="flex justify-between">
+                      <span>Growth:</span>
+                      <span className="text-green-400">TBD</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Timeline:</span>
+                      <span className="text-green-400">Starting Soon</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-12 bg-gradient-to-r from-green-500/10 to-transparent p-8 rounded-2xl border border-green-500/20">
+              <h3 className="text-2xl font-bold text-white mb-4">🌟 Be Our Next Australian Success Story</h3>
+              <p className="text-slate-300 mb-6">
+                Join our select group of foundation Australian clients. Get the same proven strategies
+                that delivered these international results, plus the personalized attention of being among our first Australian partners.
+              </p>
+              <Link
+                href="/au/book"
+                className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold rounded-full hover:from-green-400 hover:to-green-500 transition-all duration-300"
+              >
+                Book Your Strategy Session
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 bg-slate-900/50">
         <div className="container mx-auto px-6">
@@ -247,8 +316,8 @@ export default function AustraliaCaseStudiesPage() {
               Ready to Become Our Next Success Story?
             </h2>
             <p className="text-xl text-slate-300 mb-8">
-              Join hundreds of Australian businesses that have transformed their digital presence
-              with our proven strategies.
+              Be among the first Australian businesses to work with our proven international strategies.
+              Your success story could be featured here next.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
