@@ -68,10 +68,18 @@ const portfolioData = {
   },
 }
 
-export default function PortfolioModal({ params }: { params: { slug: string } }) {
+export default function PortfolioModal({ params }: { params: Promise<{ slug: string }> }) {
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(true)
-  const project = portfolioData[params.slug as keyof typeof portfolioData]
+  const [slug, setSlug] = useState<string>('')
+  const [project, setProject] = useState<any>(null)
+
+  useEffect(() => {
+    params.then(({ slug }) => {
+      setSlug(slug)
+      setProject(portfolioData[slug as keyof typeof portfolioData])
+    })
+  }, [params])
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -95,7 +103,14 @@ export default function PortfolioModal({ params }: { params: { slug: string } })
   }
 
   if (!project) {
-    return null
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" />
+        <div className="relative max-w-3xl w-[92vw] max-h-[90vh] rounded-2xl bg-slate-900 p-6 md:p-8 flex items-center justify-center">
+          <div className="text-white">Loading...</div>
+        </div>
+      </div>
+    )
   }
 
   return (

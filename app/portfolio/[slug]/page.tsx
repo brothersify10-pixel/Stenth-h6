@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import FloatingElements from "@/components/floating-elements";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -76,8 +76,16 @@ const caseStudyData = {
   },
 };
 
-export default function CaseStudyPage({ params }: { params: { slug: string } }) {
-  const study = caseStudyData[params.slug as keyof typeof caseStudyData];
+export default function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
+  const [study, setStudy] = useState<any>(null)
+  const [slug, setSlug] = useState<string>('')
+
+  useEffect(() => {
+    params.then(({ slug }) => {
+      setSlug(slug)
+      setStudy(caseStudyData[slug as keyof typeof caseStudyData])
+    })
+  }, [params])
 
   // Scroll to top when component mounts
   useEffect(() => {
@@ -86,10 +94,12 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
 
   // Debug: Log the slug to console to check if it's correct
   useEffect(() => {
-    console.log('Portfolio slug:', params.slug);
-    console.log('Available studies:', Object.keys(caseStudyData));
-    console.log('Study found:', !!study);
-  }, [params.slug, study]);
+    if (slug) {
+      console.log('Portfolio slug:', slug);
+      console.log('Available studies:', Object.keys(caseStudyData));
+      console.log('Study found:', !!study);
+    }
+  }, [slug, study]);
 
   if (!study) {
     return (
@@ -99,7 +109,7 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl font-bold text-white mb-8">Case Study Not Found</h1>
             <p className="text-slate-300 mb-8">
-              Looking for: "{params.slug}"
+              Looking for: "{slug}"
             </p>
             <p className="text-slate-400 mb-8">
               Available case studies: {Object.keys(caseStudyData).join(', ')}
