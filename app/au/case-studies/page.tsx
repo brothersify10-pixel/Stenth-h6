@@ -267,18 +267,29 @@ export default function AustraliaCaseStudiesPage() {
             </div>
 
             {/* Trust Indicators */}
-            <div className="mt-12 grid grid-cols-3 gap-8 max-w-2xl mx-auto">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-green-400 mb-2">150+</div>
-                <div className="text-slate-400">Australian Clients</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-green-400 mb-2">$35M+</div>
-                <div className="text-slate-400">Revenue Generated</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-green-400 mb-2">4 Years</div>
-                <div className="text-slate-400">Serving Australia</div>
+            <div className="mt-12 bg-slate-800/50 rounded-2xl p-8 border border-slate-700/50 max-w-3xl mx-auto">
+              <h3 className="text-2xl font-bold text-white mb-4">🎆 Building Success Stories Across Australia</h3>
+              <p className="text-slate-300 text-lg leading-relaxed mb-6">
+                While our international case studies speak volumes, we're now creating new success
+                stories in Australia. Early Australian partners benefit from our proven methodologies
+                and personalized approach as we grow together.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div>
+                  <div className="text-2xl font-bold text-green-400 mb-2">💼</div>
+                  <div className="text-slate-300 font-medium">Proven Methods</div>
+                  <div className="text-slate-400 text-sm">International track record</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-green-400 mb-2">🌱</div>
+                  <div className="text-slate-300 font-medium">Fresh Start</div>
+                  <div className="text-slate-400 text-sm">Building Australian presence</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-green-400 mb-2">🏆</div>
+                  <div className="text-slate-300 font-medium">Your Success</div>
+                  <div className="text-slate-400 text-sm">Next Australian case study</div>
+                </div>
               </div>
             </div>
           </div>

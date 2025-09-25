@@ -147,19 +147,30 @@ export default function GoogleAdsSydneyPage() {
               </div>
             </div>
 
-            {/* Sydney Stats */}
-            <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-cyan-400 mb-2">220+</div>
-                <div className="text-slate-400">Sydney Clients</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-cyan-400 mb-2">340%</div>
-                <div className="text-slate-400">Avg. ROI Increase</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-cyan-400 mb-2">42M+</div>
-                <div className="text-slate-400">Revenue Generated (AUD)</div>
+            {/* Sydney Market Entry */}
+            <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700/50 max-w-3xl mx-auto">
+              <h3 className="text-2xl font-bold text-white mb-4">🎆 Launching Premium Google Ads Services in Sydney</h3>
+              <p className="text-slate-300 text-lg leading-relaxed mb-6">
+                We're bringing our proven international Google Ads expertise to Sydney businesses.
+                As we build our Sydney presence, you'll get premium service with direct access to our
+                senior Google Ads specialists and cutting-edge strategies.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div>
+                  <div className="text-2xl font-bold text-cyan-400 mb-2">📊</div>
+                  <div className="text-slate-300 font-medium">Proven Methods</div>
+                  <div className="text-slate-400 text-sm">International success record</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-cyan-400 mb-2">📞</div>
+                  <div className="text-slate-300 font-medium">VIP Treatment</div>
+                  <div className="text-slate-400 text-sm">Direct line to senior experts</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-cyan-400 mb-2">🌟</div>
+                  <div className="text-slate-300 font-medium">Pioneer Status</div>
+                  <div className="text-slate-400 text-sm">First Sydney clients get priority</div>
+                </div>
               </div>
             </div>
           </div>

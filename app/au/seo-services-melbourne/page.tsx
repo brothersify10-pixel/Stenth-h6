@@ -118,19 +118,30 @@ export default function MelbourneSEOPage() {
               </Link>
             </div>
 
-            {/* Melbourne Stats */}
-            <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-orange-400 mb-2">95+</div>
-                <div className="text-slate-400">Melbourne Clients</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-orange-400 mb-2">320%</div>
-                <div className="text-slate-400">Avg. Traffic Increase</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-orange-400 mb-2">$14M+</div>
-                <div className="text-slate-400">Revenue Generated (AUD)</div>
+            {/* Melbourne SEO Launch */}
+            <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700/50 max-w-3xl mx-auto">
+              <h3 className="text-2xl font-bold text-white mb-4">🏙️ Elevating Melbourne's SEO Landscape</h3>
+              <p className="text-slate-300 text-lg leading-relaxed mb-6">
+                We're bringing fresh SEO expertise to Australia's cultural capital. As we build
+                our Melbourne network, foundation clients receive white-glove service and direct
+                collaboration with our international SEO team.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div>
+                  <div className="text-2xl font-bold text-orange-400 mb-2">🎨</div>
+                  <div className="text-slate-300 font-medium">Creative Strategy</div>
+                  <div className="text-slate-400 text-sm">Innovative SEO approaches</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-orange-400 mb-2">🤝</div>
+                  <div className="text-slate-300 font-medium">Partnership Focus</div>
+                  <div className="text-slate-400 text-sm">Long-term growth partners</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-orange-400 mb-2">🎉</div>
+                  <div className="text-slate-300 font-medium">Launch Special</div>
+                  <div className="text-slate-400 text-sm">Founding client benefits</div>
+                </div>
               </div>
             </div>
           </div>

@@ -118,19 +118,30 @@ export default function SydneySEOPage() {
               </Link>
             </div>
 
-            {/* Sydney Stats */}
-            <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-blue-400 mb-2">120+</div>
-                <div className="text-slate-400">Sydney Clients</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-blue-400 mb-2">285%</div>
-                <div className="text-slate-400">Avg. Traffic Increase</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-blue-400 mb-2">$18M+</div>
-                <div className="text-slate-400">Revenue Generated (AUD)</div>
+            {/* Sydney SEO Market Entry */}
+            <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700/50 max-w-3xl mx-auto">
+              <h3 className="text-2xl font-bold text-white mb-4">🎆 Premium SEO Services Now in Sydney</h3>
+              <p className="text-slate-300 text-lg leading-relaxed mb-6">
+                We're excited to bring our world-class SEO expertise to Sydney businesses.
+                As a new entrant to the Sydney market, we offer personalized attention from our
+                senior SEO specialists and cutting-edge strategies proven internationally.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div>
+                  <div className="text-2xl font-bold text-blue-400 mb-2">🚀</div>
+                  <div className="text-slate-300 font-medium">International Expertise</div>
+                  <div className="text-slate-400 text-sm">Proven strategies worldwide</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-blue-400 mb-2">🎯</div>
+                  <div className="text-slate-300 font-medium">Exclusive Attention</div>
+                  <div className="text-slate-400 text-sm">Premium service guaranteed</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-blue-400 mb-2">🌟</div>
+                  <div className="text-slate-300 font-medium">Early Adopter</div>
+                  <div className="text-slate-400 text-sm">Special rates available</div>
+                </div>
               </div>
             </div>
           </div>

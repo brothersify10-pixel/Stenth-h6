@@ -147,19 +147,30 @@ export default function GoogleAdsMelbournePage() {
               </div>
             </div>
 
-            {/* Melbourne Stats */}
-            <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-cyan-400 mb-2">180+</div>
-                <div className="text-slate-400">Melbourne Clients</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-cyan-400 mb-2">315%</div>
-                <div className="text-slate-400">Avg. ROI Increase</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-cyan-400 mb-2">32M+</div>
-                <div className="text-slate-400">Revenue Generated (AUD)</div>
+            {/* Melbourne Market Entry */}
+            <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700/50 max-w-3xl mx-auto">
+              <h3 className="text-2xl font-bold text-white mb-4">☕ Brewing Success in Melbourne's Google Ads Scene</h3>
+              <p className="text-slate-300 text-lg leading-relaxed mb-6">
+                Just like Melbourne's famous coffee culture, we're crafting the perfect blend of
+                Google Ads expertise for this vibrant city. As we establish our Melbourne presence,
+                early partners receive premium service and direct access to our senior team.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div>
+                  <div className="text-2xl font-bold text-cyan-400 mb-2">🎭</div>
+                  <div className="text-slate-300 font-medium">Culture-First</div>
+                  <div className="text-slate-400 text-sm">Understanding Melbourne's unique market</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-cyan-400 mb-2">🔥</div>
+                  <div className="text-slate-300 font-medium">Fresh Approach</div>
+                  <div className="text-slate-400 text-sm">Latest Google Ads innovations</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-cyan-400 mb-2">🏆</div>
+                  <div className="text-slate-300 font-medium">Foundation Client</div>
+                  <div className="text-slate-400 text-sm">Shape our Melbourne expansion</div>
+                </div>
               </div>
             </div>
           </div>

@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState, useEffect } from "react"
-import { CheckCircle, Loader2, Calendar, Clock, Users, Target, Sparkles, ArrowRight, Star, Zap, Shield, TrendingUp, Rocket, Award, Heart, MapPin, Leaf } from "lucide-react"
+import { Loader2, Calendar, Clock, Users, Target, ArrowRight, Star, Zap, Shield, TrendingUp, Rocket, Heart, MapPin, Leaf } from "lucide-react"
 
 export default function BookCanadaPage() {
   const [formData, setFormData] = useState({
@@ -565,7 +565,7 @@ export default function BookCanadaPage() {
                 src="https://cal.com/stenth/30min-canada?embed=true&theme=dark"
                 width="100%"
                 height="650"
-                frameBorder="0"
+                style={{ border: 'none' }}
                 className="rounded-2xl"
                 title="Schedule a Canadian consultation with Stenth"
               />
