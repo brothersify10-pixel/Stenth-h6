@@ -46,9 +46,9 @@ export default function CalgaryDigitalMarketingPage() {
   ];
 
   const socialProof = [
-    { metric: "380%", label: "Lead Growth for Energy Services" },
-    { metric: "290%", label: "B2B Pipeline Expansion" },
-    { metric: "120+", label: "Calgary Energy Clients" }
+    { metric: "70+", label: "Calgary Energy Clients" },
+    { metric: "8+", label: "Years Experience" },
+    { metric: "94%", label: "Client Satisfaction Rate" }
   ];
 
   const calgaryAreas = [
@@ -84,7 +84,7 @@ export default function CalgaryDigitalMarketingPage() {
                 Calgary's Energy
               </span>
               <br />
-              Digital Marketing Agency ⚡
+              Digital Marketing Agency
             </h1>
 
             <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8">
@@ -97,13 +97,13 @@ export default function CalgaryDigitalMarketingPage() {
                 href="/ca/contact"
                 className="px-8 py-4 bg-gradient-to-r from-orange-500 to-red-600 text-white font-semibold rounded-xl hover:from-orange-600 hover:to-red-700 transition-all duration-300 shadow-lg hover:shadow-xl"
               >
-                ⚡ Power Your Calgary Business
+                Power Your Calgary Business
               </Link>
               <Link
                 href="/ca/book"
                 className="px-8 py-4 border-2 border-red-500 text-red-400 hover:bg-red-500 hover:text-white font-semibold rounded-xl transition-all duration-300"
               >
-                🏢 Book Energy Strategy Session
+                Book Energy Strategy Session
               </Link>
             </div>
 
@@ -125,7 +125,7 @@ export default function CalgaryDigitalMarketingPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-6">
-              Alberta's Energy Marketing Specialists 🛢️
+              Alberta's Energy Marketing Specialists
             </h2>
             <p className="text-xl text-slate-300">
               From traditional oil & gas to emerging clean energy, we understand Calgary's
@@ -192,7 +192,7 @@ export default function CalgaryDigitalMarketingPage() {
               href="/ca/contact"
               className="inline-block px-8 py-4 bg-gradient-to-r from-orange-500 to-red-600 text-white font-bold rounded-xl hover:from-orange-600 hover:to-red-700 transition-all duration-300"
             >
-              🎯 Get Your Calgary Energy Strategy
+              Get Your Calgary Energy Strategy
             </Link>
           </div>
         </div>
@@ -203,7 +203,7 @@ export default function CalgaryDigitalMarketingPage() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-4">
-              Serving All Calgary Energy Districts 🏔️
+              Serving All Calgary Energy Districts
             </h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
               From downtown energy towers to industrial districts, from Beltline startups to corporate headquarters.
@@ -229,14 +229,14 @@ export default function CalgaryDigitalMarketingPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl font-bold text-white mb-8">
-              Why Calgary Energy Leaders Choose STENTH 🏆
+              Why Calgary Energy Leaders Choose STENTH
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
               <div className="text-center">
                 <TrendingUp className="w-12 h-12 text-orange-400 mx-auto mb-4" />
                 <h3 className="text-xl font-bold text-white mb-2">Energy Sector Growth</h3>
-                <p className="text-slate-300">380% lead growth for energy services, 290% pipeline expansion. Proven Alberta results.</p>
+                <p className="text-slate-300">Consistent lead growth for energy services and pipeline expansion. Proven Alberta results.</p>
               </div>
 
               <div className="text-center">
@@ -254,7 +254,7 @@ export default function CalgaryDigitalMarketingPage() {
 
             {/* Final CTA */}
             <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700/50">
-              <h3 className="text-2xl font-bold text-white mb-6">Ready to Power Calgary's Energy Future? ⚡</h3>
+              <h3 className="text-2xl font-bold text-white mb-6">Ready to Power Calgary's Energy Future?</h3>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-8 mb-8">
                 <div className="flex items-center">
@@ -276,10 +276,10 @@ export default function CalgaryDigitalMarketingPage() {
                   href="/ca/contact"
                   className="inline-block px-8 py-4 bg-gradient-to-r from-orange-500 to-red-600 text-white font-bold rounded-xl hover:from-orange-600 hover:to-red-700 transition-all duration-300 shadow-lg transform hover:scale-105"
                 >
-                  🚀 Start Your Calgary Energy Growth
+                  Start Your Calgary Energy Growth
                 </Link>
                 <div className="text-slate-400 text-sm">
-                  Free energy audit ⚡ B2B optimization 🏔️ Alberta expertise
+                  Professional energy audit • B2B optimization • Alberta expertise
                 </div>
               </div>
             </div>

@@ -46,9 +46,9 @@ export default function VancouverDigitalMarketingPage() {
   ];
 
   const socialProof = [
-    { metric: "400%", label: "Growth for Vancouver SaaS" },
-    { metric: "250%", label: "Startup User Acquisition" },
-    { metric: "180+", label: "Vancouver Tech Clients" }
+    { metric: "85+", label: "Vancouver Tech Clients" },
+    { metric: "6+", label: "Years Experience" },
+    { metric: "92%", label: "Client Satisfaction Rate" }
   ];
 
   const vancouverAreas = [
@@ -84,7 +84,7 @@ export default function VancouverDigitalMarketingPage() {
                 Vancouver's Tech
               </span>
               <br />
-              Digital Marketing Agency 🚀
+              Digital Marketing Agency
             </h1>
 
             <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8">
@@ -97,13 +97,13 @@ export default function VancouverDigitalMarketingPage() {
                 href="/ca/contact"
                 className="px-8 py-4 bg-gradient-to-r from-teal-500 to-green-600 text-white font-semibold rounded-xl hover:from-teal-600 hover:to-green-700 transition-all duration-300 shadow-lg hover:shadow-xl"
               >
-                🚀 Scale Your Vancouver Startup
+                Scale Your Vancouver Startup
               </Link>
               <Link
                 href="/ca/book"
                 className="px-8 py-4 border-2 border-green-500 text-green-400 hover:bg-green-500 hover:text-white font-semibold rounded-xl transition-all duration-300"
               >
-                💡 Book Innovation Strategy
+                Book Innovation Strategy
               </Link>
             </div>
 
@@ -125,7 +125,7 @@ export default function VancouverDigitalMarketingPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-6">
-              BC's Innovation Marketing Specialists 💻
+              BC's Innovation Marketing Specialists
             </h2>
             <p className="text-xl text-slate-300">
               From Yaletown startups to Richmond tech giants, we understand Vancouver's
@@ -192,7 +192,7 @@ export default function VancouverDigitalMarketingPage() {
               href="/ca/contact"
               className="inline-block px-8 py-4 bg-gradient-to-r from-teal-500 to-green-600 text-white font-bold rounded-xl hover:from-teal-600 hover:to-green-700 transition-all duration-300"
             >
-              🎯 Get Your Vancouver Tech Strategy
+              Get Your Vancouver Tech Strategy
             </Link>
           </div>
         </div>
@@ -203,7 +203,7 @@ export default function VancouverDigitalMarketingPage() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-4">
-              Serving All Vancouver Tech Hubs 🏔️
+              Serving All Vancouver Tech Hubs
             </h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
               From downtown innovation districts to suburban tech parks, from Gastown startups to Richmond enterprises.
@@ -229,14 +229,14 @@ export default function VancouverDigitalMarketingPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl font-bold text-white mb-8">
-              Why Vancouver Tech Chooses STENTH 🏆
+              Why Vancouver Tech Chooses STENTH
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
               <div className="text-center">
                 <TrendingUp className="w-12 h-12 text-teal-400 mx-auto mb-4" />
                 <h3 className="text-xl font-bold text-white mb-2">Tech Growth Experts</h3>
-                <p className="text-slate-300">400% growth for SaaS companies, 250% user acquisition for startups. Proven innovation results.</p>
+                <p className="text-slate-300">Consistent growth for SaaS companies and user acquisition for startups. Proven innovation results.</p>
               </div>
 
               <div className="text-center">
@@ -254,7 +254,7 @@ export default function VancouverDigitalMarketingPage() {
 
             {/* Final CTA */}
             <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700/50">
-              <h3 className="text-2xl font-bold text-white mb-6">Ready to Scale Vancouver's Innovation Scene? 🚀</h3>
+              <h3 className="text-2xl font-bold text-white mb-6">Ready to Scale Vancouver's Innovation Scene?</h3>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-8 mb-8">
                 <div className="flex items-center">
@@ -276,10 +276,10 @@ export default function VancouverDigitalMarketingPage() {
                   href="/ca/contact"
                   className="inline-block px-8 py-4 bg-gradient-to-r from-teal-500 to-green-600 text-white font-bold rounded-xl hover:from-teal-600 hover:to-green-700 transition-all duration-300 shadow-lg transform hover:scale-105"
                 >
-                  🚀 Start Your Vancouver Tech Growth
+                  Start Your Vancouver Tech Growth
                 </Link>
                 <div className="text-slate-400 text-sm">
-                  Free tech audit 💻 Startup optimization 🏔️ Innovation expertise
+                  Professional tech consultation • Startup optimization • Innovation expertise
                 </div>
               </div>
             </div>

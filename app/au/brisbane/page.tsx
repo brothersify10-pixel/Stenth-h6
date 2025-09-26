@@ -46,9 +46,9 @@ export default function BrisbaneDigitalMarketingPage() {
   ];
 
   const socialProof = [
-    { metric: "280%", label: "Lead Growth for Brisbane Hotels" },
-    { metric: "450%", label: "Booking Increase for Tours" },
-    { metric: "200+", label: "Brisbane Businesses Served" }
+    { metric: "75+", label: "Brisbane Businesses Served" },
+    { metric: "6+", label: "Years of Experience" },
+    { metric: "24/7", label: "Support Available" }
   ];
 
   const brisbaneAreas = [
@@ -84,7 +84,7 @@ export default function BrisbaneDigitalMarketingPage() {
                 Brisbane's Tourism
               </span>
               <br />
-              Digital Marketing Experts ☀️
+              Digital Marketing Experts
             </h1>
 
             <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8">
@@ -97,13 +97,13 @@ export default function BrisbaneDigitalMarketingPage() {
                 href="/au/contact"
                 className="px-8 py-4 bg-gradient-to-r from-yellow-500 to-orange-600 text-white font-semibold rounded-xl hover:from-yellow-600 hover:to-orange-700 transition-all duration-300 shadow-lg hover:shadow-xl"
               >
-                🌴 Boost Your Brisbane Business
+                Boost Your Brisbane Business
               </Link>
               <Link
                 href="/au/book"
                 className="px-8 py-4 border-2 border-orange-500 text-orange-400 hover:bg-orange-500 hover:text-white font-semibold rounded-xl transition-all duration-300"
               >
-                📞 Book Tourism Strategy Call
+                Book Tourism Strategy Call
               </Link>
             </div>
 
@@ -125,7 +125,7 @@ export default function BrisbaneDigitalMarketingPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-6">
-              Queensland's Tourism Marketing Specialists 🏖️
+              Queensland's Tourism Marketing Specialists
             </h2>
             <p className="text-xl text-slate-300">
               From riverside dining to theme park adventures, we understand Brisbane's tourism
@@ -192,7 +192,7 @@ export default function BrisbaneDigitalMarketingPage() {
               href="/au/contact"
               className="inline-block px-8 py-4 bg-gradient-to-r from-yellow-500 to-orange-600 text-white font-bold rounded-xl hover:from-yellow-600 hover:to-orange-700 transition-all duration-300"
             >
-              🎯 Get Your Brisbane Tourism Strategy
+              Get Your Brisbane Tourism Strategy
             </Link>
           </div>
         </div>
@@ -203,7 +203,7 @@ export default function BrisbaneDigitalMarketingPage() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-4">
-              Serving All Brisbane Districts 🌆
+              Serving All Brisbane Districts
             </h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
               From the bustling CBD to the vibrant South Bank, from trendy West End to scenic New Farm.
@@ -229,14 +229,14 @@ export default function BrisbaneDigitalMarketingPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl font-bold text-white mb-8">
-              Why Brisbane Tourism Chooses STENTH 🏆
+              Why Brisbane Tourism Chooses STENTH
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
               <div className="text-center">
                 <TrendingUp className="w-12 h-12 text-yellow-400 mx-auto mb-4" />
                 <h3 className="text-xl font-bold text-white mb-2">Tourism Growth Experts</h3>
-                <p className="text-slate-300">280% lead growth for hotels, 450% booking increases for tour operators. Proven tourism results.</p>
+                <p className="text-slate-300">Proven lead growth for hotels and booking increases for tour operators. Measurable tourism results.</p>
               </div>
 
               <div className="text-center">
@@ -254,7 +254,7 @@ export default function BrisbaneDigitalMarketingPage() {
 
             {/* Final CTA */}
             <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700/50">
-              <h3 className="text-2xl font-bold text-white mb-6">Ready to Capture Brisbane's Tourism Boom? 🌴</h3>
+              <h3 className="text-2xl font-bold text-white mb-6">Ready to Grow Your Brisbane Tourism Business?</h3>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-8 mb-8">
                 <div className="flex items-center">
@@ -276,10 +276,10 @@ export default function BrisbaneDigitalMarketingPage() {
                   href="/au/contact"
                   className="inline-block px-8 py-4 bg-gradient-to-r from-yellow-500 to-orange-600 text-white font-bold rounded-xl hover:from-yellow-600 hover:to-orange-700 transition-all duration-300 shadow-lg transform hover:scale-105"
                 >
-                  🚀 Start Your Brisbane Tourism Growth
+                  Start Your Brisbane Tourism Growth
                 </Link>
                 <div className="text-slate-400 text-sm">
-                  Free tourism audit ☀️ Booking optimization 🏖️ Queensland expertise
+                  Professional tourism audit • Booking optimization • Queensland expertise
                 </div>
               </div>
             </div>

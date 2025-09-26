@@ -46,9 +46,9 @@ export default function TorontoDigitalMarketingPage() {
   ];
 
   const socialProof = [
-    { metric: "350%", label: "Revenue Growth for Toronto Fintech" },
-    { metric: "98%", label: "Client Satisfaction Rate" },
-    { metric: "400+", label: "Toronto Businesses Served" }
+    { metric: "120+", label: "Toronto Businesses Served" },
+    { metric: "9+", label: "Years Experience" },
+    { metric: "98%", label: "Client Satisfaction Rate" }
   ];
 
   const torontoAreas = [
@@ -84,7 +84,7 @@ export default function TorontoDigitalMarketingPage() {
                 Toronto's Premier
               </span>
               <br />
-              Digital Marketing Agency 🏢
+              Digital Marketing Agency
             </h1>
 
             <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8">
@@ -97,13 +97,13 @@ export default function TorontoDigitalMarketingPage() {
                 href="/ca/contact"
                 className="px-8 py-4 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold rounded-xl hover:from-red-600 hover:to-red-700 transition-all duration-300 shadow-lg hover:shadow-xl"
               >
-                🚀 Scale Your Toronto Business
+                Scale Your Toronto Business
               </Link>
               <Link
                 href="/ca/book"
                 className="px-8 py-4 border-2 border-red-500 text-red-400 hover:bg-red-500 hover:text-white font-semibold rounded-xl transition-all duration-300"
               >
-                📈 Book Strategy Session
+                Book Strategy Session
               </Link>
             </div>
 
@@ -117,13 +117,6 @@ export default function TorontoDigitalMarketingPage() {
               ))}
             </div>
 
-            {/* Canadian Launch Banner */}
-            <div className="bg-gradient-to-r from-red-500/20 to-white/10 rounded-2xl p-6 border border-red-500/30 max-w-2xl mx-auto">
-              <h3 className="text-xl font-bold text-white mb-2">🍁 Now Serving Canada - Limited Launch Spots</h3>
-              <p className="text-slate-300">
-                First 10 Toronto clients receive our complete market entry package plus 6 months priority support.
-              </p>
-            </div>
           </div>
         </div>
       </section>
@@ -133,7 +126,7 @@ export default function TorontoDigitalMarketingPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-6">
-              Built for Toronto Business Growth 💼
+              Built for Toronto Business Growth
             </h2>
             <p className="text-xl text-slate-300">
               From Bay Street finance to King West tech, we understand Toronto's
@@ -200,7 +193,7 @@ export default function TorontoDigitalMarketingPage() {
               href="/ca/contact"
               className="inline-block px-8 py-4 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold rounded-xl hover:from-red-600 hover:to-red-700 transition-all duration-300"
             >
-              🎯 Get Your Toronto Growth Strategy
+              Get Your Toronto Growth Strategy
             </Link>
           </div>
         </div>
@@ -211,7 +204,7 @@ export default function TorontoDigitalMarketingPage() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-4">
-              Serving All Toronto Business Districts 🏙️
+              Serving All Toronto Business Districts
             </h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
               From the Financial District to Liberty Village, from Yorkville to the Entertainment District.
@@ -237,14 +230,14 @@ export default function TorontoDigitalMarketingPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl font-bold text-white mb-8">
-              Why Toronto Leaders Choose STENTH 🏆
+              Why Toronto Leaders Choose STENTH
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
               <div className="text-center">
                 <TrendingUp className="w-12 h-12 text-red-400 mx-auto mb-4" />
                 <h3 className="text-xl font-bold text-white mb-2">Proven Toronto Results</h3>
-                <p className="text-slate-300">350% revenue growth for fintech clients. Real results in Canada's most competitive market.</p>
+                <p className="text-slate-300">Consistent growth for fintech clients. Real results in Canada's most competitive market.</p>
               </div>
 
               <div className="text-center">
@@ -260,21 +253,10 @@ export default function TorontoDigitalMarketingPage() {
               </div>
             </div>
 
-            {/* Launch Special */}
-            <div className="bg-gradient-to-r from-red-500/20 to-white/10 rounded-2xl p-8 border border-red-500/30 mb-8">
-              <h3 className="text-2xl font-bold text-white mb-4">🍁 Toronto Launch Special - 2025</h3>
-              <p className="text-slate-300 mb-4">
-                First 10 Toronto clients receive our complete Canadian market entry package (valued at $8,000 CAD)
-                plus 6 months of priority support - completely free.
-              </p>
-              <div className="text-red-400 font-semibold">
-                ⏰ Limited time offer - claim your spot before competition does
-              </div>
-            </div>
 
             {/* Final CTA */}
             <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700/50">
-              <h3 className="text-2xl font-bold text-white mb-6">Ready to Dominate Toronto's Market? 🚀</h3>
+              <h3 className="text-2xl font-bold text-white mb-6">Ready to Grow Your Toronto Business?</h3>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-8 mb-8">
                 <div className="flex items-center">
@@ -296,10 +278,10 @@ export default function TorontoDigitalMarketingPage() {
                   href="/ca/contact"
                   className="inline-block px-8 py-4 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold rounded-xl hover:from-red-600 hover:to-red-700 transition-all duration-300 shadow-lg transform hover:scale-105"
                 >
-                  🎯 Claim Your Toronto Launch Special
+                  Get Your Toronto Strategy
                 </Link>
                 <div className="text-slate-400 text-sm">
-                  Free $8,000 CAD package ✓ Priority support ✓ Limited Toronto spots
+                  Professional consultation • Comprehensive strategy • Toronto expertise
                 </div>
               </div>
             </div>

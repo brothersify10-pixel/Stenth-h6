@@ -46,9 +46,9 @@ export default function PerthDigitalMarketingPage() {
   ];
 
   const socialProof = [
-    { metric: "320%", label: "Lead Growth for Mining Services" },
-    { metric: "250%", label: "B2B Expansion Success" },
-    { metric: "150+", label: "Perth B2B Clients Served" }
+    { metric: "100+", label: "Perth B2B Clients Served" },
+    { metric: "8+", label: "Years Mining Industry Experience" },
+    { metric: "24/7", label: "Professional Support" }
   ];
 
   const perthAreas = [
@@ -84,7 +84,7 @@ export default function PerthDigitalMarketingPage() {
                 Perth's B2B
               </span>
               <br />
-              Digital Marketing Specialists ⚡
+              Digital Marketing Specialists
             </h1>
 
             <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8">
@@ -97,13 +97,13 @@ export default function PerthDigitalMarketingPage() {
                 href="/au/contact"
                 className="px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-semibold rounded-xl hover:from-emerald-600 hover:to-teal-700 transition-all duration-300 shadow-lg hover:shadow-xl"
               >
-                ⚡ Expand Your Perth Business
+                Expand Your Perth Business
               </Link>
               <Link
                 href="/au/book"
                 className="px-8 py-4 border-2 border-teal-500 text-teal-400 hover:bg-teal-500 hover:text-white font-semibold rounded-xl transition-all duration-300"
               >
-                🏭 Book B2B Strategy Session
+                Book B2B Strategy Session
               </Link>
             </div>
 
@@ -125,7 +125,7 @@ export default function PerthDigitalMarketingPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-6">
-              Western Australia's B2B Marketing Experts 🏗️
+              Western Australia's B2B Marketing Experts
             </h2>
             <p className="text-xl text-slate-300">
               From mining operations to professional services, we understand Perth's unique
@@ -192,7 +192,7 @@ export default function PerthDigitalMarketingPage() {
               href="/au/contact"
               className="inline-block px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-bold rounded-xl hover:from-emerald-600 hover:to-teal-700 transition-all duration-300"
             >
-              🎯 Get Your Perth B2B Strategy
+              Get Your Perth B2B Strategy
             </Link>
           </div>
         </div>
@@ -203,7 +203,7 @@ export default function PerthDigitalMarketingPage() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-4">
-              Serving All Perth Business Districts 🏢
+              Serving All Perth Business Districts
             </h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
               From the corporate CBD to industrial Fremantle, from tech hubs to mining headquarters.
@@ -229,14 +229,14 @@ export default function PerthDigitalMarketingPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl font-bold text-white mb-8">
-              Why Perth B2B Leaders Choose STENTH 🏆
+              Why Perth B2B Leaders Choose STENTH
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
               <div className="text-center">
                 <TrendingUp className="w-12 h-12 text-emerald-400 mx-auto mb-4" />
                 <h3 className="text-xl font-bold text-white mb-2">B2B Growth Experts</h3>
-                <p className="text-slate-300">320% lead growth for mining services, 250% B2B expansion success. Proven industrial results.</p>
+                <p className="text-slate-300">Proven lead growth for mining services and successful B2B expansion. Measurable industrial results.</p>
               </div>
 
               <div className="text-center">
@@ -254,7 +254,7 @@ export default function PerthDigitalMarketingPage() {
 
             {/* Final CTA */}
             <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700/50">
-              <h3 className="text-2xl font-bold text-white mb-6">Ready to Dominate Perth's B2B Market? ⚡</h3>
+              <h3 className="text-2xl font-bold text-white mb-6">Ready to Expand Your Perth B2B Business?</h3>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-8 mb-8">
                 <div className="flex items-center">
@@ -276,10 +276,10 @@ export default function PerthDigitalMarketingPage() {
                   href="/au/contact"
                   className="inline-block px-8 py-4 bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-bold rounded-xl hover:from-emerald-600 hover:to-teal-700 transition-all duration-300 shadow-lg transform hover:scale-105"
                 >
-                  🚀 Start Your Perth B2B Expansion
+                  Start Your Perth B2B Expansion
                 </Link>
                 <div className="text-slate-400 text-sm">
-                  Free B2B audit ⚡ LinkedIn optimization 🏭 Industrial expertise
+                  Professional B2B consultation • LinkedIn optimization • Industrial expertise
                 </div>
               </div>
             </div>

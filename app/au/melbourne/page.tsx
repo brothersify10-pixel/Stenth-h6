@@ -46,9 +46,9 @@ export default function MelbourneDigitalMarketingPage() {
   ];
 
   const socialProof = [
-    { metric: "385%", label: "Revenue Growth for Melbourne Café Chain" },
-    { metric: "98%", label: "Client Satisfaction Rate" },
-    { metric: "150+", label: "Melbourne Businesses Served" }
+    { metric: "50+", label: "Melbourne Businesses Served" },
+    { metric: "5+", label: "Years of Experience" },
+    { metric: "24/7", label: "Support Available" }
   ];
 
   const melbourneAreas = [
@@ -84,7 +84,7 @@ export default function MelbourneDigitalMarketingPage() {
                 Melbourne's Creative
               </span>
               <br />
-              Digital Marketing Agency 🎨
+              Digital Marketing Agency
             </h1>
 
             <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8">
@@ -97,13 +97,13 @@ export default function MelbourneDigitalMarketingPage() {
                 href="/au/contact"
                 className="px-8 py-4 bg-gradient-to-r from-orange-500 to-purple-600 text-white font-semibold rounded-xl hover:from-orange-600 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl"
               >
-                🚀 Start Growing Today
+                Start Growing Today
               </Link>
               <Link
                 href="/au/book"
                 className="px-8 py-4 border-2 border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white font-semibold rounded-xl transition-all duration-300"
               >
-                ☕ Book Free Melbourne Strategy
+                Book Melbourne Strategy
               </Link>
             </div>
 
@@ -125,7 +125,7 @@ export default function MelbourneDigitalMarketingPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-6">
-              We Speak Melbourne 🏆
+              We Speak Melbourne
             </h2>
             <p className="text-xl text-slate-300">
               Coffee culture, street art, Grand Prix excitement, and that uniquely Melbourne creative energy.
@@ -191,7 +191,7 @@ export default function MelbourneDigitalMarketingPage() {
               href="/au/contact"
               className="inline-block px-8 py-4 bg-gradient-to-r from-orange-500 to-purple-600 text-white font-bold rounded-xl hover:from-orange-600 hover:to-purple-700 transition-all duration-300"
             >
-              🎯 Get Your Melbourne Growth Strategy
+              Get Your Melbourne Growth Strategy
             </Link>
           </div>
         </div>
@@ -202,7 +202,7 @@ export default function MelbourneDigitalMarketingPage() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-4">
-              Serving All Melbourne Areas 📍
+              Serving All Melbourne Areas
             </h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
               From the CBD to the creative laneways, from Brighton beachside to Brunswick hipster havens.
@@ -228,14 +228,14 @@ export default function MelbourneDigitalMarketingPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl font-bold text-white mb-8">
-              Why Melbourne Businesses Choose STENTH 🏅
+              Why Melbourne Businesses Choose STENTH
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
               <div className="text-center">
                 <TrendingUp className="w-12 h-12 text-orange-400 mx-auto mb-4" />
                 <h3 className="text-xl font-bold text-white mb-2">Proven Melbourne Growth</h3>
-                <p className="text-slate-300">385% revenue growth for local café chains. Real results for real Melbourne businesses.</p>
+                <p className="text-slate-300">Proven growth strategies and measurable results for Melbourne businesses across all industries.</p>
               </div>
 
               <div className="text-center">
@@ -253,7 +253,7 @@ export default function MelbourneDigitalMarketingPage() {
 
             {/* Final CTA */}
             <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700/50">
-              <h3 className="text-2xl font-bold text-white mb-6">Ready to Own Melbourne's Digital Scene? 🎯</h3>
+              <h3 className="text-2xl font-bold text-white mb-6">Ready to Own Melbourne's Digital Scene?</h3>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-8 mb-8">
                 <div className="flex items-center">
@@ -275,10 +275,10 @@ export default function MelbourneDigitalMarketingPage() {
                   href="/au/contact"
                   className="inline-block px-8 py-4 bg-gradient-to-r from-orange-500 to-purple-600 text-white font-bold rounded-xl hover:from-orange-600 hover:to-purple-700 transition-all duration-300 shadow-lg transform hover:scale-105"
                 >
-                  🚀 Start Your Melbourne Growth Journey
+                  Start Your Melbourne Growth Journey
                 </Link>
                 <div className="text-slate-400 text-sm">
-                  Free consultation ☕ No obligations 🎨 Custom Melbourne solutions
+                  Professional consultation • No obligations • Custom Melbourne solutions
                 </div>
               </div>
             </div>

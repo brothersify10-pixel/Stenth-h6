@@ -46,9 +46,9 @@ export default function MontrealDigitalMarketingPage() {
   ];
 
   const socialProof = [
-    { metric: "290%", label: "Croissance Revenus Agences Créatives" },
-    { metric: "95%", label: "Taux de Satisfaction Client" },
-    { metric: "250+", label: "Entreprises Montréalaises Servies" }
+    { metric: "90+", label: "Entreprises Montréalaises Servies" },
+    { metric: "7+", label: "Années d'Expérience" },
+    { metric: "95%", label: "Taux de Satisfaction Client" }
   ];
 
   const montrealAreas = [
@@ -84,7 +84,7 @@ export default function MontrealDigitalMarketingPage() {
                 Agence Marketing
               </span>
               <br />
-              Numérique de Montréal 🎨
+              Numérique de Montréal
             </h1>
 
             <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8">
@@ -97,13 +97,13 @@ export default function MontrealDigitalMarketingPage() {
                 href="/ca/contact"
                 className="px-8 py-4 bg-gradient-to-r from-blue-500 to-red-500 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-red-600 transition-all duration-300 shadow-lg hover:shadow-xl"
               >
-                🚀 Boostez Votre Entreprise
+                Boostez Votre Entreprise
               </Link>
               <Link
                 href="/ca/book"
                 className="px-8 py-4 border-2 border-red-500 text-red-400 hover:bg-red-500 hover:text-white font-semibold rounded-xl transition-all duration-300"
               >
-                📞 Réservez Stratégie Créative
+                Réservez Stratégie Créative
               </Link>
             </div>
 
@@ -125,7 +125,7 @@ export default function MontrealDigitalMarketingPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-6">
-              Experts du Marché Créatif Montréalais 🎭
+              Experts du Marché Créatif Montréalais
             </h2>
             <p className="text-xl text-slate-300">
               Festival de Jazz, Quartier des Spectacles, créativité bilingue - nous parlons Montréal
@@ -192,7 +192,7 @@ export default function MontrealDigitalMarketingPage() {
               href="/ca/contact"
               className="inline-block px-8 py-4 bg-gradient-to-r from-blue-500 to-red-500 text-white font-bold rounded-xl hover:from-blue-600 hover:to-red-600 transition-all duration-300"
             >
-              🎯 Obtenez Votre Stratégie Montréal
+              Obtenez Votre Stratégie Montréal
             </Link>
           </div>
         </div>
@@ -203,7 +203,7 @@ export default function MontrealDigitalMarketingPage() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-4">
-              Tous les Quartiers de Montréal 🏙️
+              Tous les Quartiers de Montréal
             </h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
               Du Plateau créatif au centre-ville corporatif, de Griffintown tech au Mile End artistique.
@@ -229,14 +229,14 @@ export default function MontrealDigitalMarketingPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl font-bold text-white mb-8">
-              Pourquoi Montréal Choisit STENTH 🏆
+              Pourquoi Montréal Choisit STENTH
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
               <div className="text-center">
                 <TrendingUp className="w-12 h-12 text-blue-400 mx-auto mb-4" />
                 <h3 className="text-xl font-bold text-white mb-2">Croissance Créative Prouvée</h3>
-                <p className="text-slate-300">290% de croissance pour agences créatives. Résultats réels dans le marché bilingue unique.</p>
+                <p className="text-slate-300">Croissance constante pour agences créatives. Résultats réels dans le marché bilingue unique.</p>
               </div>
 
               <div className="text-center">
@@ -254,7 +254,7 @@ export default function MontrealDigitalMarketingPage() {
 
             {/* Final CTA */}
             <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700/50">
-              <h3 className="text-2xl font-bold text-white mb-6">Prêt à Dominer la Scène Créative Montréalaise? 🎨</h3>
+              <h3 className="text-2xl font-bold text-white mb-6">Prêt à Développer Votre Présence Créative?</h3>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-8 mb-8">
                 <div className="flex items-center">
@@ -276,10 +276,10 @@ export default function MontrealDigitalMarketingPage() {
                   href="/ca/contact"
                   className="inline-block px-8 py-4 bg-gradient-to-r from-blue-500 to-red-500 text-white font-bold rounded-xl hover:from-blue-600 hover:to-red-600 transition-all duration-300 shadow-lg transform hover:scale-105"
                 >
-                  🚀 Commencez Votre Croissance Montréalaise
+                  Commencez Votre Croissance Montréalaise
                 </Link>
                 <div className="text-slate-400 text-sm">
-                  Consultation gratuite 🎨 Services bilingues 🎭 Expertise créative
+                  Consultation professionnelle • Services bilingues • Expertise créative
                 </div>
               </div>
             </div>

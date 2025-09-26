@@ -46,9 +46,9 @@ export default function SydneyDigitalMarketingPage() {
   ];
 
   const socialProof = [
-    { metric: "340%", label: "Revenue Increase for Sydney Fintech" },
-    { metric: "98%", label: "Client Satisfaction Rate" },
-    { metric: "500+", label: "Sydney Businesses Served" }
+    { metric: "75+", label: "Sydney Businesses Served" },
+    { metric: "6+", label: "Years of Experience" },
+    { metric: "24/7", label: "Support Available" }
   ];
 
   const sydneyAreas = [
@@ -84,7 +84,7 @@ export default function SydneyDigitalMarketingPage() {
                 Sydney's Premier
               </span>
               <br />
-              Digital Marketing Agency 🏢
+              Digital Marketing Agency
             </h1>
 
             <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8">
@@ -97,13 +97,13 @@ export default function SydneyDigitalMarketingPage() {
                 href="/au/contact"
                 className="px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-600 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-cyan-700 transition-all duration-300 shadow-lg hover:shadow-xl"
               >
-                🚀 Scale Your Sydney Business
+                Scale Your Sydney Business
               </Link>
               <Link
                 href="/au/book"
                 className="px-8 py-4 border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500 hover:text-white font-semibold rounded-xl transition-all duration-300"
               >
-                📈 Book Strategy Session
+                Book Strategy Session
               </Link>
             </div>
 
@@ -117,14 +117,6 @@ export default function SydneyDigitalMarketingPage() {
               ))}
             </div>
 
-            {/* Limited Spots Banner */}
-            <div className="bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-2xl p-6 border border-blue-500/30 max-w-2xl mx-auto">
-              <h3 className="text-xl font-bold text-white mb-2">🔥 Limited Spots Available - Q1 2025</h3>
-              <p className="text-slate-300">
-                Due to high demand, we're only accepting 5 new Sydney clients this quarter.
-                Book your strategy session before spots fill up.
-              </p>
-            </div>
           </div>
         </div>
       </section>
@@ -134,7 +126,7 @@ export default function SydneyDigitalMarketingPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-6">
-              Built for Sydney Business Growth 📊
+              Built for Sydney Business Growth
             </h2>
             <p className="text-xl text-slate-300">
               From Circular Quay corporations to Barangaroo startups, we understand Sydney's
@@ -201,7 +193,7 @@ export default function SydneyDigitalMarketingPage() {
               href="/au/contact"
               className="inline-block px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-600 text-white font-bold rounded-xl hover:from-blue-600 hover:to-cyan-700 transition-all duration-300"
             >
-              🎯 Get Your Sydney Growth Strategy
+              Get Your Sydney Growth Strategy
             </Link>
           </div>
         </div>
@@ -212,7 +204,7 @@ export default function SydneyDigitalMarketingPage() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-4">
-              Serving All Sydney Business Districts 🏙️
+              Serving All Sydney Business Districts
             </h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
               From the CBD to the Northern Beaches, from Parramatta to Bondi Junction.
@@ -238,14 +230,14 @@ export default function SydneyDigitalMarketingPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl font-bold text-white mb-8">
-              Why Sydney Leaders Choose STENTH 🏆
+              Why Sydney Leaders Choose STENTH
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
               <div className="text-center">
                 <TrendingUp className="w-12 h-12 text-blue-400 mx-auto mb-4" />
                 <h3 className="text-xl font-bold text-white mb-2">Proven Sydney Results</h3>
-                <p className="text-slate-300">340% revenue growth for fintech clients. Real results in Australia's most competitive market.</p>
+                <p className="text-slate-300">Proven revenue growth for fintech clients. Measurable results in Australia's most competitive market.</p>
               </div>
 
               <div className="text-center">
@@ -261,21 +253,10 @@ export default function SydneyDigitalMarketingPage() {
               </div>
             </div>
 
-            {/* Launch Special */}
-            <div className="bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-2xl p-8 border border-blue-500/30 mb-8">
-              <h3 className="text-2xl font-bold text-white mb-4">🎯 Sydney Launch Special - Q1 2025</h3>
-              <p className="text-slate-300 mb-4">
-                First 5 Sydney clients receive our complete audit package (valued at $5,000)
-                plus 3 months of priority support - completely free.
-              </p>
-              <div className="text-blue-400 font-semibold">
-                ⏰ Offer expires March 31, 2025 or when spots are filled
-              </div>
-            </div>
 
             {/* Final CTA */}
             <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700/50">
-              <h3 className="text-2xl font-bold text-white mb-6">Ready to Dominate Sydney's Market? 🚀</h3>
+              <h3 className="text-2xl font-bold text-white mb-6">Ready to Scale Your Sydney Business?</h3>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-8 mb-8">
                 <div className="flex items-center">
@@ -297,10 +278,10 @@ export default function SydneyDigitalMarketingPage() {
                   href="/au/contact"
                   className="inline-block px-8 py-4 bg-gradient-to-r from-blue-500 to-cyan-600 text-white font-bold rounded-xl hover:from-blue-600 hover:to-cyan-700 transition-all duration-300 shadow-lg transform hover:scale-105"
                 >
-                  🎯 Claim Your Sydney Launch Special
+                  Start Your Sydney Growth Strategy
                 </Link>
                 <div className="text-slate-400 text-sm">
-                  Free $5,000 audit ✓ Priority support ✓ Limited spots available
+                  Professional consultation • Tailored strategy • Proven results
                 </div>
               </div>
             </div>
