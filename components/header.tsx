@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { X, Home, Briefcase, User, Phone, Rocket, Calendar, ArrowRight, Sparkles, MapPin } from "lucide-react"
+import { X, Home, Briefcase, User, Phone, Rocket, Calendar, ArrowRight, Sparkles, MapPin, ChevronDown } from "lucide-react"
 
 const NAV = [
   { href: "/", label: "Home", mobileLabel: "Home", icon: Home, color: "from-blue-400 to-cyan-400" },
@@ -14,14 +14,35 @@ const NAV = [
     mobileLabel: "Services",
     icon: Briefcase,
     color: "from-purple-400 to-pink-400",
-    // Removed megaMenu property
   },
   { href: "/about", label: "About Us", mobileLabel: "About", icon: User, color: "from-green-400 to-emerald-400" },
   { href: "/portfolio", label: "Portfolio", mobileLabel: "Work", icon: Briefcase, color: "from-orange-400 to-red-400" },
-  { href: "/ca", label: "🇨🇦 Canada", mobileLabel: "Canada", icon: MapPin, color: "from-red-400 to-red-500" },
-  { href: "/au", label: "🇦🇺 Australia", mobileLabel: "Australia", icon: MapPin, color: "from-green-400 to-yellow-400" },
   { href: "/contact", label: "Contact", mobileLabel: "Contact", icon: Phone, color: "from-yellow-400 to-orange-400" },
-  { href: "/start", label: "Start Growing", mobileLabel: "Grow", icon: Rocket, color: "from-indigo-400 to-purple-400" },
+]
+
+const COUNTRIES = [
+  {
+    label: "🇦🇺 Australia",
+    href: "/au",
+    color: "from-green-400 to-yellow-400",
+    cities: [
+      { name: "Melbourne", href: "/au/melbourne" },
+      { name: "Sydney", href: "/au/sydney" },
+      { name: "Brisbane", href: "/au/brisbane" },
+      { name: "Perth", href: "/au/perth" },
+    ]
+  },
+  {
+    label: "🇨🇦 Canada",
+    href: "/ca",
+    color: "from-red-400 to-red-500",
+    cities: [
+      { name: "Toronto", href: "/ca/toronto" },
+      { name: "Montreal", href: "/ca/montreal" },
+      { name: "Vancouver", href: "/ca/vancouver" },
+      { name: "Calgary", href: "/ca/calgary" },
+    ]
+  }
 ]
 
 export default function Header() {
@@ -29,8 +50,9 @@ export default function Header() {
   const [open, setOpen] = useState(false)
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   const [hoveredItem, setHoveredItem] = useState<number | null>(null)
-  // Removed megaMenuOpen state as it's no longer needed
+  const [countryDropdownOpen, setCountryDropdownOpen] = useState(false)
   const [particles, setParticles] = useState<any[]>([])
+  const [selectedCountry, setSelectedCountry] = useState<number | null>(null)
   const [isHeaderVisible, setIsHeaderVisible] = useState(true)
   const pathname = usePathname()
 
@@ -78,7 +100,11 @@ export default function Header() {
     return () => clearInterval(interval)
   }, [hoveredItem, mousePos])
 
-  useEffect(() => setOpen(false), [pathname])
+  useEffect(() => {
+    setOpen(false)
+    setCountryDropdownOpen(false)
+    setSelectedCountry(null)
+  }, [pathname])
 
   useEffect(() => {
     const cls = "overflow-hidden"
@@ -161,7 +187,7 @@ export default function Header() {
 
             <div className="hidden md:flex items-center space-x-2">
               <ul className="flex space-x-1">
-                {NAV.slice(0, 6).map((item, index) => (
+                {NAV.map((item, index) => (
                   <li
                     key={item.href}
                     className="relative"
@@ -202,10 +228,68 @@ export default function Header() {
                         ))}
                       </div>
                     </Link>
-
-                    {/* Removed mega menu rendering logic */}
                   </li>
                 ))}
+
+                {/* Countries Dropdown */}
+                <li
+                  className="relative"
+                  onMouseEnter={() => setCountryDropdownOpen(true)}
+                  onMouseLeave={() => setCountryDropdownOpen(false)}
+                >
+                  <button
+                    className="relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg group overflow-hidden text-slate-300 hover:text-white hover:bg-white/15 flex items-center space-x-1"
+                  >
+                    <span>Countries</span>
+                    <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${countryDropdownOpen ? 'rotate-180' : ''}`} />
+                  </button>
+
+                  {/* Dropdown Menu */}
+                  <div className={`absolute top-full left-0 mt-2 w-64 bg-slate-900/95 backdrop-blur-xl rounded-xl border border-slate-700/50 shadow-xl transition-all duration-300 ${
+                    countryDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
+                  }`}>
+                    <div className="p-2">
+                      {COUNTRIES.map((country, countryIndex) => (
+                        <div key={country.href} className="relative group">
+                          <Link
+                            href={country.href}
+                            className={`flex items-center justify-between px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300 group hover:bg-white/10 ${
+                              pathname.startsWith(country.href) ? 'text-cyan-200 bg-cyan-400/20' : 'text-slate-300 hover:text-white'
+                            }`}
+                            onMouseEnter={() => setSelectedCountry(countryIndex)}
+                          >
+                            <span>{country.label}</span>
+                            <ChevronDown className="w-4 h-4 -rotate-90 transition-transform group-hover:translate-x-1" />
+                          </Link>
+
+                          {/* City Submenu */}
+                          <div className={`absolute left-full top-0 ml-2 w-48 bg-slate-800/95 backdrop-blur-xl rounded-xl border border-slate-700/50 shadow-xl transition-all duration-300 ${
+                            selectedCountry === countryIndex ? 'opacity-100 visible translate-x-0' : 'opacity-0 invisible -translate-x-2'
+                          }`}>
+                            <div className="p-2">
+                              <div className="px-3 py-2 text-xs font-semibold text-slate-400 uppercase tracking-wider border-b border-slate-700/50 mb-2">
+                                Cities
+                              </div>
+                              {country.cities.map((city) => (
+                                <Link
+                                  key={city.href}
+                                  href={city.href}
+                                  className={`block px-4 py-2 text-sm rounded-lg transition-all duration-300 ${
+                                    pathname === city.href
+                                      ? 'text-cyan-200 bg-cyan-400/20 font-medium'
+                                      : 'text-slate-300 hover:text-white hover:bg-white/10'
+                                  }`}
+                                >
+                                  {city.name}
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </li>
               </ul>
 
               <div className="flex space-x-3 ml-6">
@@ -308,14 +392,14 @@ export default function Header() {
             </span>
           </Link>
 
-          <div className="grid grid-cols-2 gap-6 w-full max-w-md">
+          <div className="grid grid-cols-2 gap-4 w-full max-w-md mb-6">
             {NAV.map((item, index) => {
               const Icon = item.icon
               return (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`relative p-6 rounded-2xl backdrop-blur-xl border transition-all duration-500 group text-center transform ${
+                  className={`relative p-4 rounded-2xl backdrop-blur-xl border transition-all duration-500 group text-center transform ${
                     pathname === item.href
                       ? `bg-gradient-to-br ${item.color} bg-opacity-20 border-white/30 shadow-lg`
                       : "bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20"
@@ -330,14 +414,14 @@ export default function Header() {
                     className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-20 transition-all duration-500 rounded-2xl ${pathname === item.href ? "animate-pulse" : ""}`}
                   />
 
-                  <div className="relative z-10 flex flex-col items-center text-center space-y-3">
+                  <div className="relative z-10 flex flex-col items-center text-center space-y-2">
                     <div
-                      className={`p-3 rounded-xl bg-gradient-to-r ${item.color} group-hover:scale-110 transition-all duration-300 shadow-lg group-hover:shadow-xl`}
+                      className={`p-2 rounded-xl bg-gradient-to-r ${item.color} group-hover:scale-110 transition-all duration-300 shadow-lg group-hover:shadow-xl`}
                     >
-                      <Icon className="w-6 h-6 text-white" />
+                      <Icon className="w-5 h-5 text-white" />
                     </div>
                     <span
-                      className={`font-medium transition-colors duration-300 ${
+                      className={`text-sm font-medium transition-colors duration-300 ${
                         pathname === item.href ? "text-cyan-300" : "text-white group-hover:text-cyan-400"
                       }`}
                     >
@@ -353,9 +437,45 @@ export default function Header() {
             })}
           </div>
 
+          {/* Countries Section for Mobile */}
+          <div className="w-full max-w-md">
+            <h3 className="text-white font-semibold mb-3 text-center">Countries</h3>
+            <div className="grid grid-cols-1 gap-3">
+              {COUNTRIES.map((country, countryIndex) => (
+                <div key={country.href} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-4">
+                  <Link
+                    href={country.href}
+                    className={`block text-center mb-3 font-medium transition-colors duration-300 ${
+                      pathname.startsWith(country.href) ? "text-cyan-300" : "text-white hover:text-cyan-400"
+                    }`}
+                    onClick={() => setOpen(false)}
+                  >
+                    {country.label}
+                  </Link>
+                  <div className="grid grid-cols-2 gap-2">
+                    {country.cities.map((city) => (
+                      <Link
+                        key={city.href}
+                        href={city.href}
+                        className={`px-3 py-2 text-sm rounded-lg transition-all duration-300 text-center ${
+                          pathname === city.href
+                            ? 'text-cyan-200 bg-cyan-400/20 font-medium'
+                            : 'text-slate-300 hover:text-white hover:bg-white/10'
+                        }`}
+                        onClick={() => setOpen(false)}
+                      >
+                        {city.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
           <button
             onClick={() => setOpen(false)}
-            className="mt-12 w-14 h-14 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-white hover:bg-white/20 transition-all duration-300 flex items-center justify-center group"
+            className="mt-8 w-14 h-14 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-white hover:bg-white/20 transition-all duration-300 flex items-center justify-center group"
           >
             <X className="w-6 h-6 group-hover:rotate-90 transition-transform duration-300" />
           </button>
