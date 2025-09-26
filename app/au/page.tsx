@@ -8,36 +8,36 @@ import FloatingElements from "@/components/floating-elements";
 export default function AustraliaHomepage() {
   const australianCities = [
     {
-      name: "Sydney",
-      state: "New South Wales",
-      population: "5.3M",
-      href: "/au/seo-services-sydney",
-      image: "/images/sydney-skyline.jpg",
-      specialty: "Financial & Corporate Hub"
-    },
-    {
       name: "Melbourne",
       state: "Victoria",
       population: "5.1M",
-      href: "/au/seo-services-melbourne",
+      href: "/au/melbourne",
       image: "/images/melbourne-skyline.jpg",
-      specialty: "Cultural & Sports Capital"
+      specialty: "Creative & Cultural Capital"
+    },
+    {
+      name: "Sydney",
+      state: "New South Wales",
+      population: "5.3M",
+      href: "/au/sydney",
+      image: "/images/sydney-skyline.jpg",
+      specialty: "Financial & Corporate Hub"
     },
     {
       name: "Brisbane",
       state: "Queensland",
       population: "2.6M",
-      href: "/au/seo-services-brisbane",
+      href: "/au/brisbane",
       image: "/images/brisbane-skyline.jpg",
-      specialty: "Tourism & Hospitality"
+      specialty: "Tourism & Hospitality Hub"
     },
     {
       name: "Perth",
       state: "Western Australia",
       population: "2.1M",
-      href: "/au/seo-services-perth",
+      href: "/au/perth",
       image: "/images/perth-skyline.jpg",
-      specialty: "Mining & Resources"
+      specialty: "Mining & Resources Hub"
     }
   ];
 

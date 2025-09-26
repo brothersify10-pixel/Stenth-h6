@@ -11,7 +11,7 @@ export default function CanadaHomepage() {
       name: "Toronto",
       province: "Ontario",
       population: "6.2M",
-      href: "/ca/seo-services-toronto",
+      href: "/ca/toronto",
       image: "/images/toronto-skyline.jpg",
       specialty: "Financial & Tech Hub"
     },
@@ -19,25 +19,25 @@ export default function CanadaHomepage() {
       name: "Montreal",
       province: "Quebec",
       population: "4.3M",
-      href: "/ca/seo-services-montreal",
+      href: "/ca/montreal",
       image: "/images/montreal-skyline.jpg",
-      specialty: "Bilingual Market"
+      specialty: "Bilingual Market Capital"
     },
     {
       name: "Vancouver",
       province: "British Columbia",
       population: "2.6M",
-      href: "/ca/seo-services-vancouver",
+      href: "/ca/vancouver",
       image: "/images/vancouver-skyline.jpg",
-      specialty: "Tech & Innovation"
+      specialty: "Tech & Innovation Hub"
     },
     {
       name: "Calgary",
       province: "Alberta",
       population: "1.3M",
-      href: "/ca/seo-services-calgary",
+      href: "/ca/calgary",
       image: "/images/calgary-skyline.jpg",
-      specialty: "Energy Sector"
+      specialty: "Energy & Resources Hub"
     }
   ];
 
