@@ -267,7 +267,7 @@ export default function AustraliaHomepage() {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-8 mb-8">
                 <div className="flex items-center">
                   <Phone className="w-5 h-5 text-green-400 mr-3" />
-                  <span className="text-white">+61 2 8079 2145</span>
+                  <span className="text-white">+61 401 712 063    </span>
                 </div>
                 <div className="flex items-center">
                   <Mail className="w-5 h-5 text-green-400 mr-3" />
@@ -275,7 +275,7 @@ export default function AustraliaHomepage() {
                 </div>
                 <div className="flex items-center">
                   <MapPin className="w-5 h-5 text-green-400 mr-3" />
-                  <span className="text-white">Sydney, NSW</span>
+                  <span className="text-white">Melbourne, VIC</span>
                 </div>
               </div>
 

@@ -106,7 +106,7 @@ export default function CanadaHomepage() {
             {/* Canadian Stats */}
             <div className="grid grid-cols-3 gap-8 max-w-2xl mx-auto">
               <div className="text-center">
-                <div className="text-3xl font-bold text-red-400 mb-2">200+</div>
+                <div className="text-3xl font-bold text-red-400 mb-2">108+</div>
                 <div className="text-slate-400">Canadian Clients</div>
               </div>
               <div className="text-center">
@@ -114,7 +114,7 @@ export default function CanadaHomepage() {
                 <div className="text-slate-400">Provinces Served</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-red-400 mb-2">$50M+</div>
+                <div className="text-3xl font-bold text-red-400 mb-2">$245K+</div>
                 <div className="text-slate-400">Revenue Generated (CAD)</div>
               </div>
             </div>

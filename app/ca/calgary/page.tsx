@@ -46,7 +46,7 @@ export default function CalgaryDigitalMarketingPage() {
   ];
 
   const socialProof = [
-    { metric: "70+", label: "Calgary Energy Clients" },
+    { metric: "70+", label: "Calgary Clients" },
     { metric: "8+", label: "Years Experience" },
     { metric: "94%", label: "Client Satisfaction Rate" }
   ];
@@ -103,7 +103,7 @@ export default function CalgaryDigitalMarketingPage() {
                 href="/ca/book"
                 className="px-8 py-4 border-2 border-red-500 text-red-400 hover:bg-red-500 hover:text-white font-semibold rounded-xl transition-all duration-300"
               >
-                Book Energy Strategy Session
+                Book Strategy Session
               </Link>
             </div>
 
@@ -192,7 +192,7 @@ export default function CalgaryDigitalMarketingPage() {
               href="/ca/contact"
               className="inline-block px-8 py-4 bg-gradient-to-r from-orange-500 to-red-600 text-white font-bold rounded-xl hover:from-orange-600 hover:to-red-700 transition-all duration-300"
             >
-              Get Your Calgary Energy Strategy
+              Get Your Calgary Strategy
             </Link>
           </div>
         </div>
@@ -259,11 +259,11 @@ export default function CalgaryDigitalMarketingPage() {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-8 mb-8">
                 <div className="flex items-center">
                   <Phone className="w-5 h-5 text-orange-400 mr-3" />
-                  <span className="text-white">+1 (403) 555-0123</span>
+                  <span className="text-white">+1 (705) 790-1965</span>
                 </div>
                 <div className="flex items-center">
                   <Mail className="w-5 h-5 text-orange-400 mr-3" />
-                  <span className="text-white">calgary@stenth.com</span>
+                  <span className="text-white">canada@stenth.com</span>
                 </div>
                 <div className="flex items-center">
                   <MapPin className="w-5 h-5 text-orange-400 mr-3" />

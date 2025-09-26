@@ -259,11 +259,11 @@ export default function BrisbaneDigitalMarketingPage() {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-8 mb-8">
                 <div className="flex items-center">
                   <Phone className="w-5 h-5 text-yellow-400 mr-3" />
-                  <span className="text-white">+61 7 3188 2074</span>
+                  <span className="text-white">+61 401 712 063    </span>
                 </div>
                 <div className="flex items-center">
                   <Mail className="w-5 h-5 text-yellow-400 mr-3" />
-                  <span className="text-white">brisbane@stenth.com</span>
+                  <span className="text-white">australia@stenth.com</span>
                 </div>
                 <div className="flex items-center">
                   <MapPin className="w-5 h-5 text-yellow-400 mr-3" />
