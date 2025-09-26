@@ -5,7 +5,7 @@ import { MapPin, Phone, Mail, Star, TrendingUp, Users, Award, Building2, Globe, 
 import STENTHFooter from "@/components/stenth-footer";
 import FloatingElements from "@/components/floating-elements";
 
-export default function MelbourneSEOPage() {
+export default function MelbourneDigitalMarketingPage() {
   const melbourneAreas = [
     "Melbourne CBD", "South Yarra", "Richmond", "Fitzroy", "St Kilda", "Brighton",
     "Toorak", "Prahran", "Carlton", "Southbank", "Docklands", "Port Melbourne"
@@ -140,13 +140,13 @@ export default function MelbourneSEOPage() {
 
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
               <span className="bg-gradient-to-r from-orange-400 via-yellow-400 to-orange-400 bg-clip-text text-transparent">
-                SEO Services Melbourne
+                Digital Marketing Melbourne
               </span>
             </h1>
 
             <p className="text-xl md:text-2xl text-slate-300 mb-8 leading-relaxed">
-              Dominate Melbourne search results and attract more customers from across Victoria.
-              Expert local SEO strategies for Australia's cultural and sporting capital.
+              Not just marketing. We build businesses in Australia's cultural capital.
+              Complete digital growth solutions for Melbourne companies of all sizes.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -154,7 +154,7 @@ export default function MelbourneSEOPage() {
                 href="/au/contact"
                 className="px-8 py-4 bg-gradient-to-r from-orange-500 to-yellow-600 text-white font-semibold rounded-full hover:from-orange-400 hover:to-yellow-500 transition-all duration-300 shadow-lg shadow-orange-500/25"
               >
-                Get Free Melbourne SEO Audit
+                Get Free Growth Strategy
               </Link>
               <Link
                 href="/au/case-studies"
@@ -166,11 +166,11 @@ export default function MelbourneSEOPage() {
 
             {/* Melbourne SEO Launch */}
             <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700/50 max-w-3xl mx-auto">
-              <h3 className="text-2xl font-bold text-white mb-4">🏙️ Elevating Melbourne's SEO Landscape</h3>
+              <h3 className="text-2xl font-bold text-white mb-4">🏙️ Elevating Melbourne's Digital Landscape</h3>
               <p className="text-slate-300 text-lg leading-relaxed mb-6">
-                We're bringing fresh SEO expertise to Australia's cultural capital. As we build
-                our Melbourne network, foundation clients receive white-glove service and direct
-                collaboration with our international SEO team.
+                We're bringing comprehensive digital marketing expertise to Australia's cultural capital.
+                From creative startups to major corporations, we build businesses through strategic marketing
+                that drives real growth and measurable ROI across all channels.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
                 <div>
@@ -274,7 +274,7 @@ export default function MelbourneSEOPage() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-4">
-              Melbourne SEO Services
+              Melbourne Digital Marketing Services
             </h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
               Customised SEO services designed for Melbourne businesses of all sizes.
@@ -381,7 +381,7 @@ export default function MelbourneSEOPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl font-bold text-white mb-8">
-              Why Melbourne Businesses Choose Stenth for SEO
+              Why Melbourne Businesses Choose Stenth for Digital Marketing
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">

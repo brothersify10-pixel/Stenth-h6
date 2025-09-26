@@ -5,7 +5,7 @@ import { MapPin, Phone, Mail, Star, TrendingUp, Users, Award, Building2, Globe, 
 import STENTHFooter from "@/components/stenth-footer";
 import FloatingElements from "@/components/floating-elements";
 
-export default function SydneySEOPage() {
+export default function SydneyDigitalMarketingPage() {
   const sydneyAreas = [
     "Sydney CBD", "North Sydney", "Parramatta", "Bondi", "Manly", "Cronulla",
     "Chatswood", "Bankstown", "Liverpool", "Penrith", "Blacktown", "Sutherland"
@@ -145,8 +145,8 @@ export default function SydneySEOPage() {
             </h1>
 
             <p className="text-xl md:text-2xl text-slate-300 mb-8 leading-relaxed">
-              🚀 <strong>Dominate Sydney's Digital Landscape</strong> with Australia's most comprehensive digital marketing solutions.
-              We don't just build websites—we build <em>businesses that dominate their markets</em>.
+              Not just marketing. We build businesses in Australia's economic capital.
+              From business analysis to brand recognition, STENTH drives every stage of your growth.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -154,7 +154,7 @@ export default function SydneySEOPage() {
                 href="/au/contact"
                 className="px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-full hover:from-blue-400 hover:to-blue-500 transition-all duration-300 shadow-lg shadow-blue-500/25"
               >
-                Get Free Sydney SEO Audit
+                Get Free Growth Strategy
               </Link>
               <Link
                 href="/au/case-studies"
@@ -166,17 +166,17 @@ export default function SydneySEOPage() {
 
             {/* Sydney SEO Market Entry */}
             <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700/50 max-w-3xl mx-auto">
-              <h3 className="text-2xl font-bold text-white mb-4">🎆 Premium SEO Services Now in Sydney</h3>
+              <h3 className="text-2xl font-bold text-white mb-4">🎆 Complete Digital Marketing Now in Sydney</h3>
               <p className="text-slate-300 text-lg leading-relaxed mb-6">
-                We're excited to bring our world-class SEO expertise to Sydney businesses.
-                As a new entrant to the Sydney market, we offer personalized attention from our
-                senior SEO specialists and cutting-edge strategies proven internationally.
+                We're bringing comprehensive digital marketing expertise to Australia's business capital.
+                From startups to ASX-listed companies, we build businesses through strategic marketing
+                that drives real growth and measurable ROI across all channels.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
                 <div>
                   <div className="text-2xl font-bold text-blue-400 mb-2">🚀</div>
-                  <div className="text-slate-300 font-medium">International Expertise</div>
-                  <div className="text-slate-400 text-sm">Proven strategies worldwide</div>
+                  <div className="text-slate-300 font-medium">Full-Service Marketing</div>
+                  <div className="text-slate-400 text-sm">All marketing channels covered</div>
                 </div>
                 <div>
                   <div className="text-2xl font-bold text-blue-400 mb-2">🎯</div>
@@ -246,7 +246,7 @@ export default function SydneySEOPage() {
         </div>
       </section>
 
-      {/* SEO Services */}
+      {/* Digital Marketing Services */}
       <section className="py-20 bg-slate-900/50">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
