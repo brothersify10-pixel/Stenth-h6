@@ -34,45 +34,91 @@ export default function MelbourneSEOPage() {
     }
   ];
 
-  const seoServices = [
+  const digitalMarketingServices = [
     {
-      name: "Local Melbourne SEO",
-      description: "Perfect for Melbourne businesses targeting local customers",
+      name: "☕ Creative Startup Accelerator",
+      description: "Perfect digital foundation for Melbourne's vibrant creative scene",
       features: [
-        "Google My Business optimisation",
-        "Local keyword targeting (Melbourne + suburbs)",
-        "Citation building in Australian directories",
-        "Review management",
-        "Local schema markup",
-        "Mobile optimisation"
+        "🎯 Local Melbourne SEO + Google My Business domination",
+        "🎨 Instagram & TikTok marketing (perfect for Melbourne's visual culture)",
+        "☕ Creative website design with Melbourne laneway flair",
+        "📧 Email marketing automation with artistic templates",
+        "📊 Monthly analytics & creative performance tracking",
+        "⭐ Online reputation management for local reviews",
+        "🎨 Melbourne culture integration (coffee, arts, sports)"
       ],
-      ideal: "Cafes, retail stores, service businesses"
+      ideal: "Cafes, creative agencies, boutique stores, local services",
+      guarantee: "50% increase in local foot traffic within 90 days",
+      popular: false
     },
     {
-      name: "Enterprise Melbourne SEO",
-      description: "Comprehensive SEO for large Melbourne corporations",
+      name: "⚡ Melbourne Market Dominator",
+      description: "Comprehensive growth system for established Melbourne businesses",
       features: [
-        "Technical SEO audit & implementation",
-        "National + local keyword targeting",
-        "Content strategy & creation",
-        "Link building campaigns",
-        "Competitor analysis",
-        "Advanced analytics & reporting"
+        "🚀 Everything in Creative Startup + Advanced features",
+        "💰 Google Ads + Facebook Ads + Instagram campaigns",
+        "✍️ Content marketing highlighting Melbourne culture & events",
+        "🔍 Advanced SEO (compete with Collins St & Chapel St businesses)",
+        "🎨 Brand strategy celebrating Melbourne's unique identity",
+        "📈 Conversion optimization for Melbourne customers",
+        "🏆 Event marketing (Melbourne Cup, Grand Prix, festivals)",
+        "🎬 Video marketing showcasing Melbourne locations",
+        "👥 Dedicated Melbourne specialist account manager"
       ],
-      ideal: "ASX listed companies, large enterprises"
+      ideal: "Established restaurants, retail chains, professional services",
+      guarantee: "200% ROI within 6 months",
+      popular: true
     },
     {
-      name: "E-commerce Melbourne SEO",
-      description: "Drive online sales for Melbourne-based e-commerce",
+      name: "🔥 Victorian Enterprise Domination",
+      description: "Total market leadership for Melbourne's corporate giants",
       features: [
-        "Product page optimisation",
-        "Category page SEO",
-        "Shopping feed optimisation",
-        "Local inventory ads",
-        "Conversion rate optimisation",
-        "Multi-location SEO"
+        "👑 Everything in Market Dominator + Premium features",
+        "🎬 Multi-platform campaigns (Google, Facebook, LinkedIn, YouTube)",
+        "🤖 Advanced marketing automation + CRM integration",
+        "💻 Custom enterprise web development & mobile apps",
+        "🎥 Professional video production (Melbourne locations)",
+        "🤝 Influencer partnerships with Melbourne personalities",
+        "📊 Advanced business intelligence & market analysis",
+        "🏆 Custom landing pages for major Melbourne events",
+        "👨‍💼 Dedicated team of 5+ Melbourne specialists"
       ],
-      ideal: "Online retailers, multi-location stores"
+      ideal: "ASX companies, major franchises, corporate headquarters",
+      guarantee: "Market leadership in Melbourne & Victoria",
+      popular: false
+    }
+  ];
+
+  const serviceCategories = [
+    {
+      category: "☕ Café & Restaurant Marketing",
+      description: "Specialized marketing for Melbourne's famous food & coffee culture",
+      services: ["Instagram Food Photography", "Google My Business for Restaurants", "Local Food SEO", "Event Promotion", "Menu Optimization", "Review Management", "Food Delivery Platform Setup", "Loyalty Program Development"]
+    },
+    {
+      category: "🎨 Creative & Arts Marketing",
+      description: "Perfect for galleries, studios, and creative professionals",
+      services: ["Portfolio Websites", "Instagram Art Marketing", "Event Promotion", "Creative Content Strategy", "Art Gallery SEO", "Exhibition Marketing", "Artist Brand Development", "Creative Community Building"]
+    },
+    {
+      category: "🎬 Digital Advertising & PPC",
+      description: "Drive targeted traffic through paid advertising campaigns",
+      services: ["Google Ads Management", "Facebook & Instagram Ads", "LinkedIn B2B Campaigns", "YouTube Advertising", "Shopping Ads", "Event-Based Advertising", "Retargeting Campaigns", "Local Service Ads"]
+    },
+    {
+      category: "📱 Social Media & Influencer Marketing",
+      description: "Build your brand across Melbourne's social landscape",
+      services: ["Instagram Marketing", "TikTok Creative Campaigns", "Facebook Community Building", "LinkedIn Professional Marketing", "Influencer Partnerships", "Social Media Management", "Content Creation", "Community Management"]
+    },
+    {
+      category: "🌐 Web Design & Development",
+      description: "Create stunning websites with Melbourne style and flair",
+      services: ["Creative Website Design", "E-commerce Development", "Mobile App Development", "Landing Page Creation", "Website Speed Optimization", "UX/UI Design", "Portfolio Websites", "Booking Systems"]
+    },
+    {
+      category: "🔍 Search Engine Optimization",
+      description: "Dominate Melbourne search results and drive organic traffic",
+      services: ["Local Melbourne SEO", "Multi-location SEO", "Technical SEO Audits", "Keyword Research", "Link Building", "Google My Business", "Review Management", "Local Citation Building"]
     }
   ];
 
@@ -236,7 +282,7 @@ export default function MelbourneSEOPage() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {seoServices.map((pkg, index) => (
+            {digitalMarketingServices.map((pkg, index) => (
               <div
                 key={pkg.name}
                 className={`bg-slate-800/50 rounded-2xl p-8 border transition-all duration-300 ${
@@ -281,6 +327,51 @@ export default function MelbourneSEOPage() {
                 </Link>
               </div>
             ))}
+          </div>
+
+          {/* Expandable Services Catalog */}
+          <div className="bg-slate-800/30 rounded-2xl p-8 border border-slate-700/50">
+            <div className="text-center mb-8">
+              <h3 className="text-3xl font-bold text-white mb-4">☕ Melbourne Services Menu</h3>
+              <p className="text-slate-300">Explore our full range of Melbourne-focused digital marketing services. Click any category to see what's included.</p>
+            </div>
+
+            <div className="space-y-4">
+              {serviceCategories.map((category, index) => (
+                <details key={category.category} className="bg-slate-900/50 rounded-lg border border-slate-700/30 group">
+                  <summary className="p-6 cursor-pointer list-none flex items-center justify-between hover:bg-slate-800/50 transition-colors">
+                    <div>
+                      <h4 className="text-xl font-bold text-white mb-1">{category.category}</h4>
+                      <p className="text-slate-400 text-sm">{category.description}</p>
+                    </div>
+                    <div className="text-orange-400 group-open:rotate-180 transition-transform">
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  </summary>
+                  <div className="px-6 pb-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4">
+                      {category.services.map((service, idx) => (
+                        <div key={idx} className="flex items-center text-slate-300 text-sm py-2 px-3 bg-slate-800/30 rounded-lg hover:bg-slate-700/30 transition-colors">
+                          <div className="w-2 h-2 bg-orange-400 rounded-full mr-3 flex-shrink-0"></div>
+                          {service}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </details>
+              ))}
+            </div>
+
+            <div className="text-center mt-8">
+              <Link
+                href="/au/contact"
+                className="inline-block px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-600 text-white font-bold rounded-full hover:from-purple-400 hover:to-pink-500 transition-all duration-300 transform hover:scale-105"
+              >
+                ☕ Get Custom Melbourne Proposal & Pricing
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -332,12 +423,17 @@ export default function MelbourneSEOPage() {
                 </div>
               </div>
 
-              <Link
-                href="/au/contact"
-                className="inline-block px-8 py-4 bg-gradient-to-r from-orange-500 to-yellow-600 text-white font-semibold rounded-full hover:from-orange-400 hover:to-yellow-500 transition-all duration-300 shadow-lg shadow-orange-500/25"
-              >
-                Get Your Free Melbourne SEO Strategy Call
-              </Link>
+              <div className="space-y-4">
+                <Link
+                  href="/au/contact"
+                  className="inline-block px-8 py-4 bg-gradient-to-r from-orange-500 to-red-600 text-white font-bold rounded-full hover:from-orange-400 hover:to-red-500 transition-all duration-300 shadow-lg shadow-orange-500/25 transform hover:scale-105 animate-pulse"
+                >
+                  ☕ BOOK MELBOURNE GROWTH STRATEGY NOW
+                </Link>
+                <div className="bg-orange-500/10 border border-orange-500/30 rounded-lg p-4 max-w-md mx-auto">
+                  <p className="text-orange-300 text-sm font-semibold">💰 Melbourne Guarantee | ☕ No Results = Free Coffee for a Year | 🎯 Cancel Anytime</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

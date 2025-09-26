@@ -1,26 +1,31 @@
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "SEO Services Melbourne | Stenth Australia",
-  description: "Leading SEO agency in Melbourne helping VIC businesses dominate local search results. Expert Melbourne SEO services for higher rankings and more customers.",
+  title: "Digital Marketing Melbourne | Creative Growth Solutions | Stenth Australia",
+  description: "☕ Melbourne's most creative digital marketing agency. SEO, Social Media, Web Design & more. 385% average revenue growth. Melbourne launch special: 50% OFF!",
   keywords: [
+    "digital marketing Melbourne",
+    "Melbourne digital marketing agency",
+    "creative marketing Melbourne",
+    "Instagram marketing Melbourne",
+    "Google Ads Melbourne",
+    "social media marketing Melbourne",
     "SEO services Melbourne",
-    "Melbourne SEO agency",
-    "SEO company Melbourne",
-    "search engine optimisation Melbourne",
-    "local SEO Melbourne",
-    "Melbourne digital marketing",
-    "VIC SEO services",
-    "Melbourne SEO expert",
-    "SEO consultant Melbourne",
-    "Melbourne website optimisation"
+    "web design Melbourne",
+    "Melbourne marketing agency",
+    "café marketing Melbourne",
+    "restaurant marketing Melbourne",
+    "creative agency Melbourne",
+    "content marketing Melbourne",
+    "brand strategy Melbourne",
+    "Melbourne business growth"
   ],
   alternates: {
     canonical: "/au/seo-services-melbourne/"
   },
   openGraph: {
-    title: "SEO Services Melbourne | Stenth Australia",
-    description: "Leading SEO agency in Melbourne helping VIC businesses dominate local search results.",
+    title: "Digital Marketing Melbourne | Creative Growth Solutions | Stenth Australia",
+    description: "☕ Melbourne's most creative digital marketing agency. 385% revenue growth for local businesses. Launch special: 50% OFF!",
     url: "https://www.stenth.com/au/seo-services-melbourne/",
   },
 }

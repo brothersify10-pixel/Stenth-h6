@@ -1,26 +1,31 @@
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "SEO Services Sydney | Stenth Australia",
-  description: "Leading SEO agency in Sydney helping NSW businesses dominate local search results. Expert Sydney SEO services for higher rankings and more customers.",
+  title: "Digital Marketing Sydney | Complete Growth Solutions | Stenth Australia",
+  description: "🚀 Sydney's most comprehensive digital marketing agency. SEO, Google Ads, Social Media, Web Design & more. 340% average revenue increase. Launch special: 50% OFF!",
   keywords: [
+    "digital marketing Sydney",
+    "Sydney digital marketing agency",
+    "Google Ads Sydney",
+    "social media marketing Sydney",
     "SEO services Sydney",
-    "Sydney SEO agency",
-    "SEO company Sydney",
-    "search engine optimisation Sydney",
-    "local SEO Sydney",
-    "Sydney digital marketing",
-    "NSW SEO services",
-    "Sydney SEO expert",
-    "SEO consultant Sydney",
-    "Sydney website optimisation"
+    "web design Sydney",
+    "Sydney marketing agency",
+    "paid advertising Sydney",
+    "content marketing Sydney",
+    "email marketing Sydney",
+    "brand strategy Sydney",
+    "conversion optimization Sydney",
+    "marketing automation Sydney",
+    "Sydney business growth",
+    "digital transformation Sydney"
   ],
   alternates: {
     canonical: "/au/seo-services-sydney/"
   },
   openGraph: {
-    title: "SEO Services Sydney | Stenth Australia",
-    description: "Leading SEO agency in Sydney helping NSW businesses dominate local search results.",
+    title: "Digital Marketing Sydney | Complete Growth Solutions | Stenth Australia",
+    description: "🚀 Sydney's most comprehensive digital marketing agency. 340% average revenue increase. Launch special: 50% OFF first 3 months!",
     url: "https://www.stenth.com/au/seo-services-sydney/",
   },
 }

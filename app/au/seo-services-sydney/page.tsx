@@ -34,45 +34,91 @@ export default function SydneySEOPage() {
     }
   ];
 
-  const seoServices = [
+  const digitalMarketingServices = [
     {
-      name: "Local Sydney SEO",
-      description: "Perfect for Sydney businesses targeting local customers",
+      name: "🌟 Startup Growth Accelerator",
+      description: "Complete digital foundation for new Sydney businesses",
       features: [
-        "Google My Business optimisation",
-        "Local keyword targeting (Sydney + suburbs)",
-        "Citation building in Australian directories",
-        "Review management",
-        "Local schema markup",
-        "Mobile optimisation"
+        "🎯 Local SEO + Google My Business domination",
+        "📱 Social media marketing setup (Instagram, Facebook, LinkedIn)",
+        "🌐 Professional website design & optimization",
+        "📧 Email marketing automation & lead nurturing",
+        "📊 Monthly analytics & performance optimization",
+        "⭐ Online reputation management",
+        "📞 24/7 customer support & strategy calls"
       ],
-      ideal: "Restaurants, retail stores, service businesses"
+      ideal: "Startups, new businesses, solopreneurs",
+      guarantee: "50% increase in online visibility within 90 days",
+      popular: false
     },
     {
-      name: "Enterprise Sydney SEO",
-      description: "Comprehensive SEO for large Sydney corporations",
+      name: "⚡ Scale-Up Success Dominator",
+      description: "Comprehensive growth system for established Sydney businesses",
       features: [
-        "Technical SEO audit & implementation",
-        "National + local keyword targeting",
-        "Content strategy & creation",
-        "Link building campaigns",
-        "Competitor analysis",
-        "Advanced analytics & reporting"
+        "🚀 Everything in Startup Growth + Advanced features",
+        "💰 Google Ads + Facebook Ads campaigns (managed)",
+        "✍️ Content marketing strategy & creation",
+        "🔍 Advanced SEO (national + local domination)",
+        "🎨 Brand strategy & visual identity development",
+        "📈 Conversion rate optimization & A/B testing",
+        "🎯 Lead generation funnels & automation",
+        "📹 Video marketing & production",
+        "🏆 Dedicated account manager"
       ],
-      ideal: "ASX listed companies, large enterprises"
+      ideal: "Growing businesses, established companies, franchises",
+      guarantee: "200% ROI within 6 months",
+      popular: true
     },
     {
-      name: "E-commerce Sydney SEO",
-      description: "Drive online sales for Sydney-based e-commerce",
+      name: "🔥 Enterprise Market Domination",
+      description: "Total market leadership for Sydney's biggest players",
       features: [
-        "Product page optimisation",
-        "Category page SEO",
-        "Shopping feed optimisation",
-        "Local inventory ads",
-        "Conversion rate optimisation",
-        "Multi-location SEO"
+        "👑 Everything in Scale-Up + Premium features",
+        "🎬 Multi-platform advertising campaigns (Google, Facebook, LinkedIn, YouTube)",
+        "🤖 Advanced marketing automation & CRM integration",
+        "💻 Custom web development & mobile apps",
+        "🎥 Professional video production & editing",
+        "🤝 Influencer partnerships & PR campaigns",
+        "📊 Advanced analytics & business intelligence",
+        "🎯 Custom landing pages & sales funnels",
+        "👥 Dedicated team of 5+ specialists"
       ],
-      ideal: "Online retailers, multi-location stores"
+      ideal: "Large corporations, ASX listed companies, major franchises",
+      guarantee: "Market leadership positioning & competitor domination",
+      popular: false
+    }
+  ];
+
+  const serviceCategories = [
+    {
+      category: "🎯 Digital Advertising & PPC",
+      description: "Drive targeted traffic and qualified leads through paid advertising",
+      services: ["Google Ads Management", "Facebook & Instagram Ads", "LinkedIn B2B Campaigns", "YouTube Advertising", "Shopping Ads & E-commerce", "Remarketing Campaigns", "Display Advertising", "Local Service Ads"]
+    },
+    {
+      category: "📱 Social Media Domination",
+      description: "Build your brand and engage customers across all social platforms",
+      services: ["Instagram Marketing", "Facebook Marketing", "LinkedIn Marketing", "TikTok Marketing", "YouTube Channel Growth", "Social Media Management", "Influencer Partnerships", "Social Commerce"]
+    },
+    {
+      category: "🌐 Web Development & Design",
+      description: "Create stunning websites that convert visitors into customers",
+      services: ["Custom Website Design", "E-commerce Development", "Mobile App Development", "Landing Page Creation", "Website Speed Optimization", "UX/UI Design", "WordPress Development", "Shopify Stores"]
+    },
+    {
+      category: "✍️ Content & Brand Strategy",
+      description: "Tell your story and build a brand that customers love",
+      services: ["Content Marketing Strategy", "Video Production", "Graphic Design", "Brand Identity Creation", "Copywriting Services", "PR & Media Relations", "Podcast Marketing", "Blog Content Creation"]
+    },
+    {
+      category: "🤖 Marketing Technology",
+      description: "Automate and optimize your marketing for maximum efficiency",
+      services: ["Marketing Automation", "CRM Setup & Management", "Analytics & Reporting", "Lead Generation Systems", "Email Marketing", "SMS Marketing", "Chatbot Development", "Conversion Tracking"]
+    },
+    {
+      category: "🔍 Search Engine Optimization",
+      description: "Dominate Google search results and drive organic traffic",
+      services: ["Local Sydney SEO", "National SEO Campaigns", "Technical SEO Audits", "Keyword Research & Strategy", "Link Building", "On-Page Optimization", "Google My Business", "SEO Content Creation"]
     }
   ];
 
@@ -94,13 +140,13 @@ export default function SydneySEOPage() {
 
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
               <span className="bg-gradient-to-r from-blue-400 via-white to-blue-400 bg-clip-text text-transparent">
-                SEO Services Sydney
+                Digital Marketing Sydney
               </span>
             </h1>
 
             <p className="text-xl md:text-2xl text-slate-300 mb-8 leading-relaxed">
-              Dominate Sydney search results and attract more customers from across NSW.
-              Expert local SEO strategies for Australia's largest metropolitan market.
+              🚀 <strong>Dominate Sydney's Digital Landscape</strong> with Australia's most comprehensive digital marketing solutions.
+              We don't just build websites—we build <em>businesses that dominate their markets</em>.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
@@ -204,28 +250,32 @@ export default function SydneySEOPage() {
       <section className="py-20 bg-slate-900/50">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-4">
-              Sydney SEO Services
+            <h2 className="text-5xl font-bold text-white mb-4">
+              🚀 Complete Digital Marketing Solutions
             </h2>
-            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-              Customised SEO solutions designed for Sydney businesses of all sizes.
+            <p className="text-2xl text-slate-300 max-w-4xl mx-auto mb-8">
+              Choose your <strong>business growth package</strong>. Each designed to
+              dominate from Circular Quay to Parramatta and beyond.
             </p>
+            <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4 max-w-2xl mx-auto">
+              <p className="text-blue-300 font-semibold">💡 <strong>Sydney Special:</strong> 94% of our clients choose Scale-Up Success for maximum growth</p>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {seoServices.map((service, index) => (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+            {digitalMarketingServices.map((service, index) => (
               <div
                 key={service.name}
-                className={`bg-slate-800/50 rounded-2xl p-8 border transition-all duration-300 ${
-                  index === 1
-                    ? 'border-blue-500 ring-2 ring-blue-500/20 scale-105'
-                    : 'border-slate-700/50 hover:border-blue-500/50'
+                className={`bg-slate-800/50 rounded-2xl p-8 border transition-all duration-300 transform ${
+                  service.popular
+                    ? 'border-green-500 ring-4 ring-green-500/20 scale-110 shadow-2xl shadow-green-500/20'
+                    : 'border-slate-700/50 hover:border-blue-500/50 hover:scale-105'
                 }`}
               >
-                {index === 1 && (
+                {service.popular && (
                   <div className="text-center mb-4">
-                    <span className="inline-block px-4 py-1 bg-blue-500 text-white text-sm font-semibold rounded-full">
-                      MOST POPULAR
+                    <span className="inline-block px-4 py-2 bg-gradient-to-r from-green-500 to-green-600 text-white text-sm font-bold rounded-full animate-pulse">
+                      ⭐ MOST POPULAR - BEST VALUE ⭐
                     </span>
                   </div>
                 )}
@@ -233,31 +283,81 @@ export default function SydneySEOPage() {
                 <h3 className="text-2xl font-bold text-white mb-4">{service.name}</h3>
                 <p className="text-slate-300 mb-6">{service.description}</p>
 
-                <ul className="space-y-3 mb-8">
+                <ul className="space-y-3 mb-6">
                   {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center text-slate-300">
-                      <Star className="w-4 h-4 text-blue-400 mr-3 flex-shrink-0" />
-                      {feature}
+                    <li key={idx} className="flex items-start text-slate-300">
+                      <Star className="w-4 h-4 text-green-400 mr-3 flex-shrink-0 mt-1" />
+                      <span dangerouslySetInnerHTML={{ __html: feature }} />
                     </li>
                   ))}
                 </ul>
 
-                <div className="text-sm text-slate-400 mb-6">
-                  <strong>Ideal for:</strong> {service.ideal}
+                <div className="bg-slate-900/50 rounded-lg p-4 mb-6">
+                  <div className="text-sm text-slate-400 mb-2">
+                    <strong>Perfect for:</strong> {service.ideal}
+                  </div>
+                  <div className="text-sm font-bold text-green-400">
+                    🎯 <strong>Guarantee:</strong> {service.guarantee}
+                  </div>
                 </div>
 
                 <Link
                   href="/au/contact"
-                  className={`block w-full text-center px-6 py-3 font-semibold rounded-full transition-all duration-300 ${
-                    index === 1
-                      ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-400 hover:to-blue-500'
+                  className={`block w-full text-center px-6 py-4 font-bold rounded-full transition-all duration-300 transform hover:scale-105 ${
+                    service.popular
+                      ? 'bg-gradient-to-r from-green-500 to-green-600 text-white hover:from-green-400 hover:to-green-500 shadow-lg shadow-green-500/25'
                       : 'border-2 border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white'
                   }`}
                 >
-                  Get Free Consultation
+                  {service.popular ? '🚀 START DOMINATING NOW' : 'Get Free Strategy Call'}
                 </Link>
               </div>
             ))}
+          </div>
+
+          {/* Expandable Services Catalog */}
+          <div className="bg-slate-800/30 rounded-2xl p-8 border border-slate-700/50">
+            <div className="text-center mb-8">
+              <h3 className="text-3xl font-bold text-white mb-4">🎯 Complete Services Catalog</h3>
+              <p className="text-slate-300">Explore our full range of digital marketing services. Click any category to see what's included.</p>
+            </div>
+
+            <div className="space-y-4">
+              {serviceCategories.map((category, index) => (
+                <details key={category.category} className="bg-slate-900/50 rounded-lg border border-slate-700/30 group">
+                  <summary className="p-6 cursor-pointer list-none flex items-center justify-between hover:bg-slate-800/50 transition-colors">
+                    <div>
+                      <h4 className="text-xl font-bold text-white mb-1">{category.category}</h4>
+                      <p className="text-slate-400 text-sm">{category.description}</p>
+                    </div>
+                    <div className="text-blue-400 group-open:rotate-180 transition-transform">
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  </summary>
+                  <div className="px-6 pb-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-4">
+                      {category.services.map((service, idx) => (
+                        <div key={idx} className="flex items-center text-slate-300 text-sm py-2 px-3 bg-slate-800/30 rounded-lg hover:bg-slate-700/30 transition-colors">
+                          <div className="w-2 h-2 bg-blue-400 rounded-full mr-3 flex-shrink-0"></div>
+                          {service}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </details>
+              ))}
+            </div>
+
+            <div className="text-center mt-8">
+              <Link
+                href="/au/contact"
+                className="inline-block px-8 py-4 bg-gradient-to-r from-purple-500 to-purple-600 text-white font-bold rounded-full hover:from-purple-400 hover:to-purple-500 transition-all duration-300 transform hover:scale-105"
+              >
+                💬 Get Custom Proposal & Pricing
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -267,7 +367,7 @@ export default function SydneySEOPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-4xl font-bold text-white mb-8">
-              Why Sydney Businesses Choose Stenth for SEO
+              Why Sydney Businesses Choose Stenth for Digital Marketing
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
@@ -309,12 +409,17 @@ export default function SydneySEOPage() {
                 </div>
               </div>
 
-              <Link
-                href="/au/contact"
-                className="inline-block px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-full hover:from-blue-400 hover:to-blue-500 transition-all duration-300 shadow-lg shadow-blue-500/25"
-              >
-                Get Your Free Sydney SEO Strategy Call
-              </Link>
+              <div className="space-y-4">
+                <Link
+                  href="/au/contact"
+                  className="inline-block px-8 py-4 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold rounded-full hover:from-red-400 hover:to-red-500 transition-all duration-300 shadow-lg shadow-red-500/25 transform hover:scale-105 animate-pulse"
+                >
+                  🎯 BOOK EMERGENCY GROWTH CALL NOW
+                </Link>
+                <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-4 max-w-md mx-auto">
+                  <p className="text-green-300 text-sm font-semibold">💰 100% Money-Back Guarantee | 📊 No Results = No Payment | 🎯 Cancel Anytime</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
