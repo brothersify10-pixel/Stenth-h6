@@ -22,7 +22,8 @@ const NAV = [
 
 const COUNTRIES = [
   {
-    label: "🇦🇺 Australia",
+    label: "Australia",
+    flag: "🇦🇺",
     href: "/au",
     color: "from-green-400 to-yellow-400",
     cities: [
@@ -33,7 +34,8 @@ const COUNTRIES = [
     ]
   },
   {
-    label: "🇨🇦 Canada",
+    label: "Canada",
+    flag: "🇨🇦",
     href: "/ca",
     color: "from-red-400 to-red-500",
     cities: [
@@ -238,10 +240,38 @@ export default function Header() {
                   onMouseLeave={() => setCountryDropdownOpen(false)}
                 >
                   <button
-                    className="relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg group overflow-hidden text-slate-300 hover:text-white hover:bg-white/15 flex items-center space-x-1"
+                    className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg group overflow-hidden flex items-center space-x-1 ${
+                      COUNTRIES.some(country => pathname.startsWith(country.href))
+                        ? "text-cyan-200 bg-cyan-400/25 font-semibold border border-cyan-400/30"
+                        : "text-slate-300 hover:text-white hover:bg-white/15"
+                    }`}
                   >
-                    <span>Countries</span>
-                    <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${countryDropdownOpen ? 'rotate-180' : ''}`} />
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-r from-green-400 to-red-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-lg`}
+                    ></div>
+
+                    <span className="relative z-10">Countries</span>
+                    <ChevronDown className={`w-4 h-4 transition-transform duration-200 relative z-10 ${countryDropdownOpen ? 'rotate-180' : ''}`} />
+
+                    <div
+                      className={`absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-green-400 to-red-500 group-hover:w-full group-hover:left-0 transition-all duration-300`}
+                    ></div>
+
+                    <div
+                      className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`}
+                    >
+                      {[...Array(3)].map((_, i) => (
+                        <div
+                          key={i}
+                          className={`absolute w-1 h-1 bg-gradient-to-r from-green-400 to-red-500 rounded-full animate-ping`}
+                          style={{
+                            left: `${20 + i * 20}%`,
+                            top: `${10 + i * 10}%`,
+                            animationDelay: `${i * 0.1}s`,
+                          }}
+                        />
+                      ))}
+                    </div>
                   </button>
 
                   {/* Dropdown Menu */}
@@ -258,7 +288,12 @@ export default function Header() {
                             }`}
                             onMouseEnter={() => setSelectedCountry(countryIndex)}
                           >
-                            <span>{country.label}</span>
+                            <div className="flex items-center space-x-2">
+                              <span className="text-lg leading-none flag-emoji">
+                                {country.flag}
+                              </span>
+                              <span>{country.label}</span>
+                            </div>
                             <ChevronDown className="w-4 h-4 -rotate-90 transition-transform group-hover:translate-x-1" />
                           </Link>
 
@@ -438,31 +473,71 @@ export default function Header() {
           </div>
 
           {/* Countries Section for Mobile */}
-          <div className="w-full max-w-md">
-            <h3 className="text-white font-semibold mb-3 text-center">Countries</h3>
-            <div className="grid grid-cols-1 gap-3">
+          <div className="w-full max-w-md space-y-4">
+            <div className="text-center">
+              <h3 className="text-white font-bold text-lg mb-1">Global Services</h3>
+              <p className="text-slate-400 text-sm">Choose your location</p>
+            </div>
+
+            <div className="space-y-3">
               {COUNTRIES.map((country, countryIndex) => (
-                <div key={country.href} className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-xl p-4">
+                <div
+                  key={country.href}
+                  className={`relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-5 transition-all duration-300 hover:bg-white/10 hover:border-white/20 ${
+                    pathname.startsWith(country.href) ? 'border-cyan-400/50 bg-cyan-400/10' : ''
+                  }`}
+                  style={{
+                    animationDelay: `${countryIndex * 0.1}s`,
+                    animation: open ? "slideInUp 0.6s ease-out forwards" : "none",
+                  }}
+                >
+                  {/* Country gradient overlay */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${country.color} opacity-0 hover:opacity-5 transition-opacity duration-300 rounded-2xl ${
+                    pathname.startsWith(country.href) ? 'opacity-10' : ''
+                  }`} />
+
+                  {/* Country header */}
                   <Link
                     href={country.href}
-                    className={`block text-center mb-3 font-medium transition-colors duration-300 ${
-                      pathname.startsWith(country.href) ? "text-cyan-300" : "text-white hover:text-cyan-400"
+                    className={`flex items-center justify-between mb-4 p-3 rounded-xl group transition-all duration-300 relative z-10 ${
+                      pathname.startsWith(country.href)
+                        ? "text-cyan-300 bg-cyan-400/20"
+                        : "text-white hover:text-cyan-400 hover:bg-white/10"
                     }`}
                     onClick={() => setOpen(false)}
                   >
-                    {country.label}
+                    <div className="flex items-center space-x-3">
+                      <div className={`flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-r ${country.color} group-hover:scale-110 transition-transform duration-300`}>
+                        <span className="text-xl leading-none flag-emoji">
+                          {country.flag}
+                        </span>
+                      </div>
+                      <div>
+                        <span className="font-semibold text-lg">{country.label}</span>
+                        <div className="text-xs text-slate-400">
+                          {country.cities.length} cities available
+                        </div>
+                      </div>
+                    </div>
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                   </Link>
-                  <div className="grid grid-cols-2 gap-2">
-                    {country.cities.map((city) => (
+
+                  {/* Cities grid */}
+                  <div className="grid grid-cols-2 gap-2 relative z-10">
+                    {country.cities.map((city, cityIndex) => (
                       <Link
                         key={city.href}
                         href={city.href}
-                        className={`px-3 py-2 text-sm rounded-lg transition-all duration-300 text-center ${
+                        className={`px-4 py-3 text-sm rounded-xl transition-all duration-300 text-center min-h-[44px] flex items-center justify-center font-medium ${
                           pathname === city.href
-                            ? 'text-cyan-200 bg-cyan-400/20 font-medium'
-                            : 'text-slate-300 hover:text-white hover:bg-white/10'
+                            ? 'text-white bg-gradient-to-r from-cyan-500 to-blue-600 shadow-lg shadow-cyan-500/25 font-semibold'
+                            : 'text-slate-300 hover:text-white hover:bg-white/10 border border-white/10 hover:border-white/20'
                         }`}
                         onClick={() => setOpen(false)}
+                        style={{
+                          animationDelay: `${(countryIndex * 0.1) + (cityIndex * 0.05)}s`,
+                          animation: open ? "slideInUp 0.6s ease-out forwards" : "none",
+                        }}
                       >
                         {city.name}
                       </Link>
@@ -483,15 +558,24 @@ export default function Header() {
       </div>
 
       <style jsx>{`
+        /* Flag emoji optimization for better cross-platform rendering */
+        .flag-emoji {
+          font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Twemoji Mozilla", sans-serif;
+          font-feature-settings: "liga" 1, "kern" 1;
+          text-rendering: optimizeSpeed;
+          -webkit-font-smoothing: auto;
+          -moz-osx-font-smoothing: auto;
+        }
+
         @keyframes float {
-          0%, 100% { 
-            transform: translateY(0px) rotate(0deg); 
+          0%, 100% {
+            transform: translateY(0px) rotate(0deg);
           }
-          50% { 
-            transform: translateY(-20px) rotate(10deg); 
+          50% {
+            transform: translateY(-20px) rotate(10deg);
           }
         }
-        
+
         @keyframes slideInUp {
           0% {
             opacity: 0;
@@ -502,38 +586,38 @@ export default function Header() {
             transform: translateY(0) scale(1);
           }
         }
-        
+
         @keyframes particleFloat {
-          0% { 
-            transform: translateY(0) scale(1) rotate(0deg); 
-            opacity: 1; 
+          0% {
+            transform: translateY(0) scale(1) rotate(0deg);
+            opacity: 1;
           }
-          50% { 
-            transform: translateY(-20px) scale(0.8) rotate(180deg); 
-            opacity: 0.7; 
+          50% {
+            transform: translateY(-20px) scale(0.8) rotate(180deg);
+            opacity: 0.7;
           }
-          100% { 
-            transform: translateY(-40px) scale(0) rotate(360deg); 
-            opacity: 0; 
+          100% {
+            transform: translateY(-40px) scale(0) rotate(360deg);
+            opacity: 0;
           }
         }
-        
+
         @keyframes fade-in-0 {
           from { opacity: 0; }
           to { opacity: 1; }
         }
-        
+
         @keyframes slide-in-from-top-2 {
-          from { 
+          from {
             opacity: 0;
             transform: translateY(-8px) translateX(-50%);
           }
-          to { 
+          to {
             opacity: 1;
             transform: translateY(0) translateX(-50%);
           }
         }
-        
+
         .animate-in {
           animation-fill-mode: both;
         }
