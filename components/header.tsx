@@ -16,11 +16,8 @@ const NAV = [
     color: "from-purple-400 to-pink-400",
   },
   { href: "/about", label: "About Us", mobileLabel: "About", icon: User, color: "from-green-400 to-emerald-400" },
-  { href: "/portfolio", label: "Portfolio", mobileLabel: "Work", icon: Briefcase, color: "from-orange-400 to-red-400" },
-  { href: "/ca", label: "🇨🇦 Canada", mobileLabel: "Canada", icon: MapPin, color: "from-red-400 to-red-500", flag: "🇨🇦" },
-  { href: "/au", label: "🇦🇺 Australia", mobileLabel: "Australia", icon: MapPin, color: "from-green-400 to-yellow-400", flag: "🇦🇺" },
+  { href: "/portfolio", label: "Portfolio", mobileLabel: "Portfolio", icon: Briefcase, color: "from-orange-400 to-red-400" },
   { href: "/contact", label: "Contact", mobileLabel: "Contact", icon: Phone, color: "from-yellow-400 to-orange-400" },
-  { href: "/start", label: "Start Growing", mobileLabel: "Start", icon: Rocket, color: "from-indigo-400 to-purple-400" },
 ]
 
 const COUNTRIES = [
@@ -416,109 +413,170 @@ export default function Header() {
           />
         </div>
 
-        <div className="relative z-10 flex flex-col h-full justify-start items-center px-6 pt-20 pb-6 overflow-y-auto">
+        <div className="relative z-10 flex flex-col h-full px-4 pt-16 pb-4 overflow-y-auto">
+          {/* Header */}
+          <div className="text-center mb-6">
+            <h2 className="text-2xl font-bold text-white mb-2">Navigation</h2>
+            <p className="text-slate-400 text-sm">Where would you like to go?</p>
+          </div>
+
+          {/* Book Session CTA */}
           <Link
             href="/book"
-            className="mb-6 px-6 py-3 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-semibold rounded-full hover:scale-105 transition-all duration-300 shadow-lg shadow-pink-500/25 relative overflow-hidden group"
+            className="w-full mb-6 px-6 py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-bold rounded-2xl hover:scale-[1.02] transition-all duration-300 shadow-lg shadow-pink-500/25 relative overflow-hidden group"
             onClick={() => setOpen(false)}
           >
             <div className="absolute inset-0 bg-gradient-to-r from-pink-400 to-rose-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <span className="relative flex items-center space-x-2 z-10">
-              <Calendar className="w-4 h-4" />
-              <span>Book Free Session</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-            </span>
+            <div className="relative flex items-center justify-center space-x-3 z-10">
+              <Calendar className="w-5 h-5" />
+              <span className="text-lg">Book Free Session</span>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+            </div>
           </Link>
 
-          <div className="grid grid-cols-2 gap-2.5 w-full max-w-sm mb-4">
-            {NAV.map((item, index) => {
-              const Icon = item.icon
-              const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`relative p-3 rounded-xl backdrop-blur-xl border transition-all duration-500 group text-center transform ${
-                    isActive
-                      ? `bg-gradient-to-br ${item.color} bg-opacity-20 border-white/30 shadow-lg`
-                      : "bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20"
-                  }`}
-                  onClick={() => setOpen(false)}
-                  style={{
-                    animationDelay: `${index * 0.1}s`,
-                    animation: open ? "slideInUp 0.6s ease-out forwards" : "none",
-                  }}
-                >
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-20 transition-all duration-500 rounded-xl ${isActive ? "animate-pulse" : ""}`}
-                  />
-
-                  <div className="relative z-10 flex flex-col items-center text-center space-y-1.5">
-                    <div
-                      className={`p-2 rounded-lg bg-gradient-to-r ${item.color} group-hover:scale-110 transition-all duration-300 shadow-lg group-hover:shadow-xl flex items-center justify-center`}
-                    >
-                      {item.flag ? (
-                        <span className="text-base leading-none flag-emoji">
-                          {item.flag}
-                        </span>
-                      ) : (
-                        <Icon className="w-4 h-4 text-white" />
-                      )}
-                    </div>
-                    <span
-                      className={`text-xs font-medium transition-colors duration-300 ${
-                        isActive ? "text-cyan-300" : "text-white group-hover:text-cyan-400"
-                      }`}
-                    >
-                      {item.mobileLabel}
-                    </span>
-                  </div>
-
-                  {isActive && (
-                    <div className="absolute top-2 right-2 w-2 h-2 bg-cyan-400 rounded-full animate-ping"></div>
-                  )}
-                </Link>
-              )
-            })}
-          </div>
-
-          {/* City links for active countries */}
-          {COUNTRIES.filter(country => pathname.startsWith(country.href)).map((country) => (
-            <div key={country.href} className="w-full max-w-sm mt-3">
-              <div className="text-center mb-3">
-                <h4 className="text-white font-semibold text-sm flex items-center justify-center space-x-2">
-                  <span className="flag-emoji text-base">{country.flag}</span>
-                  <span>{country.label} Cities</span>
-                </h4>
-              </div>
-              <div className="grid grid-cols-2 gap-2">
-                {country.cities.map((city, cityIndex) => (
+          {/* Main Navigation */}
+          <div className="mb-6">
+            <h3 className="text-white font-semibold mb-4 text-left text-lg">Main Menu</h3>
+            <div className="space-y-2">
+              {NAV.map((item, index) => {
+                const Icon = item.icon
+                const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))
+                return (
                   <Link
-                    key={city.href}
-                    href={city.href}
-                    className={`px-3 py-2.5 text-xs rounded-lg transition-all duration-300 text-center min-h-[40px] flex items-center justify-center font-medium ${
-                      pathname === city.href
-                        ? 'text-white bg-gradient-to-r from-cyan-500 to-blue-600 shadow-lg shadow-cyan-500/25 font-semibold'
-                        : 'text-slate-300 hover:text-white hover:bg-white/10 border border-white/10 hover:border-white/20'
+                    key={item.href}
+                    href={item.href}
+                    className={`flex items-center w-full px-5 py-4 rounded-2xl transition-all duration-300 group min-h-[56px] ${
+                      isActive
+                        ? `bg-gradient-to-r ${item.color} bg-opacity-20 border border-white/30 shadow-lg`
+                        : "bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20"
                     }`}
                     onClick={() => setOpen(false)}
                     style={{
-                      animationDelay: `${cityIndex * 0.05}s`,
+                      animationDelay: `${index * 0.1}s`,
                       animation: open ? "slideInUp 0.6s ease-out forwards" : "none",
                     }}
                   >
-                    {city.name}
+                    <div className={`flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-r ${item.color} mr-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                      <Icon className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="flex-1">
+                      <span className={`text-lg font-semibold transition-colors duration-300 ${
+                        isActive ? "text-cyan-300" : "text-white group-hover:text-cyan-400"
+                      }`}>
+                        {item.mobileLabel}
+                      </span>
+                    </div>
+                    <ArrowRight className={`w-5 h-5 transition-all duration-300 ${
+                      isActive ? "text-cyan-300" : "text-slate-400 group-hover:text-white group-hover:translate-x-1"
+                    }`} />
+                    {isActive && (
+                      <div className="absolute top-3 right-3 w-3 h-3 bg-cyan-400 rounded-full animate-ping"></div>
+                    )}
                   </Link>
-                ))}
-              </div>
+                )
+              })}
             </div>
-          ))}
+          </div>
 
+          {/* Countries Section */}
+          <div className="mb-6">
+            <h3 className="text-white font-semibold mb-4 text-left text-lg">Countries</h3>
+            <div className="space-y-2">
+              {COUNTRIES.map((country, countryIndex) => {
+                const isCountryActive = pathname.startsWith(country.href)
+                return (
+                  <div key={country.href}>
+                    <Link
+                      href={country.href}
+                      className={`flex items-center w-full px-5 py-4 rounded-2xl transition-all duration-300 group min-h-[56px] ${
+                        isCountryActive
+                          ? `bg-gradient-to-r ${country.color} bg-opacity-20 border border-white/30 shadow-lg`
+                          : "bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20"
+                      }`}
+                      onClick={() => setOpen(false)}
+                      style={{
+                        animationDelay: `${countryIndex * 0.1}s`,
+                        animation: open ? "slideInUp 0.6s ease-out forwards" : "none",
+                      }}
+                    >
+                      <div className={`flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-r ${country.color} mr-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                        <span className="text-2xl leading-none flag-emoji">
+                          {country.flag}
+                        </span>
+                      </div>
+                      <div className="flex-1">
+                        <span className={`text-lg font-semibold transition-colors duration-300 ${
+                          isCountryActive ? "text-cyan-300" : "text-white group-hover:text-cyan-400"
+                        }`}>
+                          {country.label}
+                        </span>
+                        <div className="text-sm text-slate-400">
+                          {country.cities.length} cities available
+                        </div>
+                      </div>
+                      <ArrowRight className={`w-5 h-5 transition-all duration-300 ${
+                        isCountryActive ? "text-cyan-300" : "text-slate-400 group-hover:text-white group-hover:translate-x-1"
+                      }`} />
+                      {isCountryActive && (
+                        <div className="absolute top-3 right-3 w-3 h-3 bg-cyan-400 rounded-full animate-ping"></div>
+                      )}
+                    </Link>
+
+                    {/* Cities for active country */}
+                    {isCountryActive && (
+                      <div className="mt-2 ml-4 space-y-1">
+                        {country.cities.map((city, cityIndex) => (
+                          <Link
+                            key={city.href}
+                            href={city.href}
+                            className={`flex items-center w-full px-4 py-3 rounded-xl transition-all duration-300 min-h-[48px] ${
+                              pathname === city.href
+                                ? 'bg-gradient-to-r from-cyan-500 to-blue-600 shadow-lg shadow-cyan-500/25'
+                                : 'bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20'
+                            }`}
+                            onClick={() => setOpen(false)}
+                            style={{
+                              animationDelay: `${cityIndex * 0.05}s`,
+                              animation: open ? "slideInUp 0.6s ease-out forwards" : "none",
+                            }}
+                          >
+                            <div className="w-2 h-2 bg-slate-400 rounded-full mr-3"></div>
+                            <span className={`text-base font-medium ${
+                              pathname === city.href ? "text-white" : "text-slate-300"
+                            }`}>
+                              {city.name}
+                            </span>
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* Start Growing CTA */}
+          <Link
+            href="/start"
+            className="w-full mb-6 px-6 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-bold rounded-2xl hover:scale-[1.02] transition-all duration-300 shadow-lg shadow-purple-500/25 relative overflow-hidden group"
+            onClick={() => setOpen(false)}
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-indigo-400 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="relative flex items-center justify-center space-x-3 z-10">
+              <Rocket className="w-5 h-5" />
+              <span className="text-lg">Start Growing</span>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+            </div>
+          </Link>
+
+          {/* Close Button */}
           <button
             onClick={() => setOpen(false)}
-            className="mt-6 w-12 h-12 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-white hover:bg-white/20 transition-all duration-300 flex items-center justify-center group"
+            className="w-full py-3 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 text-white hover:bg-white/20 transition-all duration-300 flex items-center justify-center group"
           >
-            <X className="w-5 h-5 group-hover:rotate-90 transition-transform duration-300" />
+            <X className="w-5 h-5 mr-2 group-hover:rotate-90 transition-transform duration-300" />
+            <span className="font-medium">Close Menu</span>
           </button>
         </div>
       </div>
