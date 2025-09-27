@@ -189,7 +189,7 @@ export default function Header() {
 
             <div className="hidden md:flex items-center space-x-2">
               <ul className="flex space-x-1">
-                {NAV.slice(0, 5).map((item, index) => (
+                {NAV.map((item, index) => (
                   <li
                     key={item.href}
                     className="relative"
@@ -275,7 +275,7 @@ export default function Header() {
                   </button>
 
                   {/* Dropdown Menu */}
-                  <div className={`absolute top-full left-0 mt-2 w-64 bg-slate-900/95 backdrop-blur-xl rounded-xl border border-slate-700/50 shadow-xl transition-all duration-300 ${
+                  <div className={`absolute top-full left-0 mt-2 w-64 bg-slate-900/95 backdrop-blur-xl rounded-xl border border-slate-700/50 shadow-xl transition-all duration-300 z-50 ${
                     countryDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
                   }`}>
                     <div className="p-2">
@@ -298,7 +298,7 @@ export default function Header() {
                           </Link>
 
                           {/* City Submenu */}
-                          <div className={`absolute left-full top-0 ml-2 w-48 bg-slate-800/95 backdrop-blur-xl rounded-xl border border-slate-700/50 shadow-xl transition-all duration-300 ${
+                          <div className={`absolute left-full top-0 ml-2 w-48 bg-slate-800/95 backdrop-blur-xl rounded-xl border border-slate-700/50 shadow-xl transition-all duration-300 z-50 ${
                             selectedCountry === countryIndex ? 'opacity-100 visible translate-x-0' : 'opacity-0 invisible -translate-x-2'
                           }`}>
                             <div className="p-2">
@@ -413,171 +413,166 @@ export default function Header() {
           />
         </div>
 
-        <div className="relative z-10 flex flex-col h-full px-4 pt-16 pb-4 overflow-y-auto">
-          {/* Header */}
-          <div className="text-center mb-6">
-            <h2 className="text-2xl font-bold text-white mb-2">Navigation</h2>
-            <p className="text-slate-400 text-sm">Where would you like to go?</p>
-          </div>
-
-          {/* Book Session CTA */}
-          <Link
-            href="/book"
-            className="w-full mb-6 px-6 py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-bold rounded-2xl hover:scale-[1.02] transition-all duration-300 shadow-lg shadow-pink-500/25 relative overflow-hidden group"
-            onClick={() => setOpen(false)}
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-pink-400 to-rose-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <div className="relative flex items-center justify-center space-x-3 z-10">
-              <Calendar className="w-5 h-5" />
-              <span className="text-lg">Book Free Session</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+        {/* Mobile Navigation Content */}
+        <div className="relative z-10 flex flex-col h-full">
+          {/* Scrollable Content Area */}
+          <div className="flex-1 overflow-y-auto px-4 pt-20 pb-4">
+            {/* Header */}
+            <div className="text-center mb-6">
+              <h2 className="text-xl font-bold text-white mb-1">Menu</h2>
+              <p className="text-slate-400 text-sm">Choose your destination</p>
             </div>
-          </Link>
 
-          {/* Main Navigation */}
-          <div className="mb-6">
-            <h3 className="text-white font-semibold mb-4 text-left text-lg">Main Menu</h3>
-            <div className="space-y-2">
-              {NAV.map((item, index) => {
-                const Icon = item.icon
-                const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={`flex items-center w-full px-5 py-4 rounded-2xl transition-all duration-300 group min-h-[56px] ${
-                      isActive
-                        ? `bg-gradient-to-r ${item.color} bg-opacity-20 border border-white/30 shadow-lg`
-                        : "bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20"
-                    }`}
-                    onClick={() => setOpen(false)}
-                    style={{
-                      animationDelay: `${index * 0.1}s`,
-                      animation: open ? "slideInUp 0.6s ease-out forwards" : "none",
-                    }}
-                  >
-                    <div className={`flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-r ${item.color} mr-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                      <Icon className="w-6 h-6 text-white" />
-                    </div>
-                    <div className="flex-1">
-                      <span className={`text-lg font-semibold transition-colors duration-300 ${
-                        isActive ? "text-cyan-300" : "text-white group-hover:text-cyan-400"
-                      }`}>
-                        {item.mobileLabel}
-                      </span>
-                    </div>
-                    <ArrowRight className={`w-5 h-5 transition-all duration-300 ${
-                      isActive ? "text-cyan-300" : "text-slate-400 group-hover:text-white group-hover:translate-x-1"
-                    }`} />
-                    {isActive && (
-                      <div className="absolute top-3 right-3 w-3 h-3 bg-cyan-400 rounded-full animate-ping"></div>
-                    )}
-                  </Link>
-                )
-              })}
-            </div>
-          </div>
-
-          {/* Countries Section */}
-          <div className="mb-6">
-            <h3 className="text-white font-semibold mb-4 text-left text-lg">Countries</h3>
-            <div className="space-y-2">
-              {COUNTRIES.map((country, countryIndex) => {
-                const isCountryActive = pathname.startsWith(country.href)
-                return (
-                  <div key={country.href}>
+            {/* Main Navigation */}
+            <div className="mb-6">
+              <h3 className="text-white font-semibold mb-3 text-sm uppercase tracking-wide">Main Pages</h3>
+              <div className="space-y-2">
+                {NAV.map((item, index) => {
+                  const Icon = item.icon
+                  const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))
+                  return (
                     <Link
-                      href={country.href}
-                      className={`flex items-center w-full px-5 py-4 rounded-2xl transition-all duration-300 group min-h-[56px] ${
-                        isCountryActive
-                          ? `bg-gradient-to-r ${country.color} bg-opacity-20 border border-white/30 shadow-lg`
-                          : "bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20"
+                      key={item.href}
+                      href={item.href}
+                      className={`flex items-center w-full px-4 py-3 rounded-xl transition-all duration-300 group ${
+                        isActive
+                          ? `bg-gradient-to-r ${item.color} bg-opacity-25 border border-white/30`
+                          : "bg-white/10 hover:bg-white/15"
                       }`}
                       onClick={() => setOpen(false)}
                       style={{
-                        animationDelay: `${countryIndex * 0.1}s`,
-                        animation: open ? "slideInUp 0.6s ease-out forwards" : "none",
+                        animationDelay: `${index * 0.05}s`,
+                        animation: open ? "slideInUp 0.4s ease-out forwards" : "none",
                       }}
                     >
-                      <div className={`flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-r ${country.color} mr-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                        <span className="text-2xl leading-none flag-emoji">
-                          {country.flag}
-                        </span>
+                      <div className={`flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-r ${item.color} mr-3 group-hover:scale-105 transition-transform duration-200`}>
+                        <Icon className="w-5 h-5 text-white" />
                       </div>
-                      <div className="flex-1">
-                        <span className={`text-lg font-semibold transition-colors duration-300 ${
-                          isCountryActive ? "text-cyan-300" : "text-white group-hover:text-cyan-400"
-                        }`}>
-                          {country.label}
-                        </span>
-                        <div className="text-sm text-slate-400">
-                          {country.cities.length} cities available
-                        </div>
-                      </div>
-                      <ArrowRight className={`w-5 h-5 transition-all duration-300 ${
-                        isCountryActive ? "text-cyan-300" : "text-slate-400 group-hover:text-white group-hover:translate-x-1"
-                      }`} />
-                      {isCountryActive && (
-                        <div className="absolute top-3 right-3 w-3 h-3 bg-cyan-400 rounded-full animate-ping"></div>
-                      )}
+                      <span className={`text-base font-medium flex-1 ${
+                        isActive ? "text-white" : "text-slate-200 group-hover:text-white"
+                      }`}>
+                        {item.mobileLabel}
+                      </span>
+                      <ArrowRight className={`w-4 h-4 ${
+                        isActive ? "text-white" : "text-slate-400 group-hover:text-white"
+                      } group-hover:translate-x-0.5 transition-all duration-200`} />
                     </Link>
-
-                    {/* Cities for active country */}
-                    {isCountryActive && (
-                      <div className="mt-2 ml-4 space-y-1">
-                        {country.cities.map((city, cityIndex) => (
-                          <Link
-                            key={city.href}
-                            href={city.href}
-                            className={`flex items-center w-full px-4 py-3 rounded-xl transition-all duration-300 min-h-[48px] ${
-                              pathname === city.href
-                                ? 'bg-gradient-to-r from-cyan-500 to-blue-600 shadow-lg shadow-cyan-500/25'
-                                : 'bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20'
-                            }`}
-                            onClick={() => setOpen(false)}
-                            style={{
-                              animationDelay: `${cityIndex * 0.05}s`,
-                              animation: open ? "slideInUp 0.6s ease-out forwards" : "none",
-                            }}
-                          >
-                            <div className="w-2 h-2 bg-slate-400 rounded-full mr-3"></div>
-                            <span className={`text-base font-medium ${
-                              pathname === city.href ? "text-white" : "text-slate-300"
-                            }`}>
-                              {city.name}
-                            </span>
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                )
-              })}
+                  )
+                })}
+              </div>
             </div>
+
+            {/* Countries Section */}
+            <div className="mb-6">
+              <h3 className="text-white font-semibold mb-3 text-sm uppercase tracking-wide">Countries</h3>
+              <div className="space-y-2">
+                {COUNTRIES.map((country, countryIndex) => {
+                  const isCountryActive = pathname.startsWith(country.href)
+                  return (
+                    <div key={country.href}>
+                      <Link
+                        href={country.href}
+                        className={`flex items-center w-full px-4 py-3 rounded-xl transition-all duration-300 group ${
+                          isCountryActive
+                            ? `bg-gradient-to-r ${country.color} bg-opacity-25 border border-white/30`
+                            : "bg-white/10 hover:bg-white/15"
+                        }`}
+                        onClick={() => setOpen(false)}
+                        style={{
+                          animationDelay: `${countryIndex * 0.05}s`,
+                          animation: open ? "slideInUp 0.4s ease-out forwards" : "none",
+                        }}
+                      >
+                        <div className={`flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-r ${country.color} mr-3 group-hover:scale-105 transition-transform duration-200`}>
+                          <span className="text-lg leading-none flag-emoji">
+                            {country.flag}
+                          </span>
+                        </div>
+                        <div className="flex-1">
+                          <span className={`text-base font-medium block ${
+                            isCountryActive ? "text-white" : "text-slate-200 group-hover:text-white"
+                          }`}>
+                            {country.label}
+                          </span>
+                          <span className="text-xs text-slate-400">
+                            {country.cities.length} cities
+                          </span>
+                        </div>
+                        <ArrowRight className={`w-4 h-4 ${
+                          isCountryActive ? "text-white" : "text-slate-400 group-hover:text-white"
+                        } group-hover:translate-x-0.5 transition-all duration-200`} />
+                      </Link>
+
+                      {/* Cities for active country */}
+                      {isCountryActive && (
+                        <div className="mt-1 ml-6 space-y-1">
+                          {country.cities.map((city, cityIndex) => (
+                            <Link
+                              key={city.href}
+                              href={city.href}
+                              className={`flex items-center w-full px-3 py-2 rounded-lg transition-all duration-200 ${
+                                pathname === city.href
+                                  ? 'bg-cyan-500 text-white'
+                                  : 'bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white'
+                              }`}
+                              onClick={() => setOpen(false)}
+                            >
+                              <div className="w-1.5 h-1.5 bg-current rounded-full mr-2 opacity-60"></div>
+                              <span className="text-sm font-medium">
+                                {city.name}
+                              </span>
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+
+            {/* Start Growing */}
+            <div className="mb-6">
+              <Link
+                href="/start"
+                className="flex items-center w-full px-4 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl transition-all duration-300 group hover:scale-[1.02]"
+                onClick={() => setOpen(false)}
+              >
+                <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-white/20 mr-3 group-hover:scale-105 transition-transform duration-200">
+                  <Rocket className="w-5 h-5 text-white" />
+                </div>
+                <span className="text-base font-semibold text-white flex-1">
+                  Start Growing
+                </span>
+                <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-0.5 transition-all duration-200" />
+              </Link>
+            </div>
+
+            {/* Close Button */}
+            <button
+              onClick={() => setOpen(false)}
+              className="w-full py-3 rounded-xl bg-white/5 border border-white/10 text-slate-400 hover:bg-white/10 hover:text-white transition-all duration-200 flex items-center justify-center group mb-6"
+            >
+              <X className="w-4 h-4 mr-2 group-hover:rotate-90 transition-transform duration-200" />
+              <span className="font-medium text-sm">Close Menu</span>
+            </button>
           </div>
 
-          {/* Start Growing CTA */}
-          <Link
-            href="/start"
-            className="w-full mb-6 px-6 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-bold rounded-2xl hover:scale-[1.02] transition-all duration-300 shadow-lg shadow-purple-500/25 relative overflow-hidden group"
-            onClick={() => setOpen(false)}
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-indigo-400 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <div className="relative flex items-center justify-center space-x-3 z-10">
-              <Rocket className="w-5 h-5" />
-              <span className="text-lg">Start Growing</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-            </div>
-          </Link>
-
-          {/* Close Button */}
-          <button
-            onClick={() => setOpen(false)}
-            className="w-full py-3 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 text-white hover:bg-white/20 transition-all duration-300 flex items-center justify-center group"
-          >
-            <X className="w-5 h-5 mr-2 group-hover:rotate-90 transition-transform duration-300" />
-            <span className="font-medium">Close Menu</span>
-          </button>
+          {/* Fixed Bottom CTA */}
+          <div className="p-4 border-t border-white/10 bg-slate-950/90 backdrop-blur-sm">
+            <Link
+              href="/book"
+              className="w-full flex items-center justify-center px-6 py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-bold rounded-2xl hover:scale-[1.02] transition-all duration-300 shadow-lg shadow-pink-500/25 relative overflow-hidden group"
+              onClick={() => setOpen(false)}
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-pink-400 to-rose-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="relative flex items-center space-x-3 z-10">
+                <Calendar className="w-5 h-5" />
+                <span className="text-lg">Book Free Session</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+              </div>
+            </Link>
+          </div>
         </div>
       </div>
 
