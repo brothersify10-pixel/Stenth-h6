@@ -4,6 +4,7 @@ import Portfolio from "@/components/portfolio";
 import FloatingElements from "@/components/floating-elements";
 import { TrendingUp, Users, DollarSign } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const portfolioItems = [
   {
@@ -30,6 +31,7 @@ const portfolioItems = [
 ];
 
 export default function PortfolioPage() {
+  const router = useRouter();
   const [isNavigating, setIsNavigating] = useState(false);
 
   // Scroll to top when component mounts
@@ -41,7 +43,7 @@ export default function PortfolioPage() {
     setIsNavigating(true);
     // Show loading for a brief moment then navigate
     setTimeout(() => {
-      window.location.href = `/portfolio/${slug}`;
+      router.push(`/portfolio/${slug}`);
     }, 500);
   };
 

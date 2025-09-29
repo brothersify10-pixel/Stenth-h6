@@ -4,8 +4,10 @@ import { Button } from "@/components/ui/button";
 import { TrendingUp, Users, DollarSign } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function CaseStudies() {
+  const router = useRouter();
   const caseStudies = [
     {
       company: "STENTH X Campaign",
@@ -44,7 +46,7 @@ export default function CaseStudies() {
   ];
 
   const navigateToCase = (slug: string) => {
-    window.location.href = `/portfolio/${slug}`;
+    router.push(`/portfolio/${slug}`);
   };
 
   return (

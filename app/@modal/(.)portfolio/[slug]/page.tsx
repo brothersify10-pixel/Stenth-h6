@@ -68,18 +68,11 @@ const portfolioData = {
   },
 }
 
-export default function PortfolioModal({ params }: { params: Promise<{ slug: string }> }) {
+export default function PortfolioModal({ params }: { params: { slug: string } }) {
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(true)
-  const [slug, setSlug] = useState<string>('')
-  const [project, setProject] = useState<any>(null)
-
-  useEffect(() => {
-    params.then(({ slug }) => {
-      setSlug(slug)
-      setProject(portfolioData[slug as keyof typeof portfolioData])
-    })
-  }, [params])
+  const { slug } = params;
+  const project = portfolioData[slug as keyof typeof portfolioData];
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {

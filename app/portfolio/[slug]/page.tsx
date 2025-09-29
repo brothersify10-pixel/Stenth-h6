@@ -76,16 +76,9 @@ const caseStudyData = {
   },
 };
 
-export default function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
-  const [study, setStudy] = useState<any>(null)
-  const [slug, setSlug] = useState<string>('')
-
-  useEffect(() => {
-    params.then(({ slug }) => {
-      setSlug(slug)
-      setStudy(caseStudyData[slug as keyof typeof caseStudyData])
-    })
-  }, [params])
+export default function CaseStudyPage({ params }: { params: { slug: string } }) {
+  const { slug } = params;
+  const study = caseStudyData[slug as keyof typeof caseStudyData];
 
   // Scroll to top when component mounts
   useEffect(() => {
@@ -94,11 +87,9 @@ export default function CaseStudyPage({ params }: { params: Promise<{ slug: stri
 
   // Debug: Log the slug to console to check if it's correct
   useEffect(() => {
-    if (slug) {
-      console.log('Portfolio slug:', slug);
-      console.log('Available studies:', Object.keys(caseStudyData));
-      console.log('Study found:', !!study);
-    }
+    console.log('Portfolio slug:', slug);
+    console.log('Available studies:', Object.keys(caseStudyData));
+    console.log('Study found:', !!study);
   }, [slug, study]);
 
   if (!study) {
