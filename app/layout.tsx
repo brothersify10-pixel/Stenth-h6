@@ -213,7 +213,11 @@ export default function RootLayout({ children, modal }: { children: React.ReactN
         <Breadcrumbs />
         <main role="main" id="main-content">
           {modal}
-          {children}
+          <Suspense fallback={<div className="min-h-screen bg-slate-950 flex items-center justify-center">
+            <div className="animate-spin w-8 h-8 border-2 border-cyan-400 border-t-transparent rounded-full"></div>
+          </div>}>
+            {children}
+          </Suspense>
         </main>
         <Suspense fallback={null}>
           <Analytics />
