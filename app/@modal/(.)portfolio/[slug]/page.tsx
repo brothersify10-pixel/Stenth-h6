@@ -71,8 +71,19 @@ const portfolioData = {
 export default function PortfolioModal({ params }: { params: { slug: string } }) {
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(true)
-  const { slug } = params;
-  const project = portfolioData[slug as keyof typeof portfolioData];
+  const [slug, setSlug] = useState<string>("")
+  const [project, setProject] = useState<typeof portfolioData[keyof typeof portfolioData] | null>(null)
+
+  useEffect(() => {
+    const loadParams = async () => {
+      // Handle both Promise (Next.js 15+) and direct object (Next.js 14)
+      const resolvedParams = await Promise.resolve(params)
+      const projectSlug = resolvedParams.slug
+      setSlug(projectSlug)
+      setProject(portfolioData[projectSlug as keyof typeof portfolioData] || null)
+    }
+    loadParams()
+  }, [params])
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
