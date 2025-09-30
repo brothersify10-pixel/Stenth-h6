@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { X, Home, Briefcase, User, Phone, Rocket, Calendar, ArrowRight, Sparkles, MapPin, ChevronDown } from "lucide-react"
+import { X, Home, Briefcase, User, Phone, Rocket, Calendar, ArrowRight, Sparkles, MapPin, ChevronDown } from "./icons"
 
 const NAV = [
   { href: "/", label: "Home", mobileLabel: "Home", icon: Home, color: "from-blue-400 to-cyan-400" },

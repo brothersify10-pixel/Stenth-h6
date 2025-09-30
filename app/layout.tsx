@@ -6,6 +6,7 @@ import { Analytics } from "@vercel/analytics/next"
 import { Suspense } from "react"
 import "./globals.css"
 import Header from "@/components/header"
+import Breadcrumbs from "@/components/breadcrumbs"
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.stenth.com"),
@@ -184,6 +185,10 @@ export default function RootLayout({ children, modal }: { children: React.ReactN
 
         {/* DNS prefetch for performance */}
         <link rel="dns-prefetch" href="//vercel.live" />
+        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+
+        {/* Preload critical resources for Core Web Vitals */}
+        <link rel="preload" href="/Stenth_Logo-removebg.png" as="image" type="image/png" />
 
         {/* Hreflang tags for international SEO */}
         <link rel="alternate" hrefLang="x-default" href="https://www.stenth.com/" />
@@ -205,6 +210,7 @@ export default function RootLayout({ children, modal }: { children: React.ReactN
         <Suspense fallback={<div className="h-20 bg-slate-950/95" />}>
           <Header />
         </Suspense>
+        <Breadcrumbs />
         <main role="main" id="main-content">
           {modal}
           <Suspense fallback={<div className="min-h-screen bg-slate-950 flex items-center justify-center">

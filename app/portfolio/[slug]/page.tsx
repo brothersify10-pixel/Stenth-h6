@@ -1,101 +1,54 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import FloatingElements from "@/components/floating-elements";
+import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { TrendingUp, Users, DollarSign } from "lucide-react";
 import Image from "next/image";
+import { caseStudyData } from "@/lib/case-studies-data";
+import FloatingElements from "@/components/floating-elements";
+import RelatedPages from "@/components/related-pages";
 
-const caseStudyData = {
-  "stenth-x": {
-    title: "STENTH X Campaign",
-    industry: "Multi-Channel Growth",
-    metric: "300% ROI Growth",
-    description: "A comprehensive digital transformation that revolutionized lead generation and customer acquisition.",
-    challenge:
-      "The client struggled with low-quality leads and poor conversion rates across multiple marketing channels.",
-    solution:
-      "We implemented a data-driven approach with advanced targeting, conversion optimization, and multi-touch attribution.",
-    results: [
-      "300% increase in ROI within 4 months",
-      "5x improvement in qualified lead generation",
-      "45% reduction in customer acquisition cost",
-      "Established scalable growth systems",
-    ],
-    icon: TrendingUp,
-    images: [
-       "/portfolio/stenth-x/dashboard.png",
-      "/portfolio/stenth-x/campaigns.png",
-      "/portfolio/stenth-x/results.png",
-    ],
-  },
-  "retail-boost": {
-    title: "Retail Boost Project",
-    industry: "E-commerce",
-    metric: "Leads Doubled",
-    description:
-      "Complete brand overhaul and strategic campaign that transformed an underperforming e-commerce business.",
-    challenge: "Declining sales, poor brand recognition, and ineffective marketing campaigns across all channels.",
-    solution:
-      "Full brand redesign, optimized product positioning, and integrated marketing campaigns across social and search.",
-    results: [
-      "100% increase in monthly qualified leads",
-      "45% boost in conversion rates",
-      "60% improvement in brand recognition",
-      "Sustainable 6-month growth trajectory",
-    ],
-    icon: Users,
-    images: [
-      "/portfolio/retail-boost/store.png",
-      "/portfolio/retail-boost/qr-campaign.png",
-      "/portfolio/retail-boost/analytics.png",
-    ],
-  },
-  "leadgen-saas": {
-    title: "LeadGen SaaS Success",
-    industry: "Fintech SaaS",
-    metric: "$2M Revenue Growth",
-    description:
-      "Strategic marketing automation and targeted campaigns that generated massive revenue growth for a fintech startup.",
-    challenge: "Limited market penetration, complex product positioning, and inefficient sales funnel conversion.",
-    solution:
-      "Implemented advanced marketing automation, refined messaging strategy, and optimized the entire customer journey.",
-    results: [
-      "$2M in additional annual revenue",
-      "150% improvement in lead quality scores",
-      "8-month ROI achievement timeline",
-      "Scalable automation systems deployed",
-    ],
-    icon: DollarSign,
-    images: [
-      "/portfolio/leadgen-saas/creative-tests.png",
-      "/portfolio/leadgen-saas/pipeline.png",
-      "/portfolio/leadgen-saas/dashboard.png",
-    ],
-  },
-};
+
+// Generate static paths for all case studies
+export async function generateStaticParams() {
+  return Object.keys(caseStudyData).map((slug) => ({
+    slug,
+  }));
+}
+
+// Generate metadata for each case study
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+  const study = caseStudyData[params.slug as keyof typeof caseStudyData];
+
+  if (!study) {
+    return {
+      title: 'Case Study Not Found | Stenth',
+    };
+  }
+
+  return {
+    title: `${study.title} - ${study.metric} | Stenth Case Study`,
+    description: study.description,
+    openGraph: {
+      title: `${study.title} - ${study.metric}`,
+      description: study.description,
+      images: [study.images[0]],
+    },
+  };
+}
 
 export default function CaseStudyPage({ params }: { params: { slug: string } }) {
   const { slug } = params;
   const study = caseStudyData[slug as keyof typeof caseStudyData];
 
-  // Scroll to top when component mounts
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
-
-  // Debug: Log the slug to console to check if it's correct
-  useEffect(() => {
-    console.log('Portfolio slug:', slug);
-    console.log('Available studies:', Object.keys(caseStudyData));
-    console.log('Study found:', !!study);
-  }, [slug, study]);
+  // Remove debug logging for better performance
+  // useEffect(() => {
+  //   console.log('Portfolio slug:', slug);
+  //   console.log('Available studies:', Object.keys(caseStudyData));
+  //   console.log('Study found:', !!study);
+  // }, [slug, study]);
 
   if (!study) {
     return (
       <main className="relative min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
-        <FloatingElements />
         <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl font-bold text-white mb-8">Case Study Not Found</h1>
@@ -118,8 +71,9 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
   }
 
   return (
-    <main className="relative min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
-      <FloatingElements />
+    <>
+      <main className="relative min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+        <FloatingElements />
 
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
@@ -152,11 +106,10 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     priority={index === 0}
-                    quality={85}
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.src = "/placeholder.svg";
-                    }}
+                    quality={40}
+                    loading={index === 0 ? "eager" : "lazy"}
+                    placeholder="blur"
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                   />
                   <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 via-emerald-400/10 to-purple-600/20 mix-blend-overlay opacity-100 group-hover:opacity-75 transition-opacity duration-300"></div>
                 </div>
@@ -211,6 +164,9 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
           </div>
         </div>
       </section>
+
+      <RelatedPages title="More Case Studies & Services" limit={6} className="bg-slate-900/30" />
     </main>
+    </>
   );
 }

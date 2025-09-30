@@ -1,11 +1,30 @@
 // Performance optimization scripts
 if ('requestIdleCallback' in window) {
   requestIdleCallback(() => {
-    const link = document.createElement('link');
-    link.rel = 'preload';
-    link.href = '/Stenth_Logo-removebg.png';
-    link.as = 'image';
-    document.head.appendChild(link);
+    // Preload critical images
+    const preloadImages = [
+      '/Stenth_Logo-removebg.png',
+      '/portfolio/stenth-x/cover.png',
+      '/portfolio/retail-boost/cover.png',
+      '/portfolio/leadgen-saas/cover.png'
+    ];
+
+    preloadImages.forEach(src => {
+      const link = document.createElement('link');
+      link.rel = 'preload';
+      link.href = src;
+      link.as = 'image';
+      document.head.appendChild(link);
+    });
+
+    // Prefetch likely navigation targets
+    const prefetchPages = ['/about', '/services', '/portfolio', '/contact'];
+    prefetchPages.forEach(href => {
+      const link = document.createElement('link');
+      link.rel = 'prefetch';
+      link.href = href;
+      document.head.appendChild(link);
+    });
   });
 }
 

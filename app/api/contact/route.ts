@@ -46,8 +46,8 @@ export async function POST(request: NextRequest) {
             user: process.env.EMAIL_USER,
             pass: process.env.EMAIL_PASS,
           },
-          logger: process.env.NODE_ENV === 'development',
-          debug: process.env.NODE_ENV === 'development',
+          logger: process.env.NODE_ENV !== 'production',
+          debug: process.env.NODE_ENV !== 'production',
           // Skip DNS lookup in development to avoid unenv issues
           dnsTimeout: 30000,
           connectionTimeout: 30000,

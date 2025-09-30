@@ -2,6 +2,7 @@
 
 import Portfolio from "@/components/portfolio";
 import FloatingElements from "@/components/floating-elements";
+import RelatedPages from "@/components/related-pages";
 import { TrendingUp, Users, DollarSign } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -34,43 +35,23 @@ export default function PortfolioPage() {
   const router = useRouter();
   const [isNavigating, setIsNavigating] = useState(false);
 
-  // Scroll to top when component mounts
+  // Scroll to top when component mounts - use instant scroll for better performance
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'instant' });
   }, []);
 
   const handleNavigation = (slug: string) => {
     setIsNavigating(true);
-    // Show loading for a brief moment then navigate
-    setTimeout(() => {
-      router.push(`/portfolio/${slug}`);
-    }, 500);
+    // Navigate immediately without artificial delay
+    router.push(`/portfolio/${slug}`);
   };
 
   return (
     <>
-      {/* Loading overlay */}
+      {/* Simplified loading overlay for faster rendering */}
       {isNavigating && (
-        <div className="fixed inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 flex items-center justify-center z-50">
-          <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
-            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          </div>
-
-          <div className="relative z-10 text-center">
-            <div className="mb-8">
-              <h1 className="text-4xl lg:text-6xl font-bold bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent mb-4">
-                STENTH
-              </h1>
-              <p className="text-slate-300 text-lg">Loading case study...</p>
-            </div>
-
-            <div className="flex justify-center space-x-2">
-              <div className="w-3 h-3 bg-cyan-400 rounded-full animate-bounce"></div>
-              <div className="w-3 h-3 bg-blue-500 rounded-full animate-bounce delay-100"></div>
-              <div className="w-3 h-3 bg-purple-600 rounded-full animate-bounce delay-200"></div>
-            </div>
-          </div>
+        <div className="fixed inset-0 bg-slate-950/90 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="animate-spin w-8 h-8 border-2 border-cyan-400 border-t-transparent rounded-full"></div>
         </div>
       )}
 
@@ -137,6 +118,8 @@ export default function PortfolioPage() {
             </div>
           </div>
         </section>
+
+        <RelatedPages title="Explore Our Services" limit={6} className="bg-slate-900/30" />
       </main>
     </>
   );
