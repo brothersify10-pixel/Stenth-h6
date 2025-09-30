@@ -1,6 +1,5 @@
 "use client";
 
-import Portfolio from "@/components/portfolio";
 import FloatingElements from "@/components/floating-elements";
 import RelatedPages from "@/components/related-pages";
 import { TrendingUp, Users, DollarSign } from "lucide-react";
@@ -57,10 +56,21 @@ export default function PortfolioPage() {
 
       <main className="relative min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 overflow-x-hidden">
         <FloatingElements />
-        <Portfolio />
-        
-        <section className="py-20 px-4 sm:px-6 lg:px-8">
+
+        <section className="py-20 px-4 sm:px-6 lg:px-8 pt-32">
           <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h1 className="text-4xl lg:text-5xl font-bold text-white mb-6">
+                Success Stories.{" "}
+                <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
+                  Real Results.
+                </span>
+              </h1>
+              <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+                Discover how we've transformed businesses and delivered exceptional results across industries
+              </p>
+            </div>
+
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {portfolioItems.map((item) => (
                 <div
