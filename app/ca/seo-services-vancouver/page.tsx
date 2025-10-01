@@ -2,7 +2,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Phone, Mail, Star, TrendingUp, Users, Award, Building2, Globe, Search } from "lucide-react";
-import STENTHFooter from "@/components/stenth-footer";
 import FloatingElements from "@/components/floating-elements";
 
 export default function VancouverSEOPage() {
@@ -355,9 +354,6 @@ export default function VancouverSEOPage() {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <STENTHFooter />
     </div>
   );
 }

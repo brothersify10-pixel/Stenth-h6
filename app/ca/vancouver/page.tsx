@@ -2,7 +2,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Phone, Mail, TrendingUp, Users, Award, Building2, Globe, Search, PenTool, Megaphone, FileText, Layout, BarChart3, Cpu, Zap, Waves, TreePine } from "lucide-react";
-import STENTHFooter from "@/components/stenth-footer";
 import FloatingElements from "@/components/floating-elements";
 
 export default function VancouverDigitalMarketingPage() {
@@ -286,8 +285,6 @@ export default function VancouverDigitalMarketingPage() {
           </div>
         </div>
       </section>
-
-      <STENTHFooter />
     </div>
   );
 }

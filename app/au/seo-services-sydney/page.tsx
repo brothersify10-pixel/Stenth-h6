@@ -2,7 +2,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Phone, Mail, TrendingUp, Users, Award, Building2, Globe, Search, PenTool, Megaphone, FileText, Layout, BarChart3 } from "lucide-react";
-import STENTHFooter from "@/components/stenth-footer";
 import FloatingElements from "@/components/floating-elements";
 
 export default function SydneyDigitalMarketingPage() {
@@ -344,8 +343,6 @@ export default function SydneyDigitalMarketingPage() {
           </div>
         </div>
       </section>
-
-      <STENTHFooter />
     </div>
   );
 }

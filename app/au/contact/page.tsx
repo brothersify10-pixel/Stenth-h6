@@ -2,7 +2,6 @@
 import Image from "next/image";
 import { MapPin, Phone, Mail, Clock, MessageSquare, CheckCircle } from "lucide-react";
 import { useState } from "react";
-import STENTHFooter from "@/components/stenth-footer";
 import FloatingElements from "@/components/floating-elements";
 
 export default function AustraliaContactPage() {
@@ -367,9 +366,6 @@ export default function AustraliaContactPage() {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <STENTHFooter />
     </div>
   );
 }

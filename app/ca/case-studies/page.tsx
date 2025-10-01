@@ -2,7 +2,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { TrendingUp, Users, DollarSign, Clock, MapPin, ArrowRight, Star } from "lucide-react";
-import STENTHFooter from "@/components/stenth-footer";
 import FloatingElements from "@/components/floating-elements";
 
 export default function CanadaCaseStudiesPage() {
@@ -287,9 +286,6 @@ export default function CanadaCaseStudiesPage() {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <STENTHFooter />
     </div>
   );
 }
