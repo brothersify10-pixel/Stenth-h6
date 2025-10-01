@@ -7,6 +7,7 @@ import { Suspense } from "react"
 import "./globals.css"
 import Header from "@/components/header"
 import Breadcrumbs from "@/components/breadcrumbs"
+import Footer from "@/components/footer"
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.stenth.com"),
@@ -215,6 +216,7 @@ export default function RootLayout({ children, modal }: { children: React.ReactN
           {modal}
           {children}
         </main>
+        <Footer />
         <Suspense fallback={null}>
           <Analytics />
         </Suspense>
