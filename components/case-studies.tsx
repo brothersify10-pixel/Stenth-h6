@@ -35,10 +35,10 @@ export default function CaseStudies() {
     {
       company: "LeadGen SaaS Success",
       industry: "Fintech",
-      metric: "$2M Revenue Growth",
+      metric: "$150k+ Revenue Growth",
       description: "Strategic marketing automation and targeted campaigns generated $2M in additional revenue.",
       icon: DollarSign,
-      stats: ["$2M revenue growth", "150% lead quality", "8 months ROI"],
+      stats: ["$150k+ revenue growth", "150% lead quality", "8 months ROI"],
       slug: "leadgen-saas",
       image: "/portfolio/leadgen-saas/cover.png",
       alt: "SaaS analytics dashboard",
