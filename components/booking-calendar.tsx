@@ -10,13 +10,14 @@ export default function BookingCalendar() {
 
       <div className="w-full h-[600px] rounded-lg overflow-hidden">
         <iframe
-          src="https://cal.com/stenth/30min?embed=true&theme=dark"
+          src="https://cal.com/stenth/30min"
           width="100%"
           height="100%"
           frameBorder="0"
           className="rounded-lg"
           title="Schedule a call with STENTH"
           allow="camera; microphone; fullscreen; display-capture"
+          allowFullScreen
         />
       </div>
     </div>

@@ -473,12 +473,13 @@ export default function BookPage() {
             <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-3xl blur-2xl"></div>
             <div className="relative bg-slate-900/90 backdrop-blur-sm rounded-3xl p-3 border border-slate-800/50 shadow-2xl">
               <iframe
-                src="https://cal.com/stenth/30min?embed=true&theme=dark"
+                src="https://cal.com/stenth/30min"
                 width="100%"
                 height="650"
                 frameBorder="0"
                 className="rounded-2xl"
                 title="Schedule a consultation with Stenth"
+                allowFullScreen
               />
             </div>
           </div>
