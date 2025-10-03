@@ -83,7 +83,8 @@ export async function POST(req: NextRequest) {
 
   // Send email for all bookings (including repeat submissions)
   // Skip email sending in development to avoid DNS lookup issues
-  if (process.env.NODE_ENV === 'production' && process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+  const isProduction = process.env.VERCEL_ENV === 'production' || process.env.NODE_ENV === 'production'
+  if (isProduction && process.env.EMAIL_USER && process.env.EMAIL_PASS) {
     try {
       const transporter = nodemailer.createTransport({
         host: process.env.EMAIL_HOST || 'smtp.gmail.com',
