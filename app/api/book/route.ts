@@ -102,7 +102,7 @@ export async function POST(req: NextRequest) {
 
       const recipients =
         process.env.EMAIL_TO?.split(',').map(s => s.trim()).filter(Boolean)
-        || ['aakash.lakhataria@stenth.com', 'ansh.rai@stenth.com']
+        || ['info@stenth.com']
       
       const fromAddress = process.env.EMAIL_FROM || process.env.EMAIL_USER
 
@@ -296,7 +296,7 @@ ${notes}
   } else if (process.env.NODE_ENV === 'development') {
     // Development mode: Log email instead of sending
     const recipients = process.env.EMAIL_TO?.split(',').map(s => s.trim()).filter(Boolean)
-      || ['aakash.lakhataria@stenth.com', 'ansh.rai@stenth.com']
+      || ['info@stenth.com']
 
     console.log('📧 [DEV MODE] Would send booking email to:', recipients)
     console.log('📧 [DEV MODE] Booking details:', { name, email, company, phone, country, region, city, source })
