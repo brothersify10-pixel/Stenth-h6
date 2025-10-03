@@ -229,11 +229,11 @@ ${notes}
               </div>
               
               <div style="text-align: center; margin: 30px 0 20px 0;">
-                <a href="mailto:${email}?subject=Re:%20Your%20session%20booking%20with%20Stenth&body=Hi%20${name || ''},%0D%0A%0D%0AThank%20you%20for%20your%20interest%20in%20booking%20a%20session%20with%20Stenth.%0D%0A%0D%0A" 
+                <a href="mailto:${email}?subject=Re:%20Your%20session%20booking%20with%20Stenth&body=Hi%20${name || ''},%0D%0A%0D%0AThank%20you%20for%20your%20interest%20in%20booking%20a%20session%20with%20Stenth.%0D%0A%0D%0A"
                    style="display: inline-block; background: linear-gradient(135deg, #4f46e5, #7c3aed); color: white; padding: 12px 30px; text-decoration: none; border-radius: 25px; font-weight: 600; margin: 0 10px; box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);">
                   📧 Reply to ${name || 'Customer'}
                 </a>
-                <a href="https://calendar.google.com/calendar/u/0/appointments/schedules" 
+                <a href="https://cal.com/stenth/30min"
                    style="display: inline-block; background: linear-gradient(135deg, #059669, #047857); color: white; padding: 12px 30px; text-decoration: none; border-radius: 25px; font-weight: 600; margin: 0 10px; box-shadow: 0 4px 15px rgba(5, 150, 105, 0.3);">
                   📅 Schedule Meeting
                 </a>
