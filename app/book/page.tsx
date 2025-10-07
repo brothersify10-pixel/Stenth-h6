@@ -113,63 +113,82 @@ export default function BookPage() {
 
   if (isSubmitted) {
     return (
-      <div className="min-h-screen bg-slate-950 text-white flex items-center justify-center p-4 relative overflow-hidden">
+      <div className="min-h-screen bg-slate-950 text-white py-20 px-4 relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-r from-green-400/30 to-emerald-500/30 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-r from-cyan-400/20 to-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
         </div>
 
-        <div className="relative z-10 max-w-lg w-full">
-          <div className="bg-slate-900/95 backdrop-blur-3xl border border-green-500/30 rounded-3xl p-10 shadow-2xl shadow-green-500/20">
-            <div className="text-center space-y-8">
-              <div className="relative">
-                <div className="w-24 h-24 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center mx-auto shadow-xl shadow-green-500/40">
-                  <CheckCircle className="h-12 w-12 text-white" />
-                </div>
-                <div className="absolute inset-0 w-24 h-24 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full mx-auto animate-ping opacity-30"></div>
+        <div className="relative z-10 max-w-5xl mx-auto space-y-12">
+          {/* Success Message */}
+          <div className="text-center space-y-8">
+            <div className="relative inline-block">
+              <div className="w-32 h-32 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center mx-auto shadow-xl shadow-green-500/40">
+                <CheckCircle className="h-16 w-16 text-white" />
               </div>
-              
-              <div className="space-y-4">
-                <h2 className="text-4xl font-bold bg-gradient-to-r from-green-400 via-emerald-500 to-teal-400 bg-clip-text text-transparent">
-                  Success!
-                </h2>
-                <p className="text-xl text-slate-300 leading-relaxed">
-                  Your strategy session request has been received. Get ready to transform your business!
-                </p>
-              </div>
-
-              <div className="bg-gradient-to-r from-slate-800/50 to-slate-700/50 rounded-2xl p-6 border border-slate-600/50">
-                <h3 className="text-lg font-semibold text-white mb-4 flex items-center justify-center space-x-2">
-                  <Rocket className="w-5 h-5 text-cyan-400" />
-                  <span>What Happens Next</span>
-                </h3>
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-3 text-left">
-                    <Heart className="w-5 h-5 text-pink-400 flex-shrink-0" />
-                    <span className="text-slate-300 text-sm">Confirmation email sent to your inbox</span>
-                  </div>
-                  <div className="flex items-center space-x-3 text-left">
-                    <Users className="w-5 h-5 text-purple-400 flex-shrink-0" />
-                    <span className="text-slate-300 text-sm">Our strategist will call within 24 hours</span>
-                  </div>
-                  <div className="flex items-center space-x-3 text-left">
-                    <Calendar className="w-5 h-5 text-cyan-400 flex-shrink-0" />
-                    <span className="text-slate-300 text-sm">Session scheduled at your convenience</span>
-                  </div>
-                </div>
-              </div>
-
-              <button 
-                onClick={() => window.location.href = "/"} 
-                className="w-full relative bg-gradient-to-r from-cyan-500 via-purple-600 to-pink-500 text-white py-4 px-6 rounded-2xl font-semibold hover:scale-105 transition-all duration-300 shadow-xl shadow-cyan-500/30 overflow-hidden group"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-                <span className="relative flex items-center justify-center space-x-2">
-                  <span>Back to Home</span>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                </span>
-              </button>
+              <div className="absolute inset-0 w-32 h-32 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full mx-auto animate-ping opacity-30"></div>
             </div>
+
+            <div className="space-y-6">
+              <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-green-400 via-emerald-500 to-teal-400 bg-clip-text text-transparent">
+                Amazing! You're Almost There! 🎉
+              </h2>
+              <p className="text-2xl md:text-3xl text-white font-semibold leading-relaxed max-w-3xl mx-auto">
+                Now, let's lock in your perfect time!
+              </p>
+              <p className="text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto">
+                Your information has been received. Choose a time slot below that works best for you,
+                and we'll meet to discuss how we can <span className="text-cyan-400 font-bold">transform your business</span>.
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-r from-slate-800/50 to-slate-700/50 rounded-2xl p-8 border border-slate-600/50 max-w-3xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="flex flex-col items-center space-y-2">
+                  <div className="w-12 h-12 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full flex items-center justify-center">
+                    <Zap className="w-6 h-6 text-white" />
+                  </div>
+                  <p className="text-white font-semibold">Instant Confirmation</p>
+                  <p className="text-slate-400 text-sm">Get calendar invite immediately</p>
+                </div>
+                <div className="flex flex-col items-center space-y-2">
+                  <div className="w-12 h-12 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center">
+                    <Calendar className="w-6 h-6 text-white" />
+                  </div>
+                  <p className="text-white font-semibold">Pick Your Time</p>
+                  <p className="text-slate-400 text-sm">100% flexible scheduling</p>
+                </div>
+                <div className="flex flex-col items-center space-y-2">
+                  <div className="w-12 h-12 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center">
+                    <Rocket className="w-6 h-6 text-white" />
+                  </div>
+                  <p className="text-white font-semibold">Start Growing</p>
+                  <p className="text-slate-400 text-sm">Your transformation begins</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Cal.com Calendar */}
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-3xl blur-2xl"></div>
+            <div className="relative bg-slate-900/90 backdrop-blur-sm rounded-3xl p-3 border border-slate-800/50 shadow-2xl">
+              <iframe
+                src="https://cal.com/stenth/30min"
+                width="100%"
+                height="700"
+                frameBorder="0"
+                className="rounded-2xl"
+                title="Schedule a consultation with Stenth"
+                allowFullScreen
+              />
+            </div>
+          </div>
+
+          <div className="text-center">
+            <p className="text-slate-400 text-sm">
+              Need help? Email us at <a href="mailto:info@stenth.com" className="text-cyan-400 hover:text-cyan-300">info@stenth.com</a>
+            </p>
           </div>
         </div>
       </div>
@@ -459,31 +478,6 @@ export default function BookPage() {
           </div>
         </div>
 
-        <div className="mt-32 max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-white via-cyan-200 to-purple-200 bg-clip-text text-transparent">
-              Or Book Instantly
-            </h2>
-            <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-              See our live availability and secure your preferred time slot in seconds
-            </p>
-          </div>
-
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-3xl blur-2xl"></div>
-            <div className="relative bg-slate-900/90 backdrop-blur-sm rounded-3xl p-3 border border-slate-800/50 shadow-2xl">
-              <iframe
-                src="https://cal.com/stenth/30min"
-                width="100%"
-                height="650"
-                frameBorder="0"
-                className="rounded-2xl"
-                title="Schedule a consultation with Stenth"
-                allowFullScreen
-              />
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   )

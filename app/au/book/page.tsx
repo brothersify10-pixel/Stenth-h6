@@ -163,67 +163,82 @@ export default function BookAustraliaPage() {
 
   if (isSubmitted) {
     return (
-      <div className="min-h-screen bg-slate-950 text-white flex items-center justify-center p-4 relative overflow-hidden">
+      <div className="min-h-screen bg-slate-950 text-white py-20 px-4 relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-r from-green-400/30 to-yellow-500/30 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-r from-blue-400/20 to-green-400/20 rounded-full blur-3xl animate-pulse"></div>
         </div>
 
-        <div className="relative z-10 max-w-lg w-full">
-          <div className="bg-slate-900/95 backdrop-blur-3xl border border-green-500/30 rounded-3xl p-10 shadow-2xl shadow-green-500/20">
-            <div className="text-center space-y-8">
-              <div className="relative">
-                <div className="w-24 h-24 bg-gradient-to-r from-green-500 to-yellow-400 rounded-full flex items-center justify-center mx-auto shadow-xl shadow-green-500/40 p-4">
-                  <img
-                    src="/Stenth_Logo-removebg.png"
-                    alt="Stenth Logo"
-                    className="w-full h-full object-contain filter brightness-0 invert"
-                  />
-                </div>
-                <div className="absolute inset-0 w-24 h-24 bg-gradient-to-r from-green-400 to-yellow-400 rounded-full mx-auto animate-ping opacity-30"></div>
+        <div className="relative z-10 max-w-5xl mx-auto space-y-12">
+          {/* Success Message */}
+          <div className="text-center space-y-8">
+            <div className="relative inline-block">
+              <div className="w-32 h-32 bg-gradient-to-r from-green-500 to-yellow-400 rounded-full flex items-center justify-center mx-auto shadow-xl shadow-green-500/40">
+                <CheckCircle className="h-16 w-16 text-white" />
               </div>
-
-              <div className="space-y-4">
-                <h2 className="text-4xl font-bold bg-gradient-to-r from-green-400 via-yellow-400 to-green-500 bg-clip-text text-transparent">
-                  G'day! You Beauty! 🏄‍♂️
-                </h2>
-                <p className="text-xl text-slate-300 leading-relaxed">
-                  Your Aussie strategy session request has been received. Ready to help your business thrive Down Under!
-                </p>
-              </div>
-
-              <div className="bg-gradient-to-r from-slate-800/50 to-slate-700/50 rounded-2xl p-6 border border-slate-600/50">
-                <h3 className="text-lg font-semibold text-white mb-4 flex items-center justify-center space-x-2">
-                  <Sun className="w-5 h-5 text-yellow-400" />
-                  <span>What's Next, Mate?</span>
-                </h3>
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-3 text-left">
-                    <Heart className="w-5 h-5 text-green-400 flex-shrink-0" />
-                    <span className="text-slate-300 text-sm">Confirmation email sent (check your inbox)</span>
-                  </div>
-                  <div className="flex items-center space-x-3 text-left">
-                    <Users className="w-5 h-5 text-yellow-400 flex-shrink-0" />
-                    <span className="text-slate-300 text-sm">Aussie strategist will call within 24 hours</span>
-                  </div>
-                  <div className="flex items-center space-x-3 text-left">
-                    <Calendar className="w-5 h-5 text-blue-400 flex-shrink-0" />
-                    <span className="text-slate-300 text-sm">Session in your preferred Aussie timezone (AEST/AWST/ACST)</span>
-                  </div>
-                </div>
-              </div>
-
-              <button
-                onClick={() => window.location.href = "/au"}
-                className="w-full relative bg-gradient-to-r from-green-500 via-yellow-400 to-blue-500 text-white py-4 px-6 rounded-2xl font-semibold hover:scale-105 transition-all duration-300 shadow-xl shadow-green-500/30 overflow-hidden group"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-                <span className="relative flex items-center justify-center space-x-2">
-                  <span>Back to Australia Hub</span>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                </span>
-              </button>
+              <div className="absolute inset-0 w-32 h-32 bg-gradient-to-r from-green-400 to-yellow-400 rounded-full mx-auto animate-ping opacity-30"></div>
             </div>
+
+            <div className="space-y-6">
+              <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-green-400 via-yellow-400 to-green-500 bg-clip-text text-transparent">
+                G'day! You Beauty! Almost There! 🏄‍♂️
+              </h2>
+              <p className="text-2xl md:text-3xl text-white font-semibold leading-relaxed max-w-3xl mx-auto">
+                Now, let's lock in your perfect time, mate!
+              </p>
+              <p className="text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto">
+                Your information has been received. Choose a time slot below that works best for your Aussie timezone,
+                and we'll meet to discuss how we can <span className="text-green-400 font-bold">grow your business Down Under</span>.
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-r from-slate-800/50 to-slate-700/50 rounded-2xl p-8 border border-slate-600/50 max-w-3xl mx-auto">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="flex flex-col items-center space-y-2">
+                  <div className="w-12 h-12 bg-gradient-to-r from-green-400 to-green-500 rounded-full flex items-center justify-center">
+                    <Zap className="w-6 h-6 text-white" />
+                  </div>
+                  <p className="text-white font-semibold">Instant Confirmation</p>
+                  <p className="text-slate-400 text-sm">Get calendar invite immediately</p>
+                </div>
+                <div className="flex flex-col items-center space-y-2">
+                  <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-yellow-400 rounded-full flex items-center justify-center">
+                    <Calendar className="w-6 h-6 text-white" />
+                  </div>
+                  <p className="text-white font-semibold">Pick Your Time</p>
+                  <p className="text-slate-400 text-sm">AEST/AWST/ACST friendly</p>
+                </div>
+                <div className="flex flex-col items-center space-y-2">
+                  <div className="w-12 h-12 bg-gradient-to-r from-yellow-400 to-blue-500 rounded-full flex items-center justify-center">
+                    <Rocket className="w-6 h-6 text-white" />
+                  </div>
+                  <p className="text-white font-semibold">Start Growing</p>
+                  <p className="text-slate-400 text-sm">Your transformation begins</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Cal.com Calendar */}
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-green-500/20 to-yellow-400/10 rounded-3xl blur-2xl"></div>
+            <div className="relative bg-slate-900/90 backdrop-blur-sm rounded-3xl p-3 border border-slate-800/50 shadow-2xl">
+              <iframe
+                src="https://cal.com/stenth/30min"
+                width="100%"
+                height="700"
+                frameBorder="0"
+                className="rounded-2xl"
+                title="Schedule a consultation with Stenth"
+                allowFullScreen
+              />
+            </div>
+          </div>
+
+          <div className="text-center">
+            <p className="text-slate-400 text-sm">
+              Need help? Email us at <a href="mailto:info@stenth.com" className="text-green-400 hover:text-green-300">info@stenth.com</a>
+            </p>
           </div>
         </div>
       </div>
