@@ -54,8 +54,9 @@ export async function POST(req: NextRequest) {
 
   const isNewBooking = !existingBooking
 
-  const { error: upsertErr } = await supabaseAdmin.from("bookings").upsert(
-    {
+  // Use insert or update based on whether booking exists
+  if (isNewBooking) {
+    const { error: insertErr } = await supabaseAdmin.from("bookings").insert({
       email,
       name,
       company,
@@ -67,12 +68,31 @@ export async function POST(req: NextRequest) {
       source,
       status: "form_submitted",
       updated_at: new Date().toISOString(),
-    },
-    { onConflict: "email" }
-  )
+    })
 
-  if (upsertErr) {
-    return NextResponse.json({ ok: false, error: upsertErr.message }, { status: 500 })
+    if (insertErr) {
+      return NextResponse.json({ ok: false, error: insertErr.message }, { status: 500 })
+    }
+  } else {
+    const { error: updateErr } = await supabaseAdmin
+      .from("bookings")
+      .update({
+        name,
+        company,
+        notes,
+        phone,
+        country,
+        region,
+        city,
+        source,
+        status: "form_submitted",
+        updated_at: new Date().toISOString(),
+      })
+      .eq("email", email)
+
+    if (updateErr) {
+      return NextResponse.json({ ok: false, error: updateErr.message }, { status: 500 })
+    }
   }
 
   await supabaseAdmin.from("booking_events").insert({
