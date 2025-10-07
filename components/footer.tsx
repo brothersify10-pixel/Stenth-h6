@@ -92,8 +92,8 @@ export default function Footer() {
             </div>
 
             <div className="space-y-3">
-              <Link href="/book" className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-lg hover:from-cyan-600 hover:to-blue-700 transition-all duration-300 text-sm font-medium">
-                🚀 Book Free Consultation
+              <Link href="/book" className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 text-white rounded-lg hover:from-cyan-500 hover:via-blue-600 hover:to-purple-700 transition-all duration-300 text-sm font-medium">
+                Book Free Consultation
               </Link>
               <div className="flex flex-col space-y-1">
                 <Link href="/start" className="text-cyan-400 hover:text-cyan-300 transition-colors text-sm">
