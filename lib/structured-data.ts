@@ -77,7 +77,7 @@ export function generateLocationPageStructuredData(country: string, city?: strin
         "addressLocality": city || "Melbourne",
         "streetAddress": "Picnic Ave Clyde North VIC 3978"
       },
-      "telephone": "+61-XXX-XXX-XXX" // Replace with actual AU number
+      "telephone": "+61-2-8079-2145"
     }
   } else if (country === 'CA') {
     return {

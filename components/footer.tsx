@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react"
+import { Mail, Building2, MapPin } from "./icons"
 import FooterSitemap from "./footer-sitemap"
 
 export default function Footer() {
@@ -64,13 +65,16 @@ export default function Footer() {
             <h4 className="text-lg font-semibold text-white">Contact Information</h4>
             <div className="space-y-3">
               <p className="text-slate-400 flex items-center">
-                📧 <a href="mailto:info@stenth.com" className="hover:text-cyan-400 transition-colors ml-2">info@stenth.com</a>
+                <Mail className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+                <a href="mailto:info@stenth.com" className="hover:text-cyan-400 transition-colors ml-2">info@stenth.com</a>
               </p>
               <p className="text-slate-400 flex items-start">
-                🏢 <span className="ml-2">368 Prince of Wales Dr, Mississauga, ON L5B 0A1</span>
+                <Building2 className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-1" />
+                <span className="ml-2">368 Prince of Wales Dr, Mississauga, ON L5B 0A1</span>
               </p>
               <p className="text-slate-400 flex items-start">
-                🇦🇺 <span className="ml-2">Picnic Ave Clyde North VIC 3978</span>
+                <MapPin className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-1" />
+                <span className="ml-2">Picnic Ave Clyde North VIC 3978, Australia</span>
               </p>
             </div>
           </div>

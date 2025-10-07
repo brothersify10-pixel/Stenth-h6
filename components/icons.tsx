@@ -10,7 +10,9 @@ import {
   ArrowRight,
   Sparkles,
   MapPin,
-  ChevronDown
+  ChevronDown,
+  Mail,
+  Building2
 } from "lucide-react"
 
 export {
@@ -24,5 +26,7 @@ export {
   ArrowRight,
   Sparkles,
   MapPin,
-  ChevronDown
+  ChevronDown,
+  Mail,
+  Building2
 }
