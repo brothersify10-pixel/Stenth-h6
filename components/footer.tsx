@@ -83,7 +83,7 @@ export default function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-gradient-to-r hover:from-cyan-500 hover:to-purple-600 transition-all duration-300"
+                  className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-gradient-to-r hover:from-cyan-400 hover:via-blue-500 hover:to-purple-600 transition-all duration-300"
                   aria-label={`Follow us on ${social.label}`}
                 >
                   <social.icon className="w-5 h-5" />
