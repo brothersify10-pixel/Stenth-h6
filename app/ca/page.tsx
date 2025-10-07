@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Phone, Mail, Star, TrendingUp, Users, Award } from "lucide-react";
 import FloatingElements from "@/components/floating-elements";
@@ -69,14 +68,8 @@ export default function CanadaHomepage() {
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="flex items-center justify-center mb-6">
-              <Image
-                src="/images/canada-flag.svg"
-                alt="Canada Flag"
-                width={48}
-                height={32}
-                className="mr-4"
-              />
+            <div className="flex items-center justify-center mb-6 gap-4">
+              <span className="text-5xl">🇨🇦</span>
               <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-red-400 via-white to-red-400 bg-clip-text text-transparent">
                 Digital Marketing Agency Canada
               </h1>
