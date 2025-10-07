@@ -40,8 +40,10 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto">
         {/* Brand Section */}
         <div className="text-center md:text-left mb-12">
-          <h3 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text [-webkit-background-clip:text] [-webkit-text-fill-color:transparent] mb-4">
-            STENTH
+          <h3 className="text-3xl font-bold mb-4">
+            <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent [-webkit-background-clip:text] [-webkit-text-fill-color:transparent]">
+              STENTH
+            </span>
           </h3>
           <p className="text-slate-400 leading-relaxed mb-2">Strategy. Marketing. Growth.</p>
           <p className="text-slate-400 text-sm leading-relaxed max-w-2xl mx-auto md:mx-0">
