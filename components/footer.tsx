@@ -40,7 +40,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto">
         {/* Brand Section */}
         <div className="text-center md:text-left mb-12">
-          <h3 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent mb-4">
+          <h3 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-4">
             STENTH
           </h3>
           <p className="text-slate-400 leading-relaxed mb-2">Strategy. Marketing. Growth.</p>
@@ -83,7 +83,7 @@ export default function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-gradient-to-r hover:from-cyan-400 hover:via-blue-500 hover:to-purple-600 transition-all duration-300"
+                  className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-gradient-to-r hover:from-cyan-400 hover:via-purple-400 hover:to-pink-400 transition-all duration-300"
                   aria-label={`Follow us on ${social.label}`}
                 >
                   <social.icon className="w-5 h-5" />
@@ -92,7 +92,7 @@ export default function Footer() {
             </div>
 
             <div className="space-y-3">
-              <Link href="/book" className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 text-white rounded-lg hover:from-cyan-500 hover:via-blue-600 hover:to-purple-700 transition-all duration-300 text-sm font-medium">
+              <Link href="/book" className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 text-white rounded-lg hover:from-cyan-500 hover:via-purple-500 hover:to-pink-500 transition-all duration-300 text-sm font-medium">
                 Book Free Consultation
               </Link>
               <div className="flex flex-col space-y-1">
