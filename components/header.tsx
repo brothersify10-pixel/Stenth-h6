@@ -23,7 +23,8 @@ const NAV = [
 const COUNTRIES = [
   {
     label: "Australia",
-    flag: "🇦🇺",
+    flag: "AU",
+    flagColors: "bg-gradient-to-r from-blue-600 via-white to-blue-600",
     href: "/au",
     color: "from-green-400 to-yellow-400",
     cities: [
@@ -35,7 +36,8 @@ const COUNTRIES = [
   },
   {
     label: "Canada",
-    flag: "🇨🇦",
+    flag: "CA",
+    flagColors: "bg-gradient-to-r from-red-600 via-white to-red-600",
     href: "/ca",
     color: "from-red-400 to-red-500",
     cities: [
@@ -198,7 +200,7 @@ export default function Header() {
                   >
                     <Link
                       href={item.href}
-                      className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg group overflow-hidden ${
+                      className={`relative inline-flex items-center px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg group overflow-hidden ${
                         pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))
                           ? "text-cyan-200 bg-cyan-400/25 font-semibold border border-cyan-400/30"
                           : "text-slate-300 hover:text-white hover:bg-white/15"
@@ -240,7 +242,7 @@ export default function Header() {
                   onMouseLeave={() => setCountryDropdownOpen(false)}
                 >
                   <button
-                    className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg group overflow-hidden flex items-center space-x-1 ${
+                    className={`relative inline-flex items-center px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg group overflow-hidden space-x-1 ${
                       COUNTRIES.some(country => pathname.startsWith(country.href))
                         ? "text-cyan-200 bg-cyan-400/25 font-semibold border border-cyan-400/30"
                         : "text-slate-300 hover:text-white hover:bg-white/15"
@@ -289,7 +291,7 @@ export default function Header() {
                             onMouseEnter={() => setSelectedCountry(countryIndex)}
                           >
                             <div className="flex items-center space-x-2">
-                              <span className="text-lg leading-none flag-emoji">
+                              <span className={`text-xs font-bold px-2 py-1 rounded ${country.flagColors} text-slate-900`}>
                                 {country.flag}
                               </span>
                               <span>{country.label}</span>
@@ -484,7 +486,7 @@ export default function Header() {
                         }}
                       >
                         <div className={`flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-r ${country.color} mr-3 group-hover:scale-105 transition-transform duration-200`}>
-                          <span className="text-lg leading-none flag-emoji">
+                          <span className="text-xs font-bold text-white">
                             {country.flag}
                           </span>
                         </div>
