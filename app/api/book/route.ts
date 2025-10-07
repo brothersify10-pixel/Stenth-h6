@@ -9,7 +9,7 @@ const FormSchema = z.object({
   email: z.string().email(),
   company: z.string().trim().optional().default(''),
   notes: z.string().trim().optional().default(''),
-  phone: z.string().trim().optional(),
+  phone: z.string().trim().min(1, "Phone number is required"),
   country: z.string().trim().optional(),
   region: z.string().trim().optional(),
   city: z.string().trim().optional(),

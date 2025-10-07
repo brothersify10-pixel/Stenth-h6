@@ -8,6 +8,7 @@ export default function BookPage() {
     name: "",
     email: "",
     company: "",
+    phone: "",
     notes: "",
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -409,15 +410,30 @@ export default function BookPage() {
                   </div>
                 </div>
 
-                <div className="space-y-3">
-                  <label className="text-white font-semibold text-sm uppercase tracking-wide">Company Name</label>
-                  <input
-                    name="company"
-                    value={formData.company}
-                    onChange={handleChange}
-                    className="w-full px-5 py-4 bg-slate-800/60 border border-slate-700/50 rounded-2xl text-white placeholder-slate-400 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/30 transition-all duration-300 text-lg backdrop-blur-sm"
-                    placeholder="Your amazing company"
-                  />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-3">
+                    <label className="text-white font-semibold text-sm uppercase tracking-wide">Company Name</label>
+                    <input
+                      name="company"
+                      value={formData.company}
+                      onChange={handleChange}
+                      className="w-full px-5 py-4 bg-slate-800/60 border border-slate-700/50 rounded-2xl text-white placeholder-slate-400 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/30 transition-all duration-300 text-lg backdrop-blur-sm"
+                      placeholder="Your amazing company"
+                    />
+                  </div>
+
+                  <div className="space-y-3">
+                    <label className="text-white font-semibold text-sm uppercase tracking-wide">Phone Number *</label>
+                    <input
+                      name="phone"
+                      type="tel"
+                      required
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className="w-full px-5 py-4 bg-slate-800/60 border border-slate-700/50 rounded-2xl text-white placeholder-slate-400 focus:border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-500/30 transition-all duration-300 text-lg backdrop-blur-sm"
+                      placeholder="+1 (555) 123-4567"
+                    />
+                  </div>
                 </div>
 
                 <div className="space-y-3">
@@ -440,11 +456,11 @@ export default function BookPage() {
 
                 <button
                   onClick={handleSubmit}
-                  disabled={isSubmitting || !formData.email || !formData.name}
+                  disabled={isSubmitting || !formData.email || !formData.name || !formData.phone}
                   className="w-full relative bg-gradient-to-r from-cyan-500 via-purple-600 to-pink-500 text-white py-5 px-8 rounded-2xl font-bold text-lg hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-2xl shadow-cyan-500/30 overflow-hidden group"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-                  
+
                   <span className="relative flex items-center justify-center space-x-3">
                     {isSubmitting ? (
                       <>
@@ -455,7 +471,7 @@ export default function BookPage() {
                       <>
                         <Rocket className="h-6 w-6" />
                         <span>
-                          {!formData.email || !formData.name 
+                          {!formData.email || !formData.name || !formData.phone
                             ? 'Please Fill Required Fields' 
                             : 'Book My Free Strategy Session'
                           }

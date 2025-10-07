@@ -494,10 +494,11 @@ export default function BookCanadaPage() {
                 )}
 
                 <div className="space-y-3">
-                  <label className="text-white font-semibold text-sm uppercase tracking-wide">Phone (Optional)</label>
+                  <label className="text-white font-semibold text-sm uppercase tracking-wide">Phone Number *</label>
                   <input
                     name="phone"
                     type="tel"
+                    required
                     value={formData.phone}
                     onChange={handleChange}
                     className="w-full px-5 py-4 bg-slate-800/60 border border-slate-700/50 rounded-2xl text-white placeholder-slate-400 focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/30 transition-all duration-300 text-lg backdrop-blur-sm"
