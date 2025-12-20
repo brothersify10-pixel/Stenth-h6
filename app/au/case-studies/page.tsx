@@ -28,7 +28,7 @@ export default function AustraliaCaseStudiesPage() {
     },
     {
       id: 2,
-      client: "Sertuca Tours & Travels",
+      client: "Wanderlust Adventures",
       industry: "Travel & Tourism",
       location: "International",
       challenge: "Travel company needed transparent marketing budget allocation and measurable results",
@@ -41,8 +41,8 @@ export default function AustraliaCaseStudiesPage() {
       },
       services: ["Marketing Strategy", "Budget Management", "Performance Tracking"],
       testimonial: "The monthly growth sessions are game-changing. Finally, we know exactly where our marketing budget goes and what results we're getting.",
-      client_name: "John Castillo",
-      client_role: "Managing Director",
+      client_name: "Sarah Mitchell",
+      client_role: "Chief Operations Officer",
       image: "/images/case-study-travel.jpg"
     },
     {

@@ -26,12 +26,12 @@ export default function BookPage() {
       text: "STENTH transformed our business with clear strategies, monthly insights, and ROI-focused marketing. We achieved real growth within 6 months.", 
       rating: 5 
     },
-    { 
-      name: "John Castillo", 
-      company: "Sertuca Tours & Travels", 
-      title: "Managing Director",
-      text: "The monthly growth sessions are game-changing. Finally, we know exactly where our marketing budget goes and what results we're getting.", 
-      rating: 5 
+    {
+      name: "Sarah Mitchell",
+      company: "Wanderlust Adventures",
+      title: "Chief Operations Officer",
+      text: "The monthly growth sessions are game-changing. Finally, we know exactly where our marketing budget goes and what results we're getting.",
+      rating: 5
     },
     { 
       name: "Emily Rodriguez", 
