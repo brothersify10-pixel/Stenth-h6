@@ -4,46 +4,69 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { X, Home, Briefcase, User, Phone, Rocket, Calendar, ArrowRight, Sparkles } from "lucide-react"
+import { X, Home, Briefcase, User, Phone, Rocket, Calendar, ArrowRight, Sparkles, MapPin, ChevronDown } from "./icons"
 
 const NAV = [
   { href: "/", label: "Home", mobileLabel: "Home", icon: Home, color: "from-blue-400 to-cyan-400" },
-  { 
-    href: "/services", 
-    label: "Services", 
-    mobileLabel: "Services", 
-    icon: Briefcase, 
+  {
+    href: "/services",
+    label: "Services",
+    mobileLabel: "Services",
+    icon: Briefcase,
     color: "from-purple-400 to-pink-400",
-    megaMenu: [
-      { title: "Digital Marketing", desc: "SEO, PPC, Social Media", href: "/services/digital-marketing", color: "from-blue-500 to-cyan-500" },
-      { title: "Web Development", desc: "Custom websites & apps", href: "/services/web-development", color: "from-purple-500 to-pink-500" },
-      { title: "Brand Strategy", desc: "Complete brand overhaul", href: "/services/brand-strategy", color: "from-green-500 to-emerald-500" },
-      { title: "UI/UX Design", desc: "User experience design", href: "/services/design", color: "from-orange-500 to-red-500" }
-    ]
   },
   { href: "/about", label: "About Us", mobileLabel: "About", icon: User, color: "from-green-400 to-emerald-400" },
-  { href: "/portfolio", label: "Portfolio", mobileLabel: "Work", icon: Briefcase, color: "from-orange-400 to-red-400" },
+  { href: "/portfolio", label: "Portfolio", mobileLabel: "Portfolio", icon: Briefcase, color: "from-orange-400 to-red-400" },
   { href: "/contact", label: "Contact", mobileLabel: "Contact", icon: Phone, color: "from-yellow-400 to-orange-400" },
-  { href: "/start", label: "Start Growing", mobileLabel: "Grow", icon: Rocket, color: "from-indigo-400 to-purple-400" },
+]
+
+const COUNTRIES = [
+  {
+    label: "Australia",
+    flag: "AU",
+    flagColors: "bg-gradient-to-r from-blue-600 via-white to-blue-600",
+    href: "/au",
+    color: "from-green-400 to-yellow-400",
+    cities: [
+      { name: "Melbourne", href: "/au/melbourne" },
+      { name: "Sydney", href: "/au/sydney" },
+      { name: "Brisbane", href: "/au/brisbane" },
+      { name: "Perth", href: "/au/perth" },
+    ]
+  },
+  {
+    label: "Canada",
+    flag: "CA",
+    flagColors: "bg-gradient-to-r from-red-600 via-white to-red-600",
+    href: "/ca",
+    color: "from-red-400 to-red-500",
+    cities: [
+      { name: "Toronto", href: "/ca/toronto" },
+      { name: "Montreal", href: "/ca/montreal" },
+      { name: "Vancouver", href: "/ca/vancouver" },
+      { name: "Calgary", href: "/ca/calgary" },
+    ]
+  }
 ]
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
-  const [hoveredItem, setHoveredItem] = useState(null)
-  const [megaMenuOpen, setMegaMenuOpen] = useState(false)
-  const [particles, setParticles] = useState([])
+  const [hoveredItem, setHoveredItem] = useState<number | null>(null)
+  const [countryDropdownOpen, setCountryDropdownOpen] = useState(false)
+  const [particles, setParticles] = useState<any[]>([])
+  const [selectedCountry, setSelectedCountry] = useState<number | null>(null)
   const [isHeaderVisible, setIsHeaderVisible] = useState(true)
   const pathname = usePathname()
 
   useEffect(() => {
     let lastScrollY = 0
-    
+
     const handleScroll = () => {
       const currentScrollY = window.scrollY
       setScrolled(currentScrollY > 50)
-      
+
       if (currentScrollY > 100) {
         if (currentScrollY > lastScrollY) {
           setIsHeaderVisible(false)
@@ -53,7 +76,7 @@ export default function Header() {
       } else {
         setIsHeaderVisible(true)
       }
-      
+
       lastScrollY = currentScrollY
     }
 
@@ -68,12 +91,12 @@ export default function Header() {
           id: Date.now() + Math.random(),
           x: mousePos.x + (Math.random() - 0.5) * 100,
           y: mousePos.y + (Math.random() - 0.5) * 100,
-          color: NAV[hoveredItem]?.color || 'from-cyan-400 to-blue-500'
+          color: NAV[hoveredItem]?.color || "from-cyan-400 to-blue-500",
         }
-        setParticles(prev => [...prev.slice(-8), newParticle])
-        
+        setParticles((prev) => [...prev.slice(-8), newParticle])
+
         setTimeout(() => {
-          setParticles(prev => prev.filter(p => p.id !== newParticle.id))
+          setParticles((prev) => prev.filter((p) => p.id !== newParticle.id))
         }, 1500)
       }
     }, 150)
@@ -81,7 +104,11 @@ export default function Header() {
     return () => clearInterval(interval)
   }, [hoveredItem, mousePos])
 
-  useEffect(() => setOpen(false), [pathname])
+  useEffect(() => {
+    setOpen(false)
+    setCountryDropdownOpen(false)
+    setSelectedCountry(null)
+  }, [pathname])
 
   useEffect(() => {
     const cls = "overflow-hidden"
@@ -92,45 +119,53 @@ export default function Header() {
   }, [open])
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
+    const handleMouseMove = (e: MouseEvent) => {
       setMousePos({ x: e.clientX, y: e.clientY })
     }
-    window.addEventListener('mousemove', handleMouseMove, { passive: true })
-    return () => window.removeEventListener('mousemove', handleMouseMove)
+    window.addEventListener("mousemove", handleMouseMove, { passive: true })
+    return () => window.removeEventListener("mousemove", handleMouseMove)
   }, [])
 
   return (
     <>
+      {/* Skip navigation link for accessibility */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-[9999] px-4 py-2 bg-white text-black font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500"
+      >
+        Skip to main content
+      </a>
+
       <div className="fixed inset-0 pointer-events-none z-30">
-        {particles.map(particle => (
+        {particles.map((particle) => (
           <div
             key={particle.id}
             className={`absolute w-1 h-1 rounded-full bg-gradient-to-r ${particle.color} opacity-60`}
             style={{
               left: particle.x,
               top: particle.y,
-              animation: 'particleFloat 1.5s ease-out forwards'
+              animation: "particleFloat 1.5s ease-out forwards",
             }}
           />
         ))}
       </div>
 
       <header
+        role="banner"
         className={`fixed top-0 w-full z-40 transition-transform duration-500 ease-out ${
-          isHeaderVisible ? 'translate-y-0' : '-translate-y-full'
+          isHeaderVisible ? "translate-y-0" : "-translate-y-full"
         } ${
-          scrolled 
-            ? "bg-slate-950/98 backdrop-blur-2xl shadow-xl shadow-cyan-500/25 border-b border-cyan-500/40" 
+          scrolled
+            ? "bg-slate-950/98 backdrop-blur-2xl shadow-xl shadow-cyan-500/25 border-b border-cyan-500/40"
             : "bg-slate-950/95 backdrop-blur-xl"
         }`}
       >
-        <nav className="container mx-auto px-6 py-4">
+        <nav role="navigation" aria-label="Main navigation" className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            
             <Link href="/" className="flex items-center space-x-3 group relative">
               <div className="relative">
                 <div className="absolute inset-0 w-12 h-12 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full blur-lg opacity-0 group-hover:opacity-30 transition-all duration-500"></div>
-                
+
                 <div className="relative w-12 h-12 transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
                   <Image
                     src="/Stenth_Logo-removebg.png"
@@ -138,12 +173,14 @@ export default function Header() {
                     width={48}
                     height={48}
                     className="w-full h-full object-contain"
+                    priority
+                    sizes="48px"
                   />
                 </div>
               </div>
-              
+
               <div className="relative">
-                <span className="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500 bg-clip-text text-transparent group-hover:from-cyan-300 group-hover:via-blue-300 group-hover:to-purple-400 transition-all duration-500">
+                <span className="text-2xl font-bold text-white bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text [-webkit-background-clip:text] [-webkit-text-fill-color:transparent] group-hover:from-cyan-300 group-hover:via-purple-300 group-hover:to-pink-300 transition-all duration-500">
                   STENTH
                 </span>
                 <div className="absolute -top-1 -right-2 opacity-0 group-hover:opacity-100 transition-all duration-500">
@@ -154,34 +191,34 @@ export default function Header() {
 
             <div className="hidden md:flex items-center space-x-2">
               <ul className="flex space-x-1">
-                {NAV.slice(0, 5).map((item, index) => (
-                  <li 
-                    key={item.href} 
+                {NAV.map((item, index) => (
+                  <li
+                    key={item.href}
                     className="relative"
-                    onMouseEnter={() => {
-                      setHoveredItem(index)
-                      if (item.megaMenu) setMegaMenuOpen(true)
-                    }}
-                    onMouseLeave={() => {
-                      setHoveredItem(null)
-                      if (item.megaMenu) setMegaMenuOpen(false)
-                    }}
+                    onMouseEnter={() => setHoveredItem(index)}
+                    onMouseLeave={() => setHoveredItem(null)}
                   >
                     <Link
                       href={item.href}
-                      className={`relative px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg group overflow-hidden ${
-                        pathname === item.href 
-                          ? 'text-cyan-400 bg-cyan-400/10' 
-                          : 'text-white hover:text-cyan-400'
+                      className={`relative inline-flex items-center px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg group overflow-hidden ${
+                        pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))
+                          ? "text-cyan-200 bg-cyan-400/25 font-semibold border border-cyan-400/30"
+                          : "text-slate-300 hover:text-white hover:bg-white/15"
                       }`}
                     >
-                      <div className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-lg`}></div>
-                      
+                      <div
+                        className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-lg`}
+                      ></div>
+
                       <span className="relative z-10">{item.label}</span>
-                      
-                      <div className={`absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r ${item.color} group-hover:w-full group-hover:left-0 transition-all duration-300`}></div>
-                      
-                      <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`}>
+
+                      <div
+                        className={`absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r ${item.color} group-hover:w-full group-hover:left-0 transition-all duration-300`}
+                      ></div>
+
+                      <div
+                        className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`}
+                      >
                         {[...Array(3)].map((_, i) => (
                           <div
                             key={i}
@@ -195,52 +232,110 @@ export default function Header() {
                         ))}
                       </div>
                     </Link>
-
-                    {item.megaMenu && megaMenuOpen && hoveredItem === index && (
-                      <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[500px] bg-slate-900/98 backdrop-blur-2xl rounded-2xl border border-cyan-500/20 shadow-2xl shadow-cyan-500/20 p-6 opacity-0 animate-in fade-in-0 slide-in-from-top-2 duration-500 opacity-100">
-                        <div className="grid grid-cols-2 gap-4">
-                          {item.megaMenu.map((subItem, subIndex) => (
-                            <Link
-                              key={subIndex}
-                              href={subItem.href}
-                              className="group p-4 rounded-xl hover:bg-slate-800/50 transition-all duration-300 border border-transparent hover:border-cyan-500/20"
-                            >
-                              <div className="flex items-start space-x-3">
-                                <div className={`p-2 rounded-lg bg-gradient-to-r ${subItem.color} group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                                  <Briefcase className="w-4 h-4 text-white" />
-                                </div>
-                                <div className="flex-1">
-                                  <h4 className="font-semibold text-white mb-1 group-hover:text-cyan-400 transition-colors duration-300">
-                                    {subItem.title}
-                                  </h4>
-                                  <p className="text-xs text-slate-400 leading-relaxed">{subItem.desc}</p>
-                                </div>
-                              </div>
-                            </Link>
-                          ))}
-                        </div>
-                        <div className="mt-4 pt-4 border-t border-slate-700/50">
-                          <Link
-                            href="/services"
-                            className="inline-flex items-center text-sm font-medium text-cyan-400 hover:text-cyan-300 transition-colors duration-200"
-                          >
-                            View All Services
-                            <ArrowRight className="w-3 h-3 ml-1" />
-                          </Link>
-                        </div>
-                      </div>
-                    )}
                   </li>
                 ))}
+
+                {/* Countries Dropdown */}
+                <li
+                  className="relative"
+                  onMouseEnter={() => setCountryDropdownOpen(true)}
+                  onMouseLeave={() => setCountryDropdownOpen(false)}
+                >
+                  <button
+                    className={`relative inline-flex items-center px-4 py-2 text-sm font-medium transition-all duration-300 rounded-lg group overflow-hidden space-x-1 ${
+                      COUNTRIES.some(country => pathname.startsWith(country.href))
+                        ? "text-cyan-200 bg-cyan-400/25 font-semibold border border-cyan-400/30"
+                        : "text-slate-300 hover:text-white hover:bg-white/15"
+                    }`}
+                  >
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-r from-green-400 to-red-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-lg`}
+                    ></div>
+
+                    <span className="relative z-10">Countries</span>
+                    <ChevronDown className={`w-4 h-4 transition-transform duration-200 relative z-10 ${countryDropdownOpen ? 'rotate-180' : ''}`} />
+
+                    <div
+                      className={`absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-green-400 to-red-500 group-hover:w-full group-hover:left-0 transition-all duration-300`}
+                    ></div>
+
+                    <div
+                      className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none`}
+                    >
+                      {[...Array(3)].map((_, i) => (
+                        <div
+                          key={i}
+                          className={`absolute w-1 h-1 bg-gradient-to-r from-green-400 to-red-500 rounded-full animate-ping`}
+                          style={{
+                            left: `${20 + i * 20}%`,
+                            top: `${10 + i * 10}%`,
+                            animationDelay: `${i * 0.1}s`,
+                          }}
+                        />
+                      ))}
+                    </div>
+                  </button>
+
+                  {/* Dropdown Menu */}
+                  <div className={`absolute top-full left-0 mt-2 w-64 bg-slate-900/95 backdrop-blur-xl rounded-xl border border-slate-700/50 shadow-xl transition-all duration-300 z-50 ${
+                    countryDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
+                  }`}>
+                    <div className="p-2">
+                      {COUNTRIES.map((country, countryIndex) => (
+                        <div key={country.href} className="relative group">
+                          <Link
+                            href={country.href}
+                            className={`flex items-center justify-between px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300 group hover:bg-white/10 ${
+                              pathname.startsWith(country.href) ? 'text-cyan-200 bg-cyan-400/20' : 'text-slate-300 hover:text-white'
+                            }`}
+                            onMouseEnter={() => setSelectedCountry(countryIndex)}
+                          >
+                            <div className="flex items-center space-x-2">
+                              <span className={`text-xs font-bold px-2 py-1 rounded ${country.flagColors} text-slate-900`}>
+                                {country.flag}
+                              </span>
+                              <span>{country.label}</span>
+                            </div>
+                            <ChevronDown className="w-4 h-4 -rotate-90 transition-transform group-hover:translate-x-1" />
+                          </Link>
+
+                          {/* City Submenu */}
+                          <div className={`absolute left-full top-0 ml-2 w-48 bg-slate-800/95 backdrop-blur-xl rounded-xl border border-slate-700/50 shadow-xl transition-all duration-300 z-50 ${
+                            selectedCountry === countryIndex ? 'opacity-100 visible translate-x-0' : 'opacity-0 invisible -translate-x-2'
+                          }`}>
+                            <div className="p-2">
+                              <div className="px-3 py-2 text-xs font-semibold text-slate-400 uppercase tracking-wider border-b border-slate-700/50 mb-2">
+                                Cities
+                              </div>
+                              {country.cities.map((city) => (
+                                <Link
+                                  key={city.href}
+                                  href={city.href}
+                                  className={`block px-4 py-2 text-sm rounded-lg transition-all duration-300 ${
+                                    pathname === city.href
+                                      ? 'text-cyan-200 bg-cyan-400/20 font-medium'
+                                      : 'text-slate-300 hover:text-white hover:bg-white/10'
+                                  }`}
+                                >
+                                  {city.name}
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </li>
               </ul>
 
               <div className="flex space-x-3 ml-6">
                 <Link
                   href="/start"
-                  className="relative px-6 py-2.5 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-full hover:from-indigo-400 hover:to-purple-500 transition-all duration-300 group overflow-hidden shadow-lg shadow-purple-500/25"
+                  className="relative px-4 sm:px-6 py-2 sm:py-2.5 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-full hover:from-indigo-400 hover:to-purple-500 transition-all duration-300 group overflow-hidden shadow-lg shadow-purple-500/25"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
-                  
+
                   <span className="relative flex items-center space-x-2">
                     <Rocket className="w-4 h-4" />
                     <span>Start Growing</span>
@@ -249,12 +344,12 @@ export default function Header() {
 
                 <Link
                   href="/book"
-                  className="relative px-6 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-full hover:from-cyan-400 hover:to-blue-500 transition-all duration-300 group overflow-hidden shadow-lg shadow-cyan-500/25 animate-pulse hover:animate-none"
+                  className="relative px-4 sm:px-6 py-2 sm:py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-full hover:from-cyan-400 hover:to-blue-500 transition-all duration-300 group overflow-hidden shadow-lg shadow-cyan-500/25 animate-pulse hover:animate-none"
                 >
                   <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 p-0.5 group-hover:animate-spin">
                     <div className="w-full h-full bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full"></div>
                   </div>
-                  
+
                   <span className="relative flex items-center space-x-2 z-10">
                     <Calendar className="w-4 h-4" />
                     <span>Book Session</span>
@@ -266,19 +361,24 @@ export default function Header() {
 
             <button
               onClick={() => setOpen((v) => !v)}
-              className="md:hidden p-2 focus:outline-none"
+              className="md:hidden p-3 focus:outline-none focus:ring-2 focus:ring-cyan-500 rounded-md min-h-[44px] min-w-[44px] flex items-center justify-center"
               aria-label="Toggle menu"
+              aria-expanded={open}
             >
               <div className="w-6 h-4 flex flex-col justify-between">
-                <span className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
-                  open ? 'rotate-45 translate-y-1.5' : ''
-                }`}></span>
-                <span className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
-                  open ? 'opacity-0' : ''
-                }`}></span>
-                <span className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
-                  open ? '-rotate-45 -translate-y-1.5' : ''
-                }`}></span>
+                <span
+                  className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
+                    open ? "rotate-45 translate-y-1.5" : ""
+                  }`}
+                ></span>
+                <span
+                  className={`block h-0.5 w-6 bg-white transition-all duration-300 ${open ? "opacity-0" : ""}`}
+                ></span>
+                <span
+                  className={`block h-0.5 w-6 bg-white transition-all duration-300 ${
+                    open ? "-rotate-45 -translate-y-1.5" : ""
+                  }`}
+                ></span>
               </div>
             </button>
           </div>
@@ -287,9 +387,7 @@ export default function Header() {
 
       <div
         className={`md:hidden fixed inset-0 top-0 left-0 w-full h-full transition-all duration-700 ease-in-out ${
-          open 
-            ? "opacity-100 visible" 
-            : "opacity-0 invisible pointer-events-none"
+          open ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"
         }`}
         style={{ zIndex: 50 }}
       >
@@ -303,7 +401,7 @@ export default function Header() {
                 height: `${Math.random() * 10 + 5}px`,
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
-                animation: `float ${3 + Math.random() * 2}s ease-in-out infinite ${i * 0.1}s`
+                animation: `float ${3 + Math.random() * 2}s ease-in-out infinite ${i * 0.1}s`,
               }}
             />
           ))}
@@ -317,78 +415,188 @@ export default function Header() {
           />
         </div>
 
-        <div className="relative z-10 flex flex-col h-full justify-center items-center px-8">
-          <Link
-            href="/book"
-            className="mb-8 px-8 py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-semibold rounded-full hover:scale-105 transition-all duration-300 shadow-lg shadow-pink-500/25 relative overflow-hidden group"
-            onClick={() => setOpen(false)}
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-pink-400 to-rose-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <span className="relative flex items-center space-x-2 z-10">
-              <Calendar className="w-5 h-5" />
-              <span>Book Free Session</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-            </span>
-          </Link>
+        {/* Mobile Navigation Content */}
+        <div className="relative z-10 flex flex-col h-full">
+          {/* Scrollable Content Area */}
+          <div className="flex-1 overflow-y-auto px-4 pt-20 pb-4">
+            {/* Header */}
+            <div className="text-center mb-6">
+              <h2 className="text-xl font-bold text-white mb-1">Menu</h2>
+              <p className="text-slate-400 text-sm">Choose your destination</p>
+            </div>
 
-          <div className="grid grid-cols-2 gap-6 w-full max-w-md">
-            {NAV.map((item, index) => {
-              const Icon = item.icon
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`relative p-6 rounded-2xl backdrop-blur-xl border transition-all duration-500 group text-center transform ${
-                    pathname === item.href 
-                      ? `bg-gradient-to-br ${item.color} bg-opacity-20 border-white/30 shadow-lg` 
-                      : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-white/20'
-                  }`}
-                  onClick={() => setOpen(false)}
-                  style={{
-                    animationDelay: `${index * 0.1}s`,
-                    animation: open ? 'slideInUp 0.6s ease-out forwards' : 'none'
-                  }}
-                >
-                  <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-20 transition-all duration-500 rounded-2xl ${pathname === item.href ? 'animate-pulse' : ''}`}/>
+            {/* Main Navigation */}
+            <div className="mb-6">
+              <h3 className="text-white font-semibold mb-3 text-sm uppercase tracking-wide">Main Pages</h3>
+              <div className="space-y-2">
+                {NAV.map((item, index) => {
+                  const Icon = item.icon
+                  const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={`flex items-center w-full px-3 py-2.5 rounded-xl transition-all duration-300 group ${
+                        isActive
+                          ? `bg-gradient-to-r ${item.color} bg-opacity-25 border border-white/30`
+                          : "bg-white/10 hover:bg-white/15"
+                      }`}
+                      onClick={() => setOpen(false)}
+                      style={{
+                        animationDelay: `${index * 0.05}s`,
+                        animation: open ? "slideInUp 0.4s ease-out forwards" : "none",
+                      }}
+                    >
+                      <div className={`flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-r ${item.color} mr-3 group-hover:scale-105 transition-transform duration-200`}>
+                        <Icon className="w-5 h-5 text-white" />
+                      </div>
+                      <span className={`text-base font-medium flex-1 ${
+                        isActive ? "text-white" : "text-slate-200 group-hover:text-white"
+                      }`}>
+                        {item.mobileLabel}
+                      </span>
+                      <ArrowRight className={`w-4 h-4 ${
+                        isActive ? "text-white" : "text-slate-400 group-hover:text-white"
+                      } group-hover:translate-x-0.5 transition-all duration-200`} />
+                    </Link>
+                  )
+                })}
+              </div>
+            </div>
 
-                  <div className="relative z-10 flex flex-col items-center text-center space-y-3">
-                    <div className={`p-3 rounded-xl bg-gradient-to-r ${item.color} group-hover:scale-110 transition-all duration-300 shadow-lg group-hover:shadow-xl`}>
-                      <Icon className="w-6 h-6 text-white" />
+            {/* Countries Section */}
+            <div className="mb-6">
+              <h3 className="text-white font-semibold mb-3 text-sm uppercase tracking-wide">Countries</h3>
+              <div className="space-y-2">
+                {COUNTRIES.map((country, countryIndex) => {
+                  const isCountryActive = pathname.startsWith(country.href)
+                  return (
+                    <div key={country.href}>
+                      <Link
+                        href={country.href}
+                        className={`flex items-center w-full px-4 py-3 rounded-xl transition-all duration-300 group ${
+                          isCountryActive
+                            ? `bg-gradient-to-r ${country.color} bg-opacity-25 border border-white/30`
+                            : "bg-white/10 hover:bg-white/15"
+                        }`}
+                        onClick={() => setOpen(false)}
+                        style={{
+                          animationDelay: `${countryIndex * 0.05}s`,
+                          animation: open ? "slideInUp 0.4s ease-out forwards" : "none",
+                        }}
+                      >
+                        <div className={`flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-r ${country.color} mr-3 group-hover:scale-105 transition-transform duration-200`}>
+                          <span className="text-xs font-bold text-white">
+                            {country.flag}
+                          </span>
+                        </div>
+                        <div className="flex-1">
+                          <span className={`text-base font-medium block ${
+                            isCountryActive ? "text-white" : "text-slate-200 group-hover:text-white"
+                          }`}>
+                            {country.label}
+                          </span>
+                          <span className="text-xs text-slate-400">
+                            {country.cities.length} cities
+                          </span>
+                        </div>
+                        <ArrowRight className={`w-4 h-4 ${
+                          isCountryActive ? "text-white" : "text-slate-400 group-hover:text-white"
+                        } group-hover:translate-x-0.5 transition-all duration-200`} />
+                      </Link>
+
+                      {/* Cities for active country */}
+                      {isCountryActive && (
+                        <div className="mt-1 ml-6 space-y-1">
+                          {country.cities.map((city, cityIndex) => (
+                            <Link
+                              key={city.href}
+                              href={city.href}
+                              className={`flex items-center w-full px-3 py-2 rounded-lg transition-all duration-200 ${
+                                pathname === city.href
+                                  ? 'bg-cyan-500 text-white'
+                                  : 'bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white'
+                              }`}
+                              onClick={() => setOpen(false)}
+                            >
+                              <div className="w-1.5 h-1.5 bg-current rounded-full mr-2 opacity-60"></div>
+                              <span className="text-sm font-medium">
+                                {city.name}
+                              </span>
+                            </Link>
+                          ))}
+                        </div>
+                      )}
                     </div>
-                    <span className={`font-medium transition-colors duration-300 ${
-                      pathname === item.href ? 'text-cyan-300' : 'text-white group-hover:text-cyan-400'
-                    }`}>
-                      {item.mobileLabel}
-                    </span>
-                  </div>
+                  )
+                })}
+              </div>
+            </div>
 
-                  {pathname === item.href && (
-                    <div className="absolute top-2 right-2 w-2 h-2 bg-cyan-400 rounded-full animate-ping"></div>
-                  )}
-                </Link>
-              )
-            })}
+            {/* Start Growing */}
+            <div className="mb-6">
+              <Link
+                href="/start"
+                className="flex items-center w-full px-4 py-4 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-xl transition-all duration-300 group hover:scale-[1.02]"
+                onClick={() => setOpen(false)}
+              >
+                <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-white/20 mr-3 group-hover:scale-105 transition-transform duration-200">
+                  <Rocket className="w-5 h-5 text-white" />
+                </div>
+                <span className="text-base font-semibold text-white flex-1">
+                  Start Growing
+                </span>
+                <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-0.5 transition-all duration-200" />
+              </Link>
+            </div>
+
+            {/* Close Button */}
+            <button
+              onClick={() => setOpen(false)}
+              className="w-full py-3 rounded-xl bg-white/5 border border-white/10 text-slate-400 hover:bg-white/10 hover:text-white transition-all duration-200 flex items-center justify-center group mb-6"
+            >
+              <X className="w-4 h-4 mr-2 group-hover:rotate-90 transition-transform duration-200" />
+              <span className="font-medium text-sm">Close Menu</span>
+            </button>
           </div>
 
-          <button
-            onClick={() => setOpen(false)}
-            className="mt-12 w-14 h-14 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 text-white hover:bg-white/20 transition-all duration-300 flex items-center justify-center group"
-          >
-            <X className="w-6 h-6 group-hover:rotate-90 transition-transform duration-300" />
-          </button>
+          {/* Fixed Bottom CTA */}
+          <div className="p-4 border-t border-white/10 bg-slate-950/90 backdrop-blur-sm">
+            <Link
+              href="/book"
+              className="w-full flex items-center justify-center px-6 py-4 bg-gradient-to-r from-pink-500 to-rose-500 text-white font-bold rounded-2xl hover:scale-[1.02] transition-all duration-300 shadow-lg shadow-pink-500/25 relative overflow-hidden group"
+              onClick={() => setOpen(false)}
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-pink-400 to-rose-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="relative flex items-center space-x-3 z-10">
+                <Calendar className="w-5 h-5" />
+                <span className="text-lg">Book Free Session</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+              </div>
+            </Link>
+          </div>
         </div>
       </div>
 
       <style jsx>{`
+        /* Flag emoji optimization for better cross-platform rendering */
+        .flag-emoji {
+          font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Twemoji Mozilla", sans-serif;
+          font-feature-settings: "liga" 1, "kern" 1;
+          text-rendering: optimizeSpeed;
+          -webkit-font-smoothing: auto;
+          -moz-osx-font-smoothing: auto;
+        }
+
         @keyframes float {
-          0%, 100% { 
-            transform: translateY(0px) rotate(0deg); 
+          0%, 100% {
+            transform: translateY(0px) rotate(0deg);
           }
-          50% { 
-            transform: translateY(-20px) rotate(10deg); 
+          50% {
+            transform: translateY(-20px) rotate(10deg);
           }
         }
-        
+
         @keyframes slideInUp {
           0% {
             opacity: 0;
@@ -399,38 +607,38 @@ export default function Header() {
             transform: translateY(0) scale(1);
           }
         }
-        
+
         @keyframes particleFloat {
-          0% { 
-            transform: translateY(0) scale(1) rotate(0deg); 
-            opacity: 1; 
+          0% {
+            transform: translateY(0) scale(1) rotate(0deg);
+            opacity: 1;
           }
-          50% { 
-            transform: translateY(-20px) scale(0.8) rotate(180deg); 
-            opacity: 0.7; 
+          50% {
+            transform: translateY(-20px) scale(0.8) rotate(180deg);
+            opacity: 0.7;
           }
-          100% { 
-            transform: translateY(-40px) scale(0) rotate(360deg); 
-            opacity: 0; 
+          100% {
+            transform: translateY(-40px) scale(0) rotate(360deg);
+            opacity: 0;
           }
         }
-        
+
         @keyframes fade-in-0 {
           from { opacity: 0; }
           to { opacity: 1; }
         }
-        
+
         @keyframes slide-in-from-top-2 {
-          from { 
+          from {
             opacity: 0;
             transform: translateY(-8px) translateX(-50%);
           }
-          to { 
+          to {
             opacity: 1;
             transform: translateY(0) translateX(-50%);
           }
         }
-        
+
         .animate-in {
           animation-fill-mode: both;
         }

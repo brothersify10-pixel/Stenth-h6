@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
+import { useEffect, useState, Suspense } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { X } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -20,9 +20,9 @@ const portfolioData = {
     creative: "Developed platform-specific creative assets with consistent messaging and A/B tested variations.",
     results: ["+58% MQL increase", "-21% CAC reduction", "3.2x ROAS improvement", "40% faster conversion cycle"],
     images: [
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=533", // Your analytics dashboard image
-      "/portfolio/stenth-x/campaigns.jpg",
-      "/portfolio/stenth-x/results.jpg",
+      "/portfolio/stenth-x/dashboard.png",
+      "/portfolio/stenth-x/campaigns.png",
+      "/portfolio/stenth-x/results.png",
     ],
   },
   "retail-boost": {
@@ -40,8 +40,8 @@ const portfolioData = {
       "8-week ROI: 340%",
     ],
     images: [
-      "/portfolio/retail-boost/store.jpg",
-      "/portfolio/retail-boost/qr-campaign.jpg",
+      "/portfolio/retail-boost/store.png",
+      "/portfolio/retail-boost/qr-campaign.png",
       "/portfolio/retail-boost/analytics.png",
     ],
   },
@@ -61,9 +61,9 @@ const portfolioData = {
       "65% faster sales cycle",
     ],
     images: [
-      "/portfolio/leadgen-saas/creative-tests.jpg",
-      "/portfolio/leadgen-saas/pipeline.jpg",
-      "/portfolio/leadgen-saas/dashboard.jpg",
+      "/portfolio/leadgen-saas/creative-tests.png",
+      "/portfolio/leadgen-saas/pipeline.png",
+      "/portfolio/leadgen-saas/dashboard.png",
     ],
   },
 }
@@ -71,7 +71,19 @@ const portfolioData = {
 export default function PortfolioModal({ params }: { params: { slug: string } }) {
   const router = useRouter()
   const [isOpen, setIsOpen] = useState(true)
-  const project = portfolioData[params.slug as keyof typeof portfolioData]
+  const [slug, setSlug] = useState<string>("")
+  const [project, setProject] = useState<typeof portfolioData[keyof typeof portfolioData] | null>(null)
+
+  useEffect(() => {
+    const loadParams = async () => {
+      // Handle both Promise (Next.js 15+) and direct object (Next.js 14)
+      const resolvedParams = await Promise.resolve(params)
+      const projectSlug = resolvedParams.slug
+      setSlug(projectSlug)
+      setProject(portfolioData[projectSlug as keyof typeof portfolioData] || null)
+    }
+    loadParams()
+  }, [params])
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -94,7 +106,7 @@ export default function PortfolioModal({ params }: { params: { slug: string } })
     setTimeout(() => router.back(), 150)
   }
 
-  if (!project) {
+  if (!slug || !project) {
     return null
   }
 
@@ -146,12 +158,9 @@ export default function PortfolioModal({ params }: { params: { slug: string } })
                         fill
                         className="object-cover object-center transition-all duration-500 group-hover:scale-105"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 300px"
+                        quality={85}
                         priority={index === 0}
-                        onError={(e) => {
-                          // Fallback to placeholder if image fails to load
-                          const target = e.target as HTMLImageElement;
-                          target.src = "/placeholder.svg";
-                        }}
+                        unoptimized={false}
                       />
                     </div>
                     <div className="absolute inset-0 rounded-xl bg-gradient-to-tr from-blue-500/15 via-emerald-400/8 to-purple-600/15 mix-blend-overlay pointer-events-none opacity-100 group-hover:opacity-60 transition-opacity duration-300"></div>

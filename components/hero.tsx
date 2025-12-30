@@ -17,7 +17,7 @@ export default function Hero() {
     const circle = circleRef.current
     if (!container || !circle) return
 
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    const reduceMotion = typeof window !== "undefined" ? window.matchMedia("(prefers-reduced-motion: reduce)").matches : false
     if (reduceMotion) return // respect user settings
 
     let rafId = 0
@@ -26,6 +26,7 @@ export default function Hero() {
     const state = { targetX: 0, targetY: 0, x: 0, y: 0 }
 
     function onMove(e: MouseEvent) {
+      if (!container) return
       const rect = container.getBoundingClientRect()
       const cx = rect.left + rect.width / 2
       const cy = rect.top + rect.height / 2
@@ -35,6 +36,7 @@ export default function Hero() {
     }
 
     function tick() {
+      if (!running || !circle) return
       if (!running) return
       // smooth to target
       state.x = lerp(state.x, state.targetX, 0.08)
@@ -76,8 +78,8 @@ export default function Hero() {
         <div className="absolute inset-0 [background-image:radial-gradient(transparent,rgba(0,0,0,0.6))]" />
       </div>
 
-      <div ref={containerRef} className="container mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div ref={containerRef} className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
           {/* Copy */}
           <div className="space-y-8 motion-safe:animate-in motion-safe:fade-in-50 motion-safe:slide-in-from-bottom-3">
             <h1 id="hero-heading" className="text-5xl lg:text-7xl font-bold leading-tight text-white">

@@ -12,15 +12,20 @@ import CaseStudies from "@/components/case-studies";
 import MonthlyGrowthSection from "@/components/monthly-growth-section";
 import Testimonials from "@/components/testimonials";
 import STENTHContact from "@/components/stenth-contact";
-import STENTHFooter from "@/components/stenth-footer";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const t = setTimeout(() => setLoading(false), 1200);
     return () => clearTimeout(t);
   }, []);
+
+  if (!mounted) {
+    return <LoadingScreen />;
+  }
 
   if (loading) return <LoadingScreen />;
 
@@ -36,7 +41,6 @@ export default function Home() {
       <MonthlyGrowthSection />
       <Testimonials />
       <section id="contact"><STENTHContact /></section>
-      <STENTHFooter />
     </main>
   );
 }

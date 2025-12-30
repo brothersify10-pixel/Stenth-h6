@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:www.stenth.com)",
+      "WebFetch(domain:stenth.com)",
+      "Bash(npm run build:*)",
+      "Bash(npx tsc:*)",
+      "Bash(node:*)",
+      "Bash(npm run dev:*)",
+      "Bash(find:*)",
+      "Bash(pnpm:*)",
+      "Bash(npx vercel domains:*)",
+      "Bash(nslookup:*)",
+      "mcp__ide__getDiagnostics",
+      "Bash(npm install:*)",
+      "Bash(cat:*)",
+      "Bash(dos2unix:*)",
+      "Bash(perl:*)",
+      "Bash(timeout:*)",
+      "Bash(SKIP_TYPE_CHECK=true npm run build)",
+      "Bash(npm run start:*)",
+      "Bash(curl:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git pull:*)",
+      "Bash(grep:*)",
+      "Bash(npm run lint)",
+      "Bash(cmd /c:*)",
+      "Bash(tasklist)",
+      "Bash(npm audit:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

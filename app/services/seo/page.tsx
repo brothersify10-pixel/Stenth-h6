@@ -1,4 +1,3 @@
-import Header from "@/components/header"
 import FloatingElements from "@/components/floating-elements"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
@@ -7,7 +6,6 @@ export default function SEOPage() {
   return (
     <main className="relative min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
       <FloatingElements />
-      <Header />
 
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">

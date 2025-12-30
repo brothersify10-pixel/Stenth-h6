@@ -12,9 +12,9 @@ export default function Testimonials() {
     {
       quote:
         "The monthly growth sessions are game-changing. Finally, we know exactly where our marketing budget goes and what results we're getting.",
-      author: "John Castillo",
-      company: "Sertuca Tours & Travels",
-      role: "Managing Director",
+      author: "Sarah Mitchell",
+      company: "Wanderlust Adventures",
+      role: "Chief Operations Officer",
     },
     {
       quote:
@@ -37,7 +37,7 @@ export default function Testimonials() {
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}

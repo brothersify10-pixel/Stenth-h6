@@ -4,7 +4,7 @@ export default function STENTHAbout() {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/50">
       <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
           <div>
             <h2 className="text-4xl lg:text-5xl font-bold text-white mb-8">
               We Don't Just Market Brands.{" "}

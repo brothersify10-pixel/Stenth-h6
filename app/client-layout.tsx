@@ -2,7 +2,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import LoadingScreen from "@/components/LoadingScreen";
+import LoadingScreen from "@/components/loading-screen";
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const [showSplash, setShowSplash] = useState(true);

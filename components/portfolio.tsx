@@ -67,12 +67,12 @@ export default function Portfolio() {
 
   return (
     <section id="portfolio" className="py-24 relative">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-pink-500 bg-clip-text text-transparent mb-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-cyan-400 to-pink-500 bg-clip-text text-transparent mb-6">
             Success Stories
           </h2>
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto mb-12">
+          <p className="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto mb-12">
             Discover how we've transformed businesses and delivered exceptional results across industries
           </p>
 
@@ -93,7 +93,7 @@ export default function Portfolio() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
           {filteredProjects.map((project, index) => (
             <div
               key={index}
@@ -105,7 +105,7 @@ export default function Portfolio() {
                 <img
                   src={project.image || "/placeholder.svg"}
                   alt={project.title}
-                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full aspect-video object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60"></div>
                 <div className="absolute top-4 right-4 bg-gradient-to-r from-cyan-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm font-medium">

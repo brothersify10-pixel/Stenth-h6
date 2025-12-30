@@ -1,92 +1,129 @@
+import Link from "next/link"
+import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react"
+import { Mail, Building2, MapPin } from "./icons"
+import FooterSitemap from "./footer-sitemap"
+
 export default function Footer() {
+  const quickLinks = [
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
+    { name: "Services", href: "/services" },
+    { name: "Portfolio", href: "/portfolio" },
+    { name: "Contact", href: "/contact" },
+  ]
+
+  // Update these with your actual social media URLs
+  const socialLinks = [
+    {
+      icon: Facebook,
+      href: "https://www.facebook.com/stenth", // Replace with your actual Facebook URL
+      label: "Facebook"
+    },
+    {
+      icon: Twitter,
+      href: "https://twitter.com/stenth_official", // Replace with your actual Twitter/X URL
+      label: "Twitter"
+    },
+    {
+      icon: Instagram,
+      href: "https://www.instagram.com/stenth.official", // Replace with your actual Instagram URL
+      label: "Instagram"
+    },
+    {
+      icon: Linkedin,
+      href: "https://www.linkedin.com/company/stenth", // Replace with your actual LinkedIn URL
+      label: "LinkedIn"
+    },
+  ]
+
   return (
-    <footer className="bg-slate-950/90 backdrop-blur-sm border-t border-slate-800 py-12">
-      <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-4 gap-8">
-          <div className="space-y-4">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 to-pink-500 rounded-xl flex items-center justify-center">
-                <span className="text-white font-bold">S</span>
-              </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-pink-500 bg-clip-text text-transparent">
-                Synapse
-              </span>
+    <footer className="bg-slate-950 border-t border-slate-800 py-16 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        {/* Brand Section */}
+        <div className="text-center md:text-left mb-12">
+          <h3 className="text-3xl font-bold mb-4">
+            <span className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent [-webkit-background-clip:text] [-webkit-text-fill-color:transparent]">
+              STENTH
+            </span>
+          </h3>
+          <p className="text-slate-400 leading-relaxed mb-2">Strategy. Marketing. Growth.</p>
+          <p className="text-slate-400 text-sm leading-relaxed max-w-2xl mx-auto md:mx-0">
+            We don't just market brands—we build businesses through data-driven strategies and measurable results.
+          </p>
+        </div>
+
+        {/* Comprehensive Site Map */}
+        <div className="mb-12">
+          <FooterSitemap />
+        </div>
+
+        {/* Contact & Social */}
+        <div className="grid md:grid-cols-2 gap-12 mb-12">
+
+          {/* Contact Info */}
+          <div className="space-y-6">
+            <h4 className="text-lg font-semibold text-white">Contact Information</h4>
+            <div className="space-y-3">
+              <p className="text-slate-400 flex items-center">
+                <Mail className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+                <a href="mailto:info@stenth.com" className="hover:text-cyan-400 transition-colors ml-2">info@stenth.com</a>
+              </p>
+              <p className="text-slate-400 flex items-start">
+                <Building2 className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-1" />
+                <span className="ml-2">368 Prince of Wales Dr, Mississauga, ON L5B 0A1</span>
+              </p>
+              <p className="text-slate-400 flex items-start">
+                <MapPin className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-1" />
+                <span className="ml-2">Picnic Ave Clyde North VIC 3978, Australia</span>
+              </p>
             </div>
-            <p className="text-slate-400">
-              Transforming businesses through innovative digital marketing strategies and cutting-edge technology.
-            </p>
           </div>
 
-          <div>
-            <h4 className="text-white font-semibold mb-4">Services</h4>
-            <ul className="space-y-2 text-slate-400">
-              <li>
-                <a href="#" className="hover:text-cyan-400 transition-colors">
-                  Digital Strategy
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-cyan-400 transition-colors">
-                  Social Media
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-cyan-400 transition-colors">
-                  Performance Marketing
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-cyan-400 transition-colors">
-                  Creative Design
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-white font-semibold mb-4">Company</h4>
-            <ul className="space-y-2 text-slate-400">
-              <li>
-                <a href="#" className="hover:text-cyan-400 transition-colors">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-cyan-400 transition-colors">
-                  Careers
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-cyan-400 transition-colors">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-cyan-400 transition-colors">
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-white font-semibold mb-4">Connect</h4>
-            <div className="flex space-x-4">
-              {["LinkedIn", "Twitter", "Instagram", "Facebook"].map((social) => (
+          {/* Social Media & CTA */}
+          <div className="space-y-6">
+            <h4 className="text-lg font-semibold text-white">Connect With Us</h4>
+            <div className="flex gap-4 mb-6">
+              {socialLinks.map((social) => (
                 <a
-                  key={social}
-                  href="#"
-                  className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 hover:bg-gradient-to-br hover:from-cyan-400 hover:to-pink-500 hover:text-white transition-all duration-300"
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-gradient-to-r hover:from-cyan-400 hover:via-purple-400 hover:to-pink-400 transition-all duration-300"
+                  aria-label={`Follow us on ${social.label}`}
                 >
-                  {social[0]}
+                  <social.icon className="w-5 h-5" />
                 </a>
               ))}
+            </div>
+
+            <div className="space-y-3">
+              <Link href="/book" className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 text-white rounded-lg hover:from-cyan-500 hover:via-purple-500 hover:to-pink-500 transition-all duration-300 text-sm font-medium">
+                Book Free Consultation
+              </Link>
+              <div className="flex flex-col space-y-1">
+                <Link href="/start" className="text-cyan-400 hover:text-cyan-300 transition-colors text-sm">
+                  Get Started Today →
+                </Link>
+                <Link href="/portfolio" className="text-slate-400 hover:text-cyan-400 transition-colors text-sm">
+                  View Our Work →
+                </Link>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-slate-800 mt-12 pt-8 text-center text-slate-400">
-          <p>&copy; 2024 Synapse Marketing. All rights reserved. Crafted with passion for digital excellence.</p>
+        {/* Bottom Section */}
+        <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-slate-400 text-sm">© 2025 STENTH. All rights reserved.</p>
+          <div className="flex gap-6 text-sm">
+            <Link href="/privacy" className="text-slate-400 hover:text-cyan-400 transition-colors duration-300">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="text-slate-400 hover:text-cyan-400 transition-colors duration-300">
+              Terms of Service
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
