@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 
 export default function STENTHContact() {
@@ -17,19 +18,23 @@ export default function STENTHContact() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-6 justify-center">
-          <Button
-            size="lg"
-            className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-12 py-4 text-xl font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-          >
-            Book a Call
-          </Button>
-          <Button
-            variant="outline"
-            size="lg"
-            className="border-2 border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white px-12 py-4 text-xl font-semibold rounded-xl transition-all duration-300 bg-transparent"
-          >
-            Get Started Today
-          </Button>
+          <Link href="/book">
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-12 py-4 text-xl font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+            >
+              Book a Call
+            </Button>
+          </Link>
+          <Link href="/start">
+            <Button
+              variant="outline"
+              size="lg"
+              className="border-2 border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white px-12 py-4 text-xl font-semibold rounded-xl transition-all duration-300 bg-transparent"
+            >
+              Get Started Today
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
