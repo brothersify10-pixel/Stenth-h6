@@ -9,7 +9,7 @@ export default function STENTHHero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20">
       <div className="max-w-7xl mx-auto w-full">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
           {/* Left Column - Content */}
           <div className="text-center lg:text-left space-y-8 relative z-10">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
@@ -65,7 +65,7 @@ export default function STENTHHero() {
                   alt="STENTH logo"
                   width={360}
                   height={360}
-                  className="w-80 h-80 lg:w-96 lg:h-96 object-contain"
+                  className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 object-contain"
                   priority
                 />
               </motion.div>

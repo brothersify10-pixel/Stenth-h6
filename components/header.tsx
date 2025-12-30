@@ -332,7 +332,7 @@ export default function Header() {
               <div className="flex space-x-3 ml-6">
                 <Link
                   href="/start"
-                  className="relative px-6 py-2.5 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-full hover:from-indigo-400 hover:to-purple-500 transition-all duration-300 group overflow-hidden shadow-lg shadow-purple-500/25"
+                  className="relative px-4 sm:px-6 py-2 sm:py-2.5 bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-semibold rounded-full hover:from-indigo-400 hover:to-purple-500 transition-all duration-300 group overflow-hidden shadow-lg shadow-purple-500/25"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
 
@@ -344,7 +344,7 @@ export default function Header() {
 
                 <Link
                   href="/book"
-                  className="relative px-6 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-full hover:from-cyan-400 hover:to-blue-500 transition-all duration-300 group overflow-hidden shadow-lg shadow-cyan-500/25 animate-pulse hover:animate-none"
+                  className="relative px-4 sm:px-6 py-2 sm:py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold rounded-full hover:from-cyan-400 hover:to-blue-500 transition-all duration-300 group overflow-hidden shadow-lg shadow-cyan-500/25 animate-pulse hover:animate-none"
                 >
                   <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 p-0.5 group-hover:animate-spin">
                     <div className="w-full h-full bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full"></div>
@@ -436,7 +436,7 @@ export default function Header() {
                     <Link
                       key={item.href}
                       href={item.href}
-                      className={`flex items-center w-full px-4 py-3 rounded-xl transition-all duration-300 group ${
+                      className={`flex items-center w-full px-3 py-2.5 rounded-xl transition-all duration-300 group ${
                         isActive
                           ? `bg-gradient-to-r ${item.color} bg-opacity-25 border border-white/30`
                           : "bg-white/10 hover:bg-white/15"

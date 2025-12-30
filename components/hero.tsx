@@ -78,8 +78,8 @@ export default function Hero() {
         <div className="absolute inset-0 [background-image:radial-gradient(transparent,rgba(0,0,0,0.6))]" />
       </div>
 
-      <div ref={containerRef} className="container mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div ref={containerRef} className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
           {/* Copy */}
           <div className="space-y-8 motion-safe:animate-in motion-safe:fade-in-50 motion-safe:slide-in-from-bottom-3">
             <h1 id="hero-heading" className="text-5xl lg:text-7xl font-bold leading-tight text-white">

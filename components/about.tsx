@@ -33,11 +33,11 @@ export default function About() {
 
   return (
     <section id="about" className="py-24 relative">
-      <div className="container mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           {/* LEFT CONTENT */}
           <div className="space-y-8">
-            <h2 className="text-5xl font-bold text-white leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
               The Story Behind{" "}
               <span className="bg-gradient-to-r from-cyan-400 to-pink-500 bg-clip-text text-transparent">
                 STENTH

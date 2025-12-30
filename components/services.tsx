@@ -65,14 +65,14 @@ export default function Services() {
 
   return (
     <section id="services" className="py-24 relative">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* HOW WE WORK - NOW ON TOP WITH ARROWS */}
         <div className="text-center mb-16">
-          <h3 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-pink-500 bg-clip-text text-transparent mb-6">
+          <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-cyan-400 to-pink-500 bg-clip-text text-transparent mb-6">
             How We Work
           </h3>
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto mb-12">
+          <p className="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto mb-12">
             A clear, data-first process designed to deliver growth at every stage.
           </p>
           <div className="flex flex-wrap justify-center items-center gap-4">
@@ -97,15 +97,15 @@ export default function Services() {
 
         {/* SERVICES SECTION */}
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold bg-gradient-to-r from-cyan-400 to-pink-500 bg-clip-text text-transparent mb-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-cyan-400 to-pink-500 bg-clip-text text-transparent mb-6">
             Our Expertise
           </h2>
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto">
             Revolutionary solutions that redefine digital marketing and drive unprecedented growth
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
           {services.map((service, index) => (
             <div
               key={index}

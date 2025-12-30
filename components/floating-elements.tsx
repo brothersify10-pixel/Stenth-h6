@@ -40,9 +40,9 @@ export default function FloatingElements() {
       />
 
       {/* Gradient overlays for depth */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-radial from-cyan-500/5 to-transparent animate-pulse"
+      <div className="absolute top-0 left-0 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-gradient-radial from-cyan-500/5 to-transparent animate-pulse"
            style={{ animationDuration: "4s" }} />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-radial from-purple-500/5 to-transparent animate-pulse"
+      <div className="absolute bottom-0 right-0 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-gradient-radial from-purple-500/5 to-transparent animate-pulse"
            style={{ animationDelay: "2s", animationDuration: "4s" }} />
     </div>
   )
