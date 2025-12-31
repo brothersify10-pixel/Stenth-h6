@@ -20,7 +20,7 @@ export default function STENTHHero() {
               We Build Businesses.
             </h1>
 
-            <p className="text-xl text-slate-300 max-w-2xl leading-relaxed">
+            <p className="text-lg sm:text-xl text-slate-300 max-w-2xl leading-relaxed mx-auto lg:mx-0">
               From business analysis to brand recognition, STENTH drives every stage of your growth, strategy, marketing, ROI tracking, and beyond.
             </p>
 
@@ -28,7 +28,7 @@ export default function STENTHHero() {
               <Button
                 asChild
                 size="lg"
-                className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-950"
+                className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-slate-950"
               >
                 <Link href="/start">Start Growing Today</Link>
               </Button>
@@ -36,9 +36,12 @@ export default function STENTHHero() {
                 asChild
                 variant="outline"
                 size="lg"
-                className="border-2 border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 bg-transparent focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-slate-950"
+                className="border-2 border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold rounded-xl transition-all duration-300 bg-transparent focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-slate-950"
               >
-                <Link href="/book">Book Your Free Growth Session</Link>
+                <Link href="/book">
+                  <span className="hidden sm:inline">Book Your Free Growth Session</span>
+                  <span className="sm:hidden">Book Free Session</span>
+                </Link>
               </Button>
             </div>
           </div>
