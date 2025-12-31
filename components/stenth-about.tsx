@@ -6,7 +6,7 @@ export default function STENTHAbout() {
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
           <div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-8">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-8">
               We Don't Just Market Brands.{" "}
               <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
                 We Build Businesses.

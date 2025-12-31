@@ -53,7 +53,7 @@ export default function CaseStudies() {
     <section className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-900/50">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
             Real Results.{" "}
             <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
               Real Growth.
