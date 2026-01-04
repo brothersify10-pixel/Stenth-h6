@@ -219,22 +219,6 @@ export default function BookAustraliaPage() {
             </div>
           </div>
 
-          {/* Cal.com Calendar */}
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-green-500/20 to-yellow-400/10 rounded-3xl blur-2xl"></div>
-            <div className="relative bg-slate-900/90 backdrop-blur-sm rounded-3xl p-3 border border-slate-800/50 shadow-2xl">
-              <iframe
-                src="https://cal.com/stenth/30min"
-                width="100%"
-                height="700"
-                frameBorder="0"
-                className="rounded-2xl"
-                title="Schedule a consultation with Stenth"
-                allowFullScreen
-              />
-            </div>
-          </div>
-
           <div className="text-center">
             <p className="text-slate-400 text-sm">
               Need help? Email us at <a href="mailto:info@stenth.com" className="text-green-400 hover:text-green-300">info@stenth.com</a>
@@ -575,31 +559,6 @@ export default function BookAustraliaPage() {
                   </p>
                 </div>
               </form>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-32 max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-white via-green-200 to-yellow-200 bg-clip-text text-transparent">
-              Or Book Instantly 🦘
-            </h2>
-            <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-              See our live Aussie availability in your timezone
-            </p>
-          </div>
-
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-green-500/20 to-yellow-400/10 rounded-3xl blur-2xl"></div>
-            <div className="relative bg-slate-900/90 backdrop-blur-sm rounded-3xl p-3 border border-slate-800/50 shadow-2xl">
-              <iframe
-                src="https://cal.com/stenth/30min-australia?embed=true&theme=dark"
-                width="100%"
-                height="650"
-                frameBorder="0"
-                className="rounded-2xl"
-                title="Schedule an Australian consultation with Stenth"
-              />
             </div>
           </div>
         </div>
