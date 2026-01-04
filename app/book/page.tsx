@@ -494,6 +494,31 @@ export default function BookPage() {
           </div>
         </div>
 
+        <div className="mt-32 max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-white via-cyan-200 to-purple-200 bg-clip-text text-transparent">
+              Or Book Instantly
+            </h2>
+            <p className="text-xl text-slate-400 max-w-2xl mx-auto">
+              See our live availability and book your session now
+            </p>
+          </div>
+
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-3xl blur-2xl"></div>
+            <div className="relative bg-slate-900/90 backdrop-blur-sm rounded-3xl p-3 border border-slate-800/50 shadow-2xl">
+              <iframe
+                src="https://cal.com/stenth/30min"
+                width="100%"
+                height="650"
+                frameBorder="0"
+                className="rounded-2xl"
+                title="Schedule a consultation with Stenth"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )

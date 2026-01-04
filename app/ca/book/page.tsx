@@ -204,22 +204,6 @@ export default function BookCanadaPage() {
             </div>
           </div>
 
-          {/* Cal.com Calendar */}
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-white/10 rounded-3xl blur-2xl"></div>
-            <div className="relative bg-slate-900/90 backdrop-blur-sm rounded-3xl p-3 border border-slate-800/50 shadow-2xl">
-              <iframe
-                src="https://cal.com/stenth/30min"
-                width="100%"
-                height="700"
-                frameBorder="0"
-                className="rounded-2xl"
-                title="Schedule a consultation with Stenth"
-                allowFullScreen
-              />
-            </div>
-          </div>
-
           <div className="text-center">
             <p className="text-slate-400 text-sm">
               Need help? Email us at <a href="mailto:info@stenth.com" className="text-red-400 hover:text-red-300">info@stenth.com</a>
@@ -264,7 +248,7 @@ export default function BookCanadaPage() {
         <div className="container mx-auto px-6">
           <div className="text-center max-w-6xl mx-auto">
             <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-red-500/10 to-white/5 border border-red-500/30 rounded-full px-8 py-3 mb-8 backdrop-blur-sm">
-              <div className="text-2xl">🇨🇦</div>
+              <div className="text-2xl md:hidden">🇨🇦</div>
               <span className="text-sm font-semibold text-red-400 tracking-wide">FREE CANADIAN STRATEGY SESSION</span>
               <Leaf className="w-5 h-5 text-red-400" />
             </div>
@@ -412,7 +396,7 @@ export default function BookCanadaPage() {
             <div className="relative bg-slate-900/95 backdrop-blur-2xl border border-slate-800/50 rounded-3xl p-10 shadow-2xl">
               <div className="text-center mb-10">
                 <h3 className="text-3xl font-bold text-white mb-3 flex items-center justify-center space-x-2">
-                  <span>🇨🇦</span>
+                  <span className="md:hidden">🇨🇦</span>
                   <span>Book Your Canadian Session</span>
                 </h3>
                 <p className="text-slate-400 text-lg">
@@ -539,7 +523,7 @@ export default function BookCanadaPage() {
                       </>
                     ) : (
                       <>
-                        <div className="text-xl">🇨🇦</div>
+                        <div className="text-xl md:hidden">🇨🇦</div>
                         <span>
                           {!formData.email || !formData.name
                             ? 'Please Fill Required Fields'
@@ -564,30 +548,6 @@ export default function BookCanadaPage() {
           </div>
         </div>
 
-        <div className="mt-32 max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-white via-red-200 to-white bg-clip-text text-transparent">
-              Or Book Instantly 🍁
-            </h2>
-            <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-              See our live Canadian availability in your timezone
-            </p>
-          </div>
-
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-white/10 rounded-3xl blur-2xl"></div>
-            <div className="relative bg-slate-900/90 backdrop-blur-sm rounded-3xl p-3 border border-slate-800/50 shadow-2xl">
-              <iframe
-                src="https://cal.com/stenth/30min-canada?embed=true&theme=dark"
-                width="100%"
-                height="650"
-                style={{ border: 'none' }}
-                className="rounded-2xl"
-                title="Schedule a Canadian consultation with Stenth"
-              />
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   )

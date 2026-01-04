@@ -279,7 +279,7 @@ export default function BookAustraliaPage() {
         <div className="container mx-auto px-6">
           <div className="text-center max-w-6xl mx-auto">
             <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-green-500/10 to-yellow-400/10 border border-green-500/30 rounded-full px-8 py-3 mb-8 backdrop-blur-sm">
-              <div className="text-2xl">🇦🇺</div>
+              <div className="text-2xl md:hidden">🇦🇺</div>
               <span className="text-sm font-semibold text-green-400 tracking-wide">FREE AUSSIE STRATEGY SESSION</span>
               <Sun className="w-5 h-5 text-yellow-400" />
             </div>
@@ -427,7 +427,7 @@ export default function BookAustraliaPage() {
             <div className="relative bg-slate-900/95 backdrop-blur-2xl border border-slate-800/50 rounded-3xl p-10 shadow-2xl">
               <div className="text-center mb-10">
                 <h3 className="text-3xl font-bold text-white mb-3 flex items-center justify-center space-x-2">
-                  <span>🇦🇺</span>
+                  <span className="md:hidden">🇦🇺</span>
                   <span>Book Your Aussie Session</span>
                 </h3>
                 <p className="text-slate-400 text-lg">
@@ -554,7 +554,7 @@ export default function BookAustraliaPage() {
                       </>
                     ) : (
                       <>
-                        <div className="text-xl">🇦🇺</div>
+                        <div className="text-xl md:hidden">🇦🇺</div>
                         <span>
                           {!formData.email || !formData.name
                             ? 'Please Fill Required Fields'

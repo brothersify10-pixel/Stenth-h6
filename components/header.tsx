@@ -291,9 +291,6 @@ export default function Header() {
                             onMouseEnter={() => setSelectedCountry(countryIndex)}
                           >
                             <div className="flex items-center space-x-2">
-                              <span className={`text-xs font-bold px-2 py-1 rounded ${country.flagColors} text-slate-900`}>
-                                {country.flag}
-                              </span>
                               <span>{country.label}</span>
                             </div>
                             <ChevronDown className="w-4 h-4 -rotate-90 transition-transform group-hover:translate-x-1" />
