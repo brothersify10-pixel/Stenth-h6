@@ -12,7 +12,8 @@ import {
   MapPin,
   ChevronDown,
   Mail,
-  Building2
+  Building2,
+  FileText
 } from "lucide-react"
 
 export {
@@ -28,5 +29,6 @@ export {
   MapPin,
   ChevronDown,
   Mail,
-  Building2
+  Building2,
+  FileText
 }
