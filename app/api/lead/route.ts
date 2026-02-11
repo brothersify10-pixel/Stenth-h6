@@ -104,17 +104,19 @@ STENTH`
 }
 
 async function sendAutoReply(data: LeadData, assigned: typeof TEAM[number]) {
-  if (process.env.NODE_ENV !== "production" || !process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
-    console.log("[DEV] Would send auto-reply to:", data.email)
-    console.log("[DEV] Assigned to:", assigned.name, assigned.email)
-    console.log("[DEV] Lead:", data)
+  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+    console.log("[SKIP] Email credentials not set. Would send auto-reply to:", data.email)
+    console.log("[SKIP] Assigned to:", assigned.name, assigned.email)
     return
   }
 
   const transporter = createTransporter()
+  const fromAddr = process.env.EMAIL_FROM || process.env.EMAIL_USER
+
+  console.log("[EMAIL] Sending auto-reply to:", data.email, "| CC:", assigned.email, "| From:", fromAddr)
 
   await transporter.sendMail({
-    from: `"${data.name} at STENTH" <${process.env.EMAIL_FROM || process.env.EMAIL_USER}>`,
+    from: `"Stenth" <${fromAddr}>`,
     to: data.email,
     cc: assigned.email,
     replyTo: assigned.email,
@@ -122,6 +124,8 @@ async function sendAutoReply(data: LeadData, assigned: typeof TEAM[number]) {
     html: buildAutoReplyHtml(data, assigned.name),
     text: buildAutoReplyText(data, assigned.name),
   })
+
+  console.log("[EMAIL] Auto-reply sent successfully to:", data.email)
 }
 
 export async function POST(req: NextRequest) {
