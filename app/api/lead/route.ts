@@ -166,12 +166,18 @@ export async function POST(req: NextRequest) {
     leadCounter++
     const assigned = leadCounter % 2 === 1 ? TEAM[0] : TEAM[1] // odd=Ansh, even=Aakash
 
-    // Send auto-reply (don't block response on failure)
-    sendAutoReply(data, assigned).catch((err) => {
+    // Send auto-reply (await so we can surface errors)
+    let emailStatus = "sent"
+    let emailError = ""
+    try {
+      await sendAutoReply(data, assigned)
+    } catch (err) {
+      emailStatus = "failed"
+      emailError = err instanceof Error ? err.message : String(err)
       console.error("Auto-reply email failed:", err)
-    })
+    }
 
-    return NextResponse.json({ success: true, assignedTo: assigned.name })
+    return NextResponse.json({ success: true, assignedTo: assigned.name, emailStatus, emailError })
   } catch (error) {
     console.error("Lead API error:", error)
     return NextResponse.json(
