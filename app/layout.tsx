@@ -8,6 +8,7 @@ import "./globals.css"
 import Header from "@/components/header"
 import Breadcrumbs from "@/components/breadcrumbs"
 import Footer from "@/components/footer"
+import StenthChat from "@/components/stenth-chat"
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.stenth.com"),
@@ -217,6 +218,7 @@ export default function RootLayout({ children, modal }: { children: React.ReactN
           {children}
         </main>
         <Footer />
+        <StenthChat />
         <Suspense fallback={null}>
           <Analytics />
         </Suspense>
