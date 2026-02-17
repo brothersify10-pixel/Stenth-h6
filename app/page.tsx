@@ -54,7 +54,7 @@ function TeamVideo() {
             playsInline
             preload="metadata"
           >
-            <source src="/stenth_team Final.mp4" type="video/mp4" />
+            <source src="/stenth_team_Final.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         ) : (
