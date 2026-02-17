@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { X, Home, Briefcase, User, Phone, Rocket, Calendar, ArrowRight, Sparkles, MapPin, ChevronDown, FileText } from "./icons"
+import { X, Home, Briefcase, User, Phone, Rocket, Calendar, ArrowRight, Sparkles, MapPin, ChevronDown } from "./icons"
 
 const NAV = [
   { href: "/", label: "Home", mobileLabel: "Home", icon: Home, color: "from-blue-400 to-cyan-400" },
@@ -15,14 +15,7 @@ const NAV = [
     icon: Briefcase,
     color: "from-purple-400 to-pink-400",
   },
-  {
-    href: "/blog",
-    label: "Blog",
-    mobileLabel: "Blog",
-    icon: FileText,
-    color: "from-green-400 to-emerald-400",
-  },
-  { href: "/about", label: "About Us", mobileLabel: "About", icon: User, color: "from-teal-400 to-cyan-400" },
+{ href: "/about", label: "About Us", mobileLabel: "About", icon: User, color: "from-teal-400 to-cyan-400" },
   { href: "/portfolio", label: "Portfolio", mobileLabel: "Portfolio", icon: Briefcase, color: "from-orange-400 to-red-400" },
   { href: "/contact", label: "Contact", mobileLabel: "Contact", icon: Phone, color: "from-yellow-400 to-orange-400" },
 ]
